@@ -30,37 +30,20 @@ export default function UploadPage() {
     setUploading(true);
 
     try {
-      // Resize the image
-      const resizedImage = await resizeImage(file);
-      const fileName = `${Date.now()}-${file.name}`;
+      const formData = new FormData();
+      formData.append("file", file);
 
-      // Upload to Supabase Storage
-      const { error: uploadError } = await supabase.storage
-        .from("uploads")
-        .upload(fileName, resizedImage);
-
-      if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data } = supabase.storage.from("uploads").getPublicUrl(fileName);
-      const imageUrl = data.publicUrl;
-
-      // Call your edge function to insert into print_queue
       const res = await fetch("/.netlify/functions/insertPrintQueue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image_url: imageUrl }),
+        body: formData,
       });
 
       const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Failed to queue print");
-      }
+      if (!res.ok) throw new Error(result.error || "Upload failed");
 
       alert("Uploaded! Your image will print shortly.");
     } catch (err: any) {
-      console.error("Upload error:", err);
+      console.error(err);
       alert("Upload failed: " + (err.message || "Unknown error"));
     } finally {
       setUploading(false);
@@ -70,7 +53,6 @@ export default function UploadPage() {
   return (
     <div style={{ padding: 40 }}>
       <h2>Upload Image</h2>
-
       <input
         type="file"
         accept="image/*"
@@ -80,7 +62,6 @@ export default function UploadPage() {
           uploadImage(e.target.files[0]);
         }}
       />
-
       {uploading && <p>Uploading...</p>}
     </div>
   );
