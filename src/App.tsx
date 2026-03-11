@@ -171,37 +171,19 @@ export default function App() {
     img.src = imgSrc;
   };
   useEffect(() => {
+  const interval = setInterval(async () => {
+    const { data } = await supabase
+      .from("print_queue")
+      .select("*")
+      .order("id", { ascending: false })
+      .limit(1);
 
-  const channel = supabase
-    .channel("print_queue_listener")
-    .on(
-      "postgres_changes",
-      {
-        event: "INSERT",
-        schema: "public",
-        table: "print_queue"
-      },
-      (payload) => {
+    if (data?.[0]) {
+      setImage(data[0].image_url);
+    }
+  }, 2000);
 
-        const imageUrl = payload.new.image_url;
-
-        if (imageUrl) {
-          setImage(imageUrl);
-
-          // optional auto print
-          setTimeout(() => {
-            handleDirectPrint();
-          }, 1500);
-        }
-
-      }
-    )
-    .subscribe();
-
-  return () => {
-    supabase.removeChannel(channel);
-  };
-
+  return () => clearInterval(interval);
 }, []);
 
   useEffect(() => {
