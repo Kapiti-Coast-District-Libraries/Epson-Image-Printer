@@ -1,64 +1,77 @@
 import { supabase } from "./supabase";
 import { useState } from "react";
 
+// Resize image to 576px wide (thermal printer)
 const resizeImage = (file: File): Promise<Blob> =>
-  new Promise((resolve) => {
+  new Promise((resolve, reject) => {
     const img = new Image();
     const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return reject(new Error("Cannot get canvas context"));
 
     img.onload = () => {
-      const width = 576; // thermal printer width
+      const width = 576;
       const scale = width / img.width;
-
       canvas.width = width;
       canvas.height = img.height * scale;
 
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      canvas.toBlob((blob) => resolve(blob!), "image/jpeg", 0.9);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return reject(new Error("Failed to convert canvas to blob"));
+          resolve(blob);
+        },
+        "image/png", // PNG is safe for Supabase Storage
+        0.9
+      );
     };
 
+    img.onerror = (err) => reject(err);
     img.src = URL.createObjectURL(file);
   });
 
 export default function UploadPage() {
-
   const [uploading, setUploading] = useState(false);
 
   const uploadImage = async (file: File) => {
-
     if (uploading) return;
-
     setUploading(true);
 
-    const fileName = `${Date.now()}-${Math.random()}-${file.name}`;
+    try {
+      // Sanitize filename: remove spaces and special characters
+      const safeName = `${Date.now()}-${Math.random()}-${file.name}`
+        .replace(/\s+/g, "-")
+        .replace(/[^a-zA-Z0-9.-]/g, "");
 
-    const resizedImage = await resizeImage(file);
+      const resizedBlob = await resizeImage(file);
 
-const { error } = await supabase.storage
-  .from("uploads")
-  .upload(fileName, resizedImage);
+      // Convert Blob to File with MIME type
+      const fileToUpload = new File([resizedBlob], safeName, { type: "image/png" });
 
-    if (error) {
-      alert("Upload failed");
+      const { error } = await supabase.storage
+        .from("uploads")
+        .upload(safeName, fileToUpload);
+
+      if (error) {
+        console.error("Supabase Upload Error:", error);
+        alert("Upload failed");
+        setUploading(false);
+        return;
+      }
+
+      const { data } = supabase.storage.from("uploads").getPublicUrl(safeName);
+      const imageUrl = data.publicUrl;
+
+      await supabase.from("print_queue").insert([{ image_url: imageUrl }]);
+
+      alert("Uploaded! Your image will print shortly.");
+    } catch (err: any) {
+      console.error(err);
+      alert("Upload failed: " + (err.message || err));
+    } finally {
       setUploading(false);
-      return;
     }
-
-    const { data } = supabase.storage
-      .from("uploads")
-      .getPublicUrl(fileName);
-
-    const imageUrl = data.publicUrl;
-
-    await supabase
-      .from("print_queue")
-      .insert([{ image_url: imageUrl }]);
-
-    alert("Uploaded! Your image will print shortly.");
-
-    setUploading(false);
   };
 
   return (
