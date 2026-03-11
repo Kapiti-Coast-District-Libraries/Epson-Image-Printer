@@ -39,12 +39,10 @@ export default function UploadPage() {
   const [loadingAuth, setLoadingAuth] = useState(false);
 
   useEffect(() => {
-    // Listen for auth state changes
     const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
     });
 
-    // Check current session
     supabase.auth.getSession().then(({ data }) => {
       setUser(data.session?.user ?? null);
     });
@@ -90,9 +88,8 @@ export default function UploadPage() {
       if (error) throw error;
 
       const { data } = supabase.storage.from("uploads").getPublicUrl(safeName);
-      await supabase.from("print_queue").insert([{ image_url: data.publicUrl }]);
 
-      alert("Uploaded! Your image will print shortly.");
+      alert("Uploaded! Public URL: " + data.publicUrl);
     } catch (err: any) {
       console.error(err);
       alert("Upload failed: " + (err.message || err));
