@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import { supabase } from "./supabase";
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -170,6 +170,39 @@ export default function App() {
     };
     img.src = imgSrc;
   };
+  useEffect(() => {
+
+  const channel = supabase
+    .channel("print_queue_listener")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "print_queue"
+      },
+      (payload) => {
+
+        const imageUrl = payload.new.image_url;
+
+        if (imageUrl) {
+          setImage(imageUrl);
+
+          // optional auto print
+          setTimeout(() => {
+            handleDirectPrint();
+          }, 1500);
+        }
+
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(channel);
+  };
+
+}, []);
 
   useEffect(() => {
     if (image) processImage(image);
