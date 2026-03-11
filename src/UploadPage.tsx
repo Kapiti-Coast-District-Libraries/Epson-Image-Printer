@@ -1,4 +1,3 @@
-import { supabase } from "./supabase";
 import { useState } from "react";
 
 const resizeImage = (file: File): Promise<Blob> =>
@@ -8,11 +7,14 @@ const resizeImage = (file: File): Promise<Blob> =>
     const ctx = canvas.getContext("2d")!;
 
     img.onload = () => {
-      const width = 576;
+      const width = 576; // Thermal printer width
       const scale = width / img.width;
+
       canvas.width = width;
       canvas.height = img.height * scale;
+
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
       canvas.toBlob((blob) => resolve(blob!), "image/jpeg", 0.9);
     };
 
@@ -27,36 +29,42 @@ export default function UploadPage() {
     setUploading(true);
 
     try {
+      // Resize
       const resizedImage = await resizeImage(file);
+
+      // Upload to Supabase storage
       const fileName = `${Date.now()}-${file.name}`;
+      const storageRes = await fetch(
+        `https://YOUR_SUPABASE_PROJECT_URL/storage/v1/object/uploads/${fileName}`,
+        {
+          method: "PUT",
+          headers: {
+            apikey: "YOUR_SUPABASE_ANON_KEY",
+            Authorization: `Bearer YOUR_SUPABASE_ANON_KEY`,
+            "Content-Type": resizedImage.type,
+          },
+          body: resizedImage,
+        }
+      );
 
-      // Upload directly to Supabase Storage
-      const { error: uploadError } = await supabase.storage
-        .from("uploads")
-        .upload(fileName, resizedImage);
+      if (!storageRes.ok) throw new Error("Upload failed");
 
-      if (uploadError) throw uploadError;
+      const imageUrl = `https://YOUR_SUPABASE_PROJECT_URL/storage/v1/object/public/uploads/${fileName}`;
 
-      // Get public URL
-      const { data } = supabase.storage.from("uploads").getPublicUrl(fileName);
-      const imageUrl = data.publicUrl;
+      // Call Netlify edge function
+      const formData = new FormData();
+      formData.append("image_url", imageUrl);
 
-      // Call edge function to insert URL into print_queue
       const res = await fetch("/.netlify/functions/insertPrintQueue", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ image_url: imageUrl }),
+        body: formData,
       });
 
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.error || "Failed to queue print");
-      }
+      if (!res.ok) throw new Error("Failed to queue print");
 
       alert("Uploaded! Your image will print shortly.");
     } catch (err: any) {
-      console.error("Upload error:", err);
+      console.error(err);
       alert("Upload failed: " + (err.message || "Unknown error"));
     } finally {
       setUploading(false);
