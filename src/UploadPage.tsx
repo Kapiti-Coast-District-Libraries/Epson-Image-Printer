@@ -1,23 +1,34 @@
+import { supabase } from "./supabase";
 import { useState } from "react";
 
+
+// Resize image to 576px wide (thermal printer)
 const resizeImage = (file: File): Promise<Blob> =>
-  new Promise((resolve) => {
+  new Promise((resolve, reject) => {
     const img = new Image();
     const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d")!;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return reject(new Error("Cannot get canvas context"));
 
     img.onload = () => {
-      const width = 576; // Thermal printer width
+      const width = 576;
       const scale = width / img.width;
-
       canvas.width = width;
       canvas.height = img.height * scale;
 
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      canvas.toBlob((blob) => resolve(blob!), "image/jpeg", 0.9);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return reject(new Error("Failed to convert canvas to blob"));
+          resolve(blob);
+        },
+        "image/png", // PNG is safe for Supabase Storage
+        0.9
+      );
     };
 
+    img.onerror = (err) => reject(err);
     img.src = URL.createObjectURL(file);
   });
 
@@ -29,43 +40,36 @@ export default function UploadPage() {
     setUploading(true);
 
     try {
-      // Resize
-      const resizedImage = await resizeImage(file);
+      // Sanitize filename: remove spaces and special characters
+      const safeName = `${Date.now()}-${Math.random()}-${file.name}`
+        .replace(/\s+/g, "-")
+        .replace(/[^a-zA-Z0-9.-]/g, "");
 
-      // Upload to Supabase storage
-      const fileName = `${Date.now()}-${file.name}`;
-      const storageRes = await fetch(
-        `https://YOUR_SUPABASE_PROJECT_URL/storage/v1/object/uploads/${fileName}`,
-        {
-          method: "PUT",
-          headers: {
-            apikey: "YOUR_SUPABASE_ANON_KEY",
-            Authorization: `Bearer YOUR_SUPABASE_ANON_KEY`,
-            "Content-Type": resizedImage.type,
-          },
-          body: resizedImage,
-        }
-      );
+      const resizedBlob = await resizeImage(file);
 
-      if (!storageRes.ok) throw new Error("Upload failed");
+      // Convert Blob to File with MIME type
+      const fileToUpload = new File([resizedBlob], safeName, { type: "image/png" });
 
-      const imageUrl = `https://YOUR_SUPABASE_PROJECT_URL/storage/v1/object/public/uploads/${fileName}`;
+      const { error } = await supabase.storage
+        .from("uploads")
+        .upload(safeName, fileToUpload);
 
-      // Call Netlify edge function
-      const formData = new FormData();
-      formData.append("image_url", imageUrl);
+      if (error) {
+        console.error("Supabase Upload Error:", error);
+        alert("Upload failed");
+        setUploading(false);
+        return;
+      }
 
-      const res = await fetch("/.netlify/functions/insertPrintQueue", {
-        method: "POST",
-        body: formData,
-      });
+      const { data } = supabase.storage.from("uploads").getPublicUrl(safeName);
+      const imageUrl = data.publicUrl;
 
-      if (!res.ok) throw new Error("Failed to queue print");
+      await supabase.from("print_queue").insert([{ image_url: imageUrl }]);
 
       alert("Uploaded! Your image will print shortly.");
     } catch (err: any) {
       console.error(err);
-      alert("Upload failed: " + (err.message || "Unknown error"));
+      alert("Upload failed: " + (err.message || err));
     } finally {
       setUploading(false);
     }
@@ -74,6 +78,7 @@ export default function UploadPage() {
   return (
     <div style={{ padding: 40 }}>
       <h2>Upload Image</h2>
+
       <input
         type="file"
         accept="image/*"
@@ -83,6 +88,7 @@ export default function UploadPage() {
           uploadImage(e.target.files[0]);
         }}
       />
+
       {uploading && <p>Uploading...</p>}
     </div>
   );
