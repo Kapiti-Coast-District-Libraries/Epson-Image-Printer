@@ -171,19 +171,45 @@ export default function App() {
     img.src = imgSrc;
   };
   useEffect(() => {
-  const interval = setInterval(async () => {
-    const { data } = await supabase
-      .from("print_queue")
-      .select("*")
-      .order("id", { ascending: false })
-      .limit(1);
+  // Subscribe to the print_queue table for new inserts
+  const subscription = supabase
+    .channel("print_queue_listener")
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "print_queue",
+      },
+      async (payload) => {
+        const row = payload.new;
+        if (!row) return;
 
-    if (data?.[0]) {
-      setImage(data[0].image_url);
-    }
-  }, 2000);
+        // Check if row is already marked as printed
+        if (row.printed) return;
 
-  return () => clearInterval(interval);
+        // Set the image for preview/processing
+        setImage(row.image_url);
+
+        try {
+          // Auto-print after a short delay
+          setTimeout(() => handleDirectPrint(), 1000);
+
+          // Mark the row as printed in the DB
+          await supabase
+            .from("print_queue")
+            .update({ printed: true })
+            .eq("id", row.id);
+        } catch (err: any) {
+          console.error("Failed to mark row as printed:", err);
+        }
+      }
+    )
+    .subscribe();
+
+  return () => {
+    supabase.removeChannel(subscription);
+  };
 }, []);
 
   useEffect(() => {
