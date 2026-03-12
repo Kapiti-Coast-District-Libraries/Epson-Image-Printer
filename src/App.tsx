@@ -193,8 +193,8 @@ export default function App() {
 
         try {
           // Auto-print after a short delay
-          setTimeout(() => handleDirectPrint(), 1000);
-
+          handleDirectPrint();
+          console.log("Print Attempted");
           // Mark the row as printed in the DB
           await supabase
             .from("print_queue")
