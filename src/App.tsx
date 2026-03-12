@@ -187,7 +187,7 @@ export default function App() {
 
         // Check if row is already marked as printed
         if (row.printed) return;
-
+        console.log(`Found image ${row.image_url}`);
         // Set the image for preview/processing
         setImage(row.image_url);
 
