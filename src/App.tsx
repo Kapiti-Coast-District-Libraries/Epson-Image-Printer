@@ -166,7 +166,13 @@ export default function App() {
 
       ctx.putImageData(imageData, 0, 0);
       setProcessedImage(canvas.toDataURL('image/png'));
-      setIsProcessing(false);
+setIsProcessing(false);
+
+// auto print after processing
+setTimeout(() => {
+  handleDirectPrint();
+  console.log("Print Attempted");
+}, 100);
     };
     img.src = imgSrc;
   };
@@ -192,9 +198,6 @@ export default function App() {
         setImage(row.image_url);
 
         try {
-          // Auto-print after a short delay
-          handleDirectPrint();
-          console.log("Print Attempted");
           // Mark the row as printed in the DB
           await supabase
             .from("print_queue")
