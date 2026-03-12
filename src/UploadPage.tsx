@@ -1,6 +1,5 @@
 import { supabase } from "./supabase";
-import { useState } from "react";
-
+import { useState, useRef, useEffect } from "react";
 
 // Resize image to 576px wide (thermal printer)
 const resizeImage = (file: File): Promise<Blob> =>
@@ -23,7 +22,7 @@ const resizeImage = (file: File): Promise<Blob> =>
           if (!blob) return reject(new Error("Failed to convert canvas to blob"));
           resolve(blob);
         },
-        "image/png", // PNG is safe for Supabase Storage
+        "image/png",
         0.9
       );
     };
@@ -34,21 +33,31 @@ const resizeImage = (file: File): Promise<Blob> =>
 
 export default function UploadPage() {
   const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Automatically open image picker on page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fileInputRef.current?.click();
+    }, 300); // small delay helps mobile browsers
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const uploadImage = async (file: File) => {
     if (uploading) return;
     setUploading(true);
 
     try {
-      // Sanitize filename: remove spaces and special characters
       const safeName = `${Date.now()}-${Math.random()}-${file.name}`
         .replace(/\s+/g, "-")
         .replace(/[^a-zA-Z0-9.-]/g, "");
 
       const resizedBlob = await resizeImage(file);
 
-      // Convert Blob to File with MIME type
-      const fileToUpload = new File([resizedBlob], safeName, { type: "image/png" });
+      const fileToUpload = new File([resizedBlob], safeName, {
+        type: "image/png",
+      });
 
       const { error } = await supabase.storage
         .from("uploads")
@@ -76,20 +85,27 @@ export default function UploadPage() {
   };
 
   return (
-    <div style={{ padding: 40 }}>
+    <div
+      style={{ padding: 40, textAlign: "center" }}
+      onClick={() => fileInputRef.current?.click()}
+    >
       <h2>Upload Image</h2>
 
+      {!uploading && <p>Tap anywhere to upload a photo</p>}
+      {uploading && <p>Uploading...</p>}
+
       <input
+        ref={fileInputRef}
         type="file"
         accept="image/*"
+        capture="environment"
+        style={{ display: "none" }}
         disabled={uploading}
         onChange={(e) => {
           if (!e.target.files) return;
           uploadImage(e.target.files[0]);
         }}
       />
-
-      {uploading && <p>Uploading...</p>}
     </div>
   );
 }
