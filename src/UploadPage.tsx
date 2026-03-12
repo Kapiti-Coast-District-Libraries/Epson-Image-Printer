@@ -1,7 +1,7 @@
 import { supabase } from "./supabase";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
-// Resize image to 576px wide (thermal printer)
+// Resize image to 576px wide
 const resizeImage = (file: File): Promise<Blob> =>
   new Promise((resolve, reject) => {
     const img = new Image();
@@ -12,22 +12,18 @@ const resizeImage = (file: File): Promise<Blob> =>
     img.onload = () => {
       const width = 576;
       const scale = width / img.width;
+
       canvas.width = width;
       canvas.height = img.height * scale;
 
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      canvas.toBlob(
-        (blob) => {
-          if (!blob) return reject(new Error("Failed to convert canvas to blob"));
-          resolve(blob);
-        },
-        "image/png",
-        0.9
-      );
+      canvas.toBlob((blob) => {
+        if (!blob) return reject("Blob conversion failed");
+        resolve(blob);
+      }, "image/png");
     };
 
-    img.onerror = (err) => reject(err);
     img.src = URL.createObjectURL(file);
   });
 
@@ -35,17 +31,9 @@ export default function UploadPage() {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Automatically open image picker on page load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      fileInputRef.current?.click();
-    }, 300); // small delay helps mobile browsers
-
-    return () => clearTimeout(timer);
-  }, []);
-
   const uploadImage = async (file: File) => {
     if (uploading) return;
+
     setUploading(true);
 
     try {
@@ -63,44 +51,42 @@ export default function UploadPage() {
         .from("uploads")
         .upload(safeName, fileToUpload);
 
-      if (error) {
-        console.error("Supabase Upload Error:", error);
-        alert("Upload failed");
-        setUploading(false);
-        return;
-      }
+      if (error) throw error;
 
       const { data } = supabase.storage.from("uploads").getPublicUrl(safeName);
-      const imageUrl = data.publicUrl;
 
-      await supabase.from("print_queue").insert([{ image_url: imageUrl }]);
+      await supabase.from("print_queue").insert([
+        {
+          image_url: data.publicUrl,
+        },
+      ]);
 
       alert("Uploaded! Your image will print shortly.");
+
+      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err: any) {
       console.error(err);
-      alert("Upload failed: " + (err.message || err));
+      alert("Upload failed: " + err.message);
     } finally {
       setUploading(false);
     }
   };
 
   return (
-    <div
-      style={{ padding: 40, textAlign: "center" }}
-      onClick={() => fileInputRef.current?.click()}
-    >
-      <h2>Upload Image</h2>
-
-      {!uploading && <p>Tap anywhere to upload a photo</p>}
-      {uploading && <p>Uploading...</p>}
+    <div style={styles.page}>
+      <button
+        style={styles.button}
+        disabled={uploading}
+        onClick={() => fileInputRef.current?.click()}
+      >
+        {uploading ? "Uploading..." : "Tap to Upload Photo"}
+      </button>
 
       <input
         ref={fileInputRef}
         type="file"
         accept="image/*"
-        capture="environment"
         style={{ display: "none" }}
-        disabled={uploading}
         onChange={(e) => {
           if (!e.target.files) return;
           uploadImage(e.target.files[0]);
@@ -109,3 +95,27 @@ export default function UploadPage() {
     </div>
   );
 }
+
+const styles = {
+  page: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#f5f5f5",
+    padding: 20,
+  },
+
+  button: {
+    width: "90%",
+    maxWidth: 500,
+    height: "60vh",
+    fontSize: "28px",
+    fontWeight: "bold",
+    borderRadius: "20px",
+    border: "none",
+    background: "#000",
+    color: "white",
+    cursor: "pointer",
+  },
+};
