@@ -195,61 +195,97 @@ const deleteImageFromBucket = async (imageUrl: string) => {
     }
   };
 
-  // --- Image Processing ---
-  const processImage = (imgSrc: string) => {
-    setIsProcessing(true);
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+  const processImage = (imgSrc: string, rowId?: number) => {
+  setIsProcessing(true);
+  const img = new Image();
+  img.crossOrigin = "anonymous";
 
-      const targetWidth = PRINTER_WIDTHS[printerWidth];
-      const scale = targetWidth / img.width;
-      const targetHeight = Math.floor(img.height * scale);
+  img.onload = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
+    const targetWidth = PRINTER_WIDTHS[printerWidth];
+    const scale = targetWidth / img.width;
+    const targetHeight = Math.floor(img.height * scale);
 
-      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-      const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
-      const data = imageData.data;
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
 
-      for (let i = 0; i < data.length; i += 4) {
-        let r = data[i], g = data[i + 1], b = data[i + 2];
-        let gray = 0.299 * r + 0.587 * g + 0.114 * b;
-        gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
-        gray = Math.max(0, Math.min(255, gray));
-        data[i] = data[i + 1] = data[i + 2] = gray;
-      }
+    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+    const data = imageData.data;
 
-      for (let y = 0; y < targetHeight; y++) {
-        for (let x = 0; x < targetWidth; x++) {
-          const i = (y * targetWidth + x) * 4;
-          const oldPixel = data[i];
-          const newPixel = oldPixel < 128 ? 0 : 255;
-          const err = oldPixel - newPixel;
-          data[i] = data[i + 1] = data[i + 2] = newPixel;
-          if (x + 1 < targetWidth) { data[(y * targetWidth + (x + 1)) * 4] += (err * 7) / 16; }
-          if (y + 1 < targetHeight) {
-            if (x > 0) { data[((y + 1) * targetWidth + (x - 1)) * 4] += (err * 3) / 16; }
-            data[((y + 1) * targetWidth + x) * 4] += (err * 5) / 16;
-            if (x + 1 < targetWidth) { data[((y + 1) * targetWidth + (x + 1)) * 4] += (err * 1) / 16; }
-          }
+    // Dither + contrast
+    for (let i = 0; i < data.length; i += 4) {
+      let r = data[i], g = data[i + 1], b = data[i + 2];
+      let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+      gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
+      gray = Math.max(0, Math.min(255, gray));
+      data[i] = data[i + 1] = data[i + 2] = gray;
+    }
+
+    for (let y = 0; y < targetHeight; y++) {
+      for (let x = 0; x < targetWidth; x++) {
+        const i = (y * targetWidth + x) * 4;
+        const oldPixel = data[i];
+        const newPixel = oldPixel < 128 ? 0 : 255;
+        const err = oldPixel - newPixel;
+        data[i] = data[i + 1] = data[i + 2] = newPixel;
+        if (x + 1 < targetWidth) { data[(y * targetWidth + (x + 1)) * 4] += (err * 7) / 16; }
+        if (y + 1 < targetHeight) {
+          if (x > 0) { data[((y + 1) * targetWidth + (x - 1)) * 4] += (err * 3) / 16; }
+          data[((y + 1) * targetWidth + x) * 4] += (err * 5) / 16;
+          if (x + 1 < targetWidth) { data[((y + 1) * targetWidth + (x + 1)) * 4] += (err * 1) / 16; }
         }
       }
+    }
 
-      ctx.putImageData(imageData, 0, 0);
-      setProcessedImage(canvas.toDataURL('image/png'));
-setIsProcessing(false);
+    ctx.putImageData(imageData, 0, 0);
+    setProcessedImage(canvas.toDataURL('image/png'));
+    setIsProcessing(false);
 
-    };
-    img.src = imgSrc;
+    // --- Print + Delete Logic ---
+    if (rowId) {
+      try {
+        await handleDirectPrint(); // Attempt to print
+        console.log("Print attempted for:", imgSrc);
+
+        // --- Delete from Supabase Storage ---
+        const url = new URL(imgSrc);
+        const pathParts = url.pathname.split("/");
+        const bucket = pathParts[5];
+        const filePath = pathParts.slice(6).join("/");
+
+        const { error: storageError } = await supabase.storage
+          .from(bucket)
+          .remove([filePath]);
+
+        if (storageError) console.error("Failed to delete storage file:", storageError);
+        else console.log("File deleted from bucket:", filePath);
+
+        // --- Delete DB row ---
+        const { error: dbError } = await supabase
+          .from("print_queue")
+          .delete()
+          .eq("id", rowId);
+
+        if (dbError) console.error("Failed to delete DB row:", dbError);
+        else console.log("DB row deleted:", rowId);
+
+        // --- Clear UI ---
+        setImage(null);
+        setProcessedImage(null);
+
+      } catch (err: any) {
+        console.error("Print + Cleanup error:", err);
+      }
+    }
   };
 
-  
+  img.src = imgSrc;
+};
   useEffect(() => {
   // Subscribe to the print_queue table for new inserts
   const subscription = supabase
@@ -270,10 +306,6 @@ setIsProcessing(false);
         console.log(`Found image ${row.image_url}`);
         // Set the image for preview/processing
         setImage(row.image_url);
-      printAndCleanup(row.id, row.image_url);
-        setTimeout(() => {
-          }, 100);
-  console.log("Print Attempted");
 
         try {
           // Mark the row as printed in the DB
