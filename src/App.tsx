@@ -294,7 +294,7 @@ setTimeout(() => {
             );
 
             const { error } = await supabase.storage
-              .from("your-bucket")
+              .from("uploads")
               .remove([bucketPath]);
 
             if (error) {
