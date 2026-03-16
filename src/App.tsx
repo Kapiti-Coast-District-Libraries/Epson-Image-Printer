@@ -121,6 +121,57 @@ const autoConnectUsb = async () => {
 
     return combined;
   };
+  const printAndCleanup = async (rowId: number, imageUrl: string) => {
+  try {
+    // 1. Print
+    await handleDirectPrint();
+    console.log("Print attempted for:", imageUrl);
+
+    // 2. Delete from storage
+    await deleteImageFromBucket(imageUrl);
+
+    // 3. Delete the DB row
+    const { error: dbError } = await supabase
+      .from("print_queue")
+      .delete()
+      .eq("id", rowId);
+
+    if (dbError) {
+      console.error("Failed to delete DB row:", dbError);
+    } else {
+      console.log("DB row deleted successfully:", rowId);
+    }
+
+    // 4. Clear the UI
+    setImage(null);
+    setProcessedImage(null);
+
+  } catch (err: any) {
+    console.error("Print + Cleanup Error:", err);
+  }
+};
+
+const deleteImageFromBucket = async (imageUrl: string) => {
+  try {
+    // Parse the bucket path from the URL
+    // Example URL: https://<project>.supabase.co/storage/v1/object/public/<bucket>/<path>
+    const url = new URL(imageUrl);
+    const pathParts = url.pathname.split("/"); 
+    // pathParts = ["", "storage", "v1", "object", "public", "bucket", "path/to/image.png"]
+    const bucket = pathParts[5]; // "bucket"
+    const filePath = pathParts.slice(6).join("/"); // "path/to/image.png"
+
+    const { error } = await supabase.storage.from(bucket).remove([filePath]);
+    if (error) {
+      console.error("Failed to delete storage file:", error);
+    } else {
+      console.log("File deleted from bucket:", filePath);
+    }
+  } catch (err: any) {
+    console.error("Error parsing or deleting file:", err);
+  }
+};
+
 
   const handleDirectPrint = async () => {
     if (!usbDevice || !canvasRef.current) return;
@@ -137,6 +188,7 @@ const autoConnectUsb = async () => {
       if (!endpoint) throw new Error('No output endpoint found');
       
       await usbDevice.transferOut(endpoint.endpointNumber, data);
+      
     } catch (err: any) {
       console.error('Print Error:', err);
       setUsbError('Print failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
@@ -193,14 +245,11 @@ const autoConnectUsb = async () => {
       setProcessedImage(canvas.toDataURL('image/png'));
 setIsProcessing(false);
 
-// auto print after processing
-setTimeout(() => {
-  handleDirectPrint();
-  console.log("Print Attempted");
-}, 100);
     };
     img.src = imgSrc;
   };
+
+  
   useEffect(() => {
   // Subscribe to the print_queue table for new inserts
   const subscription = supabase
@@ -221,6 +270,10 @@ setTimeout(() => {
         console.log(`Found image ${row.image_url}`);
         // Set the image for preview/processing
         setImage(row.image_url);
+      printAndCleanup(row.id, row.image_url);
+        setTimeout(() => {
+          }, 100);
+  console.log("Print Attempted");
 
         try {
           // Mark the row as printed in the DB
