@@ -16,8 +16,8 @@ const PRINTER_WIDTHS = {
 export default function App() {
   const [image, setImage] = useState<string | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
-  const [printerWidth, setPrinterWidth] = useState<'58mm' | '80mm'>('58mm');
-  const [contrast, setContrast] = useState(1.2);
+  const [printerWidth, setPrinterWidth] = useState<'58mm' | '80mm'>('80mm');
+  const [contrast, setContrast] = useState(1.6);
   const [isProcessing, setIsProcessing] = useState(false);
   
   // USB State
@@ -54,6 +54,31 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+  autoConnectUsb();
+}, []);
+  // --- Auto connect if permission already granted ---
+const autoConnectUsb = async () => {
+  try {
+    const devices = await (navigator as any).usb.getDevices();
+
+    if (devices.length > 0) {
+      const device = devices[0];
+
+      await device.open();
+      if (device.configuration === null) {
+        await device.selectConfiguration(1);
+      }
+
+      await device.claimInterface(0);
+
+      setUsbDevice(device);
+      setUsbStatus('connected');
+    }
+  } catch (err: any) {
+    console.error("Auto connect failed:", err);
+  }
+};
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
