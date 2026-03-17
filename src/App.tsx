@@ -247,7 +247,8 @@ setTimeout(() => {
           // Delete the image from the bucket
           if (row.image_url) {
           const fileNameX = row.image_url.split("/").pop();
-            setFileName(fileNameX);
+            await setFileName(fileNameX);
+            console.log(fileName);
               //Delete Items from Supabase
         }
         } catch (err: any) {
