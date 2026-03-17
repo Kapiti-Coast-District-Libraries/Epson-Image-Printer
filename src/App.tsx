@@ -196,10 +196,8 @@ const autoConnectUsb = async () => {
       setProcessedImage(canvas.toDataURL('image/png'));
 setIsProcessing(false);
 // auto print after processing
-setTimeout(() => {
   handleDirectPrint();
   console.log("Print Attempted");
-}, 100);
     };
     const { error } = await supabase.storage
     .from("uploads")
