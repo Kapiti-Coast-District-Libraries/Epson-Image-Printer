@@ -235,6 +235,11 @@ setTimeout(() => {
         setImage(row.image_url);
         
         try {
+          
+          const fileNameX = row.image_url.split("/").pop();
+            await setFileName(fileNameX);
+            console.log(fileName);
+          
           // Delete the row from the table
           await supabase
             .from("print_queue")
@@ -243,14 +248,7 @@ setTimeout(() => {
 
           console.log(`Deleted row ${row.id} from print_queue`);
           
-          
-          // Delete the image from the bucket
-          if (row.image_url) {
-          const fileNameX = row.image_url.split("/").pop();
-            await setFileName(fileNameX);
-            console.log(fileName);
-              //Delete Items from Supabase
-        }
+        
         } catch (err: any) {
           console.error("Failed to process row:", err);
         }
