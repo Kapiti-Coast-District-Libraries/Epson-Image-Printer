@@ -19,7 +19,8 @@ export default function App() {
   const [printerWidth, setPrinterWidth] = useState<'58mm' | '80mm'>('80mm');
   const [contrast, setContrast] = useState(1.6);
   const [isProcessing, setIsProcessing] = useState(false);
-  
+  const [fileName, setFileName] = useState<string | null>(null);
+
   // USB State
   const [usbDevice, setUsbDevice] = useState<any | null>(null);
   const [usbStatus, setUsbStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
@@ -200,6 +201,15 @@ setTimeout(() => {
   console.log("Print Attempted");
 }, 100);
     };
+    const { error } = await supabase.storage
+    .from("uploads")
+    .remove([fileName]);
+
+  if (error) {
+    console.error("Failed to delete image from bucket:", error);
+  } else {
+    console.log(`Deleted image ${fileName}`);
+  }
     img.src = imgSrc;
   };
   useEffect(() => {
@@ -236,18 +246,9 @@ setTimeout(() => {
           
           // Delete the image from the bucket
           if (row.image_url) {
-          let fileName = row.image_url.split("/").pop();
+          const fileNameX = row.image_url.split("/").pop();
+            setFileName(fileNameX);
               //Delete Items from Supabase
-    
-  const { error } = await supabase.storage
-    .from("uploads")
-    .remove([fileName]);
-
-  if (error) {
-    console.error("Failed to delete image from bucket:", error);
-  } else {
-    console.log(`Deleted image ${fileName}`);
-  }
         }
         } catch (err: any) {
           console.error("Failed to process row:", err);
