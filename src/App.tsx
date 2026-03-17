@@ -121,56 +121,6 @@ const autoConnectUsb = async () => {
 
     return combined;
   };
-  const printAndCleanup = async (rowId: number, imageUrl: string) => {
-  try {
-    // 1. Print
-    await handleDirectPrint();
-    console.log("Print attempted for:", imageUrl);
-
-    // 2. Delete from storage
-    await deleteImageFromBucket(imageUrl);
-
-    // 3. Delete the DB row
-    const { error: dbError } = await supabase
-      .from("print_queue")
-      .delete()
-      .eq("id", rowId);
-
-    if (dbError) {
-      console.error("Failed to delete DB row:", dbError);
-    } else {
-      console.log("DB row deleted successfully:", rowId);
-    }
-
-    // 4. Clear the UI
-    setImage(null);
-    setProcessedImage(null);
-
-  } catch (err: any) {
-    console.error("Print + Cleanup Error:", err);
-  }
-};
-
-const deleteImageFromBucket = async (imageUrl: string) => {
-  try {
-    // Parse the bucket path from the URL
-    // Example URL: https://<project>.supabase.co/storage/v1/object/public/<bucket>/<path>
-    const url = new URL(imageUrl);
-    const pathParts = url.pathname.split("/"); 
-    // pathParts = ["", "storage", "v1", "object", "public", "bucket", "path/to/image.png"]
-    const bucket = pathParts[5]; // "bucket"
-    const filePath = pathParts.slice(6).join("/"); // "path/to/image.png"
-
-    const { error } = await supabase.storage.from(bucket).remove([filePath]);
-    if (error) {
-      console.error("Failed to delete storage file:", error);
-    } else {
-      console.log("File deleted from bucket:", filePath);
-    }
-  } catch (err: any) {
-    console.error("Error parsing or deleting file:", err);
-  }
-};
 
 
   const handleDirectPrint = async () => {
@@ -244,8 +194,6 @@ const deleteImageFromBucket = async (imageUrl: string) => {
       ctx.putImageData(imageData, 0, 0);
       setProcessedImage(canvas.toDataURL('image/png'));
 setIsProcessing(false);
-
-
 // auto print after processing
 setTimeout(() => {
   handleDirectPrint();
@@ -284,25 +232,21 @@ setTimeout(() => {
             .eq("id", row.id);
 
           console.log(`Deleted row ${row.id} from print_queue`);
-
+          
           // Delete the image from the bucket
           if (row.image_url) {
-            // Extract the path inside the bucket
-            const bucketPath = row.image_url.replace(
-              `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/uploads/`,
-              ""
-            );
+  const fileName = row.image_url.split("/").pop();
 
-            const { error } = await supabase.storage
-              .from("uploads")
-              .remove([bucketPath]);
+  const { error } = await supabase.storage
+    .from("uploads")
+    .remove([fileName]);
 
-            if (error) {
-              console.error("Failed to delete image from bucket:", error);
-            } else {
-              console.log(`Deleted image ${row.image_url} from bucket`);
-            }
-          }
+  if (error) {
+    console.error("Failed to delete image from bucket:", error);
+  } else {
+    console.log(`Deleted image ${fileName}`);
+  }
+}
         } catch (err: any) {
           console.error("Failed to process row:", err);
         }
