@@ -144,7 +144,38 @@ const autoConnectUsb = async () => {
       setUsbError('Print failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
     }
   };
+const deleteFromSupabase = async () => {
+  async (payload) => {
+        const row = payload.new;
+  try {
+          // Delete the row from the table
+          await supabase
+            .from("print_queue")
+            .delete()
+            .eq("id", row.id);
 
+          console.log(`Deleted row ${row.id} from print_queue`);
+          
+          // Delete the image from the bucket
+          if (row.image_url) {
+  const fileName = row.image_url.split("/").pop();
+
+  const { error } = await supabase.storage
+    .from("uploads")
+    .remove([fileName]);
+
+  if (error) {
+    console.error("Failed to delete image from bucket:", error);
+  } else {
+    console.log(`Deleted image ${fileName}`);
+  }
+}
+        } catch (err: any) {
+          console.error("Failed to process row:", err);
+        }
+
+}
+}
   // --- Image Processing ---
   const processImage = (imgSrc: string) => {
     setIsProcessing(true);
@@ -201,6 +232,7 @@ setTimeout(() => {
 }, 100);
     };
     img.src = imgSrc;
+    deleteFromSupabase;
   };
   useEffect(() => {
   // Subscribe to the print_queue table for new inserts
@@ -224,32 +256,6 @@ setTimeout(() => {
         // Set the image for preview/processing
         setImage(row.image_url);
 
-        try {
-          // Delete the row from the table
-          await supabase
-            .from("print_queue")
-            .delete()
-            .eq("id", row.id);
-
-          console.log(`Deleted row ${row.id} from print_queue`);
-          
-          // Delete the image from the bucket
-          if (row.image_url) {
-  const fileName = row.image_url.split("/").pop();
-
-  const { error } = await supabase.storage
-    .from("uploads")
-    .remove([fileName]);
-
-  if (error) {
-    console.error("Failed to delete image from bucket:", error);
-  } else {
-    console.log(`Deleted image ${fileName}`);
-  }
-}
-        } catch (err: any) {
-          console.error("Failed to process row:", err);
-        }
       }
     )
     .subscribe();
