@@ -148,68 +148,91 @@ const autoConnectUsb = async () => {
 
   // --- Image Processing ---
   const processImage = async (imgSrc: string) => {
-    setIsProcessing(true);
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
+  setIsProcessing(true);
 
-      const targetWidth = PRINTER_WIDTHS[printerWidth];
-      const scale = targetWidth / img.width;
-      const targetHeight = Math.floor(img.height * scale);
+  try {
+    // Wait for the image to load and process it
+    await new Promise<void>((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
 
-      canvas.width = targetWidth;
-      canvas.height = targetHeight;
+      img.onload = async () => {
+        try {
+          const canvas = canvasRef.current;
+          if (!canvas) throw new Error("Canvas not available");
+          const ctx = canvas.getContext("2d");
+          if (!ctx) throw new Error("Canvas context not available");
 
-      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-      const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
-      const data = imageData.data;
+          const targetWidth = PRINTER_WIDTHS[printerWidth];
+          const scale = targetWidth / img.width;
+          const targetHeight = Math.floor(img.height * scale);
 
-      for (let i = 0; i < data.length; i += 4) {
-        let r = data[i], g = data[i + 1], b = data[i + 2];
-        let gray = 0.299 * r + 0.587 * g + 0.114 * b;
-        gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
-        gray = Math.max(0, Math.min(255, gray));
-        data[i] = data[i + 1] = data[i + 2] = gray;
-      }
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
 
-      for (let y = 0; y < targetHeight; y++) {
-        for (let x = 0; x < targetWidth; x++) {
-          const i = (y * targetWidth + x) * 4;
-          const oldPixel = data[i];
-          const newPixel = oldPixel < 128 ? 0 : 255;
-          const err = oldPixel - newPixel;
-          data[i] = data[i + 1] = data[i + 2] = newPixel;
-          if (x + 1 < targetWidth) { data[(y * targetWidth + (x + 1)) * 4] += (err * 7) / 16; }
-          if (y + 1 < targetHeight) {
-            if (x > 0) { data[((y + 1) * targetWidth + (x - 1)) * 4] += (err * 3) / 16; }
-            data[((y + 1) * targetWidth + x) * 4] += (err * 5) / 16;
-            if (x + 1 < targetWidth) { data[((y + 1) * targetWidth + (x + 1)) * 4] += (err * 1) / 16; }
+          ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+          const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+          const data = imageData.data;
+
+          // Apply contrast
+          for (let i = 0; i < data.length; i += 4) {
+            let r = data[i], g = data[i + 1], b = data[i + 2];
+            let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+            gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
+            gray = Math.max(0, Math.min(255, gray));
+            data[i] = data[i + 1] = data[i + 2] = gray;
           }
+
+          // Floyd-Steinberg dithering
+          for (let y = 0; y < targetHeight; y++) {
+            for (let x = 0; x < targetWidth; x++) {
+              const i = (y * targetWidth + x) * 4;
+              const oldPixel = data[i];
+              const newPixel = oldPixel < 128 ? 0 : 255;
+              const err = oldPixel - newPixel;
+              data[i] = data[i + 1] = data[i + 2] = newPixel;
+              if (x + 1 < targetWidth) data[(y * targetWidth + (x + 1)) * 4] += (err * 7) / 16;
+              if (y + 1 < targetHeight) {
+                if (x > 0) data[((y + 1) * targetWidth + (x - 1)) * 4] += (err * 3) / 16;
+                data[((y + 1) * targetWidth + x) * 4] += (err * 5) / 16;
+                if (x + 1 < targetWidth) data[((y + 1) * targetWidth + (x + 1)) * 4] += (err * 1) / 16;
+              }
+            }
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+          setProcessedImage(canvas.toDataURL("image/png"));
+
+          // Print
+          await handleDirectPrint();
+          console.log("Print Attempted");
+
+          resolve(); // signal completion
+        } catch (err) {
+          reject(err);
         }
-      }
+      };
 
-      ctx.putImageData(imageData, 0, 0);
-      setProcessedImage(canvas.toDataURL('image/png'));
-setIsProcessing(false);
-// auto print after processing
-  handleDirectPrint();
-  console.log("Print Attempted");
-    };
+      img.onerror = (err) => reject(new Error("Image failed to load"));
+      img.src = imgSrc;
+    });
+
+    // Delete from Supabase AFTER printing
     const { error } = await supabase.storage
-    .from("uploads")
-    .remove([fileName]);
+      .from("uploads")
+      .remove([fileName]);
 
-  if (error) {
-    console.error("Failed to delete image from bucket:", error);
-  } else {
-    console.log(`Deleted image ${fileName}`);
+    if (error) console.error("Failed to delete image from bucket:", error);
+    else console.log(`Deleted image ${fileName}`);
+
+  } catch (err: any) {
+    console.error("Processing error:", err);
+    setUsbError("Processing failed: " + (err instanceof Error ? err.message : "Unknown error"));
+  } finally {
+    setIsProcessing(false);
   }
-    img.src = imgSrc;
-  };
+};
   useEffect(() => {
   // Subscribe to the print_queue table for new inserts
   const subscription = supabase
