@@ -123,7 +123,76 @@ const autoConnectUsb = async () => {
     return combined;
   };
 
+  // --- Thermal Optimise Pre-processing ---
 
+function _boxBlur(g: Float32Array, w: number, h: number, radius: number) {
+  const tmp = new Float32Array(w * h);
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let sum = 0, count = 0;
+      for (let kx = -radius; kx <= radius; kx++) {
+        const nx = x + kx;
+        if (nx >= 0 && nx < w) { sum += g[y * w + nx]; count++; }
+      }
+      tmp[y * w + x] = sum / count;
+    }
+  }
+
+  const out = new Float32Array(w * h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let sum = 0, count = 0;
+      for (let ky = -radius; ky <= radius; ky++) {
+        const ny = y + ky;
+        if (ny >= 0 && ny < h) { sum += tmp[ny * w + x]; count++; }
+      }
+      out[y * w + x] = sum / count;
+    }
+  }
+
+  return out;
+}
+
+function applyThermalOptimise(g: Float32Array, w: number, h: number) {
+  const n = w * h;
+
+  const invGamma = 1 / 1.4;
+  for (let i = 0; i < n; i++) {
+    g[i] = 255 * Math.pow(g[i] / 255, invGamma);
+  }
+
+  const cFactor = 1.2;
+  for (let i = 0; i < n; i++) {
+    g[i] = Math.max(0, Math.min(255, 128 + (g[i] - 128) * cFactor));
+  }
+
+  const blurred = _boxBlur(g, w, h, 2);
+  const amount = 1.5;
+  for (let i = 0; i < n; i++) {
+    g[i] = Math.max(0, Math.min(255, g[i] + amount * (g[i] - blurred[i])));
+  }
+}
+
+function ditherAtkinson(g: Float32Array, w: number, h: number, t: number) {
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const idx = y * w + x;
+      const old = g[idx];
+      const nw  = old < t ? 0 : 255;
+      g[idx] = nw;
+
+      const err = (old - nw) / 8;
+
+      if (x + 1 < w)              g[idx + 1]     += err;
+      if (x + 2 < w)              g[idx + 2]     += err;
+      if (y + 1 < h && x > 0)     g[idx + w - 1] += err;
+      if (y + 1 < h)              g[idx + w]     += err;
+      if (y + 1 < h && x + 1 < w) g[idx + w + 1] += err;
+      if (y + 2 < h)              g[idx + w * 2] += err;
+    }
+  }
+}
   const handleDirectPrint = async () => {
     if (!usbDevice || !canvasRef.current) return;
     
@@ -175,31 +244,38 @@ const autoConnectUsb = async () => {
           const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
           const data = imageData.data;
 
-          // Apply contrast
-          for (let i = 0; i < data.length; i += 4) {
-            let r = data[i], g = data[i + 1], b = data[i + 2];
-            let gray = 0.299 * r + 0.587 * g + 0.114 * b;
-            gray = ((gray / 255 - 0.5) * contrast + 0.5) * 255;
-            gray = Math.max(0, Math.min(255, gray));
-            data[i] = data[i + 1] = data[i + 2] = gray;
-          }
+          const w = targetWidth;
+const h = targetHeight;
+const gray = new Float32Array(w * h);
 
-          // Floyd-Steinberg dithering
-          for (let y = 0; y < targetHeight; y++) {
-            for (let x = 0; x < targetWidth; x++) {
-              const i = (y * targetWidth + x) * 4;
-              const oldPixel = data[i];
-              const newPixel = oldPixel < 128 ? 0 : 255;
-              const err = oldPixel - newPixel;
-              data[i] = data[i + 1] = data[i + 2] = newPixel;
-              if (x + 1 < targetWidth) data[(y * targetWidth + (x + 1)) * 4] += (err * 7) / 16;
-              if (y + 1 < targetHeight) {
-                if (x > 0) data[((y + 1) * targetWidth + (x - 1)) * 4] += (err * 3) / 16;
-                data[((y + 1) * targetWidth + x) * 4] += (err * 5) / 16;
-                if (x + 1 < targetWidth) data[((y + 1) * targetWidth + (x + 1)) * 4] += (err * 1) / 16;
-              }
-            }
-          }
+// --- Convert to grayscale buffer ---
+for (let y = 0; y < h; y++) {
+  for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+
+    gray[y * w + x] = 0.299 * r + 0.587 * g + 0.114 * b;
+  }
+}
+
+// --- Thermal preprocessing ---
+applyThermalOptimise(gray, w, h);
+
+// --- Dither (Atkinson instead of Floyd-Steinberg) ---
+ditherAtkinson(gray, w, h, 128);
+
+// --- Write back to RGBA ---
+for (let y = 0; y < h; y++) {
+  for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    const v = gray[y * w + x] < 128 ? 0 : 255;
+
+    data[i] = data[i + 1] = data[i + 2] = v;
+    data[i + 3] = 255;
+  }
+}
 
           ctx.putImageData(imageData, 0, 0);
           setProcessedImage(canvas.toDataURL("image/png"));
