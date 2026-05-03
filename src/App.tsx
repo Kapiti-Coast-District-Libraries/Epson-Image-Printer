@@ -56,30 +56,32 @@ export default function App() {
   };
 
   useEffect(() => {
-  autoConnectUsb();
-}, []);
+    autoConnectUsb();
+  }, []);
+
   // --- Auto connect if permission already granted ---
-const autoConnectUsb = async () => {
-  try {
-    const devices = await (navigator as any).usb.getDevices();
+  const autoConnectUsb = async () => {
+    try {
+      const devices = await (navigator as any).usb.getDevices();
 
-    if (devices.length > 0) {
-      const device = devices[0];
+      if (devices.length > 0) {
+        const device = devices[0];
 
-      await device.open();
-      if (device.configuration === null) {
-        await device.selectConfiguration(1);
+        await device.open();
+        if (device.configuration === null) {
+          await device.selectConfiguration(1);
+        }
+
+        await device.claimInterface(0);
+
+        setUsbDevice(device);
+        setUsbStatus('connected');
       }
-
-      await device.claimInterface(0);
-
-      setUsbDevice(device);
-      setUsbStatus('connected');
+    } catch (err: any) {
+      console.error("Auto connect failed:", err);
     }
-  } catch (err: any) {
-    console.error("Auto connect failed:", err);
-  }
-};
+  };
+
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
@@ -90,11 +92,9 @@ const autoConnectUsb = async () => {
     const imageData = ctx.getImageData(0, 0, width, height);
     const data = imageData.data;
 
-    // ESC/POS Image Command: GS v 0 m xL xH yL yH d1...dk
-    // m = 0 (Normal), xL/xH = width in bytes (width/8), yL/yH = height in dots
     const widthInBytes = Math.ceil(width / 8);
     const header = new Uint8Array([
-      0x1B, 0x40, // ESC @ (Initialize)
+      0x1B, 0x40, // Initialize
       0x1D, 0x76, 0x30, 0, // GS v 0 0
       widthInBytes % 256, Math.floor(widthInBytes / 256), // xL xH
       height % 256, Math.floor(height / 256) // yL yH
@@ -104,7 +104,7 @@ const autoConnectUsb = async () => {
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         const i = (y * width + x) * 4;
-        const gray = data[i]; // Since it's dithered, 0 or 255
+        const gray = data[i];
         if (gray < 128) {
           const byteIdx = y * widthInBytes + Math.floor(x / 8);
           const bitIdx = 7 - (x % 8);
@@ -114,7 +114,6 @@ const autoConnectUsb = async () => {
     }
 
     const footer = new Uint8Array([0x0A, 0x0A, 0x0A, 0x1D, 0x56, 0x41, 0x03]); // Line feeds + Cut
-
     const combined = new Uint8Array(header.length + pixelData.length + footer.length);
     combined.set(header);
     combined.set(pixelData, header.length);
@@ -124,75 +123,67 @@ const autoConnectUsb = async () => {
   };
 
   // --- Thermal Optimise Pre-processing ---
-
-function _boxBlur(g: Float32Array, w: number, h: number, radius: number) {
-  const tmp = new Float32Array(w * h);
-
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      let sum = 0, count = 0;
-      for (let kx = -radius; kx <= radius; kx++) {
-        const nx = x + kx;
-        if (nx >= 0 && nx < w) { sum += g[y * w + nx]; count++; }
+  function _boxBlur(g: Float32Array, w: number, h: number, radius: number) {
+    const tmp = new Float32Array(w * h);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let sum = 0, count = 0;
+        for (let kx = -radius; kx <= radius; kx++) {
+          const nx = x + kx;
+          if (nx >= 0 && nx < w) { sum += g[y * w + nx]; count++; }
+        }
+        tmp[y * w + x] = sum / count;
       }
-      tmp[y * w + x] = sum / count;
     }
-  }
-
-  const out = new Float32Array(w * h);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      let sum = 0, count = 0;
-      for (let ky = -radius; ky <= radius; ky++) {
-        const ny = y + ky;
-        if (ny >= 0 && ny < h) { sum += tmp[ny * w + x]; count++; }
+    const out = new Float32Array(w * h);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let sum = 0, count = 0;
+        for (let ky = -radius; ky <= radius; ky++) {
+          const ny = y + ky;
+          if (ny >= 0 && ny < h) { sum += tmp[ny * w + x]; count++; }
+        }
+        out[y * w + x] = sum / count;
       }
-      out[y * w + x] = sum / count;
+    }
+    return out;
+  }
+
+  function applyThermalOptimise(g: Float32Array, w: number, h: number) {
+    const n = w * h;
+    const invGamma = 1 / 1.4;
+    for (let i = 0; i < n; i++) {
+      g[i] = 255 * Math.pow(g[i] / 255, invGamma);
+    }
+    const cFactor = 1.2;
+    for (let i = 0; i < n; i++) {
+      g[i] = Math.max(0, Math.min(255, 128 + (g[i] - 128) * cFactor));
+    }
+    const blurred = _boxBlur(g, w, h, 2);
+    const amount = 1.5;
+    for (let i = 0; i < n; i++) {
+      g[i] = Math.max(0, Math.min(255, g[i] + amount * (g[i] - blurred[i])));
     }
   }
 
-  return out;
-}
-
-function applyThermalOptimise(g: Float32Array, w: number, h: number) {
-  const n = w * h;
-
-  const invGamma = 1 / 1.4;
-  for (let i = 0; i < n; i++) {
-    g[i] = 255 * Math.pow(g[i] / 255, invGamma);
-  }
-
-  const cFactor = 1.2;
-  for (let i = 0; i < n; i++) {
-    g[i] = Math.max(0, Math.min(255, 128 + (g[i] - 128) * cFactor));
-  }
-
-  const blurred = _boxBlur(g, w, h, 2);
-  const amount = 1.5;
-  for (let i = 0; i < n; i++) {
-    g[i] = Math.max(0, Math.min(255, g[i] + amount * (g[i] - blurred[i])));
-  }
-}
-
-function ditherAtkinson(g: Float32Array, w: number, h: number, t: number) {
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const idx = y * w + x;
-      const old = g[idx];
-      const nw  = old < t ? 0 : 255;
-      g[idx] = nw;
-
-      const err = (old - nw) / 8;
-
-      if (x + 1 < w)              g[idx + 1]     += err;
-      if (x + 2 < w)              g[idx + 2]     += err;
-      if (y + 1 < h && x > 0)     g[idx + w - 1] += err;
-      if (y + 1 < h)              g[idx + w]     += err;
-      if (y + 1 < h && x + 1 < w) g[idx + w + 1] += err;
-      if (y + 2 < h)              g[idx + w * 2] += err;
+  function ditherAtkinson(g: Float32Array, w: number, h: number, t: number) {
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const idx = y * w + x;
+        const old = g[idx];
+        const nw = old < t ? 0 : 255;
+        g[idx] = nw;
+        const err = (old - nw) / 8;
+        if (x + 1 < w) g[idx + 1] += err;
+        if (x + 2 < w) g[idx + 2] += err;
+        if (y + 1 < h && x > 0) g[idx + w - 1] += err;
+        if (y + 1 < h) g[idx + w] += err;
+        if (y + 1 < h && x + 1 < w) g[idx + w + 1] += err;
+        if (y + 2 < h) g[idx + w * 2] += err;
+      }
     }
   }
-}
+
   const handleDirectPrint = async () => {
     if (!usbDevice || !canvasRef.current) return;
     
@@ -209,6 +200,13 @@ function ditherAtkinson(g: Float32Array, w: number, h: number, t: number) {
       
       await usbDevice.transferOut(endpoint.endpointNumber, data);
       
+      // LOG TO ADMIN STATS: After successful transfer to printer
+      const { error: logError } = await supabase
+        .from('print_logs')
+        .insert([{}]);
+      
+      if (logError) console.error("Admin Log Error:", logError);
+      
     } catch (err: any) {
       console.error('Print Error:', err);
       setUsbError('Print failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
@@ -217,146 +215,94 @@ function ditherAtkinson(g: Float32Array, w: number, h: number, t: number) {
 
   // --- Image Processing ---
   const processImage = async (imgSrc: string) => {
-  setIsProcessing(true);
+    setIsProcessing(true);
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = async () => {
+          try {
+            const canvas = canvasRef.current;
+            if (!canvas) throw new Error("Canvas not available");
+            const ctx = canvas.getContext("2d");
+            if (!ctx) throw new Error("Canvas context not available");
 
-  try {
-    // Wait for the image to load and process it
-    await new Promise<void>((resolve, reject) => {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
+            const targetWidth = PRINTER_WIDTHS[printerWidth];
+            const scale = targetWidth / img.width;
+            const targetHeight = Math.floor(img.height * scale);
 
-      img.onload = async () => {
-        try {
-          const canvas = canvasRef.current;
-          if (!canvas) throw new Error("Canvas not available");
-          const ctx = canvas.getContext("2d");
-          if (!ctx) throw new Error("Canvas context not available");
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+            ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
 
-          const targetWidth = PRINTER_WIDTHS[printerWidth];
-          const scale = targetWidth / img.width;
-          const targetHeight = Math.floor(img.height * scale);
+            const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
+            const data = imageData.data;
+            const w = targetWidth;
+            const h = targetHeight;
+            const gray = new Float32Array(w * h);
 
-          canvas.width = targetWidth;
-          canvas.height = targetHeight;
+            for (let y = 0; y < h; y++) {
+              for (let x = 0; x < w; x++) {
+                const i = (y * w + x) * 4;
+                gray[y * w + x] = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+              }
+            }
 
-          ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+            applyThermalOptimise(gray, w, h);
+            ditherAtkinson(gray, w, h, 128);
 
-          const imageData = ctx.getImageData(0, 0, targetWidth, targetHeight);
-          const data = imageData.data;
+            for (let y = 0; y < h; y++) {
+              for (let x = 0; x < w; x++) {
+                const i = (y * w + x) * 4;
+                const v = gray[y * w + x] < 128 ? 0 : 255;
+                data[i] = data[i + 1] = data[i + 2] = v;
+                data[i + 3] = 255;
+              }
+            }
 
-          const w = targetWidth;
-const h = targetHeight;
-const gray = new Float32Array(w * h);
+            ctx.putImageData(imageData, 0, 0);
+            setProcessedImage(canvas.toDataURL("image/png"));
 
-// --- Convert to grayscale buffer ---
-for (let y = 0; y < h; y++) {
-  for (let x = 0; x < w; x++) {
-    const i = (y * w + x) * 4;
-    const r = data[i];
-    const g = data[i + 1];
-    const b = data[i + 2];
+            await handleDirectPrint();
+            resolve();
+          } catch (err) { reject(err); }
+        };
+        img.onerror = () => reject(new Error("Image failed to load"));
+        img.src = imgSrc;
+      });
 
-    gray[y * w + x] = 0.299 * r + 0.587 * g + 0.114 * b;
-  }
-}
-
-// --- Thermal preprocessing ---
-applyThermalOptimise(gray, w, h);
-
-// --- Dither (Atkinson instead of Floyd-Steinberg) ---
-ditherAtkinson(gray, w, h, 128);
-
-// --- Write back to RGBA ---
-for (let y = 0; y < h; y++) {
-  for (let x = 0; x < w; x++) {
-    const i = (y * w + x) * 4;
-    const v = gray[y * w + x] < 128 ? 0 : 255;
-
-    data[i] = data[i + 1] = data[i + 2] = v;
-    data[i + 3] = 255;
-  }
-}
-
-          ctx.putImageData(imageData, 0, 0);
-          setProcessedImage(canvas.toDataURL("image/png"));
-
-          // Print
-          await handleDirectPrint();
-          console.log("Print Attempted");
-
-          resolve(); // signal completion
-        } catch (err) {
-          reject(err);
-        }
-      };
-
-      img.onerror = (err) => reject(new Error("Image failed to load"));
-      img.src = imgSrc;
-    });
-
-    // Delete from Supabase AFTER printing
-    const { error } = await supabase.storage
-      .from("uploads")
-      .remove([fileName]);
-
-    if (error) console.error("Failed to delete image from bucket:", error);
-    else console.log(`Deleted image ${fileName}`);
-
-  } catch (err: any) {
-    console.error("Processing error:", err);
-    setUsbError("Processing failed: " + (err instanceof Error ? err.message : "Unknown error"));
-  } finally {
-    setIsProcessing(false);
-  }
-};
-  useEffect(() => {
-  // Subscribe to the print_queue table for new inserts
-  const subscription = supabase
-    .channel("print_queue_listener")
-    .on(
-      "postgres_changes",
-      {
-        event: "INSERT",
-        schema: "public",
-        table: "print_queue",
-      },
-      async (payload) => {
-        const row = payload.new;
-        if (!row) return;
-
-        // Skip if already processed
-        if (row.printed) return;
-        console.log(`Found image ${row.image_url}`);
-
-        // Set the image for preview/processing
-        setImage(row.image_url);
-        
-        try {
-          
-          const fileNameX = row.image_url.split("/").pop();
-            await setFileName(fileNameX);
-            console.log(fileName);
-          
-          // Delete the row from the table
-          await supabase
-            .from("print_queue")
-            .delete()
-            .eq("id", row.id);
-
-          console.log(`Deleted row ${row.id} from print_queue`);
-          
-        
-        } catch (err: any) {
-          console.error("Failed to process row:", err);
-        }
+      // Cleanup Supabase Storage
+      if (fileName) {
+        const { error } = await supabase.storage.from("uploads").remove([fileName]);
+        if (error) console.error("Failed to delete image:", error);
       }
-    )
-    .subscribe();
 
-  return () => {
-    supabase.removeChannel(subscription);
+    } catch (err: any) {
+      console.error("Processing error:", err);
+      setUsbError("Processing failed: " + (err instanceof Error ? err.message : "Unknown error"));
+    } finally {
+      setIsProcessing(false);
+    }
   };
-}, []);
+
+  useEffect(() => {
+    const subscription = supabase
+      .channel("print_queue_listener")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "print_queue" },
+        async (payload) => {
+          const row = payload.new;
+          if (!row || row.printed) return;
+          
+          setImage(row.image_url);
+          const fileNameX = row.image_url.split("/").pop();
+          setFileName(fileNameX);
+
+          await supabase.from("print_queue").delete().eq("id", row.id);
+        }
+      ).subscribe();
+
+    return () => { supabase.removeChannel(subscription); };
+  }, []);
 
   useEffect(() => {
     if (image) processImage(image);
@@ -373,7 +319,6 @@ for (let y = 0; y < h; y++) {
 
   return (
     <div className="min-h-screen bg-[#0D0E10] text-[#FFFFFF] font-sans selection:bg-[#FF4444] selection:text-white">
-      {/* Header */}
       <header className="border-b border-white/5 px-6 py-4 flex items-center justify-between bg-[#131417] sticky top-0 z-50 backdrop-blur-md bg-opacity-80">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-[#FF4444] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,68,68,0.4)]">
@@ -426,7 +371,6 @@ for (let y = 0; y < h; y++) {
       </header>
 
       <main className="max-w-7xl mx-auto p-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        {/* Controls Sidebar */}
         <aside className="lg:col-span-4 space-y-6">
           <section className="bg-[#131417] border border-white/5 rounded-3xl p-6 space-y-8 shadow-2xl">
             <div className="flex items-center gap-2 text-[#8E9299]">
@@ -519,10 +463,8 @@ for (let y = 0; y < h; y++) {
           )}
         </aside>
 
-        {/* Preview Area */}
         <div className="lg:col-span-8">
           <div className="bg-[#080809] border border-white/5 rounded-[2.5rem] min-h-[700px] flex flex-col items-center justify-center p-12 relative overflow-hidden shadow-inner">
-            {/* Technical Grid Overlay */}
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
                  style={{ backgroundImage: 'linear-gradient(#FFFFFF 1px, transparent 1px), linear-gradient(90deg, #FFFFFF 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
             
@@ -545,7 +487,6 @@ for (let y = 0; y < h; y++) {
                   initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
                   className="relative"
                 >
-                  {/* The "Receipt" Paper */}
                   <div 
                     className="bg-white shadow-[0_40px_100px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out overflow-hidden"
                     style={{ 
@@ -553,9 +494,7 @@ for (let y = 0; y < h; y++) {
                       minHeight: '500px'
                     }}
                   >
-                    {/* Paper Texture/Edge */}
                     <div className="h-6 w-full bg-gradient-to-b from-black/10 to-transparent"></div>
-                    
                     <div className="p-6 flex flex-col items-center">
                       {isProcessing ? (
                         <div className="py-32 flex flex-col items-center gap-6">
@@ -574,16 +513,12 @@ for (let y = 0; y < h; y++) {
                         )
                       )}
                     </div>
-
-                    {/* Jagged Bottom Edge */}
                     <div className="h-6 w-full flex overflow-hidden">
                       {Array.from({ length: 24 }).map((_, i) => (
                         <div key={i} className="flex-1 h-full bg-white rotate-45 translate-y-3 border-t border-l border-black/5"></div>
                       ))}
                     </div>
                   </div>
-
-                  {/* Overlay Labels */}
                   <div className="absolute -top-12 left-0 flex items-center gap-3">
                     <span className="px-3 py-1 bg-[#FF4444] text-white text-[8px] font-black uppercase tracking-widest rounded-full shadow-lg shadow-[#FF4444]/20">Hardware Preview</span>
                     <span className="text-[8px] text-[#8E9299] font-mono uppercase tracking-[0.2em]">{printerWidth} Virtual Paper</span>
@@ -601,7 +536,7 @@ for (let y = 0; y < h; y++) {
               </div>
               <div className="flex items-center gap-3">
                 <ZoomIn className="w-3.5 h-3.5 text-[#8E9299]" />
-                <span className="text-[9px] font-mono text-[#8E9299] uppercase tracking-[0.2em]">Dither: Floyd-Steinberg</span>
+                <span className="text-[9px] font-mono text-[#8E9299] uppercase tracking-[0.2em]">Dither: Atkinson</span>
               </div>
             </div>
             <p className="text-[9px] font-mono text-[#8E9299] uppercase tracking-[0.2em]">
@@ -611,10 +546,8 @@ for (let y = 0; y < h; y++) {
         </div>
       </main>
 
-      {/* Hidden Canvas for processing */}
       <canvas ref={canvasRef} className="hidden" />
 
-      {/* Footer */}
       <footer className="mt-20 border-t border-white/5 p-10 text-center">
         <p className="text-[9px] font-mono text-[#3A3B40] uppercase tracking-[0.5em]">
           Hardware-Direct Thermal Engine // 2026 Edition
