@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { supabase } from "./supabase";
-import { BarChart3, Users, Clock, ArrowLeft } from 'lucide-react';
+import { BarChart3, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function AdminPage() {
   const [totalPrints, setTotalPrints] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  // Reference to track if the initial fetch has already been initiated
+  const hasFetched = useRef(false);
 
   const fetchStats = async () => {
     setLoading(true);
@@ -20,7 +22,11 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    fetchStats();
+    // Check if we have already fetched to prevent double-logging in StrictMode
+    if (!hasFetched.current) {
+      fetchStats();
+      hasFetched.current = true;
+    }
   }, []);
 
   return (
@@ -46,7 +52,6 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* You can add more metrics here like Prints Today or Unique Users if you track IDs */}
         <div className="md:col-span-2 bg-[#131417] border border-white/5 p-8 rounded-3xl shadow-xl flex items-center justify-center">
           <p className="text-[#4A4B50] font-mono text-xs uppercase tracking-[0.3em]">Engagement Stats Coming Soon</p>
         </div>
