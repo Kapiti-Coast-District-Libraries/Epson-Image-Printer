@@ -14,6 +14,7 @@ const PRINTER_WIDTHS = {
 };
 
 export default function App() {
+  const [printJobCreatedAt, setPrintJobCreatedAt] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [processedImage, setProcessedImage] = useState<string | null>(null);
   const [printerWidth, setPrinterWidth] = useState<'58mm' | '80mm'>('80mm');
@@ -149,6 +150,26 @@ export default function App() {
     return out;
   }
 
+  const isPrintValid = (createdAt?: string): boolean => {
+  // Must have a timestamp
+  if (!createdAt) return false;
+
+  // Must be less than 1 minute old
+  const ageMs = Date.now() - new Date(createdAt).getTime();
+  if (ageMs > 60_000) return false;
+
+  // Allowed hours: 09:00 - 17:00
+  const now = new Date();
+  const minutes = now.getHours() * 60 + now.getMinutes();
+
+  const start = 9 * 60;  // 09:00
+  const end = 17 * 60;   // 17:00
+
+  if (minutes < start || minutes >= end) return false;
+
+  return true;
+};
+
   function applyThermalOptimise(g: Float32Array, w: number, h: number) {
     const n = w * h;
     const invGamma = 1 / 1.4;
@@ -184,9 +205,12 @@ export default function App() {
     }
   }
 
-  const handleDirectPrint = async () => {
-    if (!usbDevice || !canvasRef.current) return;
-    
+const handleDirectPrint = async (createdAt?: string) => {
+  if (!usbDevice || !canvasRef.current) return;
+    if (!isPrintValid(createdAt)) {
+    setUsbError("Printing is not currently allowed.");
+    return;
+  }
     try {
       if (!usbDevice.opened) {
         await usbDevice.open();
@@ -263,7 +287,7 @@ export default function App() {
             ctx.putImageData(imageData, 0, 0);
             setProcessedImage(canvas.toDataURL("image/png"));
 
-            await handleDirectPrint();
+await handleDirectPrint(printJobCreatedAt ?? undefined);
             resolve();
           } catch (err) { reject(err); }
         };
@@ -294,6 +318,7 @@ export default function App() {
           if (!row || row.printed) return;
           
           setImage(row.image_url);
+          setPrintJobCreatedAt(row.created_at);
           const fileNameX = row.image_url.split("/").pop();
           setFileName(fileNameX);
 
