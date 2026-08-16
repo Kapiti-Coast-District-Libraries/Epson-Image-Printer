@@ -30,26 +30,19 @@ const resizeImage = (file: File): Promise<Blob> =>
 
 export default function UploadPage() {
   const [uploading, setUploading] = useState(false);
-  const [uploadEnabled, setUploadEnabled] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(30);
+
+  // Uploads start enabled
+  const [uploadEnabled, setUploadEnabled] = useState(true);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Start 30-second countdown when page loads
+  // Disable uploads 30 seconds after page loads
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSecondsLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          setUploadEnabled(true);
-          return 0;
-        }
+    const timer = setTimeout(() => {
+      setUploadEnabled(false);
+    }, 30000);
 
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
+    return () => clearTimeout(timer);
   }, []);
 
   const uploadImage = async (file: File) => {
@@ -115,7 +108,7 @@ export default function UploadPage() {
           ? "Uploading..."
           : uploadEnabled
           ? "Tap to Upload Photo"
-          : `Please wait ${secondsLeft}s`}
+          : "Uploads Closed"}
       </button>
 
       <input
@@ -126,6 +119,7 @@ export default function UploadPage() {
         disabled={!uploadEnabled}
         onChange={(e) => {
           if (!e.target.files) return;
+
           uploadImage(e.target.files[0]);
         }}
       />
