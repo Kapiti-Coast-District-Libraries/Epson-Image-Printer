@@ -9,7 +9,6 @@ import AdminPage from "./AdminPage"; // Import new page
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
     <HashRouter>
       <Routes>
         <Route path="/" element={<App />} />
@@ -17,5 +16,4 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/admin" element={<AdminPage />} /> {/* New Admin Route */}
       </Routes>
     </HashRouter>
-  </StrictMode>
 );
