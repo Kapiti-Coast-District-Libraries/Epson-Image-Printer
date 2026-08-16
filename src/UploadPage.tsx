@@ -1,11 +1,13 @@
 import { supabase } from "./supabase";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+
 // Resize image to 576px wide
 const resizeImage = (file: File): Promise<Blob> =>
   new Promise((resolve, reject) => {
     const img = new Image();
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
+
     if (!ctx) return reject(new Error("Cannot get canvas context"));
 
     img.onload = () => {
@@ -18,7 +20,7 @@ const resizeImage = (file: File): Promise<Blob> =>
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
       canvas.toBlob((blob) => {
-        if (!blob) return reject("Blob conversion failed");
+        if (!blob) return reject(new Error("Blob conversion failed"));
         resolve(blob);
       }, "image/png");
     };
@@ -28,10 +30,30 @@ const resizeImage = (file: File): Promise<Blob> =>
 
 export default function UploadPage() {
   const [uploading, setUploading] = useState(false);
+  const [uploadEnabled, setUploadEnabled] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(30);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // Start 30-second countdown when page loads
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setUploadEnabled(true);
+          return 0;
+        }
+
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const uploadImage = async (file: File) => {
-    if (uploading) return;
+    if (uploading || !uploadEnabled) return;
 
     setUploading(true);
 
@@ -52,17 +74,25 @@ export default function UploadPage() {
 
       if (error) throw error;
 
-      const { data } = supabase.storage.from("uploads").getPublicUrl(safeName);
+      const { data } = supabase.storage
+        .from("uploads")
+        .getPublicUrl(safeName);
 
-      await supabase.from("print_queue").insert([
-  {
-    image_url: data.publicUrl
-  },
-]);
+      const { error: queueError } = await supabase
+        .from("print_queue")
+        .insert([
+          {
+            image_url: data.publicUrl,
+          },
+        ]);
+
+      if (queueError) throw queueError;
 
       alert("Uploaded! Your image will print shortly.");
 
-      if (fileInputRef.current) fileInputRef.current.value = "";
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (err: any) {
       console.error(err);
       alert("Upload failed: " + err.message);
@@ -74,11 +104,18 @@ export default function UploadPage() {
   return (
     <div style={styles.page}>
       <button
-        style={styles.button}
-        disabled={uploading}
+        style={{
+          ...styles.button,
+          opacity: uploadEnabled ? 1 : 0.5,
+        }}
+        disabled={uploading || !uploadEnabled}
         onClick={() => fileInputRef.current?.click()}
       >
-        {uploading ? "Uploading..." : "Tap to Upload Photo"}
+        {uploading
+          ? "Uploading..."
+          : uploadEnabled
+          ? "Tap to Upload Photo"
+          : `Please wait ${secondsLeft}s`}
       </button>
 
       <input
@@ -86,6 +123,7 @@ export default function UploadPage() {
         type="file"
         accept="image/*"
         style={{ display: "none" }}
+        disabled={!uploadEnabled}
         onChange={(e) => {
           if (!e.target.files) return;
           uploadImage(e.target.files[0]);
