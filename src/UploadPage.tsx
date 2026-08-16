@@ -1,7 +1,5 @@
 import { supabase } from "./supabase";
 import { useState, useRef } from "react";
-const [pageLoadedAt] = useState(() => new Date().toISOString());
-
 // Resize image to 576px wide
 const resizeImage = (file: File): Promise<Blob> =>
   new Promise((resolve, reject) => {
@@ -58,8 +56,7 @@ export default function UploadPage() {
 
       await supabase.from("print_queue").insert([
   {
-    image_url: data.publicUrl,
-    created_at: pageLoadedAt,
+    image_url: data.publicUrl
   },
 ]);
 
