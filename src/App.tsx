@@ -162,7 +162,7 @@ export default function App() {
   const now = new Date();
   const minutes = now.getHours() * 60 + now.getMinutes();
 
-  const start = 9 * 60;  // 09:00
+  const start = 11 * 60;  // 09:00
   const end = 17 * 60;   // 17:00
 
   if (minutes < start || minutes >= end) return false;
