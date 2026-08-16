@@ -154,10 +154,6 @@ export default function App() {
   // Must have a timestamp
   if (!createdAt) return false;
 
-  // Must be less than 1 minute old
-  const ageMs = Date.now() - new Date(createdAt).getTime();
-  if (ageMs > 60_000) return false;
-
   // Allowed hours: 09:00 - 17:00
   const now = new Date();
   const minutes = now.getHours() * 60 + now.getMinutes();
