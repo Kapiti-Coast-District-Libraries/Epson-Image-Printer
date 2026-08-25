@@ -1,152 +1,165 @@
-import { supabase } from "./supabase";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from 'react';
+import { supabase } from './supabase';
+import { generateSudokuImage, dataURLtoFile } from './utils/sudoku';
 
-// Resize image to 576px wide
-const resizeImage = (file: File): Promise<Blob> =>
-  new Promise((resolve, reject) => {
-    const img = new Image();
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d");
+export function UploadPage() {
+  const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [status, setStatus] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-    if (!ctx) return reject(new Error("Cannot get canvas context"));
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+      setPreviewUrl(URL.createObjectURL(selectedFile));
+      setStatus('');
+    }
+  };
 
-    img.onload = () => {
-      const width = 576;
-      const scale = width / img.width;
-
-      canvas.width = width;
-      canvas.height = img.height * scale;
-
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      canvas.toBlob((blob) => {
-        if (!blob) return reject(new Error("Blob conversion failed"));
-        resolve(blob);
-      }, "image/png");
-    };
-
-    img.src = URL.createObjectURL(file);
-  });
-
-export default function UploadPage() {
-  const [uploading, setUploading] = useState(false);
-
-  // Uploads start enabled
-  const [uploadEnabled, setUploadEnabled] = useState(true);
-
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  // Disable uploads 30 seconds after page loads
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setUploadEnabled(false);
-    }, 30000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const uploadImage = async (file: File) => {
-    if (uploading || !uploadEnabled) return;
-
-    setUploading(true);
+  const submitPrintJob = async (fileToUpload: File) => {
+    setIsSubmitting(true);
+    setStatus('Sending to printer...');
 
     try {
-      const safeName = `${Date.now()}-${Math.random()}-${file.name}`
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9.-]/g, "");
+      const fileName = `${Date.now()}_${fileToUpload.name}`;
+      const { error: uploadError } = await supabase.storage
+        .from('prints')
+        .upload(fileName, fileToUpload);
 
-      const resizedBlob = await resizeImage(file);
+      if (uploadError) throw uploadError;
 
-      const fileToUpload = new File([resizedBlob], safeName, {
-        type: "image/png",
-      });
+      const { data: publicData } = supabase.storage
+        .from('prints')
+        .getPublicUrl(fileName);
 
-      const { error } = await supabase.storage
-        .from("uploads")
-        .upload(safeName, fileToUpload);
+      const { error: dbError } = await supabase
+        .from('print_jobs')
+        .insert([{ image_url: publicData.publicUrl, status: 'pending' }]);
 
-      if (error) throw error;
+      if (dbError) throw dbError;
 
-      const { data } = supabase.storage
-        .from("uploads")
-        .getPublicUrl(safeName);
+      setStatus('✅ Sent to printer queue successfully!');
+      setFile(null);
+      setPreviewUrl(null);
+    } catch (err: any) {
+      console.error('Print failed:', err);
+      setStatus(`❌ Error: ${err.message || 'Failed to print'}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-      const { error: queueError } = await supabase
-        .from("print_queue")
-        .insert([
-          {
-            image_url: data.publicUrl,
-          },
-        ]);
+  const handlePrintSudoku = useCallback(async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    setStatus('🎲 Scraper active: generating daily Sudoku...');
 
-      if (queueError) throw queueError;
-
-      alert("Uploaded! Your image will print shortly.");
-
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+    try {
+      const dataUrl = await generateSudokuImage();
+      const sudokuFile = dataURLtoFile(dataUrl, `sudoku_${Date.now()}.png`);
+      await submitPrintJob(sudokuFile);
     } catch (err: any) {
       console.error(err);
-      alert("Upload failed: " + err.message);
-    } finally {
-      setUploading(false);
+      setStatus('❌ Failed to generate Sudoku.');
+      setIsSubmitting(false);
+    }
+  }, [isSubmitting]);
+
+  // Handle press of "1" key globally
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const activeEl = document.activeElement as HTMLElement;
+      const isInputField =
+        activeEl &&
+        (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeEl.tagName) ||
+          activeEl.isContentEditable);
+
+      if (!isInputField && event.key === '1') {
+        event.preventDefault();
+        handlePrintSudoku();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handlePrintSudoku]);
+
+  const handleSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (file) {
+      submitPrintJob(file);
     }
   };
 
   return (
-    <div style={styles.page}>
-      <button
-        style={{
-          ...styles.button,
-          opacity: uploadEnabled ? 1 : 0.5,
-        }}
-        disabled={uploading || !uploadEnabled}
-        onClick={() => fileInputRef.current?.click()}
-      >
-        {uploading
-          ? "Uploading..."
-          : uploadEnabled
-          ? "Tap to Upload Photo"
-          : "Uploads Closed"}
-      </button>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-6 space-y-6">
+        <h1 className="text-2xl font-bold text-gray-800 text-center">
+          Thermal Printer Hub
+        </h1>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        style={{ display: "none" }}
-        disabled={!uploadEnabled}
-        onChange={(e) => {
-          if (!e.target.files) return;
+        {/* Sudoku Action Button */}
+        <div className="p-4 bg-purple-50 rounded-xl border border-purple-200 text-center space-y-2">
+          <p className="text-xs text-purple-700 font-semibold uppercase tracking-wider">
+            Instant Action (Press '1')
+          </p>
+          <button
+            type="button"
+            onClick={handlePrintSudoku}
+            disabled={isSubmitting}
+            className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-bold rounded-lg shadow transition flex items-center justify-center gap-2 disabled:opacity-50"
+          >
+            <span>🧩</span>
+            <span>{isSubmitting ? 'Generating...' : 'Print Daily Sudoku'}</span>
+          </button>
+        </div>
 
-          uploadImage(e.target.files[0]);
-        }}
-      />
+        <div className="relative flex py-1 items-center">
+          <div className="flex-grow border-t border-gray-200"></div>
+          <span className="flex-shrink mx-4 text-gray-400 text-xs uppercase">
+            Or upload photo
+          </span>
+          <div className="flex-grow border-t border-gray-200"></div>
+        </div>
+
+        {/* Standard Image Upload Form */}
+        <form onSubmit={handleSubmitForm} className="space-y-4">
+          <label className="block text-sm font-medium text-gray-700">
+            Select Photo to Print
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+          />
+
+          {previewUrl && (
+            <div className="mt-4 rounded-lg overflow-hidden border">
+              <img
+                src={previewUrl}
+                alt="Upload preview"
+                className="max-h-64 w-full object-contain bg-black/5"
+              />
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={!file || isSubmitting}
+            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow transition disabled:opacity-50"
+          >
+            Print Custom Photo
+          </button>
+        </form>
+
+        {status && (
+          <div className="p-3 bg-gray-100 rounded-lg text-center text-sm font-medium text-gray-700">
+            {status}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
-
-const styles = {
-  page: {
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f5f5f5",
-    padding: 20,
-  },
-
-  button: {
-    width: "90%",
-    maxWidth: 500,
-    height: "60vh",
-    fontSize: "28px",
-    fontWeight: "bold",
-    borderRadius: "20px",
-    border: "none",
-    background: "#000",
-    color: "white",
-    cursor: "pointer",
-  },
-};
