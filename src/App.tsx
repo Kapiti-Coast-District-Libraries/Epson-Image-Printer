@@ -4,8 +4,10 @@
  */
 import { supabase } from "./supabase";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Play } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { generateSudokuImage } from './utils/sudokuPrinter';
+import { generateMaoriWordImage } from './utils/maoriPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -29,7 +31,7 @@ export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // --- Auto Connect Helper (Defined before useEffect to avoid TS hoisting errors) ---
+  // --- Auto Connect Helper ---
   const autoConnectUsb = async () => {
     try {
       const devices = await (navigator as any).usb.getDevices();
@@ -83,50 +85,47 @@ export default function App() {
     autoConnectUsb();
   }, []);
 
-  // --- Offline Test Print Generator ---
-  const handleTestPrint = () => {
+  // --- Print Generation Triggers ---
+  const handleGenerateSudoku = async () => {
     setIsProcessing(true);
-    const canvas = document.createElement('canvas');
-    const width = PRINTER_WIDTHS[printerWidth];
-    const height = 300;
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d');
-
-    if (ctx) {
-      // High contrast white background
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(0, 0, width, height);
-
-      // Title
-      ctx.fillStyle = '#000000';
-      ctx.font = 'bold 44px monospace';
-      ctx.textAlign = 'center';
-      ctx.fillText('TEST PRINT', width / 2, 80);
-
-      // Body text
-      ctx.font = 'bold 22px monospace';
-      ctx.fillText('KEY "1" SUCCESSFUL', width / 2, 160);
-      ctx.fillText(new Date().toLocaleTimeString(), width / 2, 210);
-
-      // Border box
-      ctx.lineWidth = 6;
-      ctx.strokeRect(10, 10, width - 20, height - 20);
-
-      setImage(canvas.toDataURL('image/png'));
+    try {
+      const sudokuDataUrl = await generateSudokuImage();
+      setImage(sudokuDataUrl);
+    } catch (err: any) {
+      console.error("Failed to generate Sudoku:", err);
+      setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
     }
   };
 
-  // --- Global Keyboard Listener ---
+  const handleGenerateMaoriWord = async () => {
+    setIsProcessing(true);
+    try {
+      const maoriDataUrl = await generateMaoriWordImage();
+      setImage(maoriDataUrl);
+    } catch (err: any) {
+      console.error("Failed to generate Māori Word of the Day:", err);
+      setUsbError("Māori Word error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
+  // --- Global Keyboard Listener (1 = Sudoku, 3 = Kupu o te Rā) ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
 
       console.log(`Key pressed: key="${e.key}", code="${e.code}"`);
 
+      // Key 1: Sudoku
       if (e.key === '1' || e.key === 'End' || e.code === 'Numpad1' || e.code === 'Digit1') {
         e.preventDefault();
-        handleTestPrint();
+        handleGenerateSudoku();
+      }
+      // Key 3: Kupu o te Rā
+      else if (e.key === '3' || e.key === 'PageDown' || e.code === 'Numpad3' || e.code === 'Digit3') {
+        e.preventDefault();
+        handleGenerateMaoriWord();
       }
     };
 
@@ -410,12 +409,21 @@ export default function App() {
           </AnimatePresence>
 
           <button
-            onClick={handleTestPrint}
+            onClick={handleGenerateSudoku}
             className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
           >
-            <Play className="w-4 h-4 text-[#FF4444]" />
-            Test Print
+            <Grid className="w-4 h-4 text-[#FF4444]" />
+            Sudoku
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">1</kbd>
+          </button>
+
+          <button
+            onClick={handleGenerateMaoriWord}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Languages className="w-4 h-4 text-[#FF4444]" />
+            Kupu o te Rā
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">3</kbd>
           </button>
           
           <button 
@@ -538,7 +546,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Drop an image or press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> to execute an offline test print.
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> for Sudoku or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> for Kupu o te Rā.
                   </p>
                 </motion.div>
               ) : (
