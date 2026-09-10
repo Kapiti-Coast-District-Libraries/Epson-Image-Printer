@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { supabase } from "./supabase";
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -347,7 +347,7 @@ export default function App() {
           
           setImage(row.image_url);
           const fileNameX = row.image_url.split("/").pop();
-          setFileName(fileNameX);
+          setFileName(fileNameX ?? null); // Safe fallback for strict typechecking
 
           await supabase.from("print_queue").delete().eq("id", row.id);
         }
@@ -360,7 +360,7 @@ export default function App() {
     if (image) processImage(image);
   }, [image, printerWidth, contrast]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
