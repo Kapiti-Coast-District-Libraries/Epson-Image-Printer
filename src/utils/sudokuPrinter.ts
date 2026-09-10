@@ -1,5 +1,3 @@
-// src/utils/sudokuPrinter.ts
-
 export async function generateSudokuImage(): Promise<string> {
   // Fetch a puzzle grid from a free Sudoku API
   const response = await fetch('https://sudoku-api.vercel.app/api/dosuku');
@@ -67,4 +65,20 @@ export async function generateSudokuImage(): Promise<string> {
   }
 
   return canvas.toDataURL('image/png');
+}
+
+/**
+ * Converts a base64 Data URL to a standard JavaScript File object
+ */
+export function dataURLtoFile(dataurl: string, filename: string): File {
+  const arr = dataurl.split(',');
+  const mimeMatch = arr[0].match(/:(.*?);/);
+  const mime = mimeMatch ? mimeMatch[1] : 'image/png';
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], filename, { type: mime });
 }
