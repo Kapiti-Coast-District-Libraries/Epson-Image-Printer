@@ -4,9 +4,8 @@
  */
 import { supabase } from "./supabase";
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { generateSudokuImage } from './utils/sudokuPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -57,6 +56,7 @@ export default function App() {
   };
 
   useEffect(() => {
+    window.focus();
     autoConnectUsb();
   }, []);
 
@@ -83,32 +83,56 @@ export default function App() {
     }
   };
 
-  // --- Sudoku Generation Trigger ---
-  const handleGenerateSudoku = async () => {
+  // --- Offline Test Print Generator ---
+  const handleTestPrint = () => {
     setIsProcessing(true);
-    try {
-      const sudokuDataUrl = await generateSudokuImage();
-      setImage(sudokuDataUrl);
-    } catch (err: any) {
-      console.error("Failed to generate Sudoku:", err);
-      setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
-      setIsProcessing(false);
+    const canvas = document.createElement('canvas');
+    const width = PRINTER_WIDTHS[printerWidth];
+    const height = 300;
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      // High contrast white background
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, width, height);
+
+      // Title
+      ctx.fillStyle = '#000000';
+      ctx.font = 'bold 44px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('TEST PRINT', width / 2, 80);
+
+      // Body text
+      ctx.font = 'bold 22px monospace';
+      ctx.fillText('KEY "1" SUCCESSFUL', width / 2, 160);
+      ctx.fillText(new Date().toLocaleTimeString(), width / 2, 210);
+
+      // Border box
+      ctx.lineWidth = 6;
+      ctx.strokeRect(10, 10, width - 20, height - 20);
+
+      setImage(canvas.toDataURL('image/png'));
     }
   };
 
-  // --- Global Keyboard Listener (Pressing '1' triggers Sudoku) ---
+  // --- Global Keyboard Listener (Press '1', 'End', 'Numpad1', or 'Digit1') ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
-      if (e.key === '1') {
+
+      console.log(`Key pressed: key="${e.key}", code="${e.code}"`);
+
+      if (e.key === '1' || e.key === 'End' || e.code === 'Numpad1' || e.code === 'Digit1') {
         e.preventDefault();
-        handleGenerateSudoku();
+        handleTestPrint();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [printerWidth]);
 
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
@@ -388,11 +412,11 @@ export default function App() {
           </AnimatePresence>
 
           <button
-            onClick={handleGenerateSudoku}
+            onClick={handleTestPrint}
             className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
           >
-            <Grid className="w-4 h-4 text-[#FF4444]" />
-            Print Sudoku
+            <Play className="w-4 h-4 text-[#FF4444]" />
+            Test Print
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">1</kbd>
           </button>
           
@@ -516,7 +540,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Drop an image or press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> to generate a Sudoku puzzle.
+                    Drop an image or press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> to execute an offline test print.
                   </p>
                 </motion.div>
               ) : (
