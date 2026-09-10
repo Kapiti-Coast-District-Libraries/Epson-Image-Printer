@@ -87,6 +87,7 @@ export default function App() {
 
   // --- Print Generation Triggers ---
   const handleGenerateSudoku = async () => {
+    setFileName(null);
     setIsProcessing(true);
     try {
       const sudokuDataUrl = await generateSudokuImage();
@@ -99,6 +100,7 @@ export default function App() {
   };
 
   const handleGenerateMaoriWord = async () => {
+    setFileName(null);
     setIsProcessing(true);
     try {
       const maoriDataUrl = await generateMaoriWordImage();
@@ -117,13 +119,10 @@ export default function App() {
 
       console.log(`Key pressed: key="${e.key}", code="${e.code}"`);
 
-      // Key 1: Sudoku
       if (e.key === '1' || e.key === 'End' || e.code === 'Numpad1' || e.code === 'Digit1') {
         e.preventDefault();
         handleGenerateSudoku();
-      }
-      // Key 3: Kupu o te Rā
-      else if (e.key === '3' || e.key === 'PageDown' || e.code === 'Numpad3' || e.code === 'Digit3') {
+      } else if (e.key === '3' || e.key === 'PageDown' || e.code === 'Numpad3' || e.code === 'Digit3') {
         e.preventDefault();
         handleGenerateMaoriWord();
       }
@@ -321,9 +320,15 @@ export default function App() {
         img.src = imgSrc;
       });
 
+      // Cleanup Supabase Storage safely if a remote file was pulled
       if (fileName) {
-        const { error } = await supabase.storage.from("uploads").remove([fileName]);
-        if (error) console.error("Failed to delete image:", error);
+        try {
+          await supabase.storage.from("uploads").remove([fileName]);
+        } catch (e) {
+          console.warn("Storage cleanup notice:", e);
+        } finally {
+          setFileName(null);
+        }
       }
 
     } catch (err: any) {
@@ -360,6 +365,7 @@ export default function App() {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setFileName(null);
       const reader = new FileReader();
       reader.onload = (event) => setImage(event.target?.result as string);
       reader.readAsDataURL(file);
