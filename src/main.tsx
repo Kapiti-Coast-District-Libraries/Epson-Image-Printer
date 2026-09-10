@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 import App from "./App.tsx";
-import UploadPage from "./UploadPage";
+import { UploadPage } from "./UploadPage";
 import AdminPage from "./AdminPage"; // Import new page
 
 import "./index.css";
