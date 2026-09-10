@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { supabase } from './supabase';
-import { generateSudokuImage, dataURLtoFile } from './utils/sudoku';
+import { generateSudokuImage, dataURLtoFile } from './utils/sudokuPrinter';
 
 export function UploadPage() {
   const [file, setFile] = useState<File | null>(null);
