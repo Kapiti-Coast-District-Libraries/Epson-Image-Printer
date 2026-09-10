@@ -4,8 +4,9 @@
  */
 import { supabase } from "./supabase";
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { generateSudokuImage } from './utils/sudokuPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -81,6 +82,33 @@ export default function App() {
       console.error("Auto connect failed:", err);
     }
   };
+
+  // --- Sudoku Generation Trigger ---
+  const handleGenerateSudoku = async () => {
+    setIsProcessing(true);
+    try {
+      const sudokuDataUrl = await generateSudokuImage();
+      setImage(sudokuDataUrl);
+    } catch (err: any) {
+      console.error("Failed to generate Sudoku:", err);
+      setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
+  // --- Global Keyboard Listener (Pressing '1' triggers Sudoku) ---
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+      if (e.key === '1') {
+        e.preventDefault();
+        handleGenerateSudoku();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
@@ -358,6 +386,15 @@ export default function App() {
               </motion.button>
             )}
           </AnimatePresence>
+
+          <button
+            onClick={handleGenerateSudoku}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Grid className="w-4 h-4 text-[#FF4444]" />
+            Print Sudoku
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">1</kbd>
+          </button>
           
           <button 
             onClick={() => fileInputRef.current?.click()}
@@ -479,7 +516,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Drop an image to begin hardware-accelerated dithering.
+                    Drop an image or press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> to generate a Sudoku puzzle.
                   </p>
                 </motion.div>
               ) : (
