@@ -29,6 +29,29 @@ export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // --- Auto Connect Helper (Defined before useEffect to avoid TS hoisting errors) ---
+  const autoConnectUsb = async () => {
+    try {
+      const devices = await (navigator as any).usb.getDevices();
+
+      if (devices.length > 0) {
+        const device = devices[0];
+
+        await device.open();
+        if (device.configuration === null) {
+          await device.selectConfiguration(1);
+        }
+
+        await device.claimInterface(0);
+
+        setUsbDevice(device);
+        setUsbStatus('connected');
+      }
+    } catch (err: any) {
+      console.error("Auto connect failed:", err);
+    }
+  };
+
   // --- WebUSB Integration ---
   const connectUsb = async () => {
     setUsbStatus('connecting');
@@ -59,29 +82,6 @@ export default function App() {
     window.focus();
     autoConnectUsb();
   }, []);
-
-  // --- Auto connect if permission already granted ---
-  const autoConnectUsb = async () => {
-    try {
-      const devices = await (navigator as any).usb.getDevices();
-
-      if (devices.length > 0) {
-        const device = devices[0];
-
-        await device.open();
-        if (device.configuration === null) {
-          await device.selectConfiguration(1);
-        }
-
-        await device.claimInterface(0);
-
-        setUsbDevice(device);
-        setUsbStatus('connected');
-      }
-    } catch (err: any) {
-      console.error("Auto connect failed:", err);
-    }
-  };
 
   // --- Offline Test Print Generator ---
   const handleTestPrint = () => {
@@ -117,7 +117,7 @@ export default function App() {
     }
   };
 
-  // --- Global Keyboard Listener (Press '1', 'End', 'Numpad1', or 'Digit1') ---
+  // --- Global Keyboard Listener ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
@@ -252,7 +252,6 @@ export default function App() {
       
       await usbDevice.transferOut(endpoint.endpointNumber, data);
       
-      // LOG TO ADMIN STATS: After successful transfer to printer
       const { error: logError } = await supabase
         .from('print_logs')
         .insert([{}]);
@@ -323,7 +322,6 @@ export default function App() {
         img.src = imgSrc;
       });
 
-      // Cleanup Supabase Storage
       if (fileName) {
         const { error } = await supabase.storage.from("uploads").remove([fileName]);
         if (error) console.error("Failed to delete image:", error);
@@ -347,7 +345,7 @@ export default function App() {
           
           setImage(row.image_url);
           const fileNameX = row.image_url.split("/").pop();
-          setFileName(fileNameX ?? null); // Safe fallback for strict typechecking
+          setFileName(fileNameX ?? null);
 
           await supabase.from("print_queue").delete().eq("id", row.id);
         }
