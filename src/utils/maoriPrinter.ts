@@ -1,8 +1,58 @@
 export async function generateMaoriWordImage(): Promise<string> {
-  if (typeof window === 'undefined') {
-    throw new Error('Canvas rendering must run in the browser');
+  // Helper: Wrap text line by line on canvas
+  function wrapText(
+    ctx: CanvasRenderingContext2D,
+    text: string,
+    x: number,
+    y: number,
+    maxWidth: number,
+    lineHeight: number
+  ): number {
+    if (!text) return y;
+    const words = text.split(' ');
+    let line = '';
+    let currentY = y;
+
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && n > 0) {
+        ctx.fillText(line.trim(), x, currentY);
+        line = words[n] + ' ';
+        currentY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line.trim(), x, currentY);
+    return currentY + lineHeight;
   }
 
+  // Helper: Measure total block height to expand canvas dynamically
+  function measureHeight(
+    ctx: CanvasRenderingContext2D,
+    text: string,
+    maxWidth: number,
+    lineHeight: number
+  ): number {
+    if (!text) return 0;
+    const words = text.split(' ');
+    let line = '';
+    let count = 1;
+
+    for (let n = 0; n < words.length; n++) {
+      const testLine = line + words[n] + ' ';
+      if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+        line = words[n] + ' ';
+        count++;
+      } else {
+        line = testLine;
+      }
+    }
+    return count * lineHeight;
+  }
+
+  // Fetch directly from live Vercel scraper
   const response = await fetch('https://vercel-printer-khaki.vercel.app/api/kupu-o-te-ra');
   if (!response.ok) throw new Error(`API response failed with status: ${response.status}`);
 
@@ -11,28 +61,28 @@ export async function generateMaoriWordImage(): Promise<string> {
 
   const word = data.word || '';
   const translation = data.translation || '';
-  const sentenceMaori = data.examples?.[0] || '';
-  const sentenceEnglish = data.examples?.[1] || '';
+  const examples: string[] = data.examples || [];
 
   const width = 576;
-  
-  // Calculate dynamic canvas height prior to rendering
   const dummyCanvas = document.createElement('canvas');
   const dCtx = dummyCanvas.getContext('2d')!;
-  
-  let requiredHeight = 220; // Base space for headers & title
-  requiredHeight += measureTextHeight(dCtx, translation, 'bold 22px sans-serif', width - 80, 28);
-  
-  if (sentenceMaori) {
-    requiredHeight += 60; // Padding + TAUIRA label
-    requiredHeight += measureTextHeight(dCtx, `"${sentenceMaori}"`, 'italic 20px sans-serif', width - 80, 26);
-    if (sentenceEnglish) {
-      requiredHeight += 10;
-      requiredHeight += measureTextHeight(dCtx, sentenceEnglish, '18px sans-serif', width - 80, 24);
+
+  // Dynamic height calculation
+  let calculatedHeight = 220;
+  dCtx.font = 'bold 22px sans-serif';
+  calculatedHeight += measureHeight(dCtx, translation, width - 80, 28);
+
+  if (examples.length > 0) {
+    calculatedHeight += 60;
+    for (const item of examples) {
+      const isNote = item.startsWith('-');
+      dCtx.font = isNote ? 'italic 16px sans-serif' : '18px sans-serif';
+      const lh = isNote ? 22 : 26;
+      calculatedHeight += measureHeight(dCtx, item, width - 80, lh) + 6;
     }
   }
 
-  const height = Math.max(520, requiredHeight + 40);
+  const height = Math.max(520, calculatedHeight + 40);
 
   const canvas = document.createElement('canvas');
   canvas.width = width;
@@ -40,14 +90,14 @@ export async function generateMaoriWordImage(): Promise<string> {
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context unavailable');
 
-  // Background & Border
+  // Background & Outer Box
   ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, width, height);
   ctx.lineWidth = 4;
   ctx.strokeStyle = '#000000';
   ctx.strokeRect(15, 15, width - 30, height - 30);
 
-  // Header
+  // Receipt Header
   ctx.fillStyle = '#000000';
   ctx.font = 'bold 30px monospace';
   ctx.textAlign = 'center';
@@ -60,16 +110,16 @@ export async function generateMaoriWordImage(): Promise<string> {
   ctx.lineTo(width - 35, 105);
   ctx.stroke();
 
-  // Word & Translation
+  // Word & Main Translation
   ctx.font = 'bold 44px sans-serif';
   ctx.fillText(word, width / 2, 165);
 
   ctx.font = 'bold 22px sans-serif';
   let currentY = wrapText(ctx, translation, width / 2, 215, width - 80, 28);
 
-  // Examples Section
-  if (sentenceMaori) {
-    currentY += 20;
+  // Example Sentences
+  if (examples.length > 0) {
+    currentY += 15;
     ctx.beginPath();
     ctx.moveTo(60, currentY);
     ctx.lineTo(width - 60, currentY);
@@ -78,43 +128,16 @@ export async function generateMaoriWordImage(): Promise<string> {
 
     currentY += 30;
     ctx.font = 'bold 18px sans-serif';
-    ctx.fillText('TAUIRA / EXAMPLE', width / 2, currentY);
-
+    ctx.fillText('TAUIRA / EXAMPLES', width / 2, currentY);
     currentY += 30;
-    ctx.font = 'italic 20px sans-serif';
-    currentY = wrapText(ctx, `"${sentenceMaori}"`, width / 2, currentY, width - 80, 26);
 
-    if (sentenceEnglish) {
-      currentY += 10;
-      ctx.font = '18px sans-serif';
-      wrapText(ctx, sentenceEnglish, width / 2, currentY, width - 80, 24);
+    for (const item of examples) {
+      const isNote = item.startsWith('-');
+      ctx.font = isNote ? 'italic 16px sans-serif' : '18px sans-serif';
+      const lh = isNote ? 22 : 26;
+      currentY = wrapText(ctx, item, width / 2, currentY, width - 80, lh) + 6;
     }
   }
 
   return canvas.toDataURL('image/png');
-}
-
-function measureTextHeight(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  font: string,
-  maxWidth: number,
-  lineHeight: number
-): number {
-  if (!text) return 0;
-  ctx.font = font;
-  const words = text.split(' ');
-  let line = '';
-  let lines = 1;
-
-  for (let n = 0; n < words.length; n++) {
-    const testLine = line + words[n] + ' ';
-    if (ctx.measureText(testLine).width > maxWidth && n > 0) {
-      line = words[n] + ' ';
-      lines++;
-    } else {
-      line = testLine;
-    }
-  }
-  return lines * lineHeight;
 }
