@@ -3,7 +3,7 @@ export async function generateMaoriWordImage(): Promise<string> {
     throw new Error('Canvas rendering must run in the browser');
   }
 
-  const response = await fetch('/api/kupu-o-te-ra');
+  const response = await fetch('https://vercel-printer-khaki.vercel.app/api/kupu-o-te-ra');
   if (!response.ok) throw new Error(`API response failed with status: ${response.status}`);
 
   const data = await response.json();
