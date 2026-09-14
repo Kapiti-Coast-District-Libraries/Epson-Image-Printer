@@ -1,39 +1,53 @@
 export async function generateMaoriWordImage(): Promise<string> {
-  // Call your local backend scraper endpoint instead of third-party CORS proxies
-  const response = await fetch('/api/kupu-o-te-ra');
-  if (!response.ok) {
-    throw new Error(`API response failed with status: ${response.status}`);
+  if (typeof window === 'undefined') {
+    throw new Error('Canvas rendering must run in the browser');
   }
 
+  const response = await fetch('/api/kupu-o-te-ra');
+  if (!response.ok) throw new Error(`API response failed with status: ${response.status}`);
+
   const data = await response.json();
-  if (data.error) {
-    throw new Error(`Scraper API Error: ${data.error}`);
-  }
+  if (data.error) throw new Error(`Scraper API Error: ${data.error}`);
 
   const word = data.word || '';
   const translation = data.translation || '';
   const sentenceMaori = data.examples?.[0] || '';
   const sentenceEnglish = data.examples?.[1] || '';
 
-  // Render on 80mm Thermal Receipt Canvas (576px wide)
   const width = 576;
-  const height = 520;
+  
+  // Calculate dynamic canvas height prior to rendering
+  const dummyCanvas = document.createElement('canvas');
+  const dCtx = dummyCanvas.getContext('2d')!;
+  
+  let requiredHeight = 220; // Base space for headers & title
+  requiredHeight += measureTextHeight(dCtx, translation, 'bold 22px sans-serif', width - 80, 28);
+  
+  if (sentenceMaori) {
+    requiredHeight += 60; // Padding + TAUIRA label
+    requiredHeight += measureTextHeight(dCtx, `"${sentenceMaori}"`, 'italic 20px sans-serif', width - 80, 26);
+    if (sentenceEnglish) {
+      requiredHeight += 10;
+      requiredHeight += measureTextHeight(dCtx, sentenceEnglish, '18px sans-serif', width - 80, 24);
+    }
+  }
+
+  const height = Math.max(520, requiredHeight + 40);
+
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas context unavailable');
 
-  // Background
+  // Background & Border
   ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, width, height);
-
-  // Border
   ctx.lineWidth = 4;
   ctx.strokeStyle = '#000000';
   ctx.strokeRect(15, 15, width - 30, height - 30);
 
-  // Title Header
+  // Header
   ctx.fillStyle = '#000000';
   ctx.font = 'bold 30px monospace';
   ctx.textAlign = 'center';
@@ -41,30 +55,27 @@ export async function generateMaoriWordImage(): Promise<string> {
   ctx.font = '16px monospace';
   ctx.fillText('kupu.maori.nz', width / 2, 85);
 
-  // Divider Line
   ctx.beginPath();
   ctx.moveTo(35, 105);
   ctx.lineTo(width - 35, 105);
   ctx.stroke();
 
-  // Word (Large)
+  // Word & Translation
   ctx.font = 'bold 44px sans-serif';
   ctx.fillText(word, width / 2, 165);
 
-  // Translation / Definition
   ctx.font = 'bold 22px sans-serif';
   let currentY = wrapText(ctx, translation, width / 2, 215, width - 80, 28);
 
-  // Section Divider
-  currentY += 20;
-  ctx.beginPath();
-  ctx.moveTo(60, currentY);
-  ctx.lineTo(width - 60, currentY);
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Example Sentences
+  // Examples Section
   if (sentenceMaori) {
+    currentY += 20;
+    ctx.beginPath();
+    ctx.moveTo(60, currentY);
+    ctx.lineTo(width - 60, currentY);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
     currentY += 30;
     ctx.font = 'bold 18px sans-serif';
     ctx.fillText('TAUIRA / EXAMPLE', width / 2, currentY);
@@ -83,29 +94,27 @@ export async function generateMaoriWordImage(): Promise<string> {
   return canvas.toDataURL('image/png');
 }
 
-function wrapText(
+function measureTextHeight(
   ctx: CanvasRenderingContext2D,
   text: string,
-  x: number,
-  y: number,
+  font: string,
   maxWidth: number,
   lineHeight: number
 ): number {
+  if (!text) return 0;
+  ctx.font = font;
   const words = text.split(' ');
   let line = '';
-  let currentY = y;
+  let lines = 1;
 
   for (let n = 0; n < words.length; n++) {
     const testLine = line + words[n] + ' ';
-    const metrics = ctx.measureText(testLine);
-    if (metrics.width > maxWidth && n > 0) {
-      ctx.fillText(line.trim(), x, currentY);
+    if (ctx.measureText(testLine).width > maxWidth && n > 0) {
       line = words[n] + ' ';
-      currentY += lineHeight;
+      lines++;
     } else {
       line = testLine;
     }
   }
-  ctx.fillText(line.trim(), x, currentY);
-  return currentY + lineHeight;
+  return lines * lineHeight;
 }
