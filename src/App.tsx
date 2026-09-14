@@ -34,6 +34,7 @@ export default function App() {
   // --- Auto Connect Helper ---
   const autoConnectUsb = async () => {
     try {
+      if (!(navigator as any).usb) return;
       const devices = await (navigator as any).usb.getDevices();
 
       if (devices.length > 0) {
@@ -88,10 +89,15 @@ export default function App() {
   // --- Print Generation Triggers ---
   const handleGenerateSudoku = async () => {
     setFileName(null);
+    setUsbError(null);
     setIsProcessing(true);
     try {
       const sudokuDataUrl = await generateSudokuImage();
-      setImage(sudokuDataUrl);
+      // Clear image state briefly so React state update is guaranteed to trigger useEffect
+      setImage(null);
+      setTimeout(() => {
+        setImage(sudokuDataUrl);
+      }, 20);
     } catch (err: any) {
       console.error("Failed to generate Sudoku:", err);
       setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
@@ -101,10 +107,15 @@ export default function App() {
 
   const handleGenerateMaoriWord = async () => {
     setFileName(null);
+    setUsbError(null);
     setIsProcessing(true);
     try {
       const maoriDataUrl = await generateMaoriWordImage();
-      setImage(maoriDataUrl);
+      // Clear image state briefly so React state update is guaranteed to trigger useEffect
+      setImage(null);
+      setTimeout(() => {
+        setImage(maoriDataUrl);
+      }, 20);
     } catch (err: any) {
       console.error("Failed to generate Māori Word of the Day:", err);
       setUsbError("Māori Word error: " + (err instanceof Error ? err.message : "Unknown error"));
@@ -117,12 +128,28 @@ export default function App() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
 
-      console.log(`Key pressed: key="${e.key}", code="${e.code}"`);
+      console.log(`Key pressed: key="${e.key}", code="${e.code}", keyCode=${e.keyCode}`);
 
-      if (e.key === '1' || e.key === 'End' || e.code === 'Numpad1' || e.code === 'Digit1') {
+      const isKeyOne =
+        e.key === '1' ||
+        e.key === 'End' ||
+        e.code === 'Numpad1' ||
+        e.code === 'Digit1' ||
+        e.keyCode === 49 ||
+        e.keyCode === 97;
+
+      const isKeyThree =
+        e.key === '3' ||
+        e.key === 'PageDown' ||
+        e.code === 'Numpad3' ||
+        e.code === 'Digit3' ||
+        e.keyCode === 51 ||
+        e.keyCode === 99;
+
+      if (isKeyOne) {
         e.preventDefault();
         handleGenerateSudoku();
-      } else if (e.key === '3' || e.key === 'PageDown' || e.code === 'Numpad3' || e.code === 'Digit3') {
+      } else if (isKeyThree) {
         e.preventDefault();
         handleGenerateMaoriWord();
       }
@@ -130,7 +157,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [printerWidth]);
+  }, [printerWidth, image]);
 
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
@@ -320,7 +347,6 @@ export default function App() {
         img.src = imgSrc;
       });
 
-      // Cleanup Supabase Storage safely if a remote file was pulled
       if (fileName) {
         try {
           await supabase.storage.from("uploads").remove([fileName]);
