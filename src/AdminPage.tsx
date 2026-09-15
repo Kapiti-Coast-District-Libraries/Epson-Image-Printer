@@ -37,6 +37,18 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
 
 const DEFAULT_THEME = { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' };
 
+// Normalize legacy/varied print_type database values into standard categories
+const normalizeCategory = (rawType: string | null | undefined): string => {
+  if (!rawType || rawType.trim() === '') return 'Uploaded Image';
+  const t = rawType.trim().toLowerCase();
+  if (t.includes('kupu') || t.includes('maori')) return 'Kupu o te Rā';
+  if (t.includes('weather')) return 'Weather';
+  if (t.includes('sudoku')) return 'Sudoku';
+  if (t.includes('history') || t.includes('day') || t.includes('on this')) return 'On This Day';
+  if (t.includes('upload') || t.includes('custom') || t.includes('image')) return 'Uploaded Image';
+  return rawType;
+};
+
 export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [totalUnique, setTotalUnique] = useState(0);
@@ -61,14 +73,19 @@ export default function AdminPage() {
 
     if (!error && data) {
       const now = new Date();
-      const todayStr = now.toLocaleDateString();
 
-      // 1. Deduplicate consecutive logs within 5 seconds
+      // Check if a timestamp is on today's calendar date in local time
+      const isToday = (d: Date) => 
+        d.getFullYear() === now.getFullYear() &&
+        d.getMonth() === now.getMonth() &&
+        d.getDate() === now.getDate();
+
+      // 1. Deduplicate consecutive logs within 3 seconds
       const uniqueLogs = data.reduce((acc: any[], current: any) => {
         if (acc.length === 0) return [current];
         const lastTime = new Date(acc[acc.length - 1].created_at).getTime();
         const currTime = new Date(current.created_at).getTime();
-        if (Math.abs(lastTime - currTime) > 5000) acc.push(current);
+        if (Math.abs(lastTime - currTime) > 3000) acc.push(current);
         return acc;
       }, []);
 
@@ -83,7 +100,7 @@ export default function AdminPage() {
       uniqueLogs.forEach((log) => {
         const d = new Date(log.created_at);
         const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        const typeKey = log.print_type || 'Uploaded Image';
+        const typeKey = normalizeCategory(log.print_type);
 
         // Daily trend tracking
         dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
@@ -91,8 +108,8 @@ export default function AdminPage() {
         // Category popularity tracking
         catMap[typeKey] = (catMap[typeKey] || 0) + 1;
 
-        // Specific "Today" tracking
-        if (d.toLocaleDateString() === todayStr) {
+        // Today's hourly tracking
+        if (isToday(d)) {
           todayHourly[d.getHours()]++;
           todayLogsList.push({
             created_at: log.created_at,
@@ -102,11 +119,11 @@ export default function AdminPage() {
         }
       });
 
-      // Peak Day
+      // Peak Day calculation
       const peakEntry = Object.entries(dailyMap).reduce((a, b) => (a[1] > b[1] ? a : b), ['-', 0]);
       setPeakDay({ date: peakEntry[0], count: peakEntry[1] as number });
 
-      // Daily Average
+      // Daily Average calculation
       const totalDays = Object.keys(dailyMap).length || 1;
       setAvgPerDay(Math.round(uniqueLogs.length / totalDays));
 
@@ -149,7 +166,7 @@ export default function AdminPage() {
 
   // Smooth SVG Path Builder for Area Graph
   const buildSvgPath = (points: DailyPoint[], width: number, height: number) => {
-    if (points.length < 2) return { line: '', area: '' };
+    if (points.length < 2) return { line: '', area: '', coords: [] };
 
     const paddingX = 40;
     const paddingY = 30;
@@ -259,7 +276,7 @@ export default function AdminPage() {
           </motion.div>
         </div>
 
-        {/* SECTION: PRINT VOLUME TREND GRAPH (SMOOTH SVG AREA CHART) */}
+        {/* SECTION: PRINT VOLUME TREND GRAPH */}
         <div className="bg-[#121318] border border-white/5 rounded-2xl p-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2 text-blue-400 font-mono text-xs uppercase tracking-widest">
@@ -295,7 +312,6 @@ export default function AdminPage() {
                   </linearGradient>
                 </defs>
 
-                {/* Horizontal grid lines */}
                 {[0, 0.33, 0.66, 1].map((ratio, idx) => {
                   const y = 30 + ratio * (svgDimensions.height - 60);
                   return (
@@ -303,21 +319,15 @@ export default function AdminPage() {
                   );
                 })}
 
-                {/* Area Fill */}
                 <path d={graphPaths.area} fill="url(#areaGradient)" />
-
-                {/* Line Path */}
                 <path d={graphPaths.line} fill="none" stroke="#3b82f6" strokeWidth="3" strokeLinecap="round" />
 
-                {/* Data Points */}
                 {graphPaths.coords?.map((pt, i) => (
                   <g key={i} className="group cursor-pointer">
                     <circle cx={pt.x} cy={pt.y} r="5" fill="#121318" stroke="#3b82f6" strokeWidth="2.5" className="group-hover:r-7 transition-all" />
-                    {/* Hover Tooltip */}
                     <text x={pt.x} y={pt.y - 12} textAnchor="middle" fill="#ffffff" fontSize="10" fontFamily="monospace" className="opacity-0 group-hover:opacity-100 transition-opacity font-bold">
                       {visibleTrend[i].count}
                     </text>
-                    {/* Date Label */}
                     <text x={pt.x} y={svgDimensions.height - 8} textAnchor="middle" fill="#5A5C63" fontSize="9" fontFamily="monospace">
                       {visibleTrend[i].date}
                     </text>
@@ -328,10 +338,10 @@ export default function AdminPage() {
           )}
         </div>
 
-        {/* SECTION: CATEGORY POPULARITY (SVG DONUT + DETAILED CARDS) */}
+        {/* SECTION: CATEGORY POPULARITY */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          {/* Donut Visualization */}
+          {/* Donut Chart */}
           <div className="lg:col-span-5 bg-[#121318] border border-white/5 rounded-2xl p-6 flex flex-col justify-between">
             <div className="flex items-center gap-2 text-purple-400 font-mono text-xs uppercase tracking-widest mb-4">
               <PieChart className="w-4 h-4" /> Category Distribution
@@ -454,7 +464,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Today's Live Stream Feed */}
+          {/* Today's Live Feed */}
           <div className="bg-[#121318] border border-white/5 rounded-2xl flex flex-col h-[340px] lg:h-auto overflow-hidden">
             <div className="p-4 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
               <div className="flex items-center gap-2">
@@ -486,13 +496,13 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* System Status Footer */}
+        {/* Footer */}
         <div className="bg-[#121318] border border-white/5 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3">
            <div className="flex items-center gap-3">
              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
              <span className="text-[10px] font-mono tracking-[0.2em] text-[#8E9299]">REALTIME_TELEMETRY // OPERATIONAL</span>
            </div>
-           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Auto-deduplicated (5s buffer)</span>
+           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Normalized Categories & Local Date Matching</span>
         </div>
       </main>
     </div>
