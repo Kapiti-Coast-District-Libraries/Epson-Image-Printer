@@ -4,10 +4,11 @@
  */
 import { supabase } from "./supabase";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { generateSudokuImage } from './utils/sudokuPrinter';
 import { generateMaoriWordImage } from './utils/maoriPrinter';
+import { generateWeatherImage } from './utils/weatherPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -90,23 +91,6 @@ export default function App() {
   }, []);
 
   // --- Print Generation Triggers ---
-  const handleGenerateSudoku = async () => {
-    setFileName(null);
-    setUsbError(null);
-    setIsProcessing(true);
-    try {
-      const sudokuDataUrl = await generateSudokuImage();
-      setImage(null);
-      setTimeout(() => {
-        setImage(sudokuDataUrl);
-      }, 20);
-    } catch (err: any) {
-      console.error("Failed to generate Sudoku:", err);
-      setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
-      setIsProcessing(false);
-    }
-  };
-
   const handleGenerateMaoriWord = async () => {
     setFileName(null);
     setUsbError(null);
@@ -124,10 +108,43 @@ export default function App() {
     }
   };
 
-  // --- Global Keyboard Listener (1 = Kupu o te Rā, 3 = Sudoku) with 2s Delay ---
+  const handleGenerateWeather = async () => {
+    setFileName(null);
+    setUsbError(null);
+    setIsProcessing(true);
+    try {
+      const weatherDataUrl = await generateWeatherImage(-40.9006, 175.0067, "Paraparaumu");
+      setImage(null);
+      setTimeout(() => {
+        setImage(weatherDataUrl);
+      }, 20);
+    } catch (err: any) {
+      console.error("Failed to generate Weather forecast:", err);
+      setUsbError("Weather error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
+  const handleGenerateSudoku = async () => {
+    setFileName(null);
+    setUsbError(null);
+    setIsProcessing(true);
+    try {
+      const sudokuDataUrl = await generateSudokuImage();
+      setImage(null);
+      setTimeout(() => {
+        setImage(sudokuDataUrl);
+      }, 20);
+    } catch (err: any) {
+      console.error("Failed to generate Sudoku:", err);
+      setUsbError("Sudoku error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
+  // --- Global Keyboard Listener (1 = Kupu, 2 = Weather, 3 = Sudoku) ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Ignore inputs, held-down repeat events, or active cooldown
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
       if (e.repeat || isCooldownRef.current || isProcessing) return;
 
@@ -138,6 +155,14 @@ export default function App() {
         e.code === 'Digit1' ||
         e.keyCode === 49 ||
         e.keyCode === 97;
+
+      const isKeyTwo =
+        e.key === '2' ||
+        e.key === 'Clear' ||
+        e.code === 'Numpad2' ||
+        e.code === 'Digit2' ||
+        e.keyCode === 50 ||
+        e.keyCode === 98;
 
       const isKeyThree =
         e.key === '3' ||
@@ -151,17 +176,21 @@ export default function App() {
         isCooldownRef.current = true;
         setTimeout(() => {
           isCooldownRef.current = false;
-        }, 2000); // 2 second delay before accepting another stroke
+        }, 2000); // 2-second cooldown
       };
 
       if (isKeyOne) {
         e.preventDefault();
         startCooldown();
-        handleGenerateMaoriWord(); // Swapped: 1 is now Kupu o te Rā
+        handleGenerateMaoriWord();
+      } else if (isKeyTwo) {
+        e.preventDefault();
+        startCooldown();
+        handleGenerateWeather();
       } else if (isKeyThree) {
         e.preventDefault();
         startCooldown();
-        handleGenerateSudoku(); // Swapped: 3 is now Sudoku
+        handleGenerateSudoku();
       }
     };
 
@@ -459,6 +488,15 @@ export default function App() {
           </button>
 
           <button
+            onClick={handleGenerateWeather}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <CloudSun className="w-4 h-4 text-[#FF4444]" />
+            Weather
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">2</kbd>
+          </button>
+
+          <button
             onClick={handleGenerateSudoku}
             className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
           >
@@ -587,7 +625,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> for Kupu o te Rā or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> for Sudoku.
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> for Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> for Weather, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> for Sudoku.
                   </p>
                 </motion.div>
               ) : (
