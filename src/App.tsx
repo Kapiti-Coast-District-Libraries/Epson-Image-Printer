@@ -25,6 +25,9 @@ export default function App() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
 
+  // Track currently selected print category
+  const activePrintTypeRef = useRef<string>('Uploaded Image');
+
   // Cooldown tracker to prevent rapid spamming / holding down keys
   const isCooldownRef = useRef(false);
 
@@ -93,6 +96,7 @@ export default function App() {
 
   // --- Print Generation Triggers ---
   const handleGenerateMaoriWord = async () => {
+    activePrintTypeRef.current = 'Kupu o te Rā';
     setFileName(null);
     setUsbError(null);
     setIsProcessing(true);
@@ -110,6 +114,7 @@ export default function App() {
   };
 
   const handleGenerateWeather = async () => {
+    activePrintTypeRef.current = 'Weather';
     setFileName(null);
     setUsbError(null);
     setIsProcessing(true);
@@ -127,6 +132,7 @@ export default function App() {
   };
 
   const handleGenerateSudoku = async () => {
+    activePrintTypeRef.current = 'Sudoku';
     setFileName(null);
     setUsbError(null);
     setIsProcessing(true);
@@ -144,6 +150,7 @@ export default function App() {
   };
 
   const handleGenerateHistory = async () => {
+    activePrintTypeRef.current = 'On This Day';
     setFileName(null);
     setUsbError(null);
     setIsProcessing(true);
@@ -160,7 +167,7 @@ export default function App() {
     }
   };
 
-  // --- Global Keyboard Listener (1 = Kupu, 2 = Weather, 3 = Sudoku, 4 = On This Day) ---
+  // --- Global Keyboard Listener ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
@@ -201,7 +208,7 @@ export default function App() {
         isCooldownRef.current = true;
         setTimeout(() => {
           isCooldownRef.current = false;
-        }, 2000); // 2-second cooldown
+        }, 2000);
       };
 
       if (isKeyOne) {
@@ -239,10 +246,10 @@ export default function App() {
 
     const widthInBytes = Math.ceil(width / 8);
     const header = new Uint8Array([
-      0x1B, 0x40, // Initialize
-      0x1D, 0x76, 0x30, 0, // GS v 0 0
-      widthInBytes % 256, Math.floor(widthInBytes / 256), // xL xH
-      height % 256, Math.floor(height / 256) // yL yH
+      0x1B, 0x40,
+      0x1D, 0x76, 0x30, 0,
+      widthInBytes % 256, Math.floor(widthInBytes / 256),
+      height % 256, Math.floor(height / 256)
     ]);
 
     const pixelData = new Uint8Array(widthInBytes * height);
@@ -258,7 +265,7 @@ export default function App() {
       }
     }
 
-    const footer = new Uint8Array([0x0A, 0x0A, 0x0A, 0x1D, 0x56, 0x41, 0x03]); // Line feeds + Cut
+    const footer = new Uint8Array([0x0A, 0x0A, 0x0A, 0x1D, 0x56, 0x41, 0x03]);
     const combined = new Uint8Array(header.length + pixelData.length + footer.length);
     combined.set(header);
     combined.set(pixelData, header.length);
@@ -344,9 +351,10 @@ export default function App() {
       
       await usbDevice.transferOut(endpoint.endpointNumber, data);
       
+      // Log print type permanently
       const { error: logError } = await supabase
         .from('print_logs')
-        .insert([{}]);
+        .insert([{ print_type: activePrintTypeRef.current }]);
       
       if (logError) console.error("Admin Log Error:", logError);
       
@@ -440,6 +448,7 @@ export default function App() {
           const row = payload.new;
           if (!row || row.printed) return;
           
+          activePrintTypeRef.current = 'Uploaded Image';
           setImage(row.image_url);
           const fileNameX = row.image_url.split("/").pop();
           setFileName(fileNameX ?? null);
@@ -458,6 +467,7 @@ export default function App() {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      activePrintTypeRef.current = 'Uploaded Image';
       setFileName(null);
       const reader = new FileReader();
       reader.onload = (event) => setImage(event.target?.result as string);
