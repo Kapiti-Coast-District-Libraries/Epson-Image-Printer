@@ -32,22 +32,11 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
   'Weather': { color: '#0ea5e9', bg: 'bg-sky-500/10 text-sky-400', border: 'border-sky-500/30' },
   'Sudoku': { color: '#10b981', bg: 'bg-emerald-500/10 text-emerald-400', border: 'border-emerald-500/30' },
   'On This Day': { color: '#f59e0b', bg: 'bg-amber-500/10 text-amber-400', border: 'border-amber-500/30' },
-  'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' }
+  'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
+  'General Print': { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' }
 };
 
 const DEFAULT_THEME = { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' };
-
-// Normalize legacy/varied print_type database values into standard categories
-const normalizeCategory = (rawType: string | null | undefined): string => {
-  if (!rawType || rawType.trim() === '') return 'Uploaded Image';
-  const t = rawType.trim().toLowerCase();
-  if (t.includes('kupu') || t.includes('maori')) return 'Kupu o te Rā';
-  if (t.includes('weather')) return 'Weather';
-  if (t.includes('sudoku')) return 'Sudoku';
-  if (t.includes('history') || t.includes('day') || t.includes('on this')) return 'On This Day';
-  if (t.includes('upload') || t.includes('custom') || t.includes('image')) return 'Uploaded Image';
-  return rawType;
-};
 
 export default function AdminPage() {
   const [loading, setLoading] = useState(true);
@@ -66,26 +55,43 @@ export default function AdminPage() {
 
   const fetchStats = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+
+    // Primary Query: Fetch with print_type
+    let data: any[] | null = null;
+    let error: any = null;
+
+    const primaryRes = await supabase
       .from('print_logs')
       .select('created_at, print_type')
-      .order('created_at', { ascending: true });
+      .order('created_at', { ascending: false });
+
+    if (primaryRes.error) {
+      // Fallback Query: If print_type column doesn't exist in Supabase yet
+      const fallbackRes = await supabase
+        .from('print_logs')
+        .select('created_at')
+        .order('created_at', { ascending: false });
+      data = fallbackRes.data;
+      error = fallbackRes.error;
+    } else {
+      data = primaryRes.data;
+    }
 
     if (!error && data) {
       const now = new Date();
 
-      // Check if a timestamp is on today's calendar date in local time
+      // Robust Today Check (Avoids locale string mismatches)
       const isToday = (d: Date) => 
         d.getFullYear() === now.getFullYear() &&
         d.getMonth() === now.getMonth() &&
         d.getDate() === now.getDate();
 
-      // 1. Deduplicate consecutive logs within 3 seconds
+      // 1. Deduplicate consecutive prints logged within 5 seconds
       const uniqueLogs = data.reduce((acc: any[], current: any) => {
         if (acc.length === 0) return [current];
         const lastTime = new Date(acc[acc.length - 1].created_at).getTime();
         const currTime = new Date(current.created_at).getTime();
-        if (Math.abs(lastTime - currTime) > 3000) acc.push(current);
+        if (Math.abs(lastTime - currTime) > 5000) acc.push(current);
         return acc;
       }, []);
 
@@ -100,7 +106,7 @@ export default function AdminPage() {
       uniqueLogs.forEach((log) => {
         const d = new Date(log.created_at);
         const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        const typeKey = normalizeCategory(log.print_type);
+        const typeKey = log.print_type || 'General Print';
 
         // Daily trend tracking
         dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
@@ -108,7 +114,7 @@ export default function AdminPage() {
         // Category popularity tracking
         catMap[typeKey] = (catMap[typeKey] || 0) + 1;
 
-        // Today's hourly tracking
+        // Today's specific tracking
         if (isToday(d)) {
           todayHourly[d.getHours()]++;
           todayLogsList.push({
@@ -127,9 +133,10 @@ export default function AdminPage() {
       const totalDays = Object.keys(dailyMap).length || 1;
       setAvgPerDay(Math.round(uniqueLogs.length / totalDays));
 
-      // Trend Series
-      const trendPoints: DailyPoint[] = Object.entries(dailyMap).map(([date, count]) => ({ date, count }));
-      setDailyTrend(trendPoints);
+      // Trend Series (Chronological order)
+      const trendPoints: DailyPoint[] = Object.entries(dailyMap)
+        .map(([date, count]) => ({ date, count }))
+        .reverse();
 
       // Categories with Percentages
       const catMetaList: CategoryMeta[] = Object.entries(catMap).map(([label, count]) => {
@@ -145,9 +152,10 @@ export default function AdminPage() {
       }).sort((a, b) => b.count - a.count);
 
       setCategories(catMetaList);
+      setDailyTrend(trendPoints);
       setHourlyStats(todayHourly);
       setTodayTotal(todayLogsList.length);
-      setTodayLogs(todayLogsList.reverse());
+      setTodayLogs(todayLogsList);
     }
     setLoading(false);
   };
@@ -159,8 +167,12 @@ export default function AdminPage() {
     }
   }, []);
 
-  // Filtered Trend Data
-  const visibleTrend = timeFilter === '7d' ? dailyTrend.slice(-7) : dailyTrend;
+  // Filtered Trend Data & Single-Day Padding
+  const rawVisibleTrend = timeFilter === '7d' ? dailyTrend.slice(-7) : dailyTrend;
+  const visibleTrend = rawVisibleTrend.length === 1 
+    ? [{ date: 'Start', count: 0 }, ...rawVisibleTrend] 
+    : rawVisibleTrend;
+
   const maxTrendValue = Math.max(...visibleTrend.map(d => d.count), 1);
   const maxHourValue = Math.max(...hourlyStats, 1);
 
@@ -234,9 +246,6 @@ export default function AdminPage() {
             </div>
             <div className="text-4xl font-black tracking-tight">{loading ? "..." : totalUnique}</div>
             <p className="text-[#5A5C63] text-[10px] mt-2 font-mono uppercase">Unique prints completed</p>
-            <div className="absolute right-[-10px] bottom-[-10px] opacity-5 group-hover:opacity-10 transition-opacity">
-              <BarChart3 className="w-24 h-24 text-blue-400" />
-            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="bg-[#121318] border border-white/5 p-6 rounded-2xl relative overflow-hidden group">
@@ -246,9 +255,6 @@ export default function AdminPage() {
             </div>
             <div className="text-4xl font-black tracking-tight">{loading ? "..." : peakDay.count}</div>
             <p className="text-[#5A5C63] text-[10px] mt-2 font-mono uppercase italic">{peakDay.date}</p>
-            <div className="absolute right-[-10px] bottom-[-10px] opacity-5 group-hover:opacity-10 transition-opacity">
-              <Calendar className="w-24 h-24 text-amber-400" />
-            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-[#121318] border border-white/5 p-6 rounded-2xl relative overflow-hidden group">
@@ -258,9 +264,6 @@ export default function AdminPage() {
             </div>
             <div className="text-4xl font-black tracking-tight">{loading ? "..." : avgPerDay}</div>
             <p className="text-[#5A5C63] text-[10px] mt-2 font-mono uppercase">Prints per operating day</p>
-            <div className="absolute right-[-10px] bottom-[-10px] opacity-5 group-hover:opacity-10 transition-opacity">
-              <Activity className="w-24 h-24 text-emerald-400" />
-            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="bg-[#121318] border border-white/5 p-6 rounded-2xl relative overflow-hidden group">
@@ -270,9 +273,6 @@ export default function AdminPage() {
             </div>
             <div className="text-4xl font-black tracking-tight">{loading ? "..." : todayTotal}</div>
             <p className="text-[#5A5C63] text-[10px] mt-2 font-mono uppercase">Jobs printed today</p>
-            <div className="absolute right-[-10px] bottom-[-10px] opacity-5 group-hover:opacity-10 transition-opacity">
-              <Clock className="w-24 h-24 text-purple-400" />
-            </div>
           </motion.div>
         </div>
 
@@ -300,8 +300,8 @@ export default function AdminPage() {
 
           {loading ? (
             <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs">LOADING_TELEMETRY...</div>
-          ) : visibleTrend.length < 2 ? (
-            <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs italic">Insufficient data points to render trend line</div>
+          ) : visibleTrend.length === 0 ? (
+            <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs italic">No print log data recorded yet</div>
           ) : (
             <div className="w-full overflow-x-auto">
               <svg viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`} className="w-full h-56 overflow-visible">
@@ -350,7 +350,7 @@ export default function AdminPage() {
             {loading ? (
               <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs">PROCESSING...</div>
             ) : categories.length === 0 ? (
-              <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs italic">No category logs available</div>
+              <div className="h-48 flex items-center justify-center text-[#5A5C63] font-mono text-xs italic">No categories logged yet</div>
             ) : (
               <div className="flex flex-col sm:flex-row items-center justify-around gap-6 py-4">
                 <div className="relative w-36 h-36 shrink-0">
@@ -397,7 +397,7 @@ export default function AdminPage() {
             )}
           </div>
 
-          {/* Category Cards */}
+          {/* Category Metric Cards */}
           <div className="lg:col-span-7 bg-[#121318] border border-white/5 rounded-2xl p-6">
             <div className="flex items-center gap-2 text-indigo-400 font-mono text-xs uppercase tracking-widest mb-6">
               <Layers className="w-4 h-4" /> Category Breakdown Metrics
@@ -427,7 +427,7 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* SECTION: TODAY'S HOURLY & LIVE FEED */}
+        {/* SECTION: TODAY'S HOURLY & LIVE STREAM */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Today's Hourly Bar Chart */}
@@ -502,7 +502,7 @@ export default function AdminPage() {
              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
              <span className="text-[10px] font-mono tracking-[0.2em] text-[#8E9299]">REALTIME_TELEMETRY // OPERATIONAL</span>
            </div>
-           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Normalized Categories & Local Date Matching</span>
+           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Auto-deduplicated (5s buffer)</span>
         </div>
       </main>
     </div>
