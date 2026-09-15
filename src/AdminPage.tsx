@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { supabase } from "./supabase";
-import { BarChart3, ArrowLeft, Clock, Zap, List, Calendar, Activity } from 'lucide-react';
+import { BarChart3, ArrowLeft, Clock, List, Calendar, Activity, PieChart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface PrintLog {
   created_at: string;
+  print_type: string;
   timeLabel: string;
 }
 
@@ -15,6 +16,7 @@ interface AdminStats {
   todayTotal: number;
   hourlyStats: number[];
   todayLogs: PrintLog[];
+  categoryCounts: Record<string, number>;
 }
 
 export default function AdminPage() {
@@ -24,7 +26,8 @@ export default function AdminPage() {
     avgPerDay: 0,
     todayTotal: 0,
     hourlyStats: new Array(24).fill(0),
-    todayLogs: []
+    todayLogs: [],
+    categoryCounts: {}
   });
   const [loading, setLoading] = useState(true);
   const hasFetched = useRef(false);
@@ -33,7 +36,7 @@ export default function AdminPage() {
     setLoading(true);
     const { data, error } = await supabase
       .from('print_logs')
-      .select('created_at')
+      .select('created_at, print_type')
       .order('created_at', { ascending: false });
 
     if (!error && data) {
@@ -51,13 +54,18 @@ export default function AdminPage() {
 
       // 2. Process Statistics
       const dailyCounts: Record<string, number> = {};
+      const categoryCounts: Record<string, number> = {};
       const todayHourly = new Array(24).fill(0);
       const todayLogsList: PrintLog[] = [];
 
       uniqueLogs.forEach((log) => {
         const d = new Date(log.created_at);
         const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        const typeKey = log.print_type || 'Uploaded Image';
         
+        // Count category popularity
+        categoryCounts[typeKey] = (categoryCounts[typeKey] || 0) + 1;
+
         // General Daily Logging
         dailyCounts[dateKey] = (dailyCounts[dateKey] || 0) + 1;
 
@@ -66,6 +74,7 @@ export default function AdminPage() {
           todayHourly[d.getHours()]++;
           todayLogsList.push({
             created_at: log.created_at,
+            print_type: typeKey,
             timeLabel: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
           });
         }
@@ -79,7 +88,8 @@ export default function AdminPage() {
         avgPerDay: Math.round(uniqueLogs.length / (Object.keys(dailyCounts).length || 1)),
         todayTotal: todayLogsList.length,
         hourlyStats: todayHourly,
-        todayLogs: todayLogsList
+        todayLogs: todayLogsList,
+        categoryCounts
       });
     }
     setLoading(false);
@@ -135,7 +145,36 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* ROW 2: TODAY'S FOCUS (Micro Stats) */}
+        {/* ROW 2: CATEGORY POPULARITY BREAKDOWN */}
+        <div className="bg-[#131417] border border-white/5 rounded-2xl p-6">
+          <div className="flex items-center gap-2 mb-6 text-purple-400 font-mono text-[10px] uppercase tracking-widest">
+            <PieChart className="w-4 h-4" /> Print Popularity by Type
+          </div>
+
+          {loading ? (
+            <div className="text-[#4A4B50] text-xs font-mono">CALCULATING...</div>
+          ) : Object.keys(stats.categoryCounts).length === 0 ? (
+            <div className="text-[#4A4B50] text-xs font-mono italic">No category data logged yet</div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+              {Object.entries(stats.categoryCounts).map(([cat, count]) => {
+                const pct = Math.round((count / (stats.totalUnique || 1)) * 100);
+                return (
+                  <div key={cat} className="bg-white/5 border border-white/5 rounded-xl p-4 flex flex-col justify-between space-y-2">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-[#8E9299] truncate">{cat}</div>
+                    <div className="text-2xl font-black">{count}</div>
+                    <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                      <div className="bg-purple-500 h-full rounded-full" style={{ width: `${pct}%` }} />
+                    </div>
+                    <div className="text-[9px] font-mono text-[#4A4B50]">{pct}% of total</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        {/* ROW 3: TODAY'S FOCUS */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Today's Hourly Graph */}
@@ -188,7 +227,7 @@ export default function AdminPage() {
                 stats.todayLogs.map((log, i) => (
                   <div key={i} className="flex items-center justify-between text-[11px] border-b border-white/[0.02] pb-2">
                     <span className="text-blue-500/80">[{log.timeLabel}]</span>
-                    <span className="text-[#8E9299] text-[9px]">COMPLETED</span>
+                    <span className="text-[#8E9299] text-[9px] uppercase">{log.print_type}</span>
                   </div>
                 ))
               )}
