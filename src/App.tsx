@@ -23,6 +23,9 @@ export default function App() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
 
+  // Cooldown tracker to prevent rapid spamming / holding down keys
+  const isCooldownRef = useRef(false);
+
   // USB State
   const [usbDevice, setUsbDevice] = useState<any | null>(null);
   const [usbStatus, setUsbStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
@@ -93,7 +96,6 @@ export default function App() {
     setIsProcessing(true);
     try {
       const sudokuDataUrl = await generateSudokuImage();
-      // Clear image state briefly so React state update is guaranteed to trigger useEffect
       setImage(null);
       setTimeout(() => {
         setImage(sudokuDataUrl);
@@ -111,7 +113,6 @@ export default function App() {
     setIsProcessing(true);
     try {
       const maoriDataUrl = await generateMaoriWordImage();
-      // Clear image state briefly so React state update is guaranteed to trigger useEffect
       setImage(null);
       setTimeout(() => {
         setImage(maoriDataUrl);
@@ -123,12 +124,12 @@ export default function App() {
     }
   };
 
-  // --- Global Keyboard Listener (1 = Sudoku, 3 = Kupu o te Rā) ---
+  // --- Global Keyboard Listener (1 = Kupu o te Rā, 3 = Sudoku) with 2s Delay ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore inputs, held-down repeat events, or active cooldown
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
-
-      console.log(`Key pressed: key="${e.key}", code="${e.code}", keyCode=${e.keyCode}`);
+      if (e.repeat || isCooldownRef.current || isProcessing) return;
 
       const isKeyOne =
         e.key === '1' ||
@@ -146,18 +147,27 @@ export default function App() {
         e.keyCode === 51 ||
         e.keyCode === 99;
 
+      const startCooldown = () => {
+        isCooldownRef.current = true;
+        setTimeout(() => {
+          isCooldownRef.current = false;
+        }, 2000); // 2 second delay before accepting another stroke
+      };
+
       if (isKeyOne) {
         e.preventDefault();
-        handleGenerateSudoku();
+        startCooldown();
+        handleGenerateMaoriWord(); // Swapped: 1 is now Kupu o te Rā
       } else if (isKeyThree) {
         e.preventDefault();
-        handleGenerateMaoriWord();
+        startCooldown();
+        handleGenerateSudoku(); // Swapped: 3 is now Sudoku
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [printerWidth, image]);
+  }, [printerWidth, image, isProcessing]);
 
   // --- ESC/POS Encoding ---
   const getEscPosData = (canvas: HTMLCanvasElement): Uint8Array => {
@@ -226,15 +236,14 @@ export default function App() {
     return out;
   }
 
-  function applyThermalOptimise(g: Float32Array, w: number, h: number) {
+  function applyThermalOptimise(g: Float32Array, w: number, h: number, contrastFactor: number) {
     const n = w * h;
     const invGamma = 1 / 1.4;
     for (let i = 0; i < n; i++) {
       g[i] = 255 * Math.pow(g[i] / 255, invGamma);
     }
-    const cFactor = 1.2;
     for (let i = 0; i < n; i++) {
-      g[i] = Math.max(0, Math.min(255, 128 + (g[i] - 128) * cFactor));
+      g[i] = Math.max(0, Math.min(255, 128 + (g[i] - 128) * contrastFactor));
     }
     const blurred = _boxBlur(g, w, h, 2);
     const amount = 1.5;
@@ -324,7 +333,7 @@ export default function App() {
               }
             }
 
-            applyThermalOptimise(gray, w, h);
+            applyThermalOptimise(gray, w, h, contrast);
             ditherAtkinson(gray, w, h, 128);
 
             for (let y = 0; y < h; y++) {
@@ -441,20 +450,20 @@ export default function App() {
           </AnimatePresence>
 
           <button
-            onClick={handleGenerateSudoku}
-            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
-          >
-            <Grid className="w-4 h-4 text-[#FF4444]" />
-            Sudoku
-            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">1</kbd>
-          </button>
-
-          <button
             onClick={handleGenerateMaoriWord}
             className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
           >
             <Languages className="w-4 h-4 text-[#FF4444]" />
             Kupu o te Rā
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">1</kbd>
+          </button>
+
+          <button
+            onClick={handleGenerateSudoku}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Grid className="w-4 h-4 text-[#FF4444]" />
+            Sudoku
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">3</kbd>
           </button>
           
@@ -578,7 +587,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> for Sudoku or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> for Kupu o te Rā.
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> for Kupu o te Rā or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> for Sudoku.
                   </p>
                 </motion.div>
               ) : (
