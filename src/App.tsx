@@ -192,6 +192,7 @@ export default function App() {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
       if (e.repeat || isCooldownRef.current || isProcessing) return;
 
+      // Key 1 (NumLock ON/OFF support)
       const isKeyOne =
         e.key === '1' ||
         e.key === 'End' ||
@@ -200,14 +201,17 @@ export default function App() {
         e.keyCode === 49 ||
         e.keyCode === 97;
 
+      // Key 2 (NumLock ON/OFF support)
       const isKeyTwo =
         e.key === '2' ||
-        e.key === 'Clear' ||
+        e.key === 'ArrowDown' ||
+        e.key === 'Down' ||
         e.code === 'Numpad2' ||
         e.code === 'Digit2' ||
         e.keyCode === 50 ||
         e.keyCode === 98;
 
+      // Key 3 (NumLock ON/OFF support)
       const isKeyThree =
         e.key === '3' ||
         e.key === 'PageDown' ||
@@ -216,19 +220,26 @@ export default function App() {
         e.keyCode === 51 ||
         e.keyCode === 99;
 
+      // Key 4 (NumLock ON/OFF support)
       const isKeyFour =
         e.key === '4' ||
+        e.key === 'ArrowLeft' ||
+        e.key === 'Left' ||
         e.code === 'Numpad4' ||
         e.code === 'Digit4' ||
         e.keyCode === 52 ||
         e.keyCode === 100;
 
+      // Key 5 (NumLock ON/OFF support - mapped to 'Clear'/'Begin'/12)
       const isKeyFive =
         e.key === '5' ||
+        e.key === 'Clear' ||
+        e.key === 'Begin' ||
         e.code === 'Numpad5' ||
         e.code === 'Digit5' ||
         e.keyCode === 53 ||
-        e.keyCode === 101;
+        e.keyCode === 101 ||
+        e.keyCode === 12;
 
       const startCooldown = () => {
         isCooldownRef.current = true;
