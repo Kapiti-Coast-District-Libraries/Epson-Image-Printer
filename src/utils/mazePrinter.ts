@@ -26,32 +26,34 @@ export function generateMazeCanvas(options: MazeOptions = {}): HTMLCanvasElement
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Could not get 2D canvas context');
 
-  // High contrast monochrome background for crisp thermal printing
+  // Background
   ctx.fillStyle = '#FFFFFF';
   ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-  // Title and Date Header
+  // Header Title & Date
   ctx.fillStyle = '#000000';
   ctx.font = 'bold 24px sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('DAILY MAZE', canvasWidth / 2, 40);
 
   ctx.font = '14px sans-serif';
-  ctx.fillText(new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' }), canvasWidth / 2, 62);
+  ctx.fillText(
+    new Date().toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' }),
+    canvasWidth / 2,
+    62
+  );
 
-  // Maze Data Structure setup
+  // Maze Generation (Recursive Backtracker)
   type Cell = { x: number; y: number; walls: boolean[]; visited: boolean };
   const grid: Cell[][] = [];
 
   for (let r = 0; r < rows; r++) {
     grid[r] = [];
     for (let c = 0; c < cols; c++) {
-      // Top, Right, Bottom, Left
       grid[r][c] = { x: c, y: r, walls: [true, true, true, true], visited: false };
     }
   }
 
-  // Recursive Backtracker Generator
   const stack: Cell[] = [];
   let current = grid[0][0];
   current.visited = true;
@@ -71,7 +73,6 @@ export function generateMazeCanvas(options: MazeOptions = {}): HTMLCanvasElement
       const nextCell = nextChoice.cell;
       const dir = nextChoice.dir;
 
-      // Remove wall between current cell and chosen cell
       current.walls[dir] = false;
       nextCell.walls[(dir + 2) % 4] = false;
 
@@ -99,22 +100,18 @@ export function generateMazeCanvas(options: MazeOptions = {}): HTMLCanvasElement
       const y = offsetY + r * cellSize;
 
       ctx.beginPath();
-      // Top (Open entry at top-left)
       if (cell.walls[0] && !(r === 0 && c === 0)) {
         ctx.moveTo(x, y);
         ctx.lineTo(x + cellSize, y);
       }
-      // Right
       if (cell.walls[1]) {
         ctx.moveTo(x + cellSize, y);
         ctx.lineTo(x + cellSize, y + cellSize);
       }
-      // Bottom (Open exit at bottom-right)
       if (cell.walls[2] && !(r === rows - 1 && c === cols - 1)) {
         ctx.moveTo(x + cellSize, y + cellSize);
         ctx.lineTo(x, y + cellSize);
       }
-      // Left
       if (cell.walls[3]) {
         ctx.moveTo(x, y + cellSize);
         ctx.lineTo(x, y);
@@ -133,6 +130,7 @@ export function generateMazeCanvas(options: MazeOptions = {}): HTMLCanvasElement
   return canvas;
 }
 
-export async function generateMazePrintable(): Promise<HTMLCanvasElement> {
-  return generateMazeCanvas({ width: 15, height: 15, cellSize: 24 });
+export async function generateMazeImage(): Promise<string> {
+  const canvas = generateMazeCanvas({ width: 15, height: 15, cellSize: 24 });
+  return canvas.toDataURL('image/png');
 }
