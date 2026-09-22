@@ -4,12 +4,13 @@
  */
 import { supabase } from "./supabase";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { generateSudokuImage } from './utils/sudokuPrinter';
 import { generateMaoriWordImage } from './utils/maoriPrinter';
 import { generateWeatherImage } from './utils/weatherPrinter';
 import { generateHistoryImage } from './utils/historyPrinter';
+import { generateMazeImage } from './utils/mazePrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -167,6 +168,24 @@ export default function App() {
     }
   };
 
+  const handleGenerateMaze = async () => {
+    activePrintTypeRef.current = 'Maze';
+    setFileName(null);
+    setUsbError(null);
+    setIsProcessing(true);
+    try {
+      const mazeDataUrl = await generateMazeImage();
+      setImage(null);
+      setTimeout(() => {
+        setImage(mazeDataUrl);
+      }, 20);
+    } catch (err: any) {
+      console.error("Failed to generate Maze:", err);
+      setUsbError("Maze error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
   // --- Global Keyboard Listener ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -204,6 +223,13 @@ export default function App() {
         e.keyCode === 52 ||
         e.keyCode === 100;
 
+      const isKeyFive =
+        e.key === '5' ||
+        e.code === 'Numpad5' ||
+        e.code === 'Digit5' ||
+        e.keyCode === 53 ||
+        e.keyCode === 101;
+
       const startCooldown = () => {
         isCooldownRef.current = true;
         setTimeout(() => {
@@ -227,6 +253,10 @@ export default function App() {
         e.preventDefault();
         startCooldown();
         handleGenerateHistory();
+      } else if (isKeyFive) {
+        e.preventDefault();
+        startCooldown();
+        handleGenerateMaze();
       }
     };
 
@@ -491,7 +521,7 @@ export default function App() {
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <AnimatePresence mode="wait">
             {usbStatus === 'connected' ? (
               <motion.div 
@@ -551,6 +581,15 @@ export default function App() {
             <History className="w-4 h-4 text-[#FF4444]" />
             On This Day
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">4</kbd>
+          </button>
+
+          <button
+            onClick={handleGenerateMaze}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Route className="w-4 h-4 text-[#FF4444]" />
+            Maze
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">5</kbd>
           </button>
           
           <button 
@@ -672,8 +711,8 @@ export default function App() {
                     <ImageIcon className="w-10 h-10 text-white/10" />
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
-                  <p className="text-xs text-[#8E9299] max-w-xs mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day.
+                  <p className="text-xs text-[#8E9299] max-w-sm mx-auto leading-relaxed uppercase tracking-widest font-mono">
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">5</kbd> Maze.
                   </p>
                 </motion.div>
               ) : (
