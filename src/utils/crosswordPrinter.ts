@@ -17,14 +17,15 @@ export interface NYTCrosswordData {
 }
 
 /**
- * Fetches today's NYT crossword from the open-source doshea/nyt_crosswords archive.
+ * Fetches today's NYT crossword from the doshea/nyt_crosswords GitHub repository.
+ * Uses media.githubusercontent.com/media/ to download actual files bypassing Git LFS pointers.
  */
 export async function fetchDailyCrossword(targetDate: Date = new Date()): Promise<NYTCrosswordData> {
   const yyyy = targetDate.getFullYear();
   const mm = String(targetDate.getMonth() + 1).padStart(2, '0');
   const dd = String(targetDate.getDate()).padStart(2, '0');
 
-  const primaryUrl = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/${yyyy}/${mm}/${dd}.json`;
+  const primaryUrl = `https://media.githubusercontent.com/media/doshea/nyt_crosswords/master/${yyyy}/${mm}/${dd}.json`;
 
   try {
     const res = await fetch(primaryUrl);
@@ -32,9 +33,13 @@ export async function fetchDailyCrossword(targetDate: Date = new Date()): Promis
     return await res.json();
   } catch (err) {
     console.warn(`Could not load puzzle for ${yyyy}-${mm}-${dd}. Loading fallback archive puzzle.`, err);
-    // Fallback to a classic puzzle from the archive if current date is missing
-    const fallbackUrl = `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/2017/01/01.json`;
+
+    // Fallback to a confirmed historic puzzle from the media CDN
+    const fallbackUrl = `https://media.githubusercontent.com/media/doshea/nyt_crosswords/master/2017/01/01.json`;
     const fallbackRes = await fetch(fallbackUrl);
+    if (!fallbackRes.ok) {
+      throw new Error("Failed to load fallback crossword puzzle.");
+    }
     return await fallbackRes.json();
   }
 }
@@ -45,7 +50,7 @@ export async function fetchDailyCrossword(targetDate: Date = new Date()): Promis
 export async function generateCrosswordImage(): Promise<string> {
   const puzzle = await fetchDailyCrossword();
 
-  const canvasWidth = 576; // Standard 80mm thermal printer width in pixels
+  const canvasWidth = 576; // Standard 80mm thermal printer dot width
   const padding = 20;
   const contentWidth = canvasWidth - padding * 2;
 
@@ -60,7 +65,7 @@ export async function generateCrosswordImage(): Promise<string> {
   const colWidth = Math.floor((contentWidth - 15) / 2);
   const lineHeight = 16;
 
-  // Measure clue height before creating final canvas
+  // Temporary canvas context for measuring clue text height
   const tempCanvas = document.createElement('canvas');
   const tempCtx = tempCanvas.getContext('2d')!;
   tempCtx.font = '12px sans-serif';
@@ -92,7 +97,7 @@ export async function generateCrosswordImage(): Promise<string> {
   const headerHeight = 100;
   const totalHeight = headerHeight + gridHeight + cluesSectionHeight + 40;
 
-  // Initialize main canvas
+  // Initialize canvas
   const canvas = document.createElement('canvas');
   canvas.width = canvasWidth;
   canvas.height = totalHeight;
@@ -128,7 +133,7 @@ export async function generateCrosswordImage(): Promise<string> {
   ctx.lineWidth = 2;
   ctx.strokeRect(gridStartX, gridStartY, gridWidth, gridHeight);
 
-  // Render individual grid cells
+  // Render cells
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const index = r * cols + c;
@@ -142,11 +147,11 @@ export async function generateCrosswordImage(): Promise<string> {
         // Solid black cell
         ctx.fillRect(x, y, cellSize, cellSize);
       } else {
-        // White cell frame
+        // White cell outline
         ctx.lineWidth = 1;
         ctx.strokeRect(x, y, cellSize, cellSize);
 
-        // Clue number in top-left
+        // Grid number in top-left
         if (numVal && numVal > 0) {
           ctx.font = '9px sans-serif';
           ctx.textAlign = 'left';
