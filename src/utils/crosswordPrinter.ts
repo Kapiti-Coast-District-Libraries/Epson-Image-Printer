@@ -40,9 +40,9 @@ export async function fetchDailyCrossword(targetDate: Date = new Date()): Promis
 }
 
 /**
- * Renders the crossword grid and clues onto an HTML5 Canvas formatted for 80mm thermal paper.
+ * Generates and renders the daily crossword into a base64 PNG image URL formatted for thermal printing.
  */
-export async function generateCrosswordCanvas(): Promise<HTMLCanvasElement> {
+export async function generateCrosswordImage(): Promise<string> {
   const puzzle = await fetchDailyCrossword();
 
   const canvasWidth = 576; // Standard 80mm thermal printer width in pixels
@@ -198,5 +198,5 @@ export async function generateCrosswordCanvas(): Promise<HTMLCanvasElement> {
   renderClueColumn(puzzle.clues.across, padding, cluesStartY);
   renderClueColumn(puzzle.clues.down, padding + colWidth + 15, cluesStartY);
 
-  return canvas;
+  return canvas.toDataURL('image/png');
 }
