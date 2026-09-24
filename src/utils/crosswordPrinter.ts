@@ -17,7 +17,7 @@ export interface NYTCrosswordData {
 }
 
 /**
- * Normalizes clue formats (handles plain strings or "NUM. Clue" strings).
+ * Normalizes clue formats (handles plain strings or structured clue objects).
  */
 function normalizeClues(clues: { across: any[]; down: any[] }): { across: string[]; down: string[] } {
   const formatList = (list: any[]) => {
@@ -38,45 +38,48 @@ function normalizeClues(clues: { across: any[]; down: any[] }): { across: string
 }
 
 /**
- * Fetches an authentic NYT crossword puzzle live from the online GitHub archive via jsDelivr CDN.
- * Uses today's month/day paired with archived years to deliver a fresh daily online puzzle.
+ * Fetches today's online NYT crossword.
+ * Automatically tries multiple archive years for today's month/day if a 404 or missing file is encountered.
  */
 export async function fetchDailyCrossword(): Promise<NYTCrosswordData> {
   const today = new Date();
   const mm = String(today.getMonth() + 1).padStart(2, '0');
   const dd = String(today.getDate()).padStart(2, '0');
 
-  // Rotate through archived years (2015 - 2020) based on day of year for infinite daily variety
-  const startOfYear = new Date(today.getFullYear(), 0, 0);
-  const diff = today.getTime() - startOfYear.getTime();
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const archiveYears = [2020, 2019, 2018, 2017, 2016, 2015];
-  const targetYear = archiveYears[dayOfYear % archiveYears.length];
+  // Candidate years to search through for today's month and day
+  const candidateYears = [2020, 2019, 2018, 2017, 2014, 2012, 2008, 2005, 2000, 1995, 1990];
 
-  // Primary URL via jsDelivr CDN (Handles Git LFS + Sets CORS headers)
-  const primaryCdnUrl = `https://cdn.jsdelivr.net/gh/doshea/nyt_crosswords@master/${targetYear}/${mm}/${dd}.json`;
-  // Secondary CORS proxy fallback URL
-  const fallbackProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(
-    `https://raw.githubusercontent.com/doshea/nyt_crosswords/master/2017/01/01.json`
-  )}`;
+  for (const year of candidateYears) {
+    const rawUrl = `https://media.githubusercontent.com/media/doshea/nyt_crosswords/master/${year}/${mm}/${dd}.json`;
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rawUrl)}`;
 
-  try {
-    const res = await fetch(primaryCdnUrl);
-    if (!res.ok) throw new Error(`HTTP error ${res.status} fetching ${primaryCdnUrl}`);
-    const data = await res.json();
-    data.clues = normalizeClues(data.clues);
-    return data;
-  } catch (err) {
-    console.warn(`jsDelivr fetch failed, attempting online proxy fallback...`, err);
+    // Try direct GitHub LFS media CDN first, then CORS proxy fallback
+    const urlsToTry = [rawUrl, proxyUrl];
 
-    const fallbackRes = await fetch(fallbackProxyUrl);
-    if (!fallbackRes.ok) {
-      throw new Error(`Failed to load online puzzle from fallbacks: ${fallbackRes.statusText}`);
+    for (const url of urlsToTry) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) continue;
+
+        const text = await res.text();
+        // Skip Git LFS text pointers if returned by accident
+        if (text.startsWith('version https://git-lfs')) continue;
+
+        const data = JSON.parse(text);
+        if (data && data.grid && data.clues) {
+          data.clues = normalizeClues(data.clues);
+          if (!data.date) {
+            data.date = `${year}-${mm}-${dd}`;
+          }
+          return data;
+        }
+      } catch (e) {
+        // Continue to next URL/year candidate
+      }
     }
-    const data = await fallbackRes.json();
-    data.clues = normalizeClues(data.clues);
-    return data;
   }
+
+  throw new Error(`Unable to load an online puzzle for ${mm}/${dd} from online archives.`);
 }
 
 /**
