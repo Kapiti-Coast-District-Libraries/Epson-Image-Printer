@@ -33,7 +33,6 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
   'Sudoku': { color: '#10b981', bg: 'bg-emerald-500/10 text-emerald-400', border: 'border-emerald-500/30' },
   'On This Day': { color: '#f59e0b', bg: 'bg-amber-500/10 text-amber-400', border: 'border-amber-500/30' },
   'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
-  'Custom Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
   'General Print': { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' }
 };
 
