@@ -56,108 +56,137 @@ export default function AdminPage() {
   const fetchStats = async () => {
     setLoading(true);
 
-    // Primary Query: Fetch with print_type
-    let data: any[] | null = null;
-    let error: any = null;
-
-    const primaryRes = await supabase
-      .from('print_logs')
-      .select('created_at, print_type')
-      .order('created_at', { ascending: false });
-
-    if (primaryRes.error) {
-      // Fallback Query: If print_type column doesn't exist in Supabase yet
-      const fallbackRes = await supabase
+    try {
+      // 1. Probe column availability (checks if print_type exists)
+      const testRes = await supabase
         .from('print_logs')
-        .select('created_at')
-        .order('created_at', { ascending: false });
-      data = fallbackRes.data;
-      error = fallbackRes.error;
-    } else {
-      data = primaryRes.data;
-    }
+        .select('created_at, print_type')
+        .limit(1);
 
-    if (!error && data) {
-      const now = new Date();
+      const selectCols = testRes.error ? 'created_at' : 'created_at, print_type';
 
-      // Robust Today Check (Avoids locale string mismatches)
-      const isToday = (d: Date) => 
-        d.getFullYear() === now.getFullYear() &&
-        d.getMonth() === now.getMonth() &&
-        d.getDate() === now.getDate();
+      // 2. Fetch all rows in 1,000-row chunks via range pagination
+      const PAGE_SIZE = 1000;
+      let allLogs: any[] = [];
+      let from = 0;
+      let hasMore = true;
 
-      // 1. Deduplicate consecutive prints logged within 5 seconds
-      const uniqueLogs = data.reduce((acc: any[], current: any) => {
-        if (acc.length === 0) return [current];
-        const lastTime = new Date(acc[acc.length - 1].created_at).getTime();
-        const currTime = new Date(current.created_at).getTime();
-        if (Math.abs(lastTime - currTime) > 5000) acc.push(current);
-        return acc;
-      }, []);
+      while (hasMore) {
+        const { data: pageData, error: pageError } = await supabase
+          .from('print_logs')
+          .select(selectCols)
+          .order('created_at', { ascending: false })
+          .range(from, from + PAGE_SIZE - 1);
 
-      setTotalUnique(uniqueLogs.length);
-
-      // 2. Process Statistics
-      const dailyMap: Record<string, number> = {};
-      const catMap: Record<string, number> = {};
-      const todayHourly = new Array(24).fill(0);
-      const todayLogsList: PrintLog[] = [];
-
-      uniqueLogs.forEach((log) => {
-        const d = new Date(log.created_at);
-        const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        const typeKey = log.print_type || 'General Print';
-
-        // Daily trend tracking
-        dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
-
-        // Category popularity tracking
-        catMap[typeKey] = (catMap[typeKey] || 0) + 1;
-
-        // Today's specific tracking
-        if (isToday(d)) {
-          todayHourly[d.getHours()]++;
-          todayLogsList.push({
-            created_at: log.created_at,
-            print_type: typeKey,
-            timeLabel: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-          });
+        if (pageError || !pageData || pageData.length === 0) {
+          break;
         }
-      });
 
-      // Peak Day calculation
-      const peakEntry = Object.entries(dailyMap).reduce((a, b) => (a[1] > b[1] ? a : b), ['-', 0]);
-      setPeakDay({ date: peakEntry[0], count: peakEntry[1] as number });
+        allLogs = allLogs.concat(pageData);
 
-      // Daily Average calculation
-      const totalDays = Object.keys(dailyMap).length || 1;
-      setAvgPerDay(Math.round(uniqueLogs.length / totalDays));
+        if (pageData.length < PAGE_SIZE) {
+          hasMore = false;
+        } else {
+          from += PAGE_SIZE;
+        }
+      }
 
-      // Trend Series (Chronological order)
-      const trendPoints: DailyPoint[] = Object.entries(dailyMap)
-        .map(([date, count]) => ({ date, count }))
-        .reverse();
+      const data = allLogs;
 
-      // Categories with Percentages
-      const catMetaList: CategoryMeta[] = Object.entries(catMap).map(([label, count]) => {
-        const theme = CATEGORY_THEMES[label] || DEFAULT_THEME;
-        return {
-          label,
-          count,
-          pct: Math.round((count / (uniqueLogs.length || 1)) * 100),
-          color: theme.color,
-          bg: theme.bg,
-          border: theme.border
-        };
-      }).sort((a, b) => b.count - a.count);
+      if (data && data.length > 0) {
+        const now = new Date();
 
-      setCategories(catMetaList);
-      setDailyTrend(trendPoints);
-      setHourlyStats(todayHourly);
-      setTodayTotal(todayLogsList.length);
-      setTodayLogs(todayLogsList);
+        // Robust Today Check (avoids locale string mismatches)
+        const isToday = (d: Date) => 
+          d.getFullYear() === now.getFullYear() &&
+          d.getMonth() === now.getMonth() &&
+          d.getDate() === now.getDate();
+
+        // 3. Deduplicate consecutive prints logged within 5 seconds
+        const uniqueLogs = data.reduce((acc: any[], current: any) => {
+          if (acc.length === 0) return [current];
+          const lastTime = new Date(acc[acc.length - 1].created_at).getTime();
+          const currTime = new Date(current.created_at).getTime();
+          if (Math.abs(lastTime - currTime) > 5000) acc.push(current);
+          return acc;
+        }, []);
+
+        setTotalUnique(uniqueLogs.length);
+
+        // 4. Process Statistics
+        const dailyMap: Record<string, number> = {};
+        const catMap: Record<string, number> = {};
+        const todayHourly = new Array(24).fill(0);
+        const todayLogsList: PrintLog[] = [];
+
+        uniqueLogs.forEach((log) => {
+          const d = new Date(log.created_at);
+          const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+          const typeKey = log.print_type || 'General Print';
+
+          // Daily trend tracking
+          dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
+
+          // Category popularity tracking
+          catMap[typeKey] = (catMap[typeKey] || 0) + 1;
+
+          // Today's specific tracking
+          if (isToday(d)) {
+            todayHourly[d.getHours()]++;
+            todayLogsList.push({
+              created_at: log.created_at,
+              print_type: typeKey,
+              timeLabel: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+            });
+          }
+        });
+
+        // Peak Day calculation
+        const peakEntry = Object.entries(dailyMap).reduce((a, b) => (a[1] > b[1] ? a : b), ['-', 0]);
+        setPeakDay({ date: peakEntry[0], count: peakEntry[1] as number });
+
+        // Daily Average calculation
+        const totalDays = Object.keys(dailyMap).length || 1;
+        setAvgPerDay(Math.round(uniqueLogs.length / totalDays));
+
+        // Trend Series (Chronological order)
+        const trendPoints: DailyPoint[] = Object.entries(dailyMap)
+          .map(([date, count]) => ({ date, count }))
+          .reverse();
+
+        // Categories with Percentages
+        const catMetaList: CategoryMeta[] = Object.entries(catMap).map(([label, count]) => {
+          const theme = CATEGORY_THEMES[label] || DEFAULT_THEME;
+          return {
+            label,
+            count,
+            pct: Math.round((count / (uniqueLogs.length || 1)) * 100),
+            color: theme.color,
+            bg: theme.bg,
+            border: theme.border
+          };
+        }).sort((a, b) => b.count - a.count);
+
+        setCategories(catMetaList);
+        setDailyTrend(trendPoints);
+        setHourlyStats(todayHourly);
+        setTodayTotal(todayLogsList.length);
+        setTodayLogs(todayLogsList);
+      } else {
+        setTotalUnique(0);
+        setDailyTrend([]);
+        setCategories([]);
+        setHourlyStats(new Array(24).fill(0));
+        setTodayTotal(0);
+        setTodayLogs([]);
+        setPeakDay({ date: '-', count: 0 });
+        setAvgPerDay(0);
+      }
+    } catch (err) {
+      console.error('Failed to query Supabase logs:', err);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
