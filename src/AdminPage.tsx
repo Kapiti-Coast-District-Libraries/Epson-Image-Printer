@@ -38,15 +38,28 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
 
 const DEFAULT_THEME = { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' };
 
-// Normalize legacy or alternate category labels into unified names
+// Normalizes snake_case, kebab-case, or legacy naming into unified category labels
 const normalizePrintType = (type?: string | null): string => {
   if (!type) return 'General Print';
-  const clean = type.trim();
-  const lower = clean.toLowerCase();
-  if (lower === 'upload image' || lower === 'uploaded image' || lower === 'custom image') {
+  
+  const clean = type.toLowerCase().replace(/[_-]/g, ' ').replace(/\s+/g, ' ').trim();
+
+  if (
+    clean === 'custom image' || 
+    clean === 'uploaded image' || 
+    clean === 'upload image' ||
+    clean === 'custom' ||
+    clean === 'image'
+  ) {
     return 'Uploaded Image';
   }
-  return clean;
+
+  if (clean === 'kupu o te ra' || clean === 'kupu o te rā') return 'Kupu o te Rā';
+  if (clean === 'weather') return 'Weather';
+  if (clean === 'sudoku') return 'Sudoku';
+  if (clean === 'on this day') return 'On This Day';
+
+  return type.trim();
 };
 
 export default function AdminPage() {
@@ -68,7 +81,7 @@ export default function AdminPage() {
     setLoading(true);
 
     try {
-      // 1. Probe column availability (checks if print_type exists)
+      // 1. Probe column availability (verifies if print_type column exists)
       const testRes = await supabase
         .from('print_logs')
         .select('created_at, print_type')
@@ -76,7 +89,7 @@ export default function AdminPage() {
 
       const selectCols = testRes.error ? 'created_at' : 'created_at, print_type';
 
-      // 2. Fetch all rows in 1,000-row chunks via range pagination
+      // 2. Fetch all rows in 1,000-row chunks using pagination
       const PAGE_SIZE = 1000;
       let allLogs: any[] = [];
       let from = 0;
@@ -107,7 +120,7 @@ export default function AdminPage() {
       if (data && data.length > 0) {
         const now = new Date();
 
-        // Robust Today Check (avoids locale string mismatches)
+        // Check if date matches today's calendar date
         const isToday = (d: Date) => 
           d.getFullYear() === now.getFullYear() &&
           d.getMonth() === now.getMonth() &&
@@ -124,7 +137,7 @@ export default function AdminPage() {
 
         setTotalUnique(uniqueLogs.length);
 
-        // 4. Process Statistics
+        // 4. Process Aggregated Statistics
         const dailyMap: Record<string, number> = {};
         const catMap: Record<string, number> = {};
         const todayHourly = new Array(24).fill(0);
@@ -134,16 +147,16 @@ export default function AdminPage() {
           const d = new Date(log.created_at);
           const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
           
-          // Merge 'Custom Image' and 'Uploaded Image'
+          // Normalized category: combines custom_image, custom image, uploaded_image
           const typeKey = normalizePrintType(log.print_type);
 
-          // Daily trend tracking
+          // Daily trend counts
           dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
 
-          // Category popularity tracking
+          // Category popularity counts
           catMap[typeKey] = (catMap[typeKey] || 0) + 1;
 
-          // Today's specific tracking
+          // Today's metrics
           if (isToday(d)) {
             todayHourly[d.getHours()]++;
             todayLogsList.push({
@@ -162,12 +175,12 @@ export default function AdminPage() {
         const totalDays = Object.keys(dailyMap).length || 1;
         setAvgPerDay(Math.round(uniqueLogs.length / totalDays));
 
-        // Trend Series (Chronological order)
+        // Trend Series in chronological order
         const trendPoints: DailyPoint[] = Object.entries(dailyMap)
           .map(([date, count]) => ({ date, count }))
           .reverse();
 
-        // Categories with Percentages
+        // Category breakdown with calculated percentages
         const catMetaList: CategoryMeta[] = Object.entries(catMap).map(([label, count]) => {
           const theme = CATEGORY_THEMES[label] || DEFAULT_THEME;
           return {
