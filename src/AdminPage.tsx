@@ -33,10 +33,22 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
   'Sudoku': { color: '#10b981', bg: 'bg-emerald-500/10 text-emerald-400', border: 'border-emerald-500/30' },
   'On This Day': { color: '#f59e0b', bg: 'bg-amber-500/10 text-amber-400', border: 'border-amber-500/30' },
   'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
+  'Custom Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
   'General Print': { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' }
 };
 
 const DEFAULT_THEME = { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' };
+
+// Normalize legacy or alternate category labels into unified names
+const normalizePrintType = (type?: string | null): string => {
+  if (!type) return 'General Print';
+  const clean = type.trim();
+  const lower = clean.toLowerCase();
+  if (lower === 'upload image' || lower === 'uploaded image' || lower === 'custom image') {
+    return 'Uploaded Image';
+  }
+  return clean;
+};
 
 export default function AdminPage() {
   const [loading, setLoading] = useState(true);
@@ -122,7 +134,9 @@ export default function AdminPage() {
         uniqueLogs.forEach((log) => {
           const d = new Date(log.created_at);
           const dateKey = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-          const typeKey = log.print_type || 'General Print';
+          
+          // Merge 'Custom Image' and 'Uploaded Image'
+          const typeKey = normalizePrintType(log.print_type);
 
           // Daily trend tracking
           dailyMap[dateKey] = (dailyMap[dateKey] || 0) + 1;
