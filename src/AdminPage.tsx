@@ -126,14 +126,17 @@ export default function AdminPage() {
           d.getMonth() === now.getMonth() &&
           d.getDate() === now.getDate();
 
-        // 3. Deduplicate consecutive prints logged within 5 seconds
-        const uniqueLogs = data.reduce((acc: any[], current: any) => {
-          if (acc.length === 0) return [current];
-          const lastTime = new Date(acc[acc.length - 1].created_at).getTime();
-          const currTime = new Date(current.created_at).getTime();
-          if (Math.abs(lastTime - currTime) > 5000) acc.push(current);
-          return acc;
-        }, []);
+        // 3. Drop accidental duplicate log rows: same print type logged under 1 second apart.
+        //    (Every row is a real print, and back-to-back prints are often only 2-5s apart,
+        //    so a wider window or ignoring the type hides genuine prints.)
+        const DUPLICATE_WINDOW_MS = 1000;
+        const uniqueLogs = data.filter((current: any, i: number) => {
+          if (i === 0) return true;
+          const prev = data[i - 1];
+          const gap = Math.abs(new Date(prev.created_at).getTime() - new Date(current.created_at).getTime());
+          const sameType = normalizePrintType(prev.print_type) === normalizePrintType(current.print_type);
+          return !(sameType && gap < DUPLICATE_WINDOW_MS);
+        });
 
         setTotalUnique(uniqueLogs.length);
 
@@ -557,7 +560,7 @@ export default function AdminPage() {
              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)] animate-pulse" />
              <span className="text-[10px] font-mono tracking-[0.2em] text-[#8E9299]">REALTIME_TELEMETRY // OPERATIONAL</span>
            </div>
-           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Auto-deduplicated (5s buffer)</span>
+           <span className="text-[10px] font-mono text-[#4A4B50] uppercase">Auto-deduplicated (same type &lt;1s)</span>
         </div>
       </main>
     </div>
