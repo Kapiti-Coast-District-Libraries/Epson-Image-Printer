@@ -176,7 +176,9 @@ function drawDifficulty(ctx: CanvasRenderingContext2D, level: Puzzle['difficulty
 
 // A day's puzzle never changes, so keep the last few in memory – repeat presses are instant on the Pi.
 const puzzleCache = new Map<string, Puzzle>();
-const STORE_PREFIX = 'crossword-puzzle-';
+// Bump the version when the word bank changes enough that saved puzzles should be remade.
+const STORE_PREFIX = 'crossword-puzzle-v2-';
+const OLD_STORE_PREFIX = 'crossword-puzzle-2';
 
 /**
  * Each day's puzzle is also saved on the device the first time it's made. That way
@@ -203,6 +205,7 @@ function store(p: Puzzle) {
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const k = localStorage.key(i);
       if (k?.startsWith(STORE_PREFIX) && !keep.has(k.slice(STORE_PREFIX.length))) localStorage.removeItem(k);
+      else if (k?.startsWith(OLD_STORE_PREFIX)) localStorage.removeItem(k); // puzzles saved by an older version
     }
   } catch {
     /* storage full or unavailable – the puzzle still prints */
