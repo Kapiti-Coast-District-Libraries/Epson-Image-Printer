@@ -11,7 +11,7 @@ const theme: Theme = {
     },
     {
       answer: 'SAMOA',
-      easy: ['South Sea nation whose capital is Apia', 'Polynesian nation known for its traditional fale houses', 'Nation whose rugby team performs the Siva Tau before matches'],
+      easy: ['South Sea nation whose capital is Apia', 'Polynesian nation known for its traditional fale houses', 'Pacific nation where \'talofa\' means hello'],
       hard: ['Pacific nation whose capital is Apia', 'Home of the Manu, in rugby'],
     },
     {
@@ -21,33 +21,23 @@ const theme: Theme = {
     },
     {
       answer: 'TAHITI',
-      easy: ['French Polynesia\'s biggest and best-known island', 'Holiday island north-east of Rarotonga', 'Tropical island whose capital is Papeete'],
+      easy: ['French Polynesia\'s biggest and best-known island', 'Holiday island north-east of Rarotonga'],
       hard: ['French Polynesian island famous for black pearls'],
     },
     {
       answer: 'HAWAII',
       easy: ['US state far out in the middle of the ocean', 'Tropical US state with volcanic peaks', 'US state where people say aloha'],
-      hard: ['State where \'aloha\' means both hello and goodbye', '___ Five-O (TV cop show)'],
-    },
-    {
-      answer: 'TUVALU',
-      easy: ['Tiny nation of nine low, sandy specks', 'Low-lying nation north of Fiji, worried about rising seas', 'Tiny nation with a Union Jack on its flag'],
-      hard: ['Nine little atolls that make one very small country'],
+      hard: ['State where \'aloha\' means both hello and goodbye'],
     },
     {
       answer: 'NIUE',
-      easy: ['Tiny nation linked to New Zealand', 'Small nation known as the Rock of Polynesia', 'South Seas nation with only a few thousand people'],
+      easy: ['Tiny nation linked to New Zealand', 'Small Pacific island nation whose people hold NZ passports', 'South Seas nation with only a few thousand people'],
       hard: ['Coral island whose people are New Zealand citizens too'],
     },
     {
       answer: 'VANUATU',
-      easy: ['Nation with the capital of Port Vila', 'Island nation between Fiji and Australia, a cruise-ship favourite', 'Nation with a big volcanic chain of islands'],
-      hard: ['Once the New Hebrides, now a holiday favourite'],
-    },
-    {
-      answer: 'KIRIBATI',
-      easy: ['Nation that spans the date line', 'Nation spelt with a TI on the end but said \'Kiribas\'', 'Nation where the sun rises first each day'],
-      hard: ['Nation that sees each new day first'],
+      easy: ['Island nation north of New Zealand, near New Caledonia', 'Island nation between Fiji and Australia, a cruise-ship favourite', 'Pacific nation west of Fiji, known for its active volcanoes'],
+      hard: ['Pacific nation whose capital is Port Vila'],
     },
     {
       answer: 'PEARL',
@@ -55,18 +45,13 @@ const theme: Theme = {
       hard: ['Round treasure that starts as a bit of grit?', '___ Harbor (famous naval base in Hawaii)'],
     },
     {
-      answer: 'BORA BORA',
-      easy: ['Luxury spot with overwater bungalows', 'French Polynesian resort famed for its blue water', 'Honeymoon spot with huts on stilts over the sea'],
-      hard: ['Honeymoon island in French Polynesia, ringed by a lagoon'],
-    },
-    {
       answer: 'HONOLULU',
-      easy: ['Capital city on the island of Oahu', 'Big city with a famous beach strip', 'Tropical city full of hotels and shops'],
+      easy: ['Capital city of Hawaii', 'Big city with a famous beach strip', 'Tropical city full of hotels and shops'],
       hard: ['Capital of the Aloha State, home to Pearl Harbor'],
     },
     {
       answer: 'WAIKIKI',
-      easy: ['Famous beach with a big hotel strip', 'Beach near Diamond Head with lots of swimmers', 'Honolulu\'s beach, famed for easy surf lessons'],
+      easy: ['Famous beach with a big hotel strip', 'Famous surf beach in Honolulu, Hawaii', 'Honolulu\'s beach, famed for easy surf lessons'],
       hard: ['Hawaii\'s most famous strip of sand'],
     },
     {
@@ -87,7 +72,7 @@ const theme: Theme = {
     {
       answer: 'COCONUT',
       easy: ['Hairy brown nut full of sweet water', 'Big nut with a milky centre', 'Tropical fruit that drops from a tree'],
-      hard: ['Hairy prize at a fairground shy?', 'Where the \'milk\' in a Thai curry comes from?'],
+      hard: ['Where the \'milk\' in a Thai curry comes from?'],
     },
     {
       answer: 'PALM',
@@ -96,7 +81,7 @@ const theme: Theme = {
     },
     {
       answer: 'UKULELE',
-      easy: ['Small four-stringed guitar', 'Tiny guitar played at a luau', 'Little stringed instrument strummed with the fingers'],
+      easy: ['Small four-stringed guitar', 'Tiny guitar from Hawaii with a cheerful sound', 'Little stringed instrument strummed with the fingers'],
       hard: ['Little strummer, \'uke\' for short?', 'Four strings and a happy island sound?'],
     },
     {
@@ -113,11 +98,6 @@ const theme: Theme = {
       answer: 'SURF',
       easy: ['Ride the rollers on a board', 'Browse the web, or ride the rollers on a board', 'Sport of riding breaking water on a board'],
       hard: ['Catch a wave?', '___ the net (browse online)'],
-    },
-    {
-      answer: 'OUTRIGGER',
-      easy: ['Boat with a float on one side', 'Boat with a float to stop it tipping', 'Boat with a long arm that stabilises it'],
-      hard: ['Canoe with a float for a sidekick?', 'Waka ama\'s steadying arm?'],
     },
     {
       answer: 'CANOE',
@@ -145,39 +125,14 @@ const theme: Theme = {
       hard: ['Upside-down cake topping?', 'Fruit that starts arguments when it\'s on pizza?'],
     },
     {
-      answer: 'BREADFRUIT',
-      easy: ['Starchy fruit cooked like a potato', 'Big green fruit from a tall tree', 'Fruit that is roasted or baked in the South Seas'],
-      hard: ['Fruit that sounds like it belongs in a bakery?'],
-    },
-    {
-      answer: 'TAPA',
-      easy: ['Bark cloth decorated with patterns', 'Cloth made by pounding bark', 'Printed cloth made from the inner bark of a tree'],
-      hard: ['Bark cloth, pounded flat and painted with patterns'],
-    },
-    {
-      answer: 'KAVA',
-      easy: ['Root drink with a numbing effect', 'Traditional drink made from a plant root', 'Earthy drink served at gatherings in the South Seas'],
-      hard: ['Traditional Pacific drink shared from a large wooden bowl'],
-    },
-    {
       answer: 'VOLCANO',
       easy: ['Mountain that can erupt with fiery rock', 'Peak with a crater that can erupt', 'Mountain that spews ash and molten rock'],
       hard: ['Peak with a fiery temper?', 'Mount that sometimes blows its top?'],
     },
     {
-      answer: 'ATOLL',
-      easy: ['Ring-shaped reef around a calm centre', 'Ring of sand with a calm sea-filled centre', 'Circle of sand and reef enclosing a calm sea'],
-      hard: ['A reef ring with a hole in the middle?'],
-    },
-    {
       answer: 'TURTLE',
       easy: ['Slow sea reptile with a hard shell', 'Sea creature that lays eggs on the beach', 'Shelled reptile that swims with flippers'],
       hard: ['Slow traveller with a house on its back?', 'Teenage Mutant Ninja ___'],
-    },
-    {
-      answer: 'MANTA',
-      easy: ['Giant sea ray famous for its gentle ways', 'Huge gliding ray with wing-like fins', 'Sea creature that glides like a kite'],
-      hard: ['___ ray (gentle giant with wings)', 'Ray that glides like a flying carpet?'],
     },
     {
       answer: 'DOLPHIN',
@@ -186,7 +141,7 @@ const theme: Theme = {
     },
     {
       answer: 'CYCLONE',
-      easy: ['What a hurricane is called in the South Pacific', 'Tropical storm like Gabrielle, which hit the North Island in 2023', 'Southern hemisphere\'s spinning storm, with winds that turn clockwise'],
+      easy: ['What a hurricane is called in the South Pacific', 'Tropical storm like Gabrielle, which hit the North Island in 2023'],
       hard: ['Gabrielle or Bola, e.g.', 'Storm that goes round and round?'],
     },
     {
