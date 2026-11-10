@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'FLU',
       easy: ['Winter illness with aches, chills and a high temperature', 'Bug many people get a yearly jab to protect against', 'Nasty bug that makes you achy and sends you to bed for days'],
-      hard: ['Influenza, for short', 'Winter bug that sounds like a chimney pipe?'],
+      hard: ['Influenza, for short'],
     },
     {
       answer: 'COUGH',
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'ITCH',
       easy: ['Tickly feeling on your skin that makes you scratch', 'Mosquito bites leave you with this annoying feeling', 'What a woolly jumper on bare skin can give you'],
-      hard: ['Feeling that comes just before a good scratch?', 'Restless longing, like one to travel?'],
+      hard: ['Feeling that comes just before a good scratch?'],
     },
     {
       answer: 'SCAR',
@@ -52,17 +52,17 @@ const theme: Theme = {
     {
       answer: 'GAUZE',
       easy: ['Thin, loose cloth used to cover wounds', 'Soft see-through pad kept in a first aid kit', 'Light woven fabric wrapped over a cut'],
-      hard: ['Netted cloth that lets a wound breathe?', 'Wispy fabric that sounds like "goes"?'],
+      hard: ['Netted cloth that lets a wound breathe?'],
     },
     {
       answer: 'DOSE',
       easy: ['Amount of medicine you take at one time', 'The label on the bottle tells you the right amount for this', 'A measured spoonful of cough mixture'],
-      hard: ['A ___ of your own medicine (a taste of payback)', 'Measure of medicine; swap a letter and you\'d be napping'],
+      hard: ['A ___ of your own medicine (a taste of payback)'],
     },
     {
       answer: 'WARD',
       easy: ['Hospital room with beds for patients', 'Children\'s ___ (where kids stay in hospital)', 'Part of a hospital where nurses look after people overnight'],
-      hard: ['___ off (keep something away)', 'Guardian\'s charge, or a room full of hospital beds'],
+      hard: ['___ off (keep something away)'],
     },
     {
       answer: 'CURE',
@@ -92,12 +92,12 @@ const theme: Theme = {
     {
       answer: 'NURSE',
       easy: ['Hospital worker who cares for patients', 'Person at the doctor\'s who might give you a jab', 'Health worker who checks on patients day and night'],
-      hard: ['Carer whose work is truly patient?', 'Look after carefully, like a grudge or a sore toe?'],
+      hard: ['Carer whose work is truly patient?'],
     },
     {
       answer: 'PULSE',
       easy: ['Beat you can feel on the inside of your wrist', 'Doctors count this to check how fast your heart is going', 'Throb in your neck that shows your heart is pumping'],
-      hard: ['Lentil or bean, or a regular beat', 'Keep your finger on it to stay up to date?'],
+      hard: ['Heartbeat you can feel at your wrist?'],
     },
     {
       answer: 'CAST',
@@ -147,7 +147,7 @@ const theme: Theme = {
     {
       answer: 'TONSILS',
       easy: ['Two lumps at the back of your throat', 'Some people have these taken out in hospital', 'Pink bumps you can see when you open wide'],
-      hard: ['Pair hanging out at the back of your mouth?', 'Throat guards that sometimes get the chop?'],
+      hard: ['Pair hanging out at the back of your mouth?'],
     },
     {
       answer: 'MIDWIFE',
@@ -177,17 +177,17 @@ const theme: Theme = {
     {
       answer: 'DENTIST',
       easy: ['Doctor who looks after your teeth', 'Person who checks for holes in your teeth', 'You lie back in a tilting chair at this person\'s clinic'],
-      hard: ['Expert in gnashers?', 'Professional who drills down to the problem?'],
+      hard: ['Professional who drills down to the problem?'],
     },
     {
       answer: 'DOCTOR',
       easy: ['Person you visit when you feel sick', 'Medical expert who listens to your chest', 'GP, for one'],
-      hard: ['An apple a day keeps this person away', 'Secretly change, like a photo?'],
+      hard: ['An apple a day keeps this person away'],
     },
     {
       answer: 'HEALTHY',
       easy: ['Well and strong, not sick', 'Like fruit, veges and plenty of water', 'Feeling fine and full of energy'],
-      hard: ['Hale and hearty?', 'Early to bed makes a man ___, wealthy and wise'],
+      hard: ['Early to bed makes a man ___, wealthy and wise'],
     },
     {
       answer: 'FILLING',
@@ -202,17 +202,17 @@ const theme: Theme = {
     {
       answer: 'WHEELCHAIR',
       easy: ['Seat on wheels for someone who can\'t walk', 'Chair with big wheels you can push with your hands', 'How someone with a broken leg might get around a hospital'],
-      hard: ['Seat that really goes places?', 'Rolling seat that loves a ramp?'],
+      hard: ['Seat that really goes places?'],
     },
     {
       answer: 'CRUTCHES',
       easy: ['Pair of sticks that help you walk on a hurt leg', 'Props that go under your arms when a leg is in plaster', 'Walking aids you swing your body between'],
-      hard: ['Things you lean on in tough times?', 'Two supports for a one-legged trip?'],
+      hard: ['Two supports for a one-legged trip?'],
     },
     {
       answer: 'INJECTION',
       easy: ['Jab of medicine through a needle', 'Shot a nurse might give you in the top of your arm', 'Quick pinch at the doctor\'s that stops you catching a disease'],
-      hard: ['A shot in the arm?', 'Cash boost for a business, or a jab?'],
+      hard: ['A shot in the arm?'],
     },
     {
       answer: 'PRESCRIPTION',
@@ -247,7 +247,7 @@ const theme: Theme = {
     {
       answer: 'VITAMINS',
       easy: ['Goodness in food, like the C in oranges', 'Things in fruit and veges that keep your body working well', 'A, B, C and D, all good for your body'],
-      hard: ['Alphabet soup for good health?', 'What the alphabet might mean on a bottle of pills?'],
+      hard: ['What the alphabet might mean on a bottle of pills?'],
     },
     {
       answer: 'ANTISEPTIC',
@@ -257,22 +257,22 @@ const theme: Theme = {
     {
       answer: 'TWEEZERS',
       easy: ['Tiny pincers for pulling out a prickle', 'Small tool for plucking eyebrows', 'Two metal arms that pinch tiny things together'],
-      hard: ['Nippy little helper in the first aid kit?', 'A pair you need for one tiny job?'],
+      hard: ['Nippy little helper in the first aid kit?'],
     },
     {
       answer: 'SPLINTER',
       easy: ['Tiny sliver of wood stuck in your skin', 'Prickle from a rough wooden fence or deck', 'Sharp chip of wood under a fingernail'],
-      hard: ['A ___ group breaks away from the main one', 'Pain you might get from a fence?'],
+      hard: ['Pain you might get from a fence?'],
     },
     {
       answer: 'OPERATION',
       easy: ['When doctors fix something inside your body in hospital', 'Hospital treatment done while you\'re fast asleep', 'Having your appendix out is one'],
-      hard: ['Classic board game where you remove funny bones', 'Secret mission with a code name?'],
+      hard: ['Classic board game where you remove funny bones'],
     },
     {
       answer: 'APPOINTMENT',
       easy: ['Booked time to see the doctor', 'Time slot you book at the clinic', 'Something written in a diary so you remember to turn up'],
-      hard: ['A date with the doc?', 'Getting the job, or a time to be somewhere?'],
+      hard: ['A date with the doc?'],
     },
     {
       answer: 'CHICKENPOX',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'SORE THROAT',
       easy: ['Scratchy pain when you swallow', 'Gargling warm salt water can help this', 'Pain that makes it hard to talk or swallow'],
-      hard: ['Croaky reason for a honey and lemon drink?', 'Pain in the neck, from the inside?'],
+      hard: ['Croaky reason for a honey and lemon drink?'],
     },
     {
       answer: 'RUNNY NOSE',
@@ -302,12 +302,12 @@ const theme: Theme = {
     {
       answer: 'HOSPITAL',
       easy: ['Big building where sick people get treatment', 'Place where many babies are born', 'Building with an emergency department'],
-      hard: ['Where sick people are in good hands?', 'Bed and breakfast for the unwell?'],
+      hard: ['Where sick people are in good hands?'],
     },
     {
       answer: 'AMBULANCE',
       easy: ['Vehicle that rushes people to emergency care', 'Van with flashing lights and a siren for sick people', 'Call 111 and ask for this'],
-      hard: ['Van on the run to help?', 'Wailing wagon of help?'],
+      hard: ['Wailing van that rushes to the rescue?'],
     },
   ],
 };

@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'CHILE',
       easy: ['Long, thin country in South America', 'Country that owns Easter Island and its giant stone heads', 'South American country with Santiago as its capital'],
-      hard: ['Sounds like a cold country?', 'Country that sounds like a fiery pepper?'],
+      hard: ['Long, skinny country down South America\'s west coast'],
     },
     {
       answer: 'CHINA',
@@ -42,7 +42,7 @@ const theme: Theme = {
     {
       answer: 'NEPAL',
       easy: ['Mountain country where climbers set off up Everest', 'Himalayan land whose capital is Kathmandu', 'Home of the Sherpa people'],
-      hard: ['Country on the roof of the world', 'Only country whose flag isn\'t a rectangle'],
+      hard: ['Country on the roof of the world'],
     },
     {
       answer: 'CUBA',
@@ -52,32 +52,32 @@ const theme: Theme = {
     {
       answer: 'FIJI',
       easy: ['Pacific islands nation famous for rugby sevens', 'Suva is its capital', 'Holiday islands about three hours\' flight north of Auckland'],
-      hard: ['Bula! Say hello to this island nation', 'Pacific nation where \'vinaka\' means thank you'],
+      hard: ['Bula! Say hello to this island nation'],
     },
     {
       answer: 'SAMOA',
       easy: ['Pacific nation whose rugby team is Manu ___', 'Pacific nation famous for its fire-knife dancers', 'Pacific nation with Apia as its capital'],
-      hard: ['Talofa! Home of the lavalava', 'Island nation where \'fa\'afetai\' means thank you'],
+      hard: ['Talofa! Home of the lavalava'],
     },
     {
       answer: 'TONGA',
       easy: ['Pacific island kingdom', 'Pacific nation called the Friendly Islands', 'Its capital is Nuku\'alofa, in the Pacific'],
-      hard: ['Pacific nation with a king, not a president', 'Land where \'mālō e lelei\' means hello'],
+      hard: ['Pacific nation with a king, not a president'],
     },
     {
       answer: 'EGYPT',
-      easy: ['Country of the pyramids', 'Land of the pharaohs and the river Nile', 'African country whose capital is Cairo as its capital'],
-      hard: ['Land of mummies, though not the kind who cook?', 'Cleopatra ruled this land'],
+      easy: ['Country of the pyramids', 'Land of the pharaohs and the river Nile', 'African country whose capital is Cairo'],
+      hard: ['Land of the pyramids and the Nile', 'Cleopatra ruled this land'],
     },
     {
       answer: 'KENYA',
       easy: ['African country famous for safaris', 'African country with Nairobi as its capital', 'East African country on the equator, famous for tea and safaris'],
-      hard: ['Land of lions, giraffes and super-fast runners', 'Land where the Maasai Mara\'s big cats roam'],
+      hard: ['Land of lions, giraffes and super-fast runners'],
     },
     {
       answer: 'WALES',
       easy: ['Country of the UK with a red dragon flag', 'Country of the UK with Cardiff as its capital', 'Country of castles, choirs and sheep in the UK'],
-      hard: ['Sounds like big sea creatures?', 'Leek-wearing land of song?'],
+      hard: ['Land of the red dragon flag'],
     },
     {
       answer: 'FRANCE',
@@ -102,22 +102,22 @@ const theme: Theme = {
     {
       answer: 'GREECE',
       easy: ['Country where the Olympic Games began', 'Athens is its capital', 'Land of white houses and blue domes on sunny islands'],
-      hard: ['Sounds like what makes chips slippery?', 'Home of the old gods of Mount Olympus'],
+      hard: ['Home of the old gods of Mount Olympus'],
     },
     {
       answer: 'NORWAY',
       easy: ['Cold country of fjords in northern Europe', 'Scandinavian country with Oslo as its capital', 'Country whose red flag has a blue-and-white cross'],
-      hard: ['Sounds like a firm "no chance"?', 'Way up north, as its name suggests?'],
+      hard: ['Land of the fjords?'],
     },
     {
       answer: 'SWEDEN',
       easy: ['Northern European country, home of IKEA', 'Stockholm is its capital', 'Country with a yellow cross on a blue flag'],
-      hard: ['Land the swede is named after', 'Home of ABBA, the pop group'],
+      hard: ['Home of ABBA, the pop group'],
     },
     {
       answer: 'ICELAND',
       easy: ['Island country of volcanoes and geysers', 'Reykjavik is its capital', 'Island country where puffins nest and the northern lights glow'],
-      hard: ['Despite its name, greener than Greenland', 'Where volcanoes hide under glaciers?'],
+      hard: ['Despite its name, greener than Greenland'],
     },
     {
       answer: 'IRELAND',
@@ -127,27 +127,27 @@ const theme: Theme = {
     {
       answer: 'GERMANY',
       easy: ['European country with Berlin as its capital', 'European country famous for Black Forest cake', 'Country whose cities include Munich and Hamburg'],
-      hard: ['Land of pretzels, sausages and fairy-tale castles', 'Land of the Autobahn, with no speed limit in parts'],
+      hard: ['Land of pretzels, sausages and fairy-tale castles'],
     },
     {
       answer: 'AUSTRIA',
       easy: ['Alpine country next to Germany', 'Vienna is its capital', 'Country where The Sound of Music is set'],
-      hard: ['Country often mistaken for Australia, with Alps instead of an outback', 'Land Mozart called home'],
+      hard: ['Land Mozart called home'],
     },
     {
       answer: 'VIETNAM',
       easy: ['South-East Asian country famous for pho', 'Hanoi is its capital', 'Asian country famous for cone-shaped straw hats'],
-      hard: ['Long, skinny Asian country of rice paddies', 'Home of Ha Long Bay\'s limestone islands'],
+      hard: ['Long, skinny Asian country of rice paddies'],
     },
     {
       answer: 'PORTUGAL',
       easy: ['Country next to Spain', 'Footballer Cristiano Ronaldo\'s home country', 'European country famous for its old sailors and explorers'],
-      hard: ['Land of custard tarts, with Lisbon its capital', 'Westernmost land of mainland Europe'],
+      hard: ['Land of custard tarts, with Lisbon its capital'],
     },
     {
       answer: 'ARGENTINA',
       easy: ['South American country famous for the tango', 'Country with Buenos Aires as its capital', 'Football country of Lionel Messi'],
-      hard: ['Country the Pumas play rugby for', 'Land of the gaucho cowboys and the Pampas'],
+      hard: ['Country the Pumas play rugby for'],
     },
     {
       answer: 'AUSTRALIA',
@@ -162,27 +162,27 @@ const theme: Theme = {
     {
       answer: 'NETHERLANDS',
       easy: ['Country of windmills, tulips and clogs', 'Amsterdam is its capital', 'Low, flat country whose football team wears orange'],
-      hard: ['Flat land famous for its bikes and canals', 'Land that\'s literally \'low\' by name?'],
+      hard: ['Flat land famous for its bikes and canals'],
     },
     {
       answer: 'INDONESIA',
       easy: ['Asian country of many islands, including Bali', 'Its capital is Jakarta', 'Asian home of the Komodo dragon'],
-      hard: ['Thousands of islands make up this nation', 'Land of Java, where coffee got a nickname?'],
+      hard: ['Thousands of islands make up this nation'],
     },
     {
       answer: 'MALAYSIA',
       easy: ['Asian country with Kuala Lumpur as capital', 'Asian country where orangutans live in Borneo\'s jungle', 'Asian country famous for laksa and nasi lemak'],
-      hard: ['Neighbour of Singapore, across a causeway', 'Petronas Towers\' homeland'],
+      hard: ['South-East Asian nation next door to Singapore?'],
     },
     {
       answer: 'THAILAND',
       easy: ['Country once known as Siam', 'Bangkok is its capital', 'Asian country of tuk-tuks and floating markets'],
-      hard: ['Sounds like a land of neckties, but it\'s famed for tuk-tuks?', 'Siamese cats\' original home?'],
+      hard: ['Siamese cats\' original home?'],
     },
     {
       answer: 'SINGAPORE',
       easy: ['Tiny island city-state in Asia', 'Asian country that\'s mostly one big city', 'Island country famous for stopovers on flights to Europe'],
-      hard: ['Little Lion City with a fountain-spitting merlion', 'Spotless city-state, famously strict about chewing gum'],
+      hard: ['Tiny island city-state at the tip of Malaysia'],
     },
     {
       answer: 'MADAGASCAR',
@@ -197,37 +197,37 @@ const theme: Theme = {
     {
       answer: 'PHILIPPINES',
       easy: ['Asian island nation with Manila as capital', 'Asian island nation where jeepneys fill the streets', 'Asian island nation whose people are called Filipinos'],
-      hard: ['Island nation spelt with one L and lots of Ps', 'Islands named for a long-ago king of Spain'],
+      hard: ['Nation of about 7,000 islands, home of the Filipinos?'],
     },
     {
       answer: 'MOROCCO',
-      easy: ['African kingdom whose ancient city of Fez has a giant medina', 'North African country of Marrakesh and Casablanca', 'African land where sweet mint tea is poured from up high'],
-      hard: ['Home of Casablanca the city, not just the film?', 'North African kingdom that gave its name to a fine goatskin leather'],
+      easy: ['North African kingdom on the edge of the Sahara', 'North African country of Marrakesh and Casablanca', 'African land where sweet mint tea is poured from up high'],
+      hard: ['Kingdom where you\'d find Casablanca and Marrakesh?'],
     },
     {
       answer: 'TURKEY',
-      easy: ['Country where hot-air balloons float over Cappadocia\'s fairy chimneys', 'Country with Istanbul as its biggest city', 'Country where Kiwis visit Gallipoli on Anzac Day'],
-      hard: ['Country that shares its name with a gobbling bird', 'Three strikes in a row at bowling, or a country'],
+      easy: ['Country that lies partly in Europe and partly in Asia', 'Country with Istanbul as its biggest city', 'Country where Kiwis visit Gallipoli on Anzac Day'],
+      hard: ['Country that shares its name with a gobbling bird'],
     },
     {
       answer: 'ETHIOPIA',
       easy: ['African country where coffee was first grown', 'Addis Ababa is its capital city', 'Country in the Horn of Africa famous for distance runners'],
-      hard: ['Coffee\'s birthplace, in the Horn of Africa', 'Land of injera, a spongy flatbread'],
+      hard: ['Coffee\'s birthplace, in the Horn of Africa', 'Country whose capital is Addis Ababa'],
     },
     {
       answer: 'FINLAND',
       easy: ['Northern country of lakes and saunas', 'Helsinki is its capital', 'Country where Santa has a village in Lapland'],
-      hard: ['Fishy-sounding land of saunas?', 'Home of the Moomins, in storybooks'],
+      hard: ['Home of the Moomins and Santa\'s Lapland?'],
     },
     {
       answer: 'DENMARK',
       easy: ['European country where LEGO was invented', 'Copenhagen is its capital', 'Country where the Little Mermaid statue sits by the sea'],
-      hard: ['Something is rotten in the state of ___', 'Hamlet was its prince'],
+      hard: ['Hamlet\'s country?'],
     },
     {
       answer: 'RUSSIA',
       easy: ['Biggest country in the world', 'Moscow is its capital', 'Huge country with freezing Siberia'],
-      hard: ['Home of nesting dolls and Red Square', 'Land of the Bolshoi Ballet and onion domes'],
+      hard: ['Home of nesting dolls and Red Square'],
     },
     {
       answer: 'SCOTLAND',
@@ -252,7 +252,7 @@ const theme: Theme = {
     {
       answer: 'COOK ISLANDS',
       easy: ['Pacific nation that includes Rarotonga and Aitutaki', 'Pacific nation whose people are also NZ citizens', 'Pacific nation where \'kia orana\' means hello'],
-      hard: ['Pacific nation named after a captain who sailed to NZ', 'Pacific nation that sounds like it\'d whip up dinner?'],
+      hard: ['Pacific nation named after a captain who sailed to NZ'],
     },
   ],
 };

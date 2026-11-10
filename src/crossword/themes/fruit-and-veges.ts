@@ -17,11 +17,11 @@ const theme: Theme = {
     {
       answer: 'PLUM',
       easy: ['Purple stone fruit that makes great jam', 'Fruit that becomes a prune when dried', 'Black Doris is a famous kind'],
-      hard: ['Best of the bunch, as in a cushy job', 'Jack Horner pulled one out of his pie'],
+      hard: ['Jack Horner pulled one out of his pie'],
     },
     {
       answer: 'PEACH',
-      easy: ['Fuzzy-skinned stone fruit', 'Nectarine\'s furry cousin', 'Fruit in a Melba dessert with ice cream and raspberry sauce'],
+      easy: ['Fuzzy-skinned stone fruit', 'Nectarine\'s furry cousin', 'Soft, juicy summer fruit with a stone in the middle'],
       hard: ['James and the Giant ___', 'Mario\'s princess'],
     },
     {
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'APRICOT',
       easy: ['Small orange stone fruit, often dried', 'Golden fruit with velvety skin and a stone', 'Colour between orange and pink'],
-      hard: ['Central Otago orchard fruit, great in jam', 'Chewy dried snack that looks like a little ear?'],
+      hard: ['Central Otago orchard fruit, great in jam'],
     },
     {
       answer: 'CHERRY',
@@ -52,7 +52,7 @@ const theme: Theme = {
     {
       answer: 'LEMON',
       easy: ['Sour yellow citrus fruit', 'Yellow fruit squeezed onto fish and chips', 'Sour fruit mixed with sugar and water for a drink'],
-      hard: ['Dud of a used car', 'Yellow sourpuss of the fruit bowl?'],
+      hard: ['Yellow sourpuss of the fruit bowl?'],
     },
     {
       answer: 'LIME',
@@ -62,12 +62,12 @@ const theme: Theme = {
     {
       answer: 'MANDARIN',
       easy: ['Easy-peel little citrus fruit', 'Tinned citrus segments in syrup', 'Small orange fruit at its best in winter'],
-      hard: ['Language of Beijing; lunchbox citrus', 'Chinese official of old, or a citrus'],
+      hard: ['Easy-peel lunchbox citrus, or a Chinese language?'],
     },
     {
       answer: 'GRAPEFRUIT',
       easy: ['Big, tangy citrus often eaten at breakfast', 'Large, slightly bitter citrus', 'Sour citrus sprinkled with sugar at breakfast'],
-      hard: ['Pink or yellow, halved and spooned', 'It squirts you in the eye when spooned?'],
+      hard: ['Pink or yellow, halved and spooned'],
     },
     {
       answer: 'BANANA',
@@ -87,12 +87,12 @@ const theme: Theme = {
     {
       answer: 'FEIJOA',
       easy: ['Green autumn fruit that drops when ripe', 'Green egg-shaped fruit with a perfumed smell', 'Gritty green fruit found in many Kiwi backyards'],
-      hard: ['Fruit neighbours give away by the bucketload', 'Kiwi autumn obsession that\'s really South American'],
+      hard: ['Fruit neighbours give away by the bucketload'],
     },
     {
       answer: 'TAMARILLO',
       easy: ['Red egg-shaped fruit you scoop out', 'Tangy fruit with deep red skin, grown on small trees', 'Egg-shaped fruit, red or gold, with bitter skin'],
-      hard: ['Tree tomato, by its fancier name', 'Red egg that no hen laid, a Kiwi tree\'s tangy fruit?'],
+      hard: ['Tree tomato, by its fancier name'],
     },
     {
       answer: 'STRAWBERRY',
@@ -112,12 +112,12 @@ const theme: Theme = {
     {
       answer: 'WATERMELON',
       easy: ['Big green fruit, red inside with black seeds', 'Huge fruit with a striped green rind', 'Fruit cut into big wedges at a picnic'],
-      hard: ['Summer slice you spit the pips from', 'Fruit that\'s mostly a drink?'],
+      hard: ['Summer slice you spit the pips from'],
     },
     {
       answer: 'PASSIONFRUIT',
       easy: ['Purple wrinkly fruit with seedy pulp', 'Vine fruit with crinkly purple skin when ripe', 'Tangy yellow pulp full of black seeds'],
-      hard: ['Its tangy seeds top many a pav', 'Fruit with a very loving name?'],
+      hard: ['Its tangy seeds top many a pav'],
     },
     {
       answer: 'AVOCADO',
@@ -127,7 +127,7 @@ const theme: Theme = {
     {
       answer: 'TOMATO',
       easy: ['Red fruit used like a vege in salads', 'Round red thing sliced in a sandwich', 'Cherry ___: a tiny round one'],
-      hard: ['Red sauce base: is it fruit or vege?', 'Rotten one thrown at a bad act?'],
+      hard: ['Red sauce base: is it fruit or vege?'],
     },
     {
       answer: 'POTATO',
@@ -137,7 +137,7 @@ const theme: Theme = {
     {
       answer: 'KUMARA',
       easy: ['Sweet potato, red, gold or orange', 'Spud-like vege, often orange inside', 'Sweet root brought to Aotearoa by early Polynesian voyagers'],
-      hard: ['Sweet spud, a hāngī favourite', 'Northland root that tastes almost like dessert?'],
+      hard: ['Sweet spud, a hāngī favourite'],
     },
     {
       answer: 'CARROT',
@@ -147,7 +147,7 @@ const theme: Theme = {
     {
       answer: 'PARSNIP',
       easy: ['Creamy-white root like a pale carrot', 'White root vege that\'s great roasted', 'Pale, pointy root, sweet when cooked'],
-      hard: ['Root that sweetens after a frost', 'Pale-faced root that roasts up sweet?'],
+      hard: ['Pale cousin of the carrot?'],
     },
     {
       answer: 'PUMPKIN',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'COURGETTE',
       easy: ['Green summer squash, also called zucchini', 'Long green vege you can slice into noodles', 'Green vege the garden makes far too many of'],
-      hard: ['Forget it for a week and it becomes a marrow', 'Vege that grows faster than you can pick it?'],
+      hard: ['Zucchini, to a Kiwi?'],
     },
     {
       answer: 'CAPSICUM',
@@ -172,12 +172,12 @@ const theme: Theme = {
     {
       answer: 'CAULIFLOWER',
       easy: ['White vege, often baked in cheese sauce', 'White vege with a big curd head', 'Pale vege broken into florets'],
-      hard: ['Cabbage cousin with a bumpy white head', '___ ear: a boxer\'s lumpy ear'],
+      hard: ['Cabbage cousin with a bumpy white head'],
     },
     {
       answer: 'CABBAGE',
       easy: ['Leafy round vege for coleslaw', 'Big leafy ball, green or red', 'Vege that white butterfly caterpillars munch'],
-      hard: ['Head used in coleslaw and sauerkraut', 'Patch where babies came from, in old stories?'],
+      hard: ['Head used in coleslaw and sauerkraut'],
     },
     {
       answer: 'LETTUCE',
@@ -187,22 +187,22 @@ const theme: Theme = {
     {
       answer: 'SPINACH',
       easy: ['Dark green leaves, good raw or wilted', 'Leafy green in a cheese and ___ pie', 'Popeye\'s favourite vege'],
-      hard: ['Leaves that shrink to nothing in the pan', 'Leafy green blended into smoothies and baked into pies with feta?'],
+      hard: ['Popeye\'s power food?'],
     },
     {
       answer: 'SILVERBEET',
       easy: ['Big green leaves with white stalks', 'Leafy green that\'s easy to grow all year in NZ', 'Hardy leafy green that keeps growing back after picking'],
-      hard: ['Chard, as Kiwis call it', 'Shiny-sounding leafy green?'],
+      hard: ['Chard, as Kiwis call it'],
     },
     {
       answer: 'CELERY',
       easy: ['Crunchy green stalks', 'Pale green sticks in a soup base', 'Crunchy stalk with almost no calories'],
-      hard: ['Stringy stick for dipping in peanut butter', 'Sounds like \'salary\', but it\'s a crunchy stalk?'],
+      hard: ['Stringy stick for dipping in peanut butter'],
     },
     {
       answer: 'ONION',
       easy: ['Vege that makes you cry when you chop it', 'Bulb fried with sausages at a sausage sizzle', 'Battered snack: ___ rings'],
-      hard: ['Layered bulb, red, brown or white', 'Know your ___s: be an expert'],
+      hard: ['Layered bulb, red, brown or white'],
     },
     {
       answer: 'GARLIC',
@@ -237,32 +237,32 @@ const theme: Theme = {
     {
       answer: 'MUSHROOM',
       easy: ['Fungus you can cook, not a plant at all', 'Grows with a cap and a stalk', 'Button or field, it pops up in damp places'],
-      hard: ['Fun guy at a fry-up?', 'Pop up overnight on the lawn after rain, or top a pizza?'],
+      hard: ['Fun guy at a fry-up?'],
     },
     {
       answer: 'RADISH',
       easy: ['Small red root with a peppery bite', 'Little round root, red outside, white inside', 'Daikon is a long white one'],
-      hard: ['Peppery salad root that is quick to grow', 'Horse___: hot sauce for roast beef'],
+      hard: ['Peppery salad root that is quick to grow'],
     },
     {
       answer: 'SWEDE',
       easy: ['Yellow-fleshed root, like a big turnip', 'Purple-topped root vege mashed with butter', 'Root vege often fed to sheep in winter'],
-      hard: ['Root vege; someone from Stockholm', 'Turnip\'s big golden cousin'],
+      hard: ['Root vege, or someone from Stockholm?', 'Turnip\'s big golden cousin'],
     },
     {
       answer: 'KALE',
       easy: ['Curly dark green leafy vege', 'Leafy green baked into crunchy chips', 'Tough leafy green you massage for a salad'],
-      hard: ['Cabbage cousin that went trendy in smoothies', 'Health-food green that rhymes with \'whale\'?'],
+      hard: ['Cabbage cousin that went trendy in smoothies'],
     },
     {
       answer: 'YAM',
-      easy: ['Rough-skinned starchy tuber, a staple in West Africa', 'Orange-fleshed root served candied at an American Thanksgiving', 'Starchy tuber grown on Pacific islands, boiled or baked'],
-      hard: ['\'I ___ what I ___\', said Popeye', 'Rhymes with \'ham\' and \'jam\', a starchy root?'],
+      easy: ['Small knobbly pink root roasted with a Kiwi dinner', 'Starchy tuber grown on Pacific islands, boiled or baked', 'Sweet little roasting vegetable, orange or pink'],
+      hard: ['\'I ___ what I ___\', said Popeye'],
     },
     {
       answer: 'FIG',
       easy: ['Soft sweet fruit full of tiny seeds', 'Purple or green fruit with a pink inside', 'Fruit in a chewy ___ roll biscuit'],
-      hard: ['Fruit tree with big leaves; often dried', 'Not give a ___: not care at all'],
+      hard: ['Not give a ___: not care at all'],
     },
   ],
 };

@@ -7,22 +7,22 @@ const theme: Theme = {
     {
       answer: 'KIWI',
       easy: ['Brown bird that can\'t fly, NZ\'s national bird', 'Night-time bird that probes the soil for worms', 'Bird on our one-dollar coin'],
-      hard: ['Fuzzy fruit; anyone from Aotearoa', 'Bird that sniffs with the very tip of its bill?'],
+      hard: ['Bird, fruit or New Zealander?'],
     },
     {
       answer: 'TUI',
       easy: ['Noisy bird with a white tuft on its throat', 'Shiny dark songbird that loves flax nectar', 'Native bird that clicks, whistles and copies sounds'],
-      hard: ['Songbird wearing a fluffy white bow tie', 'Songster that can sing a duet all by itself?'],
+      hard: ['Songbird wearing a fluffy white bow tie'],
     },
     {
       answer: 'KEA',
-      easy: ['Cheeky mountain parrot that pecks at cars', 'Green alpine parrot that flashes orange as it flies', 'Clever parrot of the South Island mountains'],
-      hard: ['Alpine troublemaker after your windscreen wipers', 'Ski-field clown with a hooked bill?'],
+      easy: ['Cheeky green mountain parrot of the South Island', 'Green alpine parrot that flashes orange as it flies', 'Clever parrot of the South Island mountains'],
+      hard: ['Clever, cheeky parrot of the Southern Alps?'],
     },
     {
       answer: 'KAKAPO',
       easy: ['Big green parrot that can\'t fly', 'Heavy parrot that lives on predator-free islands', 'Rare mossy-green parrot that comes out at night'],
-      hard: ['Chubby night parrot, too heavy to take off', 'Parrot that climbs trees but can\'t fly back down?'],
+      hard: ['Chubby night parrot, too heavy to take off'],
     },
     {
       answer: 'PUKEKO',
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'FANTAIL',
       easy: ['Little bird that follows you to catch bugs', 'Pīwakawaka, a tiny cheeky native bird', 'Small bird that twists and flips in the air chasing insects'],
-      hard: ['Flitty friend that opens out like a fan', 'Bird whose rear end could cool you down?'],
+      hard: ['Flitty friend that opens out like a fan'],
     },
     {
       answer: 'MOREPORK',
@@ -42,7 +42,7 @@ const theme: Theme = {
     {
       answer: 'KERERU',
       easy: ['Big green and white native pigeon', 'Big native bird with a white chest and green-purple head', 'Plump bird that spreads tree seeds by gulping big berries'],
-      hard: ['Chunky pigeon that crashes about in the trees', 'Berry glutton said to get wobbly on overripe fruit?'],
+      hard: ['Chunky pigeon that crashes about in the trees'],
     },
     {
       answer: 'WEKA',
@@ -67,12 +67,12 @@ const theme: Theme = {
     {
       answer: 'LITTLE BLUE',
       easy: ['The smallest kind of penguin', 'Kororā, a tiny penguin of our coasts', 'Small penguin that comes ashore at night to its burrow'],
-      hard: ['Penguin that\'s small and a bit down?', 'Fairy penguin, by its NZ name'],
+      hard: ['Fairy penguin, by its NZ name'],
     },
     {
       answer: 'ALBATROSS',
       easy: ['Huge seabird with very long wings', 'Seabird that glides over the ocean for hours without flapping', 'Great seabird that breeds at Taiaroa Head near Dunedin'],
-      hard: ['Giant glider of the southern oceans', 'Golf score of three under par'],
+      hard: ['Giant glider of the southern oceans'],
     },
     {
       answer: 'GANNET',
@@ -87,12 +87,12 @@ const theme: Theme = {
     {
       answer: 'TAKAHE',
       easy: ['Rare blue-green flightless bird with a big red beak', 'Chunky flightless bird, purple-blue and green with red legs', 'Rare flightless bird that eats tussock grass'],
-      hard: ['Flightless bird found again after being thought extinct', 'Tussock muncher with a bill like bolt cutters?'],
+      hard: ['Flightless bird found again after being thought extinct'],
     },
     {
       answer: 'HAWK',
-      easy: ['Eagle\'s smaller cousin, a daytime hunter with keen eyes', 'Kāhu, a big brown hunting bird', 'Bird that lends its sharp eyes to cricket\'s ball-tracking system'],
-      hard: ['Watch like a ___', 'Sell from door to door, as a pedlar does'],
+      easy: ['Eagle\'s smaller cousin, a daytime hunter with keen eyes', 'Kāhu, a big brown hunting bird', 'Sharp-eyed bird of prey often seen circling above paddocks'],
+      hard: ['Watch like a ___'],
     },
     {
       answer: 'FALCON',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'HERON',
       easy: ['Tall grey bird that stands in shallow water', 'Wader that tucks its neck into an S in flight and spears fish', 'White-faced ___, NZ\'s common grey wading bird'],
-      hard: ['Statue-still hunter that spears frogs and fish in the shallows', 'Estuary statue with a neck like a question mark?'],
+      hard: ['Statue-still hunter that spears frogs and fish in the shallows'],
     },
     {
       answer: 'KINGFISHER',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'THRUSH',
       easy: ['Speckled garden bird that cracks snails', 'Song ___, a brown garden bird', 'Brown bird that tugs worms out of the lawn'],
-      hard: ['Spotty songbird that loves a snail snack', 'Brown songster in a polka-dot waistcoat?'],
+      hard: ['Spotty songbird that loves a snail snack'],
     },
     {
       answer: 'MAGPIE',
@@ -152,17 +152,17 @@ const theme: Theme = {
     {
       answer: 'STARLING',
       easy: ['Shiny dark bird found in big noisy flocks', 'Speckled dark bird that swirls in huge clouds at dusk', 'Glossy bird that copies other sounds, even car alarms'],
-      hard: ['Bird that sounds like a little celebrity?', 'One of thousands swirling in a murmuration'],
+      hard: ['Bird that sounds like a little celebrity?'],
     },
     {
       answer: 'PIGEON',
       easy: ['Grey bird found in city squares', 'Cooing bird that pecks crumbs off the footpath', 'Bird that can find its way home from far away'],
-      hard: ['Bird once used to carry messages', '___-toed (with feet turned in)'],
+      hard: ['Bird once used to carry messages'],
     },
     {
       answer: 'CHICKEN',
       easy: ['Farm bird that lays eggs', 'Bird whose meat goes in nuggets', 'Clucking farm bird kept in a coop'],
-      hard: ['Coward who crosses the road?', 'Daring game where the first to swerve loses'],
+      hard: ['Coward who crosses the road?'],
     },
     {
       answer: 'NEST',
@@ -172,11 +172,11 @@ const theme: Theme = {
     {
       answer: 'EGG',
       easy: ['Thing a bird lays', 'Breakfast you can boil, fry or scramble', 'Chocolate treat hidden at Easter'],
-      hard: ['Chicken\'s rival in a \'which came first\' riddle', 'Urge, with \'on\''],
+      hard: ['Chicken\'s rival in a \'which came first\' riddle'],
     },
     {
       answer: 'BEAK',
-      easy: ['Hooked, hard part of an eagle\'s face', 'What a kea uses to tear rubber off windscreen wipers', 'Woodpecker\'s drilling tool'],
+      easy: ['Hooked, hard part of an eagle\'s face', 'What a tūī dips into flax flowers to reach the nectar', 'Woodpecker\'s drilling tool'],
       hard: ['Bill that never needs paying?', 'Sticky ___ (a nosy person)'],
     },
     {
@@ -187,12 +187,12 @@ const theme: Theme = {
     {
       answer: 'WING',
       easy: ['Part a bird flaps to fly', 'Part of a plane that sticks out each side', 'Part a butterfly has four of'],
-      hard: ['Flapper on a bird; part of a hospital', '___ it (do it with no practice)'],
+      hard: ['___ it (do it with no practice)'],
     },
     {
       answer: 'FLOCK',
       easy: ['A group of birds', 'A bunch of sheep', 'Birds of a feather ___ together'],
-      hard: ['Gather, as birds of a feather do', 'Churchgoers, to their shepherd?'],
+      hard: ['Gather, as birds of a feather do'],
     },
     {
       answer: 'CHICK',
@@ -202,7 +202,7 @@ const theme: Theme = {
     {
       answer: 'TAIL',
       easy: ['Feathers at a bird\'s back end', 'Part a dog wags', 'Heads or ___?'],
-      hard: ['Follow secretly, like a detective', 'Comet\'s glowing trail'],
+      hard: ['Follow secretly, like a detective'],
     },
     {
       answer: 'CLAW',
@@ -227,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'BIRDWATCHER',
       easy: ['Person who looks at birds with binoculars', 'Person who ticks off the birds they\'ve spotted', 'Person peering at treetops with a notebook and guidebook'],
-      hard: ['Patient person in a hide, ticking off sightings', 'Spotter with an eye for plumage'],
+      hard: ['Patient person in a hide, ticking off sightings'],
     },
   ],
 };

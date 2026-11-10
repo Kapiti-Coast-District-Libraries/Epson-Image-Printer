@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'GUMBOOTS',
       easy: ['Rubber boots for wet days', 'Farmer\'s rubber footwear for muddy paddocks', 'Black rubber footwear kept by the back door'],
-      hard: ['Wellies; Taihape has a giant one', 'Footwear thrown for distance at country fairs'],
+      hard: ['Wellies, to a Kiwi?', 'What Taihape is famous for throwing?'],
     },
     {
       answer: 'SHIRT',
@@ -27,22 +27,22 @@ const theme: Theme = {
     {
       answer: 'SKIRT',
       easy: ['Clothing that hangs from the waist', 'A kilt is a Scottish kind of this', 'Grass one worn by a hula dancer'],
-      hard: ['Go around an issue, avoiding it', 'Run round the edge of, as a road by a lake'],
+      hard: ['Kilt, for one?', 'Go round the edge of, or a piece of clothing?'],
     },
     {
       answer: 'DRESS',
       easy: ['One-piece outfit with a skirt', 'Put your clothes on', 'Party frock'],
-      hard: ['Add oil and vinegar to, as a salad', '___ rehearsal, the last practice before the show'],
+      hard: ['Frock, or put your clothes on?', '___ rehearsal, the last practice before the show'],
     },
     {
       answer: 'JEANS',
       easy: ['Blue denim trousers', 'Trousers that might come ripped on purpose', 'Trousers that fade the more they\'re washed'],
-      hard: ['Denim legwear that sounds like the DNA you inherit?', 'Blues you might be happy to be in?'],
+      hard: ['Denim blues?'],
     },
     {
       answer: 'SHORTS',
       easy: ['Trousers that stop above the knee', 'Pants for a hot day that show your knees', 'Board ___, for surfing'],
-      hard: ['Legwear that\'s short on fabric but long on summer?', 'Brief films; summer pants'],
+      hard: ['Summer legwear that shows your knees?'],
     },
     {
       answer: 'SOCKS',
@@ -57,7 +57,7 @@ const theme: Theme = {
     {
       answer: 'SANDALS',
       easy: ['Open footwear with straps', 'Open shoes held on with a buckle strap', 'Ancient Romans wore leather ones'],
-      hard: ['Strappy footwear; socks optional, controversially', 'Shoes that are mostly straps and air?'],
+      hard: ['Shoes that are mostly straps and air?'],
     },
     {
       answer: 'JUMPER',
@@ -67,7 +67,7 @@ const theme: Theme = {
     {
       answer: 'JERSEY',
       easy: ['Rugby player\'s top, or a woolly pullover', 'Channel Island famous for its royal potatoes', 'Kind of cow famous for creamy milk'],
-      hard: ['Number-on-the-back sports top', 'New ___, US state across from New York'],
+      hard: ['Number-on-the-back sports top'],
     },
     {
       answer: 'CARDIGAN',
@@ -86,13 +86,13 @@ const theme: Theme = {
     },
     {
       answer: 'RAINCOAT',
-      easy: ['Long waterproof jacket, folded in a bag for wet-weather walks', 'Hooded, waterproof top the kids pull on for a wet walk to school', 'Columbo\'s rumpled trademark outerwear'],
-      hard: ['Mackintosh\'s famous invention, \'mac\' for short', 'Cover-up to pull over your jersey when the heavens open?'],
+      easy: ['Long waterproof jacket, folded in a bag for wet-weather walks', 'Hooded, waterproof top the kids pull on for a wet walk to school', 'Waterproof layer you zip up when the forecast is wet'],
+      hard: ['What you grab when the heavens open?'],
     },
     {
       answer: 'PARKA',
       easy: ['Warm hooded winter jacket', 'Long coat with a fur-trimmed hood', 'Thick hooded coat worn in Antarctica'],
-      hard: ['Puffy hooded coat for the snow', 'Anorak\'s big brother?'],
+      hard: ['Puffy hooded coat for the snow'],
     },
     {
       answer: 'BEANIE',
@@ -102,7 +102,7 @@ const theme: Theme = {
     {
       answer: 'SCARF',
       easy: ['Neck wrap for cold days', 'Woolly strip in your team\'s colours', 'Silk square tied at the throat'],
-      hard: ['Tom Baker\'s Doctor wore a very long knitted one', 'Snowman\'s woolly accessory'],
+      hard: ['Snowman\'s woolly accessory'],
     },
     {
       answer: 'MITTENS',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'CAP',
       easy: ['Hat with a peak at the front', 'Baseball ___', 'Swimming ___ that keeps your hair dry'],
-      hard: ['What you put back on a felt pen', 'Limit, as on spending'],
+      hard: ['Baseball hat, or the lid of a pen?'],
     },
     {
       answer: 'PYJAMAS',
@@ -132,17 +132,17 @@ const theme: Theme = {
     {
       answer: 'SLIPPERS',
       easy: ['Soft indoor shoes', 'Fluffy footwear for around the house', 'Cinderella\'s were glass'],
-      hard: ['Comfy pair by the fire', 'Footwear that sounds like it might make you fall?'],
+      hard: ['Comfy pair by the fire'],
     },
     {
       answer: 'UNIFORM',
       easy: ['Clothes everyone at a school wears alike', 'Outfit a nurse or police officer wears', 'School clothes with a badge on the blazer'],
-      hard: ['The same all over', 'Never changing, even all the way through'],
+      hard: ['What everyone at the same school wears?'],
     },
     {
       answer: 'TIE',
       easy: ['Strip of cloth knotted at the collar', 'School ___, striped and knotted', 'Fasten with a knot or bow'],
-      hard: ['Draw in sport; do up laces', 'Bow ___, a dicky bow'],
+      hard: ['Draw in sport, or neckwear?', 'Bow ___, a dicky bow'],
     },
     {
       answer: 'BELT',
@@ -157,12 +157,12 @@ const theme: Theme = {
     {
       answer: 'SINGLET',
       easy: ['Sleeveless top; black ones are a Kiwi icon', 'Sleeveless top for a running race', 'Top worn by a basketball player'],
-      hard: ['Shearer\'s sleeveless top', 'A Kiwi bloke\'s black \'dress shirt\'?'],
+      hard: ['Shearer\'s sleeveless top'],
     },
     {
       answer: 'TRACKPANTS',
       easy: ['Stripy-sided bottoms for gym class that match a zip-up top', 'Bottoms for PE, with a drawstring waist and a stripe down the side', 'Comfy sports pants, called trackies for short'],
-      hard: ['Trackies, in full', 'Couch potato\'s NZ uniform from the waist down, nicknamed trackies'],
+      hard: ['Trackies, in full?'],
     },
     {
       answer: 'TRACKSUIT',
@@ -172,17 +172,17 @@ const theme: Theme = {
     {
       answer: 'BUTTONS',
       easy: ['Round fasteners on a shirt', 'Small round things that go through holes', 'Press these on the TV remote'],
-      hard: ['Things you push in a lift?', 'Cute as ___'],
+      hard: ['Things you push in a lift?'],
     },
     {
       answer: 'ZIP',
       easy: ['Fastener with metal teeth', 'Slide this up to close a jacket', 'Fastener on a pencil case'],
-      hard: ['___ your lip!', 'Zero, or move fast'],
+      hard: ['___ your lip!'],
     },
     {
       answer: 'POCKET',
       easy: ['Pouch sewn into trousers', 'Where you keep your hands warm in a coat', 'A kangaroo\'s pouch is like one'],
-      hard: ['A snooker table has six', '___ money, given each week'],
+      hard: ['___ money, given each week'],
     },
     {
       answer: 'COLLAR',
@@ -192,22 +192,22 @@ const theme: Theme = {
     {
       answer: 'SLEEVE',
       easy: ['Part of a top that covers your arm', 'Wipe your nose on it (yuck!)', 'Part of a shirt you roll up'],
-      hard: ['Where a cheat hides a card', 'Wear your heart on your ___'],
+      hard: ['Have something up your ___ (a secret plan)', 'Wear your heart on your ___'],
     },
     {
       answer: 'LACES',
       easy: ['Strings that tie your shoes', 'Things you tie in a bow', 'Shoe strings that come in pairs'],
-      hard: ['They come undone and trip you up', 'The bunny-ears method ties these'],
+      hard: ['They come undone and trip you up'],
     },
     {
       answer: 'VEST',
       easy: ['Sleeveless top worn under a shirt', 'Sleeveless jacket', 'Hi-vis ___, worn by road workers'],
-      hard: ['Top that\'s totally armless?', 'Waistcoat, to an American'],
+      hard: ['Top that\'s totally armless?'],
     },
     {
       answer: 'COAT',
       easy: ['Warm outer layer for winter', 'Long outer layer hung on a hook', 'An animal\'s fur'],
-      hard: ['A layer of paint', 'Hanger-on?'],
+      hard: ['Winter layer, or a layer of paint?'],
     },
     {
       answer: 'KOROWAI',
@@ -222,7 +222,7 @@ const theme: Theme = {
     {
       answer: 'LEGGINGS',
       easy: ['Stretchy tight trousers', 'Close-fitting pants worn under a tunic', 'Comfy stretchy pants, often black'],
-      hard: ['Stretchy pants for yoga', 'Stretchy black bottoms that gym-goers wear under tunics'],
+      hard: ['Stretchy pants for yoga'],
     },
     {
       answer: 'TIGHTS',
@@ -232,12 +232,12 @@ const theme: Theme = {
     {
       answer: 'WETSUIT',
       easy: ['Rubber suit for surfing in cold water', 'Black rubber outfit for diving', 'Keeps a diver warm in cold water'],
-      hard: ['Neoprene for the surfer', 'Outfit that\'s best worn soaking?'],
+      hard: ['Outfit that\'s best worn soaking?'],
     },
     {
       answer: 'SUNGLASSES',
       easy: ['Shades for bright days', 'Dark lenses to protect your eyes', 'Specs with dark lenses for summer'],
-      hard: ['Cool shades, so to speak', 'Eyewear for a bright future?'],
+      hard: ['Cool shades, so to speak'],
     },
     {
       answer: 'BOOTS',
@@ -252,7 +252,7 @@ const theme: Theme = {
     {
       answer: 'BIKINI',
       easy: ['Two-piece swimsuit', 'Swimwear with a top and bottom', 'Swimsuit that leaves the tummy bare'],
-      hard: ['Beachwear in two parts', 'Swimsuit with a bit missing in the middle?'],
+      hard: ['Beachwear in two parts'],
     },
   ],
 };

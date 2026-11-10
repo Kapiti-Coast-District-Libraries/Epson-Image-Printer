@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'TILL',
       easy: ['Machine where you pay', 'Register that rings up what you buy', 'Money drawer that slides open at the counter'],
-      hard: ['Cash drawer; dig the soil', 'Up ___ now (so far)'],
+      hard: ['Checkout\'s cash drawer?', 'Up ___ now (so far)'],
     },
     {
       answer: 'AISLE',
@@ -37,27 +37,27 @@ const theme: Theme = {
     {
       answer: 'RICE',
       easy: ['Grains cooked to go with curry', 'Food grown in flooded paddy fields', 'Fried ___ from the Chinese takeaway'],
-      hard: ['Sushi staple sold in big bags', 'What Paddy grows?'],
+      hard: ['Sushi staple sold in big bags'],
     },
     {
       answer: 'TEA',
       easy: ['Hot drink made with bags', 'Drink brewed from leaves in a pot', 'Green or black hot drink'],
-      hard: ['Cuppa; dinner, to some Kiwis', 'Not my cup of ___'],
+      hard: ['Cuppa, or dinner to some Kiwis?', 'Not my cup of ___'],
     },
     {
       answer: 'OATS',
       easy: ['Grains for making porridge', 'Horses love to munch these', 'Main part of muesli'],
-      hard: ['Rolled breakfast grains, not dice?', 'Anzac biscuit must-have that gets rolled?'],
+      hard: ['What porridge is made from?', 'Sow your wild ___'],
     },
     {
       answer: 'SALE',
       easy: ['Time when prices are cut', 'Event with big discounts', 'For ___, as a sign outside a house says'],
-      hard: ['Bargain time that sounds like it moves a yacht?', 'Boxing Day rush at the shops'],
+      hard: ['Boxing Day rush at the shops'],
     },
     {
       answer: 'LIST',
       easy: ['Note of what to buy', 'Items written one under another, ready to tick off', 'Santa checks it twice'],
-      hard: ['Lean over, as a ship; shopping reminder', 'Bucket ___ (things to do one day)'],
+      hard: ['Shopping reminder stuck on the fridge?', 'Bucket ___ (things to do one day)'],
     },
     {
       answer: 'CASH',
@@ -67,7 +67,7 @@ const theme: Theme = {
     {
       answer: 'CARD',
       easy: ['Plastic you tap to pay', 'One of 52 in a pack', 'Eftpos ___, for paying in shops'],
-      hard: ['Tap-and-go plastic; birthday greeting', 'Wild ___ (an unpredictable extra entry in a contest)'],
+      hard: ['Birthday greeting, or tap-and-go plastic?', 'Wild ___ (an unpredictable extra entry in a contest)'],
     },
     {
       answer: 'TIN',
@@ -77,27 +77,27 @@ const theme: Theme = {
     {
       answer: 'CAN',
       easy: ['Tin of soup', 'Fizzy drinks come in one', 'Watering ___ for the garden'],
-      hard: ['Is able to; holds the soup', 'Kick the ___ down the road (put off a problem)'],
+      hard: ['Tin of fizzy, or \'is able to\'?', 'Kick the ___ down the road (put off a problem)'],
     },
     {
       answer: 'JAR',
       easy: ['Glass pot for jam', 'Glass container for honey, with a twist-off lid', 'Cookie ___ you sneak treats from'],
-      hard: ['Jolt; peanut butter holder', 'Grate on the nerves; hold the pickles'],
+      hard: ['Jam ___', 'Cookie holder you might be caught with a hand in?'],
     },
     {
       answer: 'JAM',
       easy: ['Fruity spread for toast', 'Sweet spread on scones with cream', 'Raspberry ___ inside a doughnut'],
-      hard: ['Traffic hold-up; berry spread', 'In a ___ (stuck in a tricky spot)'],
+      hard: ['Traffic hold-up, or a berry spread?', 'In a ___ (stuck in a tricky spot)'],
     },
     {
       answer: 'HAM',
       easy: ['Sliced meat from the deli', 'Pink meat in a sandwich, from a pig', 'Meat on a pizza with pineapple'],
-      hard: ['Over-the-top actor; Christmas glaze job', '___ it up (overact)'],
+      hard: ['___ it up (overact)', 'Pizza partner of pineapple?'],
     },
     {
       answer: 'NUTS',
       easy: ['Peanuts and cashews', 'Squirrels store these for winter', 'Hard-shelled snacks you crack open'],
-      hard: ['Crazy; trail-mix favourites', '___ and bolts (the basics)'],
+      hard: ['Crazy, or cashews and almonds?', '___ and bolts (the basics)'],
     },
     {
       answer: 'SOAP',
@@ -107,12 +107,12 @@ const theme: Theme = {
     {
       answer: 'PEAS',
       easy: ['Little green veges, often frozen', 'Green balls that roll off your fork', 'Mushy ___, a British side dish'],
-      hard: ['Like two ___ in a pod', 'Pod people, in the vege world?'],
+      hard: ['Like two ___ in a pod'],
     },
     {
       answer: 'SALT',
       easy: ['White seasoning in a shaker', 'White crystals sprinkled on food', 'Sea water tastes of this'],
-      hard: ['Pepper\'s partner; it\'s in the sea', 'Take it with a pinch of ___'],
+      hard: ['Pepper\'s partner?', 'Take it with a pinch of ___'],
     },
     {
       answer: 'BEANS',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'FRUIT',
       easy: ['Apples, pears and plums', 'Healthy snack that grows on trees and vines', 'Sweet part of a plant that holds the seeds'],
-      hard: ['Reward of hard work, or of a tree', 'Bear ___ (finally pay off)'],
+      hard: ['Bear ___ (finally pay off)'],
     },
     {
       answer: 'VEGES',
@@ -157,12 +157,12 @@ const theme: Theme = {
     {
       answer: 'DAIRY',
       easy: ['Section for milk, cheese and butter', 'Kind of farm with a milking shed', 'Food made from cow\'s milk'],
-      hard: ['Kiwi corner shop; the milk aisle', '___-free (no milk at all)'],
+      hard: ['Kiwi corner shop, or milk and cheese?', '___-free (no milk at all)'],
     },
     {
       answer: 'BASKET',
       easy: ['Handheld carrier for a few items', 'Woven carrier for a picnic', 'Little Red Riding Hood carried one'],
-      hard: ['Netball hoop; a shopper\'s carry-all', 'Wicker thing you might put all your eggs in'],
+      hard: ['Shopper\'s hand-held carrier?', 'Wicker thing you might put all your eggs in'],
     },
     {
       answer: 'CHEESE',
@@ -177,12 +177,12 @@ const theme: Theme = {
     {
       answer: 'CEREAL',
       easy: ['Breakfast in a box, like cornflakes', 'Crunchy breakfast poured into a bowl', 'Weet-Bix or cornflakes, for example'],
-      hard: ['Brekkie that sounds like a TV show in parts?', 'Box that rattles at breakfast'],
+      hard: ['Box that rattles at breakfast'],
     },
     {
       answer: 'PACKET',
       easy: ['Bag of chips or biscuits', 'Small paper bag of seeds', 'Two-minute noodles come in one'],
-      hard: ['Small parcel; a lot of money, informally', 'Cost a ___ (be very expensive)'],
+      hard: ['Cost a ___ (be very expensive)'],
     },
     {
       answer: 'CARTON',
@@ -192,12 +192,12 @@ const theme: Theme = {
     {
       answer: 'BOTTLE',
       easy: ['Glass or plastic drink container', 'A baby drinks milk from one', 'Message in a ___, washed up on the beach'],
-      hard: ['Courage, informally; milk holder', '___ it up (hide your feelings)'],
+      hard: ['___ it up (hide your feelings)'],
     },
     {
       answer: 'CHANGE',
       easy: ['Coins you get back after paying', 'Swap one thing for another', 'Get dressed in different clothes'],
-      hard: ['Make a difference; coins back from the till', 'A ___ is as good as a holiday'],
+      hard: ['Coins back from the till, or get into other clothes?', 'A ___ is as good as a holiday'],
     },
     {
       answer: 'TROLLEY',
@@ -222,7 +222,7 @@ const theme: Theme = {
     {
       answer: 'SCANNER',
       easy: ['Beeping reader at the checkout', 'Machine that copies a page into a computer', 'Airport machine that checks your bags'],
-      hard: ['Self-checkout gadget that reads stripes', 'Reader that only skims?'],
+      hard: ['Self-checkout gadget that reads stripes'],
     },
     {
       answer: 'CASHIER',
@@ -232,12 +232,12 @@ const theme: Theme = {
     {
       answer: 'FREEZER',
       easy: ['Icy cabinet for ice cream and frozen peas', 'Very cold part of the fridge', 'Where ice blocks are made'],
-      hard: ['Where fish fingers keep their cool', 'Chest that\'s colder than you\'d think?'],
+      hard: ['Where fish fingers keep their cool'],
     },
     {
       answer: 'CHILLER',
       easy: ['Cold section for milk and yoghurt', 'Cold display cabinet for drinks', 'Spooky film that sends shivers down your spine'],
-      hard: ['Cool cabinet where the butter waits', 'Thriller that keeps the drinks cold?'],
+      hard: ['Cool cabinet where the butter waits'],
     },
     {
       answer: 'BUTCHER',
@@ -247,7 +247,7 @@ const theme: Theme = {
     {
       answer: 'PRODUCE',
       easy: ['Fruit and vegetable section', 'Bring out and show, as a ticket', 'Bees ___ honey'],
-      hard: ['Make; fresh fruit and veg', 'Farm ___ stalls sell fresh fruit and veg by the roadside'],
+      hard: ['Farm ___ stalls sell fresh fruit and veg by the roadside'],
     },
     {
       answer: 'YOGHURT',
@@ -257,12 +257,12 @@ const theme: Theme = {
     {
       answer: 'LOLLIES',
       easy: ['Sweets, as Kiwis call them', 'Sweet treats in a party bag', 'Sweets thrown for kids to scramble after'],
-      hard: ['Pick \'n\' mix goodies from the dairy that rot your teeth?', 'Sugar-rush providers?'],
+      hard: ['Sweets, to a Kiwi?'],
     },
     {
       answer: 'CHECKOUT',
       easy: ['Counter where you pay', 'Self-service ___, where you scan things yourself', 'Time to leave a hotel room'],
-      hard: ['Have a look at, informally; the shop\'s last stop', 'Final step when buying online'],
+      hard: ['Where the beeping happens at the supermarket?', 'Final step when buying online'],
     },
     {
       answer: 'SPECIALS',
@@ -277,7 +277,7 @@ const theme: Theme = {
     {
       answer: 'SAUSAGES',
       easy: ['Meat links for the barbecue', 'Bangers in a bun', 'Snags you grill on the barbie'],
-      hard: ['Snarlers at a sizzle', 'Bangers that don\'t go boom?'],
+      hard: ['Snarlers at a sizzle?', 'Bangers for the barbie?'],
     },
     {
       answer: 'GROCERIES',
@@ -302,7 +302,7 @@ const theme: Theme = {
     {
       answer: 'TOILET PAPER',
       easy: ['Rolls sold in big packs for the loo', 'Soft white rolls in the bathroom', 'Wrap someone in this to make a mummy costume'],
-      hard: ['What pranksters throw over trees when they \'TP\' a house', 'Roll you\'d hate to run out of?'],
+      hard: ['Roll that people panic-bought in 2020?', 'Roll you\'d hate to run out of?'],
     },
     {
       answer: 'PEANUT BUTTER',

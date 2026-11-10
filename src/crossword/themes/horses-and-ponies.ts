@@ -12,22 +12,22 @@ const theme: Theme = {
     {
       answer: 'FOAL',
       easy: ['Baby horse', 'Young horse that still follows its mum', 'Wobbly-legged newborn in the paddock'],
-      hard: ['Born to race, but first it must wobble?', 'Little one who neighs for mum?'],
+      hard: ['Little one who neighs for mum?'],
     },
     {
       answer: 'COLT',
       easy: ['Young male horse', 'Boy foal', 'Frisky young male pony'],
-      hard: ['Lad of the paddock?', 'Young gent with hooves?'],
+      hard: ['Lad of the paddock?'],
     },
     {
       answer: 'FILLY',
       easy: ['Young female horse', 'Girl foal', 'Young female pony, not yet grown'],
-      hard: ['Lass of the paddock?', 'Little miss with a swishy tail?'],
+      hard: ['Lass of the paddock?'],
     },
     {
       answer: 'STALLION',
       easy: ['Adult male horse', 'Father of foals', 'Proud male horse that leads a wild herd'],
-      hard: ['Dad with a long flowing mane?', 'The big boss bloke of the herd?'],
+      hard: ['Boss of the wild herd?'],
     },
     {
       answer: 'MANE',
@@ -37,7 +37,7 @@ const theme: Theme = {
     {
       answer: 'HOOF',
       easy: ['Hard foot of a horse', 'Part of a horse that wears a metal shoe', 'Hard foot that goes clip-clop'],
-      hard: ['Nail a shoe to it, but not on a person\'s foot?', 'Foot that never needs socks?'],
+      hard: ['Foot that never needs socks?'],
     },
     {
       answer: 'NEIGH',
@@ -47,7 +47,7 @@ const theme: Theme = {
     {
       answer: 'WHINNY',
       easy: ['Neigh\'s shakier cousin', 'A horse\'s high-pitched call to its pals across the paddock', 'High, shaky horse call'],
-      hard: ['Sounds like a whinge, but from a horse?', 'Pony\'s giggle?'],
+      hard: ['Horse\'s high, shaky call?'],
     },
     {
       answer: 'TROT',
@@ -57,7 +57,7 @@ const theme: Theme = {
     {
       answer: 'CANTER',
       easy: ['Smooth three-beat horse pace', 'Horse pace faster than a jog but slower than racing', 'Gait between trot and gallop'],
-      hard: ['Rocking-horse motion, but for real?', 'Three-beat dance step for a horse?'],
+      hard: ['Pace between a trot and a gallop?'],
     },
     {
       answer: 'GALLOP',
@@ -67,12 +67,12 @@ const theme: Theme = {
     {
       answer: 'SADDLE',
       easy: ['Leather seat on a horse\'s back', 'What a rider sits on', 'Bike seat, or a horse seat'],
-      hard: ['Back in the ___ (doing it again)', 'Seat that goes for a ride?'],
+      hard: ['Back in the ___ (doing it again)'],
     },
     {
       answer: 'BRIDLE',
       easy: ['Straps on a horse\'s head for steering', 'Leather headpiece that holds the bit', 'Headgear for a riding horse'],
-      hard: ['Headgear with reins, or to bristle with anger?', '___ path (track for riders)'],
+      hard: ['___ path (track for riders)'],
     },
     {
       answer: 'REINS',
@@ -82,7 +82,7 @@ const theme: Theme = {
     {
       answer: 'STIRRUP',
       easy: ['Metal foot rest for a rider', 'Where a rider puts their boots', 'Hoop you step into to climb on a horse'],
-      hard: ['It helps you step up, then holds your foot?', 'Rider\'s footing, hanging on a strap'],
+      hard: ['Rider\'s footing, hanging on a strap'],
     },
     {
       answer: 'HALTER',
@@ -97,12 +97,12 @@ const theme: Theme = {
     {
       answer: 'HARNESS',
       easy: ['Straps that hitch a horse to a wagon', 'Gear for a horse pulling a plough', 'Straps a rock climber wears'],
-      hard: ['Seatbelt for a horse at work?', '___ the power of the wind (put it to use)'],
+      hard: ['___ the power of the wind (put it to use)'],
     },
     {
       answer: 'STABLE',
       easy: ['Building where horses sleep', 'Horse\'s home with a half-door', 'Where you muck out a horse'],
-      hard: ['Steady, or a horse\'s house?', 'Building that doesn\'t wobble?'],
+      hard: ['Steady, or a horse\'s house?'],
     },
     {
       answer: 'GROOM',
@@ -112,7 +112,7 @@ const theme: Theme = {
     {
       answer: 'CURRY COMB',
       easy: ['Rubber brush for loosening dirt from a horse\'s coat', 'Round grooming tool with little rubber teeth', 'Brush you rub in circles on a muddy pony'],
-      hard: ['Spicy dinner plus a hair tidier?', 'Takeaway dish meets hair tool?'],
+      hard: ['Spicy dinner plus a hair tidier?'],
     },
     {
       answer: 'HORSESHOE',
@@ -122,12 +122,12 @@ const theme: Theme = {
     {
       answer: 'NOSEBAG',
       easy: ['Feed sack hung over a horse\'s face', 'Bag a horse eats grain from', 'Lunch sack strapped onto a horse\'s head'],
-      hard: ['Horse\'s lunchbox, worn not carried?', 'Snack sack worn on the face?'],
+      hard: ['Horse\'s lunchbox, worn not carried?'],
     },
     {
       answer: 'PALOMINO',
       easy: ['Golden horse with a pale mane', 'Gold-coated horse with a white tail', 'Honey-coloured horse with a cream mane'],
-      hard: ['Horse dressed all in gold?', 'Golden steed with blonde hair?'],
+      hard: ['Golden steed with blonde hair?'],
     },
     {
       answer: 'CHESTNUT',
@@ -137,22 +137,22 @@ const theme: Theme = {
     {
       answer: 'PIEBALD',
       easy: ['Horse with big black and white patches', 'Black-and-white patchy horse', 'Patchy coat, a bit like a Friesian cow'],
-      hard: ['Pastry with no hair, and a patchy pony?', 'Horse in a black-and-white patchwork coat?'],
+      hard: ['Horse in a black-and-white patchwork coat?'],
     },
     {
       answer: 'SHETLAND',
       easy: ['Tiny, shaggy breed of pony', 'Small, strong pony from islands off Scotland', 'Fluffy little pony breed, great for kids'],
-      hard: ['Pony that shares its name with knitting wool?', 'Wee Scottish pony, big attitude'],
+      hard: ['Wee Scottish pony, big attitude'],
     },
     {
       answer: 'CLYDESDALE',
       easy: ['Huge, hairy-footed Scottish farm horse', 'Giant workhorse with feathery feet', 'Giant draught horse named after a Scottish valley'],
-      hard: ['Gentle giant with fluffy ankles?', 'Scottish heavyweight in furry boots?'],
+      hard: ['Gentle giant with fluffy ankles?'],
     },
     {
       answer: 'SHIRE',
       easy: ['Huge English cart horse breed', 'Giant farm horse with hairy lower legs', 'Country area in England, like a county'],
-      hard: ['Home of hobbits, or a horse?', 'County-sounding heavyweight horse?'],
+      hard: ['Home of hobbits, or a horse?'],
     },
     {
       answer: 'MUSTANG',
@@ -167,92 +167,92 @@ const theme: Theme = {
     {
       answer: 'THOROUGHBRED',
       easy: ['Racehorse breed', 'Fast horse bred for racing', 'Horse breed at most NZ race meetings'],
-      hard: ['Racer with a very fancy family tree?', 'Pure-blooded speedster?'],
+      hard: ['Racehorse with a fancy family tree?'],
     },
     {
       answer: 'PONY CLUB',
       easy: ['Group where young people learn riding', 'Riding group for kids, with rallies and camps', 'Weekend riding group for children'],
-      hard: ['Society for small steeds and young riders?', 'Where kids meet up to rally on horseback?'],
+      hard: ['Where kids meet up to rally on horseback?'],
     },
     {
       answer: 'DRESSAGE',
       easy: ['Horse sport of neat, dance-like moves', 'Riding event judged on precise steps', 'Fancy horse sport sometimes called horse ballet'],
-      hard: ['Horse ballet, but no tutus?', 'Horse dancing for top marks?'],
+      hard: ['Horse ballet, but no tutus?'],
     },
     {
       answer: 'SHOWJUMPING',
       easy: ['Horse sport over coloured fences', 'Event where riders clear poles in an arena', 'Sport with rails, water jumps and a clock'],
-      hard: ['Leaping event for a crowd?', 'Sport where a clear round wins'],
+      hard: ['Sport where a clear round wins'],
     },
     {
       answer: 'RIDER',
       easy: ['Someone on horseback', 'Someone on a bike or a horse', 'Person in a hard hat on a pony'],
-      hard: ['Sits on a horse\'s back and calls the shots?', 'Person who sits up top and holds on'],
+      hard: ['Person who sits up top and holds on'],
     },
     {
       answer: 'JOCKEY',
       easy: ['Small rider in a horse race', 'Racing rider in bright silks', 'Person who rides racehorses for a job'],
-      hard: ['___ for position (push for a better spot)', 'Pilot of a racehorse, who keeps his weight down?'],
+      hard: ['___ for position (push for a better spot)'],
     },
     {
       answer: 'DERBY',
       easy: ['Big race for three-year-old horses', 'Famous kind of horse race', 'Round hard hat, also called a bowler'],
-      hard: ['Local ___ (match between nearby rivals)', 'Bowler hat, or big race?'],
+      hard: ['Bowler hat, or big race?'],
     },
     {
       answer: 'MELBOURNE CUP',
       easy: ['Big Aussie horse race held each November', 'Famous race on the first Tuesday of November', 'Top race at Flemington, Australia'],
-      hard: ['The race that stops a nation across the Tasman', 'Trophy named after a Victorian city?'],
+      hard: ['The race that stops a nation across the Tasman'],
     },
     {
       answer: 'PHAR LAP',
       easy: ['Famous racehorse born in New Zealand', 'Legendary chestnut racehorse of long ago', 'Champion galloper from the 1930s'],
-      hard: ['Champion horse that NZ and Australia both claim', 'Kiwi-born racing legend with a two-word name'],
+      hard: ['Champion horse that NZ and Australia both claim'],
     },
     {
       answer: 'BLACK BEAUTY',
       easy: ['Classic book told by a horse', 'Famous dark horse in an old novel', 'Story of a horse by Anna Sewell'],
-      hard: ['Gorgeous steed who tells his own life story?', 'Lovely dark horse of the bookshelf?'],
+      hard: ['Classic novel told by a horse?'],
     },
     {
       answer: 'HOBBY HORSE',
       easy: ['Toy pony head on a stick', 'Stick toy you trot around on', 'Pet topic someone keeps going on about'],
-      hard: ['Favourite topic you just keep riding?', 'Pastime pony on a pole?'],
+      hard: ['Toy pony on a stick?'],
     },
     {
       answer: 'DARK HORSE',
       easy: ['Surprise winner nobody expected', 'Quiet person with hidden talents', 'Little-known racer who might win'],
-      hard: ['Shadowy steed who surprises us all?', 'Secret talent that comes out of nowhere?'],
+      hard: ['Surprise contender nobody saw coming?'],
     },
     {
       answer: 'GIDDY UP',
       easy: ['Rider\'s call to a horse to get going, starting with G', 'Two-word call to a horse starting with G', 'Cowboy\'s \'let\'s go!\' to his horse'],
-      hard: ['Cry that sets off a horse; it begins with G and ends with a P', 'Cry to wake a sleepy pony, beginning with G'],
+      hard: ['\'___, horsey!\' (cry to get moving)'],
     },
     {
       answer: 'WHOA',
       easy: ['What a rider says to stop', 'Stop!, to a horse', 'Word that tells a horse to slow down'],
-      hard: ['Cowboy\'s brakes word, shouted at a horse?', 'Surprised \'wow\', or a horse\'s stop sign?'],
+      hard: ['Stop, to a horse?'],
     },
     {
       answer: 'NAG',
       easy: ['Old, tired horse', 'Keep on and on asking', 'Pester someone about chores'],
-      hard: ['Pester like an old horse?', 'Keep reminding, and reminding, and reminding'],
+      hard: ['Pester, or an old horse?'],
     },
     {
       answer: 'STEED',
       easy: ['Knight\'s horse', 'Old word for a riding horse', 'Trusty horse in a story'],
-      hard: ['Noble mount in a fairy tale', 'Knight\'s ride, no engine needed?'],
+      hard: ['Noble mount in a fairy tale'],
     },
     {
       answer: 'POLO',
       easy: ['Sport played on horses with mallets', 'Game of hockey on horseback', 'Collared T-shirt named after a horse sport'],
-      hard: ['Sport where you need a good seat and a long stick?', '___ shirt (collared top)'],
+      hard: ['___ shirt (collared top)'],
     },
     {
       answer: 'CARRIAGE',
       easy: ['Fancy coach pulled by horses', 'Cinderella rode to the ball in one', 'Train car for passengers'],
-      hard: ['Pumpkin that turned posh?', 'Horse-drawn ride, or a pram across the Atlantic?'],
+      hard: ['What Cinderella\'s pumpkin became?'],
     },
     {
       answer: 'CART',
@@ -262,22 +262,22 @@ const theme: Theme = {
     {
       answer: 'BUGGY',
       easy: ['Light two-seater pulled by one horse', 'Pushchair for a baby', 'Beach ___ (sandy fun car)'],
-      hard: ['Full of insects, or a pram?', 'Baby\'s wheels, or a pony\'s load'],
+      hard: ['Pram, or a light horse-drawn cart?'],
     },
     {
       answer: 'BUCK',
       easy: ['Kick the back legs high in the air', 'What a wild horse does to throw a rider', 'Slang for a dollar, and a male rabbit\'s name'],
-      hard: ['___ the trend (do the opposite)', 'Bronco\'s way of saying get off?'],
+      hard: ['What a bronco does to throw its rider?'],
     },
     {
       answer: 'REAR',
       easy: ['Stand up on the back legs', 'Horse move with front hooves high', 'Opposite of front, at the back end of a stable'],
-      hard: ['Bottom, or a horse\'s stand-up?', 'Back end, or rise up high'],
+      hard: ['Back end, or stand up on hind legs?'],
     },
     {
       answer: 'PRANCE',
       easy: ['Step high and proud', 'Dance about, showing off', 'High-stepping walk of a show pony'],
-      hard: ['Strut like a show-off pony?', 'Springy step of someone very pleased with themselves'],
+      hard: ['Strut like a show-off pony?'],
     },
     {
       answer: 'HANDS',
@@ -287,7 +287,7 @@ const theme: Theme = {
     {
       answer: 'OATS',
       easy: ['Grain horses love to eat', 'Porridge grain', 'Cereal crop fed to horses'],
-      hard: ['Feeling your ___ (full of beans)', 'Porridge before it gets cooked?'],
+      hard: ['Porridge before it gets cooked?'],
     },
     {
       answer: 'HAY',
@@ -297,7 +297,7 @@ const theme: Theme = {
     {
       answer: 'SUGAR CUBE',
       easy: ['Sweet treat a horse takes from your flat hand', 'Small sweet block for a cup of tea', 'Square lump added to a cuppa'],
-      hard: ['Sweet square for a pony?', 'Sweet dice?'],
+      hard: ['Sweet square for a pony?'],
     },
     {
       answer: 'DONKEY',
@@ -307,17 +307,17 @@ const theme: Theme = {
     {
       answer: 'LEAD ROPE',
       easy: ['Line clipped on to walk a pony beside you', 'Cord for tying a horse to a post', 'Line you hold when walking a horse to the paddock'],
-      hard: ['Horse\'s leash?', 'Line for taking a pony walkies?'],
+      hard: ['Horse\'s leash?'],
     },
     {
       answer: 'BAREBACK',
       easy: ['Riding with no saddle', 'With no seat on the horse', 'How a circus rider might stand on a horse'],
-      hard: ['No-frills riding, legs gripping hard?', 'Riding without a seat, ouch?'],
+      hard: ['Riding with no saddle?'],
     },
     {
       answer: 'JODHPURS',
       easy: ['Riding trousers that flare at the hip', 'Snug trousers for pony club, with reinforced inner knees', 'Riding pants worn with long boots'],
-      hard: ['Pants that say you are ready to ride?', 'Horsey trousers with a hard-to-spell name'],
+      hard: ['Riding trousers with a tricky spelling?'],
     },
   ],
 };

@@ -22,22 +22,22 @@ const theme: Theme = {
     {
       answer: 'BERLIN',
       easy: ['Capital of Germany', 'Biggest city in Germany', 'German city with the Brandenburg Gate'],
-      hard: ['City that was once split by a wall', 'Its wall fell, but not with Humpty Dumpty?'],
+      hard: ['City that was once split by a wall'],
     },
     {
       answer: 'MADRID',
       easy: ['Capital of Spain', 'Biggest city in Spain', 'Home of the famous Real ___ football club'],
-      hard: ['Spanish city right in the middle of the country', 'Capital that starts off sounding crazy?'],
+      hard: ['Spanish city right in the middle of the country'],
     },
     {
       answer: 'LISBON',
       easy: ['Capital of Portugal', 'Biggest city in Portugal', 'Hilly seaside city with old yellow trams'],
-      hard: ['Seaside capital famous for custard tarts', 'Portuguese port, but not Porto?'],
+      hard: ['Seaside capital famous for custard tarts'],
     },
     {
       answer: 'DUBLIN',
       easy: ['Capital of Ireland', 'Biggest city in Ireland', 'Irish city with a huge St Patrick\'s Day parade'],
-      hard: ['Irish capital that keeps the Book of Kells under glass?', 'Fair city where Molly Malone sold cockles?'],
+      hard: ['Fair city where Molly Malone sold cockles?'],
     },
     {
       answer: 'ATHENS',
@@ -47,17 +47,17 @@ const theme: Theme = {
     {
       answer: 'VIENNA',
       easy: ['Capital of Austria', 'City on the Danube where Mozart lived', 'Austrian city that gave its name to schnitzel'],
-      hard: ['City of waltzes and fancy cakes', 'Little sausage\'s home town?'],
+      hard: ['City of waltzes and fancy cakes'],
     },
     {
       answer: 'OSLO',
       easy: ['Capital of Norway', 'Biggest city in Norway', 'City where the Nobel Peace Prize is handed out'],
-      hard: ['Short, snowy capital in the land of fjords', 'Viking capital with a short name?'],
+      hard: ['Short, snowy capital in the land of fjords'],
     },
     {
       answer: 'STOCKHOLM',
       easy: ['Capital of Sweden', 'Biggest city in Sweden', 'Swedish capital built across many islands'],
-      hard: ['Sounds like a place to keep the cattle?', 'Capital of meatballs and ABBA?'],
+      hard: ['Capital of meatballs and ABBA?'],
     },
     {
       answer: 'COPENHAGEN',
@@ -72,22 +72,22 @@ const theme: Theme = {
     {
       answer: 'AMSTERDAM',
       easy: ['Capital of the Netherlands', 'Dutch capital', 'City where Anne Frank\'s house is now a museum'],
-      hard: ['City of canals, bikes and tulips', 'Capital that ends with a river barrier?'],
+      hard: ['City of canals, bikes and tulips'],
     },
     {
       answer: 'BRUSSELS',
       easy: ['Capital of Belgium', 'Belgian capital', 'City famous for chocolate and waffles'],
-      hard: ['City that sprouts are named after', 'Capital that rhymes with mussels?'],
+      hard: ['City that sprouts are named after'],
     },
     {
       answer: 'MOSCOW',
       easy: ['Capital of Russia', 'Russian capital', 'City with the Kremlin'],
-      hard: ['City with Red Square at its heart', 'Capital that sounds like a mossy milk-maker?'],
+      hard: ['City with Red Square at its heart'],
     },
     {
       answer: 'WARSAW',
       easy: ['Capital of Poland', 'Biggest city in Poland', 'Polish capital on the Vistula River'],
-      hard: ['Sounds like a battle, then a cutting tool?', 'Capital where the pianist Chopin grew up'],
+      hard: ['Poland\'s capital city'],
     },
     {
       answer: 'PRAGUE',
@@ -97,7 +97,7 @@ const theme: Theme = {
     {
       answer: 'BUDAPEST',
       easy: ['Capital of Hungary', 'Hungarian capital', 'Danube city famous for its hot-spring baths'],
-      hard: ['City of two halves joined by Danube bridges', 'Capital that\'s a flower bud plus a nuisance?'],
+      hard: ['City of two halves joined by Danube bridges'],
     },
     {
       answer: 'EDINBURGH',
@@ -122,37 +122,37 @@ const theme: Theme = {
     {
       answer: 'SEOUL',
       easy: ['Capital of South Korea', 'Biggest city in South Korea', 'Korean capital on the Han River'],
-      hard: ['Sounds like your inner self?', 'Capital of K-pop?'],
+      hard: ['Capital of K-pop?'],
     },
     {
       answer: 'BANGKOK',
       easy: ['Capital of Thailand', 'Biggest city in Thailand', 'Thai capital with golden temples'],
-      hard: ['Capital where tuk-tuks zoom through the traffic', 'Capital that starts with a big noise?'],
+      hard: ['Capital where tuk-tuks zoom through the traffic'],
     },
     {
       answer: 'HANOI',
       easy: ['Capital of Vietnam', 'Vietnamese capital', 'Biggest city in northern Vietnam'],
-      hard: ['Capital of the country famous for pho', 'Capital that starts with a laugh?'],
+      hard: ['Capital of the country famous for pho'],
     },
     {
       answer: 'MANILA',
       easy: ['Capital of the Philippines', 'Filipino capital', 'Capital on a big bay in the Philippines'],
-      hard: ['Sounds like a brown envelope?', 'Capital of a nation of thousands of islands'],
+      hard: ['City that gave its name to a brown envelope', 'Capital of a nation of thousands of islands'],
     },
     {
       answer: 'NEW DELHI',
       easy: ['Capital of India', 'Indian capital', 'Capital of the land of the Taj Mahal'],
-      hard: ['Sounds like a just-opened sandwich shop?', 'Capital for a cricket-mad billion?'],
+      hard: ['India\'s capital city'],
     },
     {
       answer: 'CAIRO',
       easy: ['Capital of Egypt', 'Egyptian capital', 'Biggest city on the River Nile'],
-      hard: ['Capital next door to the pyramids', 'Mummy\'s big-city home?'],
+      hard: ['Capital next door to the pyramids'],
     },
     {
       answer: 'NAIROBI',
       easy: ['Capital of Kenya', 'Kenyan capital', 'Big city where many East African safaris begin'],
-      hard: ['City where lions roam a park on the edge of town', 'Capital of the land of the Maasai?'],
+      hard: ['Kenya\'s capital, with a national park at its edge'],
     },
     {
       answer: 'CANBERRA',
@@ -167,22 +167,22 @@ const theme: Theme = {
     {
       answer: 'OTTAWA',
       easy: ['Capital of Canada', 'Canadian capital', 'Capital of the maple leaf country'],
-      hard: ['Canadian capital that isn\'t Toronto', 'Capital where Mounties stand guard?'],
+      hard: ['Canadian capital that isn\'t Toronto'],
     },
     {
       answer: 'WASHINGTON',
       easy: ['Capital of the United States', 'US capital, home of the White House', 'City where the US President lives'],
-      hard: ['Capital that sounds like a heavy laundry load?', 'America\'s first president, or its capital'],
+      hard: ['America\'s first president, or its capital'],
     },
     {
       answer: 'MEXICO CITY',
       easy: ['Capital of the country just south of the USA', 'Huge Spanish-speaking capital south of Texas', 'Capital of the land of tacos and mariachi bands'],
-      hard: ['Giant capital that\'s slowly sinking into an ancient lake bed', 'Old Aztec capital, now a giant metropolis'],
+      hard: ['Old Aztec capital, now a giant metropolis'],
     },
     {
       answer: 'HAVANA',
       easy: ['Capital of Cuba', 'Cuban capital', 'Cuba\'s capital, known for its seafront Malecón'],
-      hard: ['Caribbean city of old cars and salsa', 'Capital that sounds like \'have a nana\'?'],
+      hard: ['Caribbean city of old cars and salsa'],
     },
     {
       answer: 'LIMA',
@@ -197,17 +197,17 @@ const theme: Theme = {
     {
       answer: 'SANTIAGO',
       easy: ['Capital of Chile', 'Chilean capital', 'City at the foot of the Andes in Chile'],
-      hard: ['Saint\'s-name city in a skinny country', 'Capital of a country that sounds spicy?'],
+      hard: ['Capital of a long, skinny South American country?'],
     },
     {
       answer: 'SUVA',
       easy: ['Capital of Fiji', 'Fijian capital', 'Biggest city in Fiji'],
-      hard: ['Bula! Harbour capital on Viti Levu', 'Capital of the rugby sevens magicians?'],
+      hard: ['Fiji\'s capital, on the island of Viti Levu'],
     },
     {
       answer: 'APIA',
       easy: ['Capital of Samoa', 'Samoan capital', 'Main town of Samoa'],
-      hard: ['Talofa! Harbour capital of Upolu', 'Capital of Manu Samoa\'s homeland'],
+      hard: ['Capital of Manu Samoa\'s homeland'],
     },
     {
       answer: 'KYIV',

@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'PAGE',
       easy: ['One sheet of a book, with a number at the bottom', 'Turn this to find out what happens next', 'Single side of paper in a magazine or exercise book'],
-      hard: ['Front ___ news', 'Little lad at a wedding: ___ boy'],
+      hard: ['Front ___ news'],
     },
     {
       answer: 'SPINE',
@@ -32,12 +32,12 @@ const theme: Theme = {
     {
       answer: 'READ',
       easy: ['Look at the words in a book', 'What you do with a menu or a road sign', 'Learn to ___ and write at school'],
-      hard: ['Sounds like a colour once it\'s in the past?', 'Can you ___ my mind?'],
+      hard: ['Can you ___ my mind?'],
     },
     {
       answer: 'PLOT',
       easy: ['What happens in a story', 'Storyline of a book or film', 'Mark points on a graph or a map'],
-      hard: ['Vegetable patch; villain\'s scheme', 'The ___ thickens! (things get exciting)'],
+      hard: ['Storyline, or a patch of garden?', 'The ___ thickens! (things get exciting)'],
     },
     {
       answer: 'HERO',
@@ -52,12 +52,12 @@ const theme: Theme = {
     {
       answer: 'LOAN',
       easy: ['Something borrowed for a while', 'Money borrowed from a bank', 'On ___ (borrowed for now)'],
-      hard: ['Library borrowing that sounds solitary?', 'What a lender hopes will come back?'],
+      hard: ['What a lender hopes will come back?'],
     },
     {
       answer: 'SHELF',
       easy: ['Flat board where books are kept', 'Ledge on a wall for ornaments and photos', 'Where groceries sit in a supermarket aisle'],
-      hard: ['Where you put plans you postpone', 'Off-the-___ (ready-made)'],
+      hard: ['Off-the-___ (ready-made)'],
     },
     {
       answer: 'INDEX',
@@ -82,7 +82,7 @@ const theme: Theme = {
     {
       answer: 'GENRE',
       easy: ['Type of story, like mystery or fantasy', 'Style of music, like hip-hop or jazz', 'Word for a kind of book or film, like comedy'],
-      hard: ['Romance or horror, e.g.', 'French-sounding word for \'type\', as in romance or crime fiction'],
+      hard: ['Romance or horror, e.g.'],
     },
     {
       answer: 'COVER',
@@ -102,7 +102,7 @@ const theme: Theme = {
     {
       answer: 'COMIC',
       easy: ['Book of stories told in pictures and speech bubbles', 'Magazine full of cartoon strips', 'Funny and silly, like a clown\'s act'],
-      hard: ['Funny person; strip of panels', 'Where \'BAM!\' and \'POW!\' appear in bubbles'],
+      hard: ['Funny person, or a book of cartoon strips?', 'Where \'BAM!\' and \'POW!\' appear in bubbles'],
     },
     {
       answer: 'DIARY',
@@ -112,7 +112,7 @@ const theme: Theme = {
     {
       answer: 'VERSE',
       easy: ['A line or section of a poem', 'Rhyming words written inside a birthday card', 'Poetry, rather than everyday sentences'],
-      hard: ['Bit of a song between choruses', 'Second ___, same as the first (singalong line)'],
+      hard: ['Bit of a song between choruses'],
     },
     {
       answer: 'STORY',
@@ -172,7 +172,7 @@ const theme: Theme = {
     {
       answer: 'DUE DATE',
       easy: ['Day your library book should be returned', 'Day by which homework must be handed in', 'Last day to pay a bill'],
-      hard: ['Deadline stamped inside the back cover', 'When the stork is expected?'],
+      hard: ['Deadline stamped inside the back cover'],
     },
     {
       answer: 'HARDBACK',
@@ -187,7 +187,7 @@ const theme: Theme = {
     {
       answer: 'BOOKMARK',
       easy: ['Keeps your place between pages', 'Strip of card or ribbon tucked in to save your spot', 'Use one of these, not a folded corner, to save your page'],
-      hard: ['Saved spot, in print or in a web browser', 'Sticks out of a half-read novel like a tongue?'],
+      hard: ['Saved spot, in print or in a web browser'],
     },
     {
       answer: 'LIBRARIAN',
@@ -212,7 +212,7 @@ const theme: Theme = {
     {
       answer: 'CATALOGUE',
       easy: ['List of everything the library holds', 'Booklet of toys for sale before Christmas', 'Make a list of every item in a collection'],
-      hard: ['Search tool for a book\'s call number', 'A ___ of errors (long string of blunders)'],
+      hard: ['Library\'s list of every book it holds?'],
     },
     {
       answer: 'BESTSELLER',

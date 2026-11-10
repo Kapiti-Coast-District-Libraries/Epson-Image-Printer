@@ -42,17 +42,17 @@ const theme: Theme = {
     {
       answer: 'LENS',
       easy: ['Glass in a magnifying glass', 'Curved glass in spectacles', 'Clear disc some people wear in their eye instead of glasses'],
-      hard: ['Camera part that\'s always focused?', 'Telephoto or zoom, e.g.'],
+      hard: ['Telephoto or zoom, e.g.'],
     },
     {
       answer: 'SLEUTH',
       easy: ['Another word for a detective', 'Nancy Drew or the Hardy Boys, for example', 'Someone who loves finding out whodunnit'],
-      hard: ['Snoop who sniffs out the truth', 'Seeker of the truth whose name rhymes with it?'],
+      hard: ['Snoop who sniffs out the truth'],
     },
     {
       answer: 'SHERLOCK',
       easy: ['First name of the world\'s most famous detective', 'First name of the pipe-smoking genius of Baker Street', 'Enola\'s clever big brother, in the films'],
-      hard: ['Holmes, to his friends', 'Cumberbatch\'s best-known TV role'],
+      hard: ['Holmes, to his friends'],
     },
     {
       answer: 'HOLMES',
@@ -76,13 +76,13 @@ const theme: Theme = {
     },
     {
       answer: 'INSPECTOR',
-      easy: ['Police rank above sergeant, as held by TV\'s Morse', 'Person whose job is checking things carefully', 'Ticket ___ on the train'],
+      easy: ['Police rank above sergeant', 'Person whose job is checking things carefully', 'Ticket ___ on the train'],
       hard: ['Rank for Gadget, the cartoon detective', 'Clouseau of The Pink Panther, for one'],
     },
     {
       answer: 'POLICE',
       easy: ['People who keep law and order', 'Force with cars that flash red and blue lights', 'Officers who catch criminals and keep the peace'],
-      hard: ['Keep order over, as a referee might a match', 'The long arm of the law'],
+      hard: ['The long arm of the law'],
     },
     {
       answer: 'MYSTERY',
@@ -92,7 +92,7 @@ const theme: Theme = {
     {
       answer: 'HUNCH',
       easy: ['Feeling you have without proof', 'A guess you can\'t quite explain', 'Detective\'s feeling about a suspect, with no proof yet'],
-      hard: ['Gut feeling; stoop over', 'Play a ___ (go with your gut)'],
+      hard: ['Gut feeling?', 'Play a ___ (go with your gut)'],
     },
     {
       answer: 'WITNESS',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'ROBBER',
       easy: ['Crook who holds up a bank', 'Person who steals, maybe wearing a mask', 'Crook who shouts \'Hand over the money!\''],
-      hard: ['One chased by cops in a playground game', '___ baron (a greedy rich boss)'],
+      hard: ['One chased by cops in a playground game'],
     },
     {
       answer: 'HEIST',
@@ -137,7 +137,7 @@ const theme: Theme = {
     {
       answer: 'KEY',
       easy: ['It opens a lock', 'Button you press when typing', 'List explaining the symbols on a map'],
-      hard: ['Crucial; one of 88 on a piano', 'Low-___ (quiet and relaxed)'],
+      hard: ['Lock opener, or a piano note?', 'Low-___ (quiet and relaxed)'],
     },
     {
       answer: 'FOOTPRINT',
@@ -162,7 +162,7 @@ const theme: Theme = {
     {
       answer: 'NOTEBOOK',
       easy: ['Little book a detective writes clues in', 'Book of blank pages for writing', 'Place for your homework or doodles'],
-      hard: ['Spiral-bound place for jottings', 'Reporter\'s pad, or a little laptop'],
+      hard: ['Spiral-bound place for jottings'],
     },
     {
       answer: 'BUTLER',
@@ -227,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'PUZZLE',
       easy: ['Problem to work out', 'Brain-teaser like a sudoku', 'Jigsaw, crossword and sudoku are all this kind of challenge'],
-      hard: ['Jigsaw; leave scratching heads', 'Rubik\'s Cube, e.g.'],
+      hard: ['Jigsaw or crossword?', 'Rubik\'s Cube, e.g.'],
     },
     {
       answer: 'SECRET',

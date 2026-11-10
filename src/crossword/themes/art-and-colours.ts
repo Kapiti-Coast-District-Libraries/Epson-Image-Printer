@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'HUE',
       easy: ['Another word for colour', 'Shade or tint, in one short word', 'A pinkish ___ (a touch of colour)'],
-      hard: ['Colour that sounds like Wolverine actor Jackman\'s first name?', 'Rainbow\'s every ___, from red to violet'],
+      hard: ['Rainbow\'s every ___, from red to violet'],
     },
     {
       answer: 'INK',
@@ -72,7 +72,7 @@ const theme: Theme = {
     {
       answer: 'DRAW',
       easy: ['Make a picture with a pencil', 'Use felt pens to make a picture', 'Pull the winning raffle ticket out of a hat'],
-      hard: ['Tie in a match; pull the curtains', 'Quick on the ___ (fast to react)'],
+      hard: ['Tie in a match, or sketch with a pencil?', 'Quick on the ___ (fast to react)'],
     },
     {
       answer: 'SHADE',
@@ -177,7 +177,7 @@ const theme: Theme = {
     {
       answer: 'COLLAGE',
       easy: ['Picture made by gluing scraps', 'Picture made from magazine cut-outs', 'Lots of photos stuck together on one board'],
-      hard: ['Cut-and-paste art', 'Glue-and-scissors art, one vowel off a place of study?'],
+      hard: ['Cut-and-paste art'],
     },
     {
       answer: 'ORIGAMI',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'CARVING',
       easy: ['Art of shaping wood or stone', 'Māori art seen on the walls of a wharenui', 'Cutting a face into a pumpkin at Halloween'],
-      hard: ['Whittling; the Sunday roast job', 'Making your mark in a block of wood?'],
+      hard: ['Whittling, or the Sunday roast job?', 'Making your mark in a block of wood?'],
     },
     {
       answer: 'SCARLET',

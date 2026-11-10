@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'HAPPY',
       easy: ['Feeling good and smiley', 'Feeling a smile on your face all day long', 'Mood at a birthday party with cake'],
-      hard: ['Many ___ returns, on your birthday', 'As ___ as a clam, they say?'],
+      hard: ['Many ___ returns, on your birthday'],
     },
     {
       answer: 'SAD',
@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'GLAD',
       easy: ['Pleased', 'Rhymes with mad and feels much sunnier', 'Feeling when your best mate turns up for a sleepover'],
-      hard: ['Thankful, as in \'I\'m ___ you came\'', 'Not mad, but ___ to see you back?'],
+      hard: ['Thankful, as in \'I\'m ___ you came\''],
     },
     {
       answer: 'JOY',
@@ -37,7 +37,7 @@ const theme: Theme = {
     {
       answer: 'SHY',
       easy: ['Quiet and nervous around new people', 'Like a mouse hiding behind mum\'s legs', 'Not one to be the centre of attention'],
-      hard: ['Coconut ___, a fairground throw', 'Don\'t be ___, come and join in!'],
+      hard: ['Don\'t be ___, come and join in!'],
     },
     {
       answer: 'PROUD',
@@ -47,12 +47,12 @@ const theme: Theme = {
     {
       answer: 'BORED',
       easy: ['Nothing to do, and fed up', 'Yawning on a long car trip with nothing to see', 'What a rainy Sunday with no telly can make you feel'],
-      hard: ['Drilled through; fed up and restless', 'Counting ceiling tiles, with a big yawn?'],
+      hard: ['Counting ceiling tiles, with a big yawn?'],
     },
     {
       answer: 'BRAVE',
       easy: ['Not scared to face danger', 'Like a superhero rushing into danger', 'Like a lion standing up to the playground bully'],
-      hard: ['Fearless, or a Pixar film about an archery princess?', 'Fearless knight with a heart of gold?'],
+      hard: ['Fearless, or a Pixar film about an archery princess?'],
     },
     {
       answer: 'LOVE',
@@ -62,17 +62,17 @@ const theme: Theme = {
     {
       answer: 'HOPE',
       easy: ['Wishing something good will happen', 'What you have when you wish on a star', 'Good feeling that keeps you going when things are tough'],
-      hard: ['Fingers-crossed feeling', '___ springs eternal, as the poet said?'],
+      hard: ['Fingers-crossed feeling'],
     },
     {
       answer: 'GRIEF',
       easy: ['Deep sorrow after a loss', 'Heavy heartache after a pet dies', 'Mourning, as after a funeral'],
-      hard: ['Good ___!, an exclamation of surprise', 'Come to ___ (end in disaster)'],
+      hard: ['Good ___!, an exclamation of surprise'],
     },
     {
       answer: 'WORRY',
       easy: ['Feel anxious about what might happen', 'Lying awake at night thinking about tomorrow\'s test', 'Thought that keeps spinning round and round in your tummy'],
-      hard: ['Pester, as a dog does a bone', 'Don\'t ___ your pretty head about it'],
+      hard: ['Don\'t ___ your pretty head about it'],
     },
     {
       answer: 'ENVY',
@@ -87,7 +87,7 @@ const theme: Theme = {
     {
       answer: 'SHAME',
       easy: ['Embarrassed feeling of having done wrong', 'Hot cheeks after being unkind', 'Painful feeling of disgrace over something you did'],
-      hard: ['What a ___! (Too bad!)', 'Naughty! ___ on you!'],
+      hard: ['What a ___! (Too bad!)', '\'___ on you!\' (You should know better)'],
     },
     {
       answer: 'CROSS',
@@ -97,22 +97,22 @@ const theme: Theme = {
     {
       answer: 'UPSET',
       easy: ['Unhappy and troubled', 'Tummy-churning feeling after a fall-out with a mate', 'Hurt and unhappy after a row with a friend'],
-      hard: ['Underdog\'s shock win', 'Spill the tea, or tip the apple cart?'],
+      hard: ['Tip over, or tearful?'],
     },
     {
       answer: 'RAGE',
       easy: ['Extreme anger', 'Stomping, yelling, red-faced anger', 'Anger that makes you want to smash things up'],
-      hard: ['All the ___, very fashionable', 'Road ___, cars honking at each other?'],
+      hard: ['Road ___, cars honking at each other?'],
     },
     {
       answer: 'PANIC',
       easy: ['Sudden wild fear', 'Flapping about in a sudden scary moment', 'Heart racing and can\'t think straight, all at once'],
-      hard: ['Don\'t ___! (Keep your cool)', 'Cool as a cucumber, until a ___ attack?'],
+      hard: ['Don\'t ___! (Keep your cool)', '___ button (press it in an emergency)'],
     },
     {
       answer: 'DREAD',
       easy: ['Big fear of what\'s coming', 'Icky feeling about going to the dentist', 'Scary feeling when you know a big test is coming up'],
-      hard: ['Rasta lock, for short', '___locks, a hairdo that\'s hard to brush?'],
+      hard: ['Fear of what\'s coming?'],
     },
     {
       answer: 'BLISS',
@@ -122,7 +122,7 @@ const theme: Theme = {
     {
       answer: 'AROHA',
       easy: ['Te reo word for love and compassion', 'Te reo word for the warm feeling you give your whānau', 'Kiwi kids learn this word in te reo class'],
-      hard: ['Kindness and care, in te reo Māori', 'Hearts and hugs, in one Māori word?'],
+      hard: ['Kindness and care, in te reo Māori', 'Love and compassion, in te reo Māori'],
     },
     {
       answer: 'GRUMPY',
@@ -142,22 +142,22 @@ const theme: Theme = {
     {
       answer: 'STOKED',
       easy: ['Kiwi slang for really pleased', 'Pumped up before a big match, Kiwi style', 'Kiwi surfer\'s word for thrilled after a great wave'],
-      hard: ['Fed the fire; over the moon, Kiwi-style', 'Poked the fire, or very pleased, Kiwi-style?'],
+      hard: ['Very pleased, Kiwi-style?'],
     },
     {
       answer: 'GUTTED',
       easy: ['Kiwi slang for very disappointed', 'Really let down after losing the cup final', 'Crushed feeling after a big plan falls through'],
-      hard: ['Cleaned, like a fish; or crushed, like a Kiwi who lost the final?', 'Left with no guts after the final whistle?'],
+      hard: ['Really disappointed, Kiwi-style?'],
     },
     {
       answer: 'AMAZED',
       easy: ['Very surprised', 'Wide-eyed, like after a magic trick', 'Feeling when you see the Milky Way for the first time'],
-      hard: ['Astonished, or sounds like being in a hedge puzzle?', 'Jaw on the floor, eyes like dinner plates?'],
+      hard: ['Jaw on the floor, eyes like dinner plates?'],
     },
     {
       answer: 'JEALOUS',
       easy: ['Wanting what your sister got, and not liking it', 'Sulking when your best mate gets picked first', 'Possessive feeling when a friend finds a new pal'],
-      hard: ['What the \'green-eyed monster\' makes you?', 'Like a pet that sulks when you cuddle another?'],
+      hard: ['What the \'green-eyed monster\' makes you?'],
     },
     {
       answer: 'NERVOUS',
@@ -177,7 +177,7 @@ const theme: Theme = {
     {
       answer: 'ANXIOUS',
       easy: ['Worried and uneasy', 'Fretting while you wait for a big phone call', 'Stomach in knots, waiting to hear how it went'],
-      hard: ['On tenterhooks', 'Like a parent awake until the late teen gets home?'],
+      hard: ['Worried and on edge?'],
     },
     {
       answer: 'CURIOUS',
@@ -197,27 +197,27 @@ const theme: Theme = {
     {
       answer: 'EMPATHY',
       easy: ['Feeling what someone else feels', 'Imagining how a sad friend feels from the inside', 'Being kind and understanding when someone\'s hurt'],
-      hard: ['Walking in another\'s shoes', 'Feels the ouch when your mate bumps their knee'],
+      hard: ['Walking in another\'s shoes'],
     },
     {
       answer: 'CHEERFUL',
       easy: ['Bright and happy', 'Smiles on every face and singing in the shower', 'Like a jolly grandad waving at you from the gate'],
-      hard: ['Sunny and chirpy', 'Chipper as a budgie on its best day?'],
+      hard: ['Sunny and chirpy'],
     },
     {
       answer: 'GRATEFUL',
       easy: ['Appreciative when a stranger returns your lost purse', 'Saying thanks with a big smile to a friend', 'Feeling when someone helps you out of a sticky spot'],
-      hard: ['Counting your blessings', 'Like someone who writes a thank-you card the very next day?'],
+      hard: ['Counting your blessings'],
     },
     {
       answer: 'CONFUSED',
       easy: ['Not understanding', 'Mixed-up feeling when you can\'t follow the instructions', 'Like when you\'re lost, and the map is upside down'],
-      hard: ['Scratching your head, puzzled', 'Lost the plot, the thread and the map?'],
+      hard: ['Scratching your head, puzzled'],
     },
     {
       answer: 'HOMESICK',
       easy: ['Missing your family while away', 'Aching for Mum and Dad when you\'re at a sleepover', 'Feeling blue on your first night at camp'],
-      hard: ['Longing for your own bed at camp', 'Pining for your pillow, far from the nest?'],
+      hard: ['Longing for your own bed at camp'],
     },
     {
       answer: 'RELIEVED',
@@ -227,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'THRILLED',
       easy: ['Excited and delighted after being picked for the school play', 'Buzzing after a surprise party you didn\'t see coming', 'Beaming and bouncing as the final whistle confirms your win'],
-      hard: ['Wowed by the big dipper, in the best way?', 'Tickled pink, you might say?'],
+      hard: ['Over the moon?', 'Tickled pink, you might say?'],
     },
     {
       answer: 'CONFIDENT',
@@ -237,12 +237,12 @@ const theme: Theme = {
     {
       answer: 'SURPRISED',
       easy: ['Taken aback by something you didn\'t see coming', 'Wide-eyed when your friends jump out and shout \'Boo!\'', 'Not expecting that! How a sudden \'Happy birthday!\' leaves you'],
-      hard: ['Caught off guard', 'Like a jack-in-the-box, out of the blue?'],
+      hard: ['Caught off guard'],
     },
     {
       answer: 'FRUSTRATED',
       easy: ['Annoyed when things won\'t work', 'Stuck on a tricky jigsaw, you want to throw it', 'Like when your bike chain keeps coming off'],
-      hard: ['Thwarted at every turn', 'Hitting a brick wall again and again?'],
+      hard: ['Hitting a brick wall again and again?'],
     },
     {
       answer: 'EMBARRASSED',

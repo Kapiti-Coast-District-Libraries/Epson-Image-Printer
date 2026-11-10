@@ -7,12 +7,12 @@ const theme: Theme = {
     {
       answer: 'CINDERELLA',
       easy: ['Girl who lost her slipper at the ball', 'Girl who married the prince after the ball', 'Girl made to sweep up ashes by her stepsisters'],
-      hard: ['Sooty-named girl who made a midnight dash', 'Princess whose shoe size settled everything?'],
+      hard: ['Girl who dashed from the ball at midnight?', 'Princess whose shoe size settled everything?'],
     },
     {
       answer: 'GLASS SLIPPER',
       easy: ['Shoe left behind on the palace stairs', 'Shoe the prince used to find his bride', 'Fragile shoe a fairy gave Cinderella'],
-      hard: ['See-through shoe that only fit one foot', 'Shoe that should come with a \'fragile\' sticker?'],
+      hard: ['See-through shoe that only fit one foot'],
     },
     {
       answer: 'PUMPKIN',
@@ -42,7 +42,7 @@ const theme: Theme = {
     {
       answer: 'APPLE',
       easy: ['Poisoned fruit in Snow White', 'Red or green fruit with a core', 'Fruit you bob for at a party'],
-      hard: ['One a day keeps the doctor away, but not this one', 'The Big ___ (nickname for New York)'],
+      hard: ['Poisoned fruit that put Snow White to sleep?', 'The Big ___ (nickname for New York)'],
     },
     {
       answer: 'RAPUNZEL',
@@ -52,7 +52,7 @@ const theme: Theme = {
     {
       answer: 'TOWER',
       easy: ['Tall building with no door in Rapunzel', 'Tall narrow part of a castle', 'Auckland\'s Sky ___'],
-      hard: ['High room with a hairy way in?', 'Leaning ___ of Pisa, the Italian landmark'],
+      hard: ['Leaning ___ of Pisa, the Italian landmark'],
     },
     {
       answer: 'HANSEL',
@@ -72,7 +72,7 @@ const theme: Theme = {
     {
       answer: 'WITCH',
       easy: ['Wicked woman in the sweet house in the woods', 'Woman in a pointy hat who rides a broom', 'Spell-caster with a black cat and a cauldron'],
-      hard: ['Broomstick rider who sounds like a question?', 'Cackler with a hat and a hex?'],
+      hard: ['Cackler with a hat and a hex?'],
     },
     {
       answer: 'WOLF',
@@ -92,37 +92,37 @@ const theme: Theme = {
     {
       answer: 'GOLDILOCKS',
       easy: ['Girl who visited the three bears', 'Girl who broke Baby Bear\'s chair', 'Fair-haired girl who slept in a bear\'s bed'],
-      hard: ['Her name now means "just right"', 'Blonde break-in artist of storybooks?'],
+      hard: ['Girl who tried three bowls, chairs and beds?'],
     },
     {
       answer: 'PORRIDGE',
       easy: ['Hot breakfast in the bears\' bowls', 'Oats cooked with milk for breakfast', 'Hot cereal you might top with brown sugar'],
-      hard: ['Too hot, too cold, then just right', 'Stodgy stuff that sticks to your ribs?'],
+      hard: ['Too hot, too cold, then just right'],
     },
     {
       answer: 'BEARS',
       easy: ['Goldilocks met three of these', 'Big furry animals that sleep through winter', 'Grizzly and polar animals'],
-      hard: ['Teddies\' wild cousins', 'He grins and ___ it'],
+      hard: ['Teddies\' wild cousins', 'Three of them came home to find Goldilocks?'],
     },
     {
       answer: 'BEANSTALK',
       easy: ['Giant plant Jack climbed', 'Tall stem that grew overnight from a seed', 'Plant stem that reached the clouds'],
-      hard: ['Green ladder up to the clouds', 'Veggie that really went up in the world?'],
+      hard: ['Green ladder up to the clouds'],
     },
     {
       answer: 'MAGIC BEANS',
       easy: ['Seeds Jack got for his cow', 'Tiny seeds that grew sky-high overnight', 'What Jack\'s mum threw out the window'],
-      hard: ['Seeds from a bad swap that paid off sky-high', 'Jack\'s very fast-growing purchase?'],
+      hard: ['Jack\'s very fast-growing purchase?'],
     },
     {
       answer: 'GIANT',
       easy: ['Huge man at the top of the beanstalk', 'Huge person in fairy stories', 'Enormous; very, very big'],
-      hard: ['Fee-fi-fo-fum shouter', 'BFG\'s last word?'],
+      hard: ['Fee-fi-fo-fum shouter'],
     },
     {
       answer: 'GOLDEN GOOSE',
       easy: ['Bird whose eggs were made of gold', 'Bird in a fairy tale that made its owner rich', 'Farmyard bird whose eggs were treasure'],
-      hard: ['Never kill this money-maker, says the saying', 'Cash cow, if it were a bird?'],
+      hard: ['Never kill this money-maker, says the saying'],
     },
     {
       answer: 'TORTOISE',
@@ -132,7 +132,7 @@ const theme: Theme = {
     {
       answer: 'HARE',
       easy: ['Fast animal that napped and lost the race', 'Animal like a big rabbit with long ears', 'Long-eared speedster that lives in a field'],
-      hard: ['Speedy loser that sounds like it grows on your head?', 'March ___ (Mad Hatter\'s tea guest)'],
+      hard: ['Speedy loser of the famous race?', 'March ___ (Mad Hatter\'s tea guest)'],
     },
     {
       answer: 'FOX',
@@ -152,7 +152,7 @@ const theme: Theme = {
     {
       answer: 'GRASSHOPPER',
       easy: ['Insect who played all summer', 'Green jumping insect that chirps in summer', 'Insect with big back legs for leaping'],
-      hard: ['Lawn leaper who forgot about winter', 'Green jumper that sings with its legs?'],
+      hard: ['Lawn leaper who forgot about winter'],
     },
     {
       answer: 'LION',
@@ -167,7 +167,7 @@ const theme: Theme = {
     {
       answer: 'UGLY DUCKLING',
       easy: ['Bird teased by others, which grew into a swan', 'Grey baby bird left out by the others in the farmyard', 'Chick that didn\'t look like its brothers and sisters'],
-      hard: ['Late bloomer with webbed feet', 'Plain kid who grows up gorgeous, so to speak?'],
+      hard: ['Late bloomer with webbed feet'],
     },
     {
       answer: 'PEA',
@@ -177,22 +177,22 @@ const theme: Theme = {
     {
       answer: 'PRINCESS',
       easy: ['King\'s daughter in many fairy tales', 'Daughter of a king and queen', 'Royal girl who might wear a tiara'],
-      hard: ['Royal girl who couldn\'t sleep on a pea', 'Spoilt girl who\'s been treated like royalty?'],
+      hard: ['Royal girl who couldn\'t sleep on a pea'],
     },
     {
       answer: 'EMPEROR',
       easy: ['Ruler fooled into wearing no clothes', 'Ruler of ancient Rome or of Japan', 'Ruler like Napoleon'],
-      hard: ['Ruler; biggest kind of penguin', 'Ruler of an empire, outranking every king?'],
+      hard: ['Ruler tricked into parading in no clothes?'],
     },
     {
       answer: 'SNOW QUEEN',
       easy: ['Icy royal who rules a frozen palace in a fairy tale', 'Fairy tale that the film Frozen was loosely based on', 'Wintry ruler in a Hans Christian Andersen tale'],
-      hard: ['Royal who reigns when it\'s flaking outside?', 'Ruler who gives everyone the cold shoulder?'],
+      hard: ['Wintry royal with a palace of ice?'],
     },
     {
       answer: 'THUMBELINA',
       easy: ['Tiny girl no bigger than a thumb', 'Tiny girl who rode on a swallow', 'Little girl who grew inside a flower'],
-      hard: ['Little girl named after a finger', 'Pint-sized heroine who slept in a walnut shell?'],
+      hard: ['Little girl named after a finger'],
     },
     {
       answer: 'FROG PRINCE',
@@ -202,7 +202,7 @@ const theme: Theme = {
     {
       answer: 'PUSS IN BOOTS',
       easy: ['Clever cat in fancy footwear', 'Talking cat who helped his poor master get rich', 'Sword-fighting cat from the Shrek films'],
-      hard: ['Well-shod moggy', 'Cat who\'d never go barefoot?'],
+      hard: ['Cat who\'d never go barefoot?'],
     },
     {
       answer: 'PIED PIPER',
@@ -212,7 +212,7 @@ const theme: Theme = {
     {
       answer: 'RATS',
       easy: ['Pests the Pied Piper led away', 'Long-tailed rodents bigger than mice', 'Pests with long tails in the sewer'],
-      hard: ['Along with stoats, these are trapped to protect NZ birds', 'They leave sinking ships, it\'s said?'],
+      hard: ['They leave sinking ships, it\'s said?'],
     },
     {
       answer: 'ELVES',
@@ -222,17 +222,17 @@ const theme: Theme = {
     {
       answer: 'TROLL',
       easy: ['Grump under the bridge with the billy goats', 'Big ugly creature in Norwegian stories', 'Someone who posts nasty comments online'],
-      hard: ['Billy goats\' bridge grump', 'Monster that turns to stone in sunlight?'],
+      hard: ['Billy goats\' bridge grump'],
     },
     {
       answer: 'GOATS',
       easy: ['The three Billy ___ Gruff', 'Bearded farm animals that climb rocks', 'Farm animals whose milk makes a tangy cheese'],
-      hard: ['Bearded animals that trip-trapped over a bridge', 'Their kids are called kids?'],
+      hard: ['Bearded animals that trip-trapped over a bridge'],
     },
     {
       answer: 'STEPMOTHER',
       easy: ['Mean new mum in many fairy tales', 'Your dad\'s new wife', 'Wicked queen who wasn\'t Snow White\'s real mum'],
-      hard: ['Cinderella\'s wicked parent by marriage', 'Mum by marriage, often unfairly cast as wicked?'],
+      hard: ['Cinderella\'s wicked parent by marriage'],
     },
     {
       answer: 'PIGS',

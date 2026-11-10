@@ -7,17 +7,17 @@ const theme: Theme = {
     {
       answer: 'TENT',
       easy: ['Canvas shelter you sleep in when camping', 'Zip-up shelter you put up at a campsite', 'The big top at a circus is a huge one'],
-      hard: ['Fly-and-pole home for a night', 'Something you pitch without a ball?'],
+      hard: ['Something you pitch without a ball?'],
     },
     {
       answer: 'SLEEPING BAG',
       easy: ['Padded zip-up cocoon for the night', 'Warm sack you wriggle into at bedtime on camp', 'Warm, zipped bed-sack you snuggle into in a tent'],
-      hard: ['Down-filled cocoon rated by degrees', 'Snooze sack?'],
+      hard: ['What you zip yourself into at camp?'],
     },
     {
       answer: 'BACKPACK',
       easy: ['Bag worn on your back', 'Bag a young Kiwi hauls around Europe on their OE', 'School bag worn over both shoulders'],
-      hard: ['Hiker\'s bag that carries the tent, food and spare socks', 'Travel the world on the cheap, gear on your shoulders'],
+      hard: ['Hiker\'s bag that carries the tent, food and spare socks'],
     },
     {
       answer: 'PACK',
@@ -27,17 +27,17 @@ const theme: Theme = {
     {
       answer: 'HUT',
       easy: ['Simple shelter on a tramping track', 'Small rough cabin out in the hills', 'Simple wooden shed'],
-      hard: ['DOC\'s backcountry bunkroom', 'Pizza ___ (food chain)'],
+      hard: ['Tramper\'s bunkhouse in the hills?', 'Pizza ___ (food chain)'],
     },
     {
       answer: 'TRACK',
       easy: ['Path through the bush', 'Oval where runners race on athletics day', 'Rails a train runs along'],
-      hard: ['Song on an album; follow footprints', 'Lose ___ of time (forget how late it is)'],
+      hard: ['Bush path, or a song on an album?', 'Lose ___ of time (forget how late it is)'],
     },
     {
       answer: 'MAP',
       easy: ['Chart of the land so you don\'t get lost', 'Drawing that shows roads and towns', 'One of the many pages in an atlas'],
-      hard: ['Topo sheet with contour lines', 'Put on the ___ (make famous)'],
+      hard: ['Paper guide that\'s hard to fold back up?', 'Put on the ___ (make famous)'],
     },
     {
       answer: 'COMPASS',
@@ -47,7 +47,7 @@ const theme: Theme = {
     {
       answer: 'TORCH',
       easy: ['Battery light for finding your way at night', 'Light you carry, called a flashlight in America', 'Light to shine under your chin for spooky stories'],
-      hard: ['Pocket sun for the tent?', 'Olympic flame carrier?'],
+      hard: ['Olympic flame carrier?'],
     },
     {
       answer: 'HEADLAMP',
@@ -57,7 +57,7 @@ const theme: Theme = {
     {
       answer: 'BILLY',
       easy: ['Tin pot for boiling water over a fire', 'Boy\'s name, short for William', 'Metal can with a wire handle for bush tea'],
-      hard: ['___ goat, or a camp kettle', 'Silly ___ (a bit of a goose)'],
+      hard: ['___ goat, or a camp kettle'],
     },
     {
       answer: 'CAMPFIRE',
@@ -66,13 +66,13 @@ const theme: Theme = {
     },
     {
       answer: 'CHILLY BIN',
-      easy: ['Kiwi name for the lidded box that keeps picnic food cold', 'Where Kiwis keep the sausages and cold drinks on a bach trip', 'NZ word for what Aussies call an esky'],
-      hard: ['Cold box that wears a Kiwi name and doubles as a seat?', 'Box that keeps the beers cold at a Kiwi barbecue?'],
+      easy: ['Kiwi name for the lidded box that keeps picnic food cold', 'Where Kiwis keep the sausages and cold drinks on a bach trip', 'Insulated box with a lid, packed with ice for a picnic'],
+      hard: ['Cooler, in Kiwi?', 'Box that keeps the drinks cold at the campsite?'],
     },
     {
       answer: 'SANDFLY',
       easy: ['Tiny biting insect of the West Coast', 'Small black insect whose bite itches for days', 'Tiny biter that has you reaching for insect spray'],
-      hard: ['One of Milford Sound\'s itchiest locals', 'Fiordland local the tourist brochures leave out?'],
+      hard: ['Tiny West Coast biter?', 'Itchy pest of Milford Sound?'],
     },
     {
       answer: 'MOSQUITO',
@@ -102,12 +102,12 @@ const theme: Theme = {
     {
       answer: 'MATCHES',
       easy: ['Sticks you strike to light a fire', 'Little wooden sticks with red tips', 'Things that go well together, like socks'],
-      hard: ['Fire starters; sports fixtures', 'Strikers that make sparks?'],
+      hard: ['Fire starters, or sports games?', 'Strikers that make sparks?'],
     },
     {
       answer: 'CANOE',
       easy: ['Open boat you paddle on a Canadian lake, sitting or kneeling', 'Boat known as a waka in te reo', 'Light open boat paddled kneeling, with a one-bladed paddle'],
-      hard: ['Open boat for the Whanganui Journey', 'Paddle your own ___ (look after yourself)'],
+      hard: ['Paddle your own ___ (look after yourself)'],
     },
     {
       answer: 'KAYAK',
@@ -117,22 +117,22 @@ const theme: Theme = {
     {
       answer: 'CAMPGROUND',
       easy: ['Place with sites for tents and caravans', 'Place you pay to pitch a tent for the night', 'Spot with tent sites, a kitchen and showers'],
-      hard: ['Holiday park, as some call it', 'Site full of sites?'],
+      hard: ['Where tents and caravans gather for summer?'],
     },
     {
       answer: 'CARAVAN',
       easy: ['Home on wheels towed by a car', 'Towed holiday home with bunks', 'Trailer with beds that you park at the beach'],
-      hard: ['Desert camel train', 'Holiday home that follows the car around?'],
+      hard: ['Holiday home that follows the car around?'],
     },
     {
       answer: 'CAMPERVAN',
       easy: ['Converted vehicle with a pop-up roof, a bed and a tiny stove', 'Van you can sleep and cook in', 'Hire vehicle with a bed and kitchenette, seen on NZ\'s roads'],
-      hard: ['Tourist\'s wheeled bed parked at DOC sites for the night', 'Bedroom with a steering wheel?'],
+      hard: ['Bedroom with a steering wheel?'],
     },
     {
       answer: 'TARP',
       easy: ['Waterproof sheet strung up for shelter', 'Big plastic sheet to cover a trailer load', 'Sheet laid on the ground under a tent'],
-      hard: ['Fly sheet rigged between trees', 'Crinkly blue cover-up?'],
+      hard: ['Blue plastic sheet over the woodpile?'],
     },
     {
       answer: 'ROPE',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'KNOT',
       easy: ['Tie that fastens a rope', 'Tangle in your hair', 'Tight lump in a tired muscle'],
-      hard: ['Reef or bowline, e.g.', 'Tie the ___ (get married)'],
+      hard: ['Tie the ___ (get married)'],
     },
     {
       answer: 'BUNK',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'RIDGE',
       easy: ['Long narrow top of a hill', 'High ground between two valleys', 'Raised line, like those on a crinkle-cut chip'],
-      hard: ['Spine of a range', 'Top line of a roof, or of a range?'],
+      hard: ['Long, narrow hilltop?'],
     },
     {
       answer: 'SUMMIT',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'SCROGGIN',
       easy: ['Kiwi word for a tramper\'s snack of nuts, raisins and chocolate', 'Peanuts, sultanas and chocolate chips shaken together for the track', 'Sweet and salty handfuls in a tramper\'s pocket, in NZ slang'],
-      hard: ['What Kiwis call the nutty snack mix they eat on the Great Walks', 'Kiwi trail nibble with a double G in its odd name'],
+      hard: ['Tramper\'s mix of nuts, raisins and chocolate?'],
     },
     {
       answer: 'WHISTLE',
@@ -202,32 +202,32 @@ const theme: Theme = {
     {
       answer: 'THERMALS',
       easy: ['Warm layers worn under your clothes', 'Woolly base layers for a cold night', 'Polypro top and leggings for cold weather'],
-      hard: ['Rising warm air currents that hawks ride', 'Long johns, Kiwi-style?'],
+      hard: ['Warm layer under your tramping clothes?'],
     },
     {
       answer: 'GREAT WALK',
       easy: ['Routeburn or Kepler, for example', 'Famous multi-day track, like the Abel Tasman', 'Top NZ tramp, like the Milford Track'],
-      hard: ['DOC\'s premium multi-day track type', 'Stroll that\'s top of the tramping list?'],
+      hard: ['Milford or Routeburn track, officially?'],
     },
     {
       answer: 'POLES',
       easy: ['Walking sticks for tramping', 'Long rods that hold up a tent', 'Sticks skiers push with'],
-      hard: ['Tent props; ends of the Earth', '___ apart (totally different)'],
+      hard: ['Tent props, or the ends of the Earth?', '___ apart (totally different)'],
     },
     {
       answer: 'FIREWOOD',
       easy: ['Logs and sticks for the fire', 'Wood you chop for the stove', 'Logs stacked beside the woodburner'],
-      hard: ['Kindling\'s bigger sibling', 'Winter fuel for the stove, chopped and stacked by the shed'],
+      hard: ['What you chop to keep the flames going?'],
     },
     {
       answer: 'LANTERN',
       easy: ['Lamp hung in the tent', 'Lamp with a handle you can carry', 'Glowing light hung on a hook'],
-      hard: ['Glowing light at a festival', 'Jack-o\'-___ (carved pumpkin)'],
+      hard: ['Jack-o\'-___ (carved pumpkin)'],
     },
     {
       answer: 'REPELLENT',
       easy: ['Spray that keeps bugs away', 'Insect spray you rub on your skin', 'Lotion that makes mozzies stay away'],
-      hard: ['Sandfly deterrent', 'Water-___ (like a good raincoat)'],
+      hard: ['Spray that keeps the sandflies off?', 'Water-___ (like a good raincoat)'],
     },
     {
       answer: 'TRAMPER',
@@ -237,12 +237,12 @@ const theme: Theme = {
     {
       answer: 'EMBERS',
       easy: ['Glowing bits left after the fire', 'Red-hot coals left in the fireplace', 'Coals you bake potatoes in'],
-      hard: ['Last of the fire, good for toasting', 'The fire\'s last red winks?'],
+      hard: ['Last of the fire, good for toasting'],
     },
     {
       answer: 'PEG',
       easy: ['Spike you hammer in to hold the tent down', 'Hook by the door for hanging your coat', 'Knob you turn to tune a guitar string'],
-      hard: ['Clothes clip or tent anchor', 'Take someone down a ___ (humble them)'],
+      hard: ['Tent anchor, or a clip for the washing?', 'Take someone down a ___ (humble them)'],
     },
     {
       answer: 'STARS',

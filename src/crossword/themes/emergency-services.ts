@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'SIREN',
       easy: ['Wailing sound on an ambulance', 'Noise that tells drivers to pull over and let help past', 'Rising and falling howl from a police car'],
-      hard: ['Nee-naw maker; a sea singer in Greek myths', 'Its song says \'get out of the way\'?'],
+      hard: ['Nee-naw maker?', 'Its song says \'get out of the way\'?'],
     },
     {
       answer: 'HOSE',
@@ -22,12 +22,12 @@ const theme: Theme = {
     {
       answer: 'COP',
       easy: ['Police officer, informally', '___s and robbers (chasing game)', 'Officer who might hand out a speeding ticket'],
-      hard: ['Bobby on the beat', 'Short slang for a police officer, rhyming with \'mop\''],
+      hard: ['Police officer, in slang?'],
     },
     {
       answer: 'BADGE',
       easy: ['Police officer\'s shiny ID', 'Pin-on button with a message or picture', 'Shield-shaped symbol on a police hat'],
-      hard: ['Scout\'s sew-on reward; officer\'s shield', 'Name ___ (tag worn at a conference)'],
+      hard: ['Scout\'s reward, or an officer\'s shield?', 'Name ___ (tag worn at a conference)'],
     },
     {
       answer: 'HELMET',
@@ -37,7 +37,7 @@ const theme: Theme = {
     {
       answer: 'AXE',
       easy: ['Firefighter\'s chopping tool', 'Woodcutter\'s tool in fairy tales', 'Tool you swing to split logs'],
-      hard: ['Cut from the budget', 'Have an ___ to grind (hold a grudge)'],
+      hard: ['Have an ___ to grind (hold a grudge)'],
     },
     {
       answer: 'ALARM',
@@ -57,32 +57,32 @@ const theme: Theme = {
     {
       answer: 'ASH',
       easy: ['Grey powder left after a fire', 'Grey powder at the bottom of a wood burner', 'Grey flakes floating up from a bonfire'],
-      hard: ['Tree; grey stuff in the grate', 'Volcano\'s grey dandruff?'],
+      hard: ['Grey leftovers of a fire?'],
     },
     {
       answer: 'CRASH',
       easy: ['Car accident', 'Loud smash, like dishes hitting the floor', 'Fall asleep the moment you hit the pillow'],
-      hard: ['Collision; computer meltdown', 'Turn up to a party uninvited?'],
+      hard: ['Collision, or a computer freeze?'],
     },
     {
       answer: 'NURSE',
       easy: ['Hospital carer who looks after patients', 'Person in scrubs who takes your temperature', 'Look after someone who is unwell'],
-      hard: ['Hold carefully, like a cuppa or a grudge', '___ shark (sea creature with a caring name)'],
+      hard: ['___ shark (sea creature with a caring name)'],
     },
     {
       answer: 'MEDIC',
       easy: ['Doctor, informally', 'Person trained to treat injuries, for short', 'First-aider who runs onto a sports field'],
-      hard: ['Army first-aider', 'Battlefield shout for help: \'___!\''],
+      hard: ['Army first-aider'],
     },
     {
       answer: 'SLING',
       easy: ['Cloth that holds up a hurt arm', 'Baby carrier worn across the body', 'Throw casually, like a bag over your shoulder'],
-      hard: ['Throw carelessly; arm\'s hammock', 'Holder for a wing that\'s broken?'],
+      hard: ['Support for a broken arm?'],
     },
     {
       answer: 'CELL',
       easy: ['Locked room at a police station', 'Room for one bee in a honeycomb', 'Solar ___ (part that turns light into power)'],
-      hard: ['Body\'s building block; jail room', 'Mobile phone, to an American?'],
+      hard: ['Jail room, or a building block of your body?', 'Mobile phone, to an American?'],
     },
     {
       answer: 'JAIL',
@@ -92,7 +92,7 @@ const theme: Theme = {
     {
       answer: 'RADIO',
       easy: ['Walkie-talkie for keeping in touch', 'Box that plays music and news', 'Car gadget for listening to the news'],
-      hard: ['Device for \'over and out\'', 'Wireless, as Grandma called it?'],
+      hard: ['Device for \'over and out\''],
     },
     {
       answer: 'TORCH',
@@ -102,7 +102,7 @@ const theme: Theme = {
     {
       answer: 'CREW',
       easy: ['Team on a fire engine', 'Workers on a ship or plane', 'Film workers behind the camera'],
-      hard: ['Rowing team; ___ cut hairstyle', 'Gang that\'s all in the same boat?'],
+      hard: ['Gang that\'s all in the same boat?'],
     },
     {
       answer: 'CALM',
@@ -117,22 +117,22 @@ const theme: Theme = {
     {
       answer: 'DRILL',
       easy: ['Practice for leaving a building safely', 'Dentist\'s whirring tool', 'Practise again and again, like times tables'],
-      hard: ['Tool for holes; fire-escape practice', 'Know the ___ (understand the routine)'],
+      hard: ['Fire practice, or a tool for making holes?', 'Know the ___ (understand the routine)'],
     },
     {
       answer: 'SCENE',
       easy: ['Place where an accident happened', 'Act 1, ___ 2', 'Spot surrounded by police tape'],
-      hard: ['Part of a play; crime ___', 'Make a ___ (throw a tantrum in public)'],
+      hard: ['Crime ___ (where it happened)', 'Make a ___ (throw a tantrum in public)'],
     },
     {
       answer: 'CROOK',
       easy: ['Baddie the police try to catch', 'Thief or swindler', 'Shepherd\'s hooked stick'],
-      hard: ['Kiwi word for feeling sick', 'Bent person, or bent stick?'],
+      hard: ['Kiwi word for feeling sick'],
     },
     {
       answer: 'FINE',
       easy: ['Money paid for breaking a rule', '\'How are you?\' \'___, thanks!\'', 'Sunny and dry, as weather'],
-      hard: ['Okay; speeding penalty', '\'I\'m ___!\' (said by someone who clearly isn\'t)'],
+      hard: ['Okay, or a speeding penalty?', '\'I\'m ___!\' (said by someone who clearly isn\'t)'],
     },
     {
       answer: 'LAW',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'BRAVE',
       easy: ['Not scared; courageous', 'Like a kid who gets an injection without crying', 'Pixar film about a red-haired archer princess'],
-      hard: ['Face up to, as a storm', 'Put on a ___ face (hide your worry)'],
+      hard: ['Put on a ___ face (hide your worry)'],
     },
     {
       answer: 'HERO',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'EMBER',
       easy: ['Glowing bit left in a dying fire', 'Glowing coal you toast marshmallows over', 'Tiny glowing bit that floats off a bonfire'],
-      hard: ['Coal still glowing after the flames go', 'Hot stuff that\'s on its last legs?'],
+      hard: ['Coal still glowing after the flames go'],
     },
     {
       answer: 'SOS',
@@ -167,52 +167,52 @@ const theme: Theme = {
     {
       answer: 'CHIEF',
       easy: ['Head of a fire brigade', 'Leader of a tribe', 'English for rangatira, a Māori leader'],
-      hard: ['Main; the boss', 'Big cheese or top dog'],
+      hard: ['Big cheese or top dog'],
     },
     {
       answer: 'CAST',
       easy: ['Hard shell around a broken arm', 'Throw out a fishing line', 'Trees ___ shadows'],
-      hard: ['Actors in a play; a broken bone\'s armour', 'What a wizard does to a spell?'],
+      hard: ['What a wizard does to a spell?'],
     },
     {
       answer: 'ARREST',
       easy: ['Take a suspect into custody', '\'You\'re under ___!\'', 'Catch a crook and lock them up'],
-      hard: ['Nab and book', 'Collar, as a cop might?'],
+      hard: ['Nab and book'],
     },
     {
       answer: 'TICKET',
       easy: ['Fine for speeding', 'Slip you need to get into a concert', 'Raffle slip with a number on it'],
-      hard: ['Pass for a movie; slip for a speedster', 'Just the ___ (exactly right)'],
+      hard: ['Movie pass, or a slip for a speedster?', 'Just the ___ (exactly right)'],
     },
     {
       answer: 'PLASTER',
       easy: ['Sticky strip for a small cut', 'Sticking ___ for a grazed knee', 'Material in a cast on a broken arm, signed by friends'],
-      hard: ['Wall coating; a cut\'s cover', 'Fix for a scrape that sticks with you?'],
+      hard: ['Fix for a scrape that sticks with you?'],
     },
     {
       answer: 'BANDAGE',
       easy: ['Strip of cloth wrapped round a wound', 'Wrap for a sprained ankle', 'Roll of gauze for wrapping a cut'],
-      hard: ['Mummy\'s wrapping?', 'Wrap that\'s not for lunch?'],
+      hard: ['Mummy\'s wrapping?'],
     },
     {
       answer: 'HYDRANT',
       easy: ['Street water outlet for fire hoses', 'Water point marked by a blue cat\'s-eye on the road', 'Underground water supply firefighters plug into'],
-      hard: ['Fire crew\'s tap under the road', 'Dog\'s favourite spot in American cartoons?'],
+      hard: ['Fire crew\'s tap under the road'],
     },
     {
       answer: 'UNIFORM',
       easy: ['Matching work clothes', 'Clothes everyone wears at some schools', 'What a soldier, pilot or chef wears on duty'],
-      hard: ['Always the same; an officer\'s outfit', 'Letter U, in radio code'],
+      hard: ['What officers and nurses wear on duty?'],
     },
     {
       answer: 'WITNESS',
       easy: ['Person who saw what happened', 'Person who tells the court what they saw', 'Person who watches a wedding and signs as proof'],
-      hard: ['See with your own eyes', 'Eye___ (one who saw it happen)'],
+      hard: ['Eye___ (one who saw it happen)'],
     },
     {
       answer: 'OXYGEN',
       easy: ['Gas given through a mask', 'Gas we need to breathe', 'Gas that plants give off'],
-      hard: ['Breath of fresh air, chemically?', 'O, to a chemist'],
+      hard: ['Gas in the air we breathe?'],
     },
     {
       answer: 'PATIENT',
@@ -222,7 +222,7 @@ const theme: Theme = {
     {
       answer: 'STATION',
       easy: ['Building where fire trucks are kept', 'Town\'s police headquarters', 'Channel you tune to for music or news'],
-      hard: ['Train stop; a big Kiwi sheep farm', 'Space ___ (orbiting lab)'],
+      hard: ['Fire ___, police ___ or train ___', 'Space ___ (orbiting lab)'],
     },
     {
       answer: 'RESCUE',
@@ -247,7 +247,7 @@ const theme: Theme = {
     {
       answer: 'FIRE ENGINE',
       easy: ['Big red truck with a ladder on top', 'Truck with hoses that races to burning houses', 'Big red truck with flashing lights and a pump'],
-      hard: ['Red truck that pumps water, not petrol', 'Big red rescuer that\'s always pumped?'],
+      hard: ['Red truck that pumps water, not petrol'],
     },
     {
       answer: 'FIREFIGHTER',
@@ -257,7 +257,7 @@ const theme: Theme = {
     {
       answer: 'POLICE CAR',
       easy: ['Vehicle with blue and red flashing lights', 'Patrol vehicle an officer drives around town', 'Vehicle that might pull you over for speeding'],
-      hard: ['Patrol ride with a light bar on top', 'Blue-and-yellow chequered chaser?'],
+      hard: ['Patrol ride with a light bar on top'],
     },
     {
       answer: 'HELICOPTER',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'CONSTABLE',
       easy: ['Police officer of the lowest rank', 'Rank of a new police officer just out of training', 'Title for an everyday police officer, like ___ Smith'],
-      hard: ['Bobby\'s official title', 'Copper with no stripes?'],
+      hard: ['Police officer\'s rank, starting out?'],
     },
     {
       answer: 'SERGEANT',
@@ -297,22 +297,22 @@ const theme: Theme = {
     {
       answer: 'LIFEGUARD',
       easy: ['Surf patrol member who keeps swimmers safe', 'Person in a red and yellow cap at the beach', 'Pool worker with a whistle'],
-      hard: ['Lookout between the red and yellow flags', 'Sentinel of the swimming pool'],
+      hard: ['Lookout between the red and yellow flags'],
     },
     {
       answer: 'FIRST AID',
       easy: ['Basic help given before a doctor comes', 'Treatment you might learn on a St John course', 'Quick help like holding a burn under cold water'],
-      hard: ['___ kit (plasters inside)', 'Help that comes before any second?'],
+      hard: ['___ kit (plasters inside)'],
     },
     {
       answer: 'EXTINGUISHER',
       easy: ['Red canister that sprays out small fires', 'School hallway safety item with a hose, a handle and a pin', 'Can that blasts foam or powder at a fire'],
-      hard: ['Pull the pin and squeeze to use one', 'Party pooper for flames?'],
+      hard: ['Pull the pin and squeeze to use one'],
     },
     {
       answer: 'SPRINKLER',
       easy: ['Ceiling device that sprays water in a fire', 'Thing kids run through on a hot summer\'s day', 'Twirling lawn gadget that goes tick-tick-tick'],
-      hard: ['Lawn waterer; ceiling fire-stopper', 'Shower you never stepped into?'],
+      hard: ['Ceiling fire-stopper, or a lawn waterer?'],
     },
     {
       answer: 'COASTGUARD',

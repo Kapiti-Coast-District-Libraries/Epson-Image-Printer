@@ -17,17 +17,17 @@ const theme: Theme = {
     {
       answer: 'CAPE',
       easy: ['Cloak that flaps behind a flying hero', 'Long cloak Superman wears', 'Garment hanging from the shoulders that a magician flourishes'],
-      hard: ['Reinga, for one', 'Point that might be \'of Good Hope\''],
+      hard: ['Superhero\'s cloak, or a headland like Reinga?'],
     },
     {
       answer: 'MASK',
       easy: ['Cover that hides a hero\'s face', 'Face cover with eye holes', 'Thing a surgeon wears over mouth and nose'],
-      hard: ['Hide, as a smell', 'Zorro\'s eyewear?'],
+      hard: ['Zorro\'s eyewear?'],
     },
     {
       answer: 'SIDEKICK',
       easy: ['Hero\'s young helper', 'Shrek\'s Donkey, for example', 'Helper who tags along on adventures'],
-      hard: ['Partner who sounds like a sporty move?', 'Second banana'],
+      hard: ['Robin, to Batman?'],
     },
     {
       answer: 'LAIR',
@@ -47,12 +47,12 @@ const theme: Theme = {
     {
       answer: 'ARCH ENEMY',
       easy: ['A hero\'s main foe', 'Bitterest opponent', 'Lex Luthor, to Superman'],
-      hard: ['Chief foe, not a curved one?', 'Moriarty, to Sherlock Holmes'],
+      hard: ['Moriarty, to Sherlock Holmes'],
     },
     {
       answer: 'SUPERPOWER',
       easy: ['Special ability like flying or great strength', 'Ability no normal person has', 'What Spider-Man got from a spider bite'],
-      hard: ['Amazing gift; mighty nation', 'Mind-reading, for one'],
+      hard: ['Mind-reading, for one'],
     },
     {
       answer: 'SUPERHERO',
@@ -87,7 +87,7 @@ const theme: Theme = {
     {
       answer: 'SHIELD',
       easy: ['Hero\'s round protector', 'Captain America\'s star-marked protector', 'Cover that keeps something safe from harm'],
-      hard: ['Something to hide behind', 'Protect, as eyes from the sun'],
+      hard: ['Something to hide behind'],
     },
     {
       answer: 'GADGET',
@@ -97,7 +97,7 @@ const theme: Theme = {
     {
       answer: 'COSTUME',
       easy: ['Special outfit a hero wears', 'What you dress up in for a play', 'Outfit for Halloween'],
-      hard: ['Fancy dress party outfit', 'Swimming ___ (old-fashioned togs)'],
+      hard: ['Fancy dress party outfit'],
     },
     {
       answer: 'LOGO',
@@ -107,42 +107,42 @@ const theme: Theme = {
     {
       answer: 'HIDEOUT',
       easy: ['Secret place to hide', 'Secret base, like a treehouse for a club', 'Place to lie low'],
-      hard: ['Bolt-hole for heroes or crooks', 'Spot to go to ground'],
+      hard: ['Bolt-hole for heroes or crooks'],
     },
     {
       answer: 'SCHEME',
       easy: ['Sneaky plan', 'Organised plan, like a savings ___', 'Plan something sneaky'],
-      hard: ['Colour ___', 'The grand ___ of things (the big picture)'],
+      hard: ['Colour ___'],
     },
     {
       answer: 'PLOT',
       easy: ['Evil plan, or what happens in a story', 'Storyline of a film', 'Hatch it in the lair, or follow it in a film?'],
-      hard: ['Vege patch; villain\'s plan', 'The ___ thickens!'],
+      hard: ['Villain\'s plan, or a vege patch?', 'The ___ thickens!'],
     },
     {
       answer: 'MASTERMIND',
       easy: ['Clever planner behind a crime', 'Very clever person who plans everything', 'Plan and run a big operation'],
-      hard: ['Brains of the operation', 'Quiz show with a famous black chair'],
+      hard: ['Brains of the operation'],
     },
     {
       answer: 'HENCHMAN',
       easy: ['Baddie\'s helper', 'Hired heavy guarding a baddie\'s door', 'One of many guards a goodie knocks out'],
-      hard: ['Matching-jumpsuit guard who\'s always knocked out', 'Villain\'s helper who always gets biffed by the hero?'],
+      hard: ['Villain\'s helper who always gets biffed by the hero?'],
     },
     {
       answer: 'MINION',
       easy: ['Small servant of a baddie', 'Little yellow helper in Despicable Me', 'Lowly servant who does as they\'re told'],
-      hard: ['Lackey who does the dirty work', 'Yes-man to the big boss'],
+      hard: ['Lackey who does the villain\'s dirty work?'],
     },
     {
       answer: 'GOON',
-      easy: ['Radio comedy \'The ___ Show\' with Spike Milligan', 'Bumbling baddie who follows the boss\'s orders', 'Silly, clumsy person'],
-      hard: ['Brawn without brains for the boss?', 'Rhymes with \'spoon\': a hired heavy'],
+      easy: ['Hired thug who works for the villain', 'Bumbling baddie who follows the boss\'s orders', 'Silly, clumsy person'],
+      hard: ['Villain\'s hired muscle?'],
     },
     {
       answer: 'TRAP',
       easy: ['Trick to catch someone', 'Device for catching mice', 'Catch in a corner with no way out'],
-      hard: ['Snare set for the hero', 'Sand ___ on a golf course'],
+      hard: ['Snare set for the hero'],
     },
     {
       answer: 'KAPOW',
@@ -162,27 +162,27 @@ const theme: Theme = {
     {
       answer: 'COURAGE',
       easy: ['Bravery', 'What you need to face your fears', 'What it takes to stand up to a bully'],
-      hard: ['What the cowardly lion went looking for', 'The ___ of your convictions'],
+      hard: ['What the cowardly lion went looking for'],
     },
     {
       answer: 'JUSTICE',
       easy: ['Fairness that heroes fight for', 'Fair treatment for all', 'Getting what you deserve'],
-      hard: ['What a judge is meant to serve', 'Poetic ___ (a fitting comeuppance)'],
+      hard: ['What a judge is meant to serve'],
     },
     {
       answer: 'EVIL',
       easy: ['Wicked trait of fairy-tale villains, like Snow White\'s queen', 'Opposite of good', 'Bad to the core'],
-      hard: ['See no ___, hear no ___', 'Necessary ___ (bad thing you must put up with)'],
+      hard: ['See no ___, hear no ___'],
     },
     {
       answer: 'CACKLE',
       easy: ['Wicked laugh', 'Hen\'s noisy clucking', 'Loud, screechy laugh of glee'],
-      hard: ['Witch\'s laugh over a bubbling pot', 'Hen party noise?'],
+      hard: ['Witch\'s laugh over a bubbling pot'],
     },
     {
       answer: 'MOUSTACHE',
       easy: ['Twirly hair on an old-time baddie\'s lip', 'Hair under the nose', 'What Mario and Luigi both have'],
-      hard: ['Lip fuzz that a baddie twirls', 'Walrus-style fuzz?'],
+      hard: ['Lip fuzz that a baddie twirls'],
     },
     {
       answer: 'LASER',
@@ -202,7 +202,7 @@ const theme: Theme = {
     {
       answer: 'SKYSCRAPER',
       easy: ['Very tall city building', 'Tower with dozens of floors', 'Tall tower in New York'],
-      hard: ['Tall building leapt in a single bound', 'Building that scratches the clouds?'],
+      hard: ['Building Superman leaps in a single bound?'],
     },
     {
       answer: 'ROOFTOP',
@@ -212,32 +212,32 @@ const theme: Theme = {
     {
       answer: 'ALLY',
       easy: ['Friend on your side', 'Country on your side in a war', 'Supporter who stands beside someone treated unfairly'],
-      hard: ['Friend you can count on in a fight', 'Not a foe: someone teaming up with you against the villain'],
+      hard: ['Friend you can count on in a fight'],
     },
     {
       answer: 'RIVAL',
       easy: ['Competitor or opponent', 'Team you most want to beat', 'Someone after the same prize as you'],
-      hard: ['Neck-and-neck competitor', 'Other team in a grudge match'],
+      hard: ['Neck-and-neck competitor'],
     },
     {
       answer: 'FOE',
       easy: ['Enemy', 'Someone who\'s against you', 'Opposite of friend'],
-      hard: ['Friend or ___?', 'One across the battlefield?'],
+      hard: ['Friend or ___?'],
     },
     {
       answer: 'SHOWDOWN',
       easy: ['Final big battle', 'Final duel between two sides', 'Big clash that settles who wins'],
-      hard: ['High noon face-off', 'Poker moment when all cards are revealed'],
+      hard: ['High noon face-off'],
     },
     {
       answer: 'VICTORY',
       easy: ['A win, especially a big one', 'Winning a game or battle', 'Win that ends a long battle'],
-      hard: ['What a V-sign stands for', 'The goddess Nike stood for this'],
+      hard: ['What a V-sign stands for'],
     },
     {
       answer: 'ESCAPE',
       easy: ['Get away', 'Break out of jail', 'Get free from a locked room'],
-      hard: ['Key that gets you out?', '___ room (puzzle game against the clock)'],
+      hard: ['___ room (puzzle game against the clock)'],
     },
     {
       answer: 'ROBIN HOOD',
@@ -252,7 +252,7 @@ const theme: Theme = {
     {
       answer: 'EVIL TWIN',
       easy: ['Bad copy of a hero', 'Wicked double who looks just like you', 'Lookalike sibling with a nasty streak'],
-      hard: ['Lookalike with a goatee, by tradition', 'Double trouble, in a soap opera?'],
+      hard: ['Double trouble, in a soap opera?'],
     },
     {
       answer: 'BRAVE',

@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'LOUNGE',
       easy: ['Room with the couch and TV', 'Front room where visitors sit and chat', 'Living room, as most Kiwis call it'],
-      hard: ['Laze about; the TV room', 'Departure ___ at the airport'],
+      hard: ['Laze about, or the TV room?', 'Departure ___ at the airport'],
     },
     {
       answer: 'BEDROOM',
@@ -22,7 +22,7 @@ const theme: Theme = {
     {
       answer: 'BATHROOM',
       easy: ['Room with the shower and basin', 'Room where you wash your face each morning', 'Room that gets all steamy after a hot wash'],
-      hard: ['Where the toothbrushes and rubber duck live', 'Room where the taps never dance?'],
+      hard: ['Where the toothbrushes and rubber duck live', 'Smallest room with the longest queue in the morning?'],
     },
     {
       answer: 'LAUNDRY',
@@ -207,12 +207,12 @@ const theme: Theme = {
     {
       answer: 'PEGS',
       easy: ['Clips that pinch the washing on the line', 'Little hooks for coats, or clips for the washing line', 'Knobs you turn to tune a guitar'],
-      hard: ['Tent holders; washing grippers', 'Square ones don\'t fit round holes'],
+      hard: ['Tent holders, or washing grippers?', 'Square ones don\'t fit round holes'],
     },
     {
       answer: 'IRON',
       easy: ['Hot tool to smooth out creases', 'Metal that goes rusty when wet', 'Mineral in spinach that\'s good for your blood'],
-      hard: ['Press clothes; tough metal', 'Strike while the ___ is hot'],
+      hard: ['Press clothes, or a tough metal?', 'Strike while the ___ is hot'],
     },
     {
       answer: 'CUSHION',
@@ -232,7 +232,7 @@ const theme: Theme = {
     {
       answer: 'PLUG',
       easy: ['Thing you push into the wall socket', 'Rubber stopper on a chain in the sink', 'Thing with metal prongs on the end of a cord'],
-      hard: ['Stop a leak; promote shamelessly', 'Pull the ___: call it quits'],
+      hard: ['Stop a leak, or what goes in a power point?', 'Pull the ___: call it quits'],
     },
     {
       answer: 'FENCE',

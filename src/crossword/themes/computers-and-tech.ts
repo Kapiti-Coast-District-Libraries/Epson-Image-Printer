@@ -17,17 +17,17 @@ const theme: Theme = {
     {
       answer: 'BUG',
       easy: ['Mistake in a computer program', 'Small creepy-crawly, like a beetle', 'Tummy ___ that keeps you home from school'],
-      hard: ['Pester constantly', 'Glitch that might have six legs?'],
+      hard: ['Glitch, or a creepy-crawly?'],
     },
     {
       answer: 'BYTE',
       easy: ['Small chunk of computer data', 'Unit of data made of eight ones and zeros', 'Storage unit that comes in kilos and megas'],
-      hard: ['Chunk of data that sounds like a chomp?', 'Digital mouthful, eight digits long?'],
+      hard: ['Chunk of data that sounds like a chomp?'],
     },
     {
       answer: 'BIT',
       easy: ['Smallest piece of computer data, a 0 or 1', 'Small amount, as in \'a little ___\'', 'Took a chomp, like a dog'],
-      hard: ['Small piece; horse\'s mouthpiece', 'Comedy routine, or a single 1 or 0'],
+      hard: ['A tiny amount, or a computer\'s 1 or 0?'],
     },
     {
       answer: 'APP',
@@ -47,12 +47,12 @@ const theme: Theme = {
     {
       answer: 'FILE',
       easy: ['Saved document on a computer', 'Single ___, walking one behind another', 'Papers kept together in an office cabinet'],
-      hard: ['Nail smoother', 'Tool baked into a jailbird\'s cake?'],
+      hard: ['Saved document, or a tool for your nails?'],
     },
     {
       answer: 'ICON',
       easy: ['Small picture you click on a screen', 'Little symbol on a phone\'s home page', 'Tiny bin or cog picture on a screen'],
-      hard: ['Superstar; desktop symbol', 'Fashion ___ (style legend)'],
+      hard: ['Superstar, or a symbol you click?', 'Fashion ___ (style legend)'],
     },
     {
       answer: 'LINK',
@@ -67,7 +67,7 @@ const theme: Theme = {
     {
       answer: 'PIXEL',
       easy: ['Tiny dot that makes up a screen picture', 'Tiny square in blocky video-game art', 'Cameras boast millions of these tiny dots'],
-      hard: ['Square you\'ll see if you zoom right in', 'Picture element, squashed into one word?'],
+      hard: ['Square you\'ll see if you zoom right in'],
     },
     {
       answer: 'VIRUS',
@@ -107,17 +107,17 @@ const theme: Theme = {
     {
       answer: 'CURSOR',
       easy: ['Blinking line where you type', 'Mark showing where your next letter will appear', 'Pointer that spins when the computer is busy'],
-      hard: ['On-screen arrow that follows the mouse', 'Pointer that sounds like a swearer?'],
+      hard: ['On-screen arrow that follows the mouse'],
     },
     {
       answer: 'KEYBOARD',
       easy: ['Buttons with letters for typing', 'Piano-like instrument played in a band', 'Thing you type on, with a long space bar'],
-      hard: ['Where QWERTY lives', 'Tool with a space bar but no bartender?'],
+      hard: ['Where QWERTY lives'],
     },
     {
       answer: 'MONITOR',
       easy: ['Computer screen', 'Pupil given a class job, like a library ___', 'Baby ___, for listening in on a sleeping baby'],
-      hard: ['Keep an eye on', 'Watch, or the thing you watch?'],
+      hard: ['Computer screen, or keep an eye on?'],
     },
     {
       answer: 'PRINTER',
@@ -127,12 +127,12 @@ const theme: Theme = {
     {
       answer: 'LAPTOP',
       easy: ['Fold-up computer you can carry', 'Computer you\'d take to a café to work on', 'Computer with a trackpad built in'],
-      hard: ['Portable computer that sits on your knees', 'Computer named for a part of you that vanishes when you stand?'],
+      hard: ['Portable computer that sits on your knees'],
     },
     {
       answer: 'SOFTWARE',
       easy: ['Programs that run on a computer', 'Apps and games, rather than the machine itself', 'Stuff you install to make a computer do things'],
-      hard: ['Code, as opposed to the box it runs on', 'Computer stuff you can\'t drop on your toe?'],
+      hard: ['Code, as opposed to the box it runs on'],
     },
     {
       answer: 'HARDWARE',
@@ -142,12 +142,12 @@ const theme: Theme = {
     {
       answer: 'INTERNET',
       easy: ['Worldwide network of computers', 'What you go on to watch videos and search things', 'Wi-Fi brings this into your home'],
-      hard: ['Net of nets', 'The information superhighway, as it was once called'],
+      hard: ['What Wi-Fi connects you to?'],
     },
     {
       answer: 'WEBSITE',
       easy: ['Online home of a shop or school, with a menu bar and links', 'Place online with its own home page', 'Google, YouTube or Trade Me, for example'],
-      hard: ['Online place with a .nz address, perhaps', 'Spot where a spider lives?'],
+      hard: ['Online place with a .nz address, perhaps'],
     },
     {
       answer: 'PASSWORD',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'DOWNLOAD',
       easy: ['Copy a file from the internet', 'What the progress bar shows happening to a new game', 'Save a podcast to listen to offline'],
-      hard: ['Get an app, perhaps', 'Bring off the web, like rain from the sky?'],
+      hard: ['Get an app, perhaps'],
     },
     {
       answer: 'BROWSER',
@@ -172,7 +172,7 @@ const theme: Theme = {
     {
       answer: 'PROGRAM',
       easy: ['Set of instructions for a computer', 'Instructions you write to make a robot move', 'Software that does a job, like a word processor'],
-      hard: ['Code to run; spelt with -me for TV', 'Get with the ___ (catch on)'],
+      hard: ['Get with the ___ (catch on)'],
     },
     {
       answer: 'ROUTER',
@@ -182,27 +182,27 @@ const theme: Theme = {
     {
       answer: 'WEBCAM',
       easy: ['Camera for video calls', 'Lens that lets your teacher see you in an online class', 'Camera that streams live from a beach or zoo'],
-      hard: ['Little lens above a laptop screen', 'Spider\'s camera?'],
+      hard: ['Little lens above a laptop screen'],
     },
     {
       answer: 'DATABASE',
       easy: ['Organised store of information', 'Big computer list you can search and sort', 'Where a school keeps every pupil\'s records'],
-      hard: ['The library catalogue runs on one', 'Info headquarters, so to speak?'],
+      hard: ['The library catalogue runs on one'],
     },
     {
       answer: 'SPREADSHEET',
       easy: ['Grid of rows and columns for numbers', 'Program for working out budgets in columns', 'Table of numbers in Excel'],
-      hard: ['Cells and formulas, no biology needed?', 'Grid of cells in Excel, or bedding laid out for a mathematician?'],
+      hard: ['Cells and formulas, no biology needed?'],
     },
     {
       answer: 'TOUCHSCREEN',
       easy: ['Display you tap with your finger', 'Display you can pinch to zoom', 'Glass you tap on at a self-checkout'],
-      hard: ['Phone display you swipe', 'Display with a sensitive side?'],
+      hard: ['Phone display you swipe'],
     },
     {
       answer: 'SMARTPHONE',
       easy: ['Mobile phone that runs apps', 'Mobile you can take photos and play games on', 'Device many people check first thing in the morning'],
-      hard: ['Pocket computer that also makes calls', 'Clever caller?'],
+      hard: ['Pocket computer that also makes calls'],
     },
     {
       answer: 'BINARY',
@@ -212,22 +212,22 @@ const theme: Theme = {
     {
       answer: 'ONLINE',
       easy: ['Connected to the internet', '___ shopping, done from the couch', 'Showing a green dot in a chat app'],
-      hard: ['Surfing the net, not offline', 'Plugged into the net, so to speak?'],
+      hard: ['Surfing the net, not offline'],
     },
     {
       answer: 'DESKTOP',
       easy: ['Computer that sits on a table', 'Flat surface of the table where you work', 'Big computer with a tower that stays put'],
-      hard: ['Main screen covered in icons', 'Where work sits, in wood or on screen?'],
+      hard: ['Main screen covered in icons'],
     },
     {
       answer: 'FOLDER',
       easy: ['Place to keep files together', 'Cardboard wallet for school papers', 'Thing you drag documents into to tidy a computer'],
-      hard: ['Yellow icon holding documents', 'Paper-holder that\'s just bent cardboard?'],
+      hard: ['Yellow icon holding documents'],
     },
     {
       answer: 'UPLOAD',
       easy: ['Send a file to the internet', 'Post a video to share online', 'Send your homework to the class website'],
-      hard: ['Put a photo online, say', 'Share, in a skyward direction?'],
+      hard: ['Put a photo online, say'],
     },
     {
       answer: 'SERVER',
@@ -237,12 +237,12 @@ const theme: Theme = {
     {
       answer: 'NETWORK',
       easy: ['Computers linked together', 'Group of TV channels under one name', 'Social ___ (online community)'],
-      hard: ['Make useful contacts at work', 'What your router links your phone, laptop and printer into'],
+      hard: ['What your router links your phone, laptop and printer into'],
     },
     {
       answer: 'CHARGER',
       easy: ['Plug that fills a battery', 'Cable you plug in when your battery is low', 'Thing for your phone you forget to pack on holiday'],
-      hard: ['It feeds your phone at night?', 'One who bills you, or juices you up?'],
+      hard: ['It feeds your phone at night?'],
     },
     {
       answer: 'SCROLL',
@@ -252,12 +252,12 @@ const theme: Theme = {
     {
       answer: 'ROBOTICS',
       easy: ['Building machines that move by themselves', 'School club where you build and code machines', 'Tech behind self-driving vacuums and factory arms'],
-      hard: ['Field of mechanical workers', 'Droid-making, as a subject?'],
+      hard: ['School club for building and coding machines?'],
     },
     {
       answer: 'GIGABYTE',
       easy: ['Roughly a thousand megabytes', 'Storage unit shortened to GB', 'Phone plans often sell data in these'],
-      hard: ['Phone storage unit, a big G', 'Storage unit whose prefix is Greek for \'giant\''],
+      hard: ['Phone storage unit, a big G'],
     },
   ],
 };

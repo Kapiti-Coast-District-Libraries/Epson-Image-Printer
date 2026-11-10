@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'SHEEP',
       easy: ['Woolly animal that says baa', 'Farm animal that gets shorn', 'Animal you count to fall asleep'],
-      hard: ['Kiwis are often teased about these outnumbering us', 'Black one of the family?'],
+      hard: ['Count them to get to sleep?', 'Black ___ of the family'],
     },
     {
       answer: 'COW',
@@ -22,7 +22,7 @@ const theme: Theme = {
     {
       answer: 'CALF',
       easy: ['Baby cow', 'Young bull or heifer', 'Young elephant or whale'],
-      hard: ['Back of your lower leg', 'Bucket-fed baby on a dairy farm?'],
+      hard: ['Bucket-fed baby on a dairy farm?'],
     },
     {
       answer: 'BULL',
@@ -42,7 +42,7 @@ const theme: Theme = {
     {
       answer: 'GOAT',
       easy: ['Bearded farm animal that eats anything', 'Horned animal that climbs rocks and nibbles weeds', 'Animal that bleats and has a billy for a dad'],
-      hard: ['A kid\'s mum might be a nanny one?', 'Gruff billy in a fairy tale?'],
+      hard: ['Billy or nanny?'],
     },
     {
       answer: 'HEN',
@@ -57,17 +57,17 @@ const theme: Theme = {
     {
       answer: 'EWE',
       easy: ['Female sheep', 'Mother of a lamb', 'Lady sheep'],
-      hard: ['Woolly mum who sounds like you?', 'Woolly lady who sounds like a yew tree?'],
+      hard: ['Woolly mum who sounds like you?'],
     },
     {
       answer: 'RAM',
       easy: ['Male sheep with curly horns', 'Dad of a lamb', 'Battering ___ (log for smashing gates)'],
-      hard: ['Butt hard; woolly dad', 'Woolly bloke with curly headgear?'],
+      hard: ['Male sheep, or butt hard?'],
     },
     {
       answer: 'DUCK',
       easy: ['Farmyard bird that quacks', 'Crispy Peking ___ is a famous Chinese dish', 'Bend down quickly to dodge something'],
-      hard: ['A score of nothing in cricket', 'Like water off a ___\'s back'],
+      hard: ['Like water off a ___\'s back'],
     },
     {
       answer: 'HAY',
@@ -97,12 +97,12 @@ const theme: Theme = {
     {
       answer: 'PADDOCK',
       easy: ['Kiwi word for a fenced field, as on a farm', 'Where the cows stay, behind a fence and gate', 'Field the farmer moves the stock between'],
-      hard: ['Racecourse area where horses parade', 'Pre-race parade area for horses, or a fenced Kiwi field?'],
+      hard: ['Field, to a Kiwi?'],
     },
     {
       answer: 'GATE',
       easy: ['Swinging entry to a paddock', 'Opening in a fence you swing shut', 'Place at the airport where you board'],
-      hard: ['Fence\'s door, which farmers insist you close behind you', 'It swings, but not in the playground?'],
+      hard: ['Fence\'s door, which farmers insist you close behind you'],
     },
     {
       answer: 'WOOLSHED',
@@ -112,12 +112,12 @@ const theme: Theme = {
     {
       answer: 'SHEARER',
       easy: ['Person who clips the wool off sheep', 'Person who gives a sheep its haircut', 'Woolshed worker paid for each sheep'],
-      hard: ['Blade-wielder in a black singlet', 'Sheep\'s barber?'],
+      hard: ['Sheep\'s barber?'],
     },
     {
       answer: 'FLEECE',
       easy: ['Wool coat taken off a sheep in one piece', 'Woolly coat on a sheep', 'Warm zip-up top of fluffy fabric'],
-      hard: ['Rip someone off; cosy jacket', 'Golden ___ (prize Jason went looking for)'],
+      hard: ['Sheep\'s coat, or a cosy jacket?'],
     },
     {
       answer: 'DAIRY',
@@ -127,62 +127,62 @@ const theme: Theme = {
     {
       answer: 'HERD',
       easy: ['Group of cows', 'Big group of elephants', 'Mob of cattle in a paddock'],
-      hard: ['Cattle crowd that sounds like it was listened to?', 'Like ___ing cats (an impossible job)'],
+      hard: ['Cattle crowd that sounds like \'heard\'?'],
     },
     {
       answer: 'FLOCK',
       easy: ['Group of sheep', 'Crowd of birds flying together', 'Shepherd\'s charge, or what starlings form in the sky'],
-      hard: ['Birds of a feather ___ together', 'Huddle of woolly jumpers?'],
+      hard: ['Birds of a feather ___ together'],
     },
     {
       answer: 'SHEEPDOG',
       easy: ['Working dog that rounds up the flock', 'Border collie on a farm, for example', 'Four-legged farm hand that herds woolly flocks, never cattle'],
-      hard: ['Farm worker with four legs and a whistle', 'Wrangler of woolly jumpers with a wagging tail?'],
+      hard: ['Farm worker with four legs and a whistle'],
     },
     {
       answer: 'HUNTAWAY',
       easy: ['NZ farm dog that barks to move sheep', 'Big black-and-tan Kiwi farm dog', 'Farm dog breed developed in New Zealand'],
-      hard: ['Loud Kiwi-bred dog that drives stock uphill', 'Loud-mouthed Kiwi herder?'],
+      hard: ['Loud Kiwi-bred dog that drives stock uphill'],
     },
     {
       answer: 'GUMBOOTS',
       easy: ['Rubber boots for muddy paddocks', 'Waterproof footwear for a farmer', 'What Kiwis wear in the milking shed'],
-      hard: ['Footwear honoured by a giant sculpture in Taihape', 'Wellies, to a Kiwi'],
+      hard: ['Wellies, to a Kiwi'],
     },
     {
       answer: 'TROUGH',
       easy: ['Long container for animals\' water', 'Long feed box for pigs', 'Water tank for stock in the paddock'],
-      hard: ['Pigs\' dinner table?', 'Low point between two waves'],
+      hard: ['Pigs\' dinner table?'],
     },
     {
       answer: 'MUSTER',
       easy: ['Round up sheep from the hills', 'Gather all the cattle together', 'Big round-up on a high-country station'],
-      hard: ['Gather, as courage might be', 'Pass ___ (be good enough)'],
+      hard: ['Round-up on a high-country station?'],
     },
     {
       answer: 'LAMBING',
       easy: ['Spring season when ewes give birth', 'Spring time when sheep farmers get little sleep', 'Season of newborn woolly babies'],
-      hard: ['Busy spring for sheep farmers', 'When the sheep farm gets bouncy?'],
+      hard: ['Busy spring for sheep farmers'],
     },
     {
       answer: 'CALVING',
       easy: ['When dairy cows give birth', 'Time when new calves are born on the farm', 'When a heifer becomes a mum'],
-      hard: ['Busy spring season for dairy farmers', 'Glacier dropping an iceberg, or a cow giving birth'],
+      hard: ['Busy spring season for dairy farmers'],
     },
     {
       answer: 'PLOUGH',
       easy: ['Turn over the soil to plant crops', 'Farm tool that digs furrows', 'Keep going stubbornly: \'___ on regardless\''],
-      hard: ['Thing oxen once pulled through fields', 'Star pattern also called the Big Dipper'],
+      hard: ['Thing oxen once pulled through fields'],
     },
     {
       answer: 'HARVEST',
       easy: ['Gather in the crops', 'Time to pick the apples', 'Crop gathered at the end of the season'],
-      hard: ['___ moon, glowing big in autumn', 'Reap what you\'ve sown?'],
+      hard: ['Reap what you\'ve sown?'],
     },
     {
       answer: 'CLOVER',
       easy: ['Plant with three leaves, lucky with four', 'Lawn plant with white flowers that bees love', 'Pasture plant cows munch'],
-      hard: ['Living in ___, having a cushy life', 'Shamrock look-alike?'],
+      hard: ['Shamrock look-alike?'],
     },
     {
       answer: 'WHEAT',
@@ -192,17 +192,17 @@ const theme: Theme = {
     {
       answer: 'BARLEY',
       easy: ['Grain used for animal feed and malt', 'Grain in Scotch broth soup', 'Cereal crop with long bristly ears'],
-      hard: ['Grain with long whiskers', '___ sugar (old-fashioned twisty lolly)'],
+      hard: ['Grain in a hearty soup?'],
     },
     {
       answer: 'ORCHARD',
       easy: ['Farm of fruit trees', 'Place with rows of apple trees', 'Where you\'d pick kiwifruit or peaches'],
-      hard: ['Hawke\'s Bay apple grove', 'Tree-mendous fruit farm?'],
+      hard: ['Hawke\'s Bay apple grove'],
     },
     {
       answer: 'BEEHIVE',
       easy: ['Home for honey makers', 'Box full of busy honeybees', 'Buzzing box at the edge of the clover'],
-      hard: ['Parliament\'s round office block', 'Tall piled-up hairdo from the sixties'],
+      hard: ['Parliament\'s round building, or a home for honey makers?'],
     },
     {
       answer: 'PIGLET',
@@ -212,7 +212,7 @@ const theme: Theme = {
     {
       answer: 'FOAL',
       easy: ['Baby horse', 'Young horse wobbling on long legs', 'Baby donkey'],
-      hard: ['Young colt or filly', 'Mare\'s newborn that can run with the herd within hours'],
+      hard: ['Young colt or filly'],
     },
     {
       answer: 'STOCK',
@@ -227,22 +227,22 @@ const theme: Theme = {
     {
       answer: 'COCKY',
       easy: ['Kiwi slang for a farmer', 'Show-off who\'s too sure of winning', 'Farmer, in old Kiwi talk: cow ___'],
-      hard: ['Too sure of yourself', 'Strutting with far too much confidence?'],
+      hard: ['Too sure of yourself, or a Kiwi farmer?'],
     },
     {
       answer: 'STEER',
       easy: ['Young bullock raised for beef', 'Turn the wheel to point the car', 'Guide a bike with the handlebars'],
-      hard: ['Guide the car; beef beast', 'Keep away: ___ clear'],
+      hard: ['Guide the car, or a beef animal?', 'Keep away: ___ clear'],
     },
     {
       answer: 'CATTLE STOP',
       easy: ['NZ word for the rattly grid that keeps stock from crossing a road', 'Metal bars across a country road that keep stock in, Kiwi-style', 'Where Kiwi cars rattle over bars before the farm driveway'],
-      hard: ['Rattle-and-hum bars that save a farmer opening the gate?', 'Kiwi road barrier that says \'whoa\' to livestock, without a gate?'],
+      hard: ['Rattly bars that save opening a farm gate?'],
     },
     {
       answer: 'MILK TANKER',
       easy: ['Big truck collecting from dairy farms', 'Silver truck that visits the cowshed every day', 'Truck heading to the cheese factory'],
-      hard: ['Stainless steel giant heading to the factory', 'Moo juice mover?'],
+      hard: ['Moo juice mover?'],
     },
     {
       answer: 'HAYSTACK',
@@ -252,7 +252,7 @@ const theme: Theme = {
     {
       answer: 'FARMHAND',
       easy: ['Worker hired to help on a farm', 'Helper hired at harvest time', 'Casual worker who helps with fencing, drenching and haymaking'],
-      hard: ['Worker for hire on a station, doing whatever jobs need doing', 'Jack of all trades on the land, hired by the day?'],
+      hard: ['Hired helper on the land?'],
     },
   ],
 };

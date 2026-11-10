@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'ZOO',
       easy: ['Park where wild animals live in enclosures', 'Wellington and Auckland each have one full of wild animals', 'School trip spot with keepers and animal talks'],
-      hard: ['Noisy, messy scene, like a class before the bell?', 'Petting ___ (where kids pat goats)'],
+      hard: ['Petting ___ (where kids pat goats)'],
     },
     {
       answer: 'LION',
@@ -22,7 +22,7 @@ const theme: Theme = {
     {
       answer: 'CUB',
       easy: ['Baby lion, tiger or bear', 'Young bear following its mother through the forest', 'Young big cat, still playing with its mum\'s tail'],
-      hard: ['Junior Scout; young tiger', '___ reporter (newbie at the newspaper)'],
+      hard: ['Young lion or bear, or a junior Scout?'],
     },
     {
       answer: 'APE',
@@ -32,17 +32,17 @@ const theme: Theme = {
     {
       answer: 'SEAL',
       easy: ['Flippered swimmer that claps for fish', 'Whiskery sea animal that flops about on rocks', 'Blob of wax that closes an old-fashioned letter'],
-      hard: ['Close an envelope; a pup\'s mum on the rocks', 'Signed, ___ and delivered'],
+      hard: ['Close an envelope, or a flippered swimmer?', 'Signed, ___ and delivered'],
     },
     {
       answer: 'SEA LION',
       easy: ['Big barking flippered animal with ear flaps', 'Rare flippered animal that naps on Otago beaches', 'Big flippered animal that can walk on all fours on land'],
-      hard: ['Ocean animal named after a big cat', 'Flippered fellow with a shaggy ruff round his neck?'],
+      hard: ['Ocean animal named after a big cat'],
     },
     {
       answer: 'OTTER',
       easy: ['Playful furry swimmer that floats on its back', 'Furry river animal with webbed feet that eats fish', 'Sleek swimmer that cracks shells on its tummy with a rock'],
-      hard: ['Furry swimmer that holds hands while it naps', 'Swimmer with a skin pocket for its favourite rock'],
+      hard: ['River swimmer that floats on its back?'],
     },
     {
       answer: 'TIGER',
@@ -57,7 +57,7 @@ const theme: Theme = {
     {
       answer: 'HIPPO',
       easy: ['Huge animal that wallows in rivers all day', 'Big African river animal with an enormous mouth', 'Grey giant with tiny ears and a gigantic yawn'],
-      hard: ['Hungry ___, the marble-gobbling game', 'River horse, for short?'],
+      hard: ['Hungry ___, the marble-gobbling game'],
     },
     {
       answer: 'RHINO',
@@ -72,7 +72,7 @@ const theme: Theme = {
     {
       answer: 'RED PANDA',
       easy: ['Small rusty-coloured tree climber with a ringed tail', 'Cat-sized bamboo eater that lives up trees in the Himalayas', 'Fluffy animal that Mei turns into in a Pixar film'],
-      hard: ['Ginger cutie that isn\'t really a bear at all', 'Smaller, gingery namesake of a famous bear?'],
+      hard: ['Ginger cutie that isn\'t really a bear at all'],
     },
     {
       answer: 'CAMEL',
@@ -82,7 +82,7 @@ const theme: Theme = {
     {
       answer: 'LLAMA',
       easy: ['Woolly South American animal that may spit', 'Fluffy pack animal from the Andes mountains', 'Peruvian animal with banana-shaped ears'],
-      hard: ['Alpaca\'s taller, spittier cousin', 'Shaggy Andean beast of burden with a double \'L\' in its name'],
+      hard: ['Alpaca\'s taller, spittier cousin'],
     },
     {
       answer: 'LEMUR',
@@ -92,17 +92,17 @@ const theme: Theme = {
     {
       answer: 'MANE',
       easy: ['Long hair around a lion\'s neck', 'Hair you plait along the top of a pony\'s neck', 'Flowing neck hair on a unicorn'],
-      hard: ['Main feature of a male lion, so it sounds?', 'Stable hairdo?'],
+      hard: ['Lion\'s hairdo?'],
     },
     {
       answer: 'TRUNK',
       easy: ['An elephant\'s long nose', 'What an elephant uses to give itself a shower', 'Thick part of a tree between the roots and branches'],
-      hard: ['Tree\'s body; big storage box', 'Nose that can pick up a peanut?'],
+      hard: ['Elephant\'s nose, or a big storage box?', 'Nose that can pick up a peanut?'],
     },
     {
       answer: 'TUSK',
       easy: ['Long ivory tooth of an elephant', 'Long pointy tooth of a warthog', 'Narwhal\'s long spiral tooth'],
-      hard: ['Walrus\'s pointy pearly white', 'Tooth that keeps on growing out of the mouth?'],
+      hard: ['Walrus\'s pointy pearly white'],
     },
     {
       answer: 'CAGE',
@@ -112,7 +112,7 @@ const theme: Theme = {
     {
       answer: 'PEN',
       easy: ['Small fenced yard for animals', 'Thing you write with in ink', 'Fenced area where sheep wait to be shorn'],
-      hard: ['Ballpoint; fenced patch for piglets', '___ pal (friend you write letters to)'],
+      hard: ['Ballpoint, or a fenced yard for sheep?', '___ pal (friend you write letters to)'],
     },
     {
       answer: 'EMU',
@@ -122,17 +122,17 @@ const theme: Theme = {
     {
       answer: 'KIWI',
       easy: ['NZ\'s flightless bird, seen in a night house', 'Brown bird with nostrils at the tip of its long beak', 'Shy night bird that lays a huge egg'],
-      hard: ['Fuzzy fruit; any of us New Zealanders', 'Bird on the back of our dollar coin'],
+      hard: ['Bird, fruit or New Zealander?', 'Bird on the back of our dollar coin'],
     },
     {
       answer: 'KEA',
       easy: ['Cheeky green mountain parrot of NZ', 'Olive-green parrot with orange under its wings', 'The world\'s only parrot that lives up among the snow'],
-      hard: ['Alpine prankster that pinches car wipers', 'Feathered vandal of the ski-field car park?'],
+      hard: ['Cheeky alpine parrot of the South Island?'],
     },
     {
       answer: 'SNAKE',
       easy: ['Long reptile with no legs', 'Hissing reptile that sheds its skin in one piece', 'Animal that slithers and flicks out a forked tongue'],
-      hard: ['It sends you sliding back down the board', '___ in the grass (a sneaky person)'],
+      hard: ['___s and Ladders (board game)', '___ in the grass (a sneaky person)'],
     },
     {
       answer: 'HYENA',
@@ -147,7 +147,7 @@ const theme: Theme = {
     {
       answer: 'SLOTH',
       easy: ['Very slow animal that hangs in trees', 'Animal so slow that green algae grows in its fur', 'South American tree animal with long hooked claws'],
-      hard: ['Laziness; a slow-mo tree hanger', 'Upside-down napper that\'s never in a hurry?'],
+      hard: ['Slow tree-hanger whose name means laziness?', 'Upside-down napper that\'s never in a hurry?'],
     },
     {
       answer: 'KOALA',
@@ -157,32 +157,32 @@ const theme: Theme = {
     {
       answer: 'BEAR',
       easy: ['Big furry animal; grizzly or polar', 'Animal that sleeps through winter in a den', 'Pooh, Paddington or Baloo, for one'],
-      hard: ['Put up with; a teddy\'s wild cousin', 'Grin and ___ it'],
+      hard: ['Teddy\'s wild cousin?', 'Grin and ___ it'],
     },
     {
       answer: 'WOLF',
       easy: ['Wild dog that howls at night', 'Wild animal that hunts in a pack', 'Big bad villain of The Three Little Pigs'],
-      hard: ['Gobble greedily; Red Riding Hood\'s foe', 'Cry ___ (raise a false alarm)'],
+      hard: ['Red Riding Hood\'s foe?', 'Cry ___ (raise a false alarm)'],
     },
     {
       answer: 'SPOTS',
       easy: ['Markings on a leopard\'s coat', 'What a Dalmatian is covered in', 'Black dots on a ladybird\'s back'],
-      hard: ['Notices; dots on a cheetah', 'A leopard can\'t change its ___'],
+      hard: ['A leopard can\'t change its ___'],
     },
     {
       answer: 'HOOF',
       easy: ['Hard foot of a zebra or giraffe', 'Hard foot of a goat or cow', 'Part of a horse that wears a horseshoe'],
-      hard: ['___ it (walk, in slang)', 'Clip-clop maker?'],
+      hard: ['Clip-clop maker?'],
     },
     {
       answer: 'MEERKAT',
       easy: ['Small animal that stands up on lookout', 'Small African animal living in big family burrows', 'Sandy-coloured digger that sunbathes with its family'],
-      hard: ['Desert sentry standing tall on its back legs', 'Mongoose relative that\'s no kind of cat?'],
+      hard: ['Desert sentry standing tall on its back legs'],
     },
     {
       answer: 'GIRAFFE',
       easy: ['Tallest animal, with a very long neck', 'Spotty animal that nibbles leaves from the treetops', 'Animal with a long purple tongue and little horns'],
-      hard: ['Animal that can lick its own ears', 'Animal with its head in the clouds?'],
+      hard: ['Animal with its head in the clouds?'],
     },
     {
       answer: 'GORILLA',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'GIBBON',
       easy: ['Small ape with long arms that whoops', 'Ape that swings arm over arm through the trees', 'Smallest kind of ape, from Asian forests'],
-      hard: ['Swinging singer of the treetops', 'Acrobat with arms longer than its legs?'],
+      hard: ['Swinging singer of the treetops'],
     },
     {
       answer: 'MONKEY',
@@ -217,7 +217,7 @@ const theme: Theme = {
     {
       answer: 'BABOON',
       easy: ['Monkey with a bright red bottom', 'Big monkey with a dog-like snout', 'Monkey that lives in big troops on African plains'],
-      hard: ['Primate with a colourful rear end', 'Dog-faced primate that\'s also a name for a clumsy lout?'],
+      hard: ['Primate with a colourful rear end'],
     },
     {
       answer: 'PELICAN',
@@ -227,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'TOUCAN',
       easy: ['Rainforest bird with a huge colourful beak', 'Jungle bird whose giant beak is surprisingly light', 'Black rainforest bird with a big orange bill'],
-      hard: ['Bird whose bill looks like a banana', 'Colourful big-billed bird that could pass for a rainforest clown?'],
+      hard: ['Bird whose bill looks like a banana'],
     },
     {
       answer: 'PYTHON',
@@ -242,12 +242,12 @@ const theme: Theme = {
     {
       answer: 'TUATARA',
       easy: ['NZ reptile from the time of the dinosaurs', 'Spiny-backed reptile found only in NZ', 'Reptile that can live past 100, found only in NZ'],
-      hard: ['Living fossil with a third eye on its head', 'NZ \'lizard\' that isn\'t a lizard at all?'],
+      hard: ['NZ \'lizard\' that isn\'t a lizard at all?'],
     },
     {
       answer: 'OSTRICH',
       easy: ['Biggest bird in the world, which can\'t fly', 'Huge bird that lays the biggest eggs of all', 'Two-toed bird that sprints across Africa'],
-      hard: ['Bird said to bury its head in the sand', 'Bird whose one egg could feed the whole whānau?'],
+      hard: ['Bird said to bury its head in the sand'],
     },
     {
       answer: 'PEACOCK',
@@ -262,12 +262,12 @@ const theme: Theme = {
     {
       answer: 'SAFARI',
       easy: ['Trip to see wild animals in Africa', 'Holiday in a jeep with binoculars ready', '___ hat, khaki with a wide brim'],
-      hard: ['___ park, where lions roam past your car', 'Trip where the Big Five are the stars?'],
+      hard: ['___ park, where lions roam past your car'],
     },
     {
       answer: 'TICKET',
       easy: ['Paper you buy to get in the gate', 'Stub you show to get on a bus or into a show', 'Raffle ___, which you hope gets drawn'],
-      hard: ['Entry pass; speeding fine', 'Just the ___ (exactly right)'],
+      hard: ['Entry pass, or a speeding fine?', 'Just the ___ (exactly right)'],
     },
     {
       answer: 'ELEPHANT',
@@ -277,7 +277,7 @@ const theme: Theme = {
     {
       answer: 'FLAMINGO',
       easy: ['Pink bird that stands on one leg', 'Bird that eats with its head upside down', 'Tall wading bird with long thin legs and a bent beak'],
-      hard: ['Wader that gets its blush from its food', 'Pink garden ornament on one leg?'],
+      hard: ['Pink garden ornament on one leg?'],
     },
     {
       answer: 'KANGAROO',
@@ -292,12 +292,12 @@ const theme: Theme = {
     {
       answer: 'ORANGUTAN',
       easy: ['Red-haired great ape', 'Long-armed ape that sleeps in a nest of leaves', 'King Louie in The Jungle Book is one'],
-      hard: ['Shaggy ginger ape of Borneo', 'Ginger ape that makes a fresh bed every night?'],
+      hard: ['Shaggy ginger ape of Borneo'],
     },
     {
       answer: 'CHIMPANZEE',
       easy: ['Clever ape, our closest animal relative', 'Ape that uses sticks to fish for termites', 'African ape often seen grooming its friends\' fur'],
-      hard: ['Tool-using ape Jane Goodall studied', 'Ape that pant-hoots its hellos?'],
+      hard: ['Clever ape, \'chimp\' for short?'],
     },
     {
       answer: 'ZOOKEEPER',
@@ -307,12 +307,12 @@ const theme: Theme = {
     {
       answer: 'ENCLOSURE',
       easy: ['Fenced home for an animal at the zoo', 'Area walled or fenced in on all sides', 'Paddock or aviary, for example'],
-      hard: ['Something tucked in with a letter; animal home', 'It keeps the big cats in and the visitors out'],
+      hard: ['It keeps the big cats in and the visitors out'],
     },
     {
       answer: 'AQUARIUM',
       easy: ['Big glass tank where fish are shown', 'Glass tank for keeping goldfish', 'Place to visit sharks, rays and octopuses'],
-      hard: ['Watery gallery', 'Where the fish watch you back?'],
+      hard: ['Where the fish watch you back?'],
     },
     {
       answer: 'REPTILE HOUSE',

@@ -7,27 +7,27 @@ const theme: Theme = {
     {
       answer: 'EGG',
       easy: ['A hen lays one; you can fry or boil it', 'Oval thing in a shell that a chick hatches from', 'Easter treat, sometimes made of chocolate'],
-      hard: ['Nest ___ (savings); a chook\'s daily gift', 'Good ___ (a really nice person)'],
+      hard: ['Boiled, fried or scrambled?', 'Good ___ (a really nice person)'],
     },
     {
       answer: 'TOAST',
       easy: ['Bread made crunchy and brown', 'Hot crunchy slice you spread with Marmite', 'Bread browned under the grill'],
-      hard: ['Raise a glass to someone; a crunchy slice', '"You\'re ___!" (you\'re in big trouble)'],
+      hard: ['Crunchy slice, or raise a glass to someone?', '"You\'re ___!" (you\'re in big trouble)'],
     },
     {
       answer: 'JAM',
       easy: ['Sweet fruit spread for toast', 'Sticky jar of raspberry or apricot', 'Red layer in a sponge cake, with the cream'],
-      hard: ['Traffic snarl; strawberry spread', 'Musicians\' casual session, or what a stuck door does'],
+      hard: ['Traffic snarl, or a strawberry spread?'],
     },
     {
       answer: 'TEA',
       easy: ['Hot drink made from leaves in a bag', 'Drink brewed in a pot under a knitted cosy', 'Green or black drink, often with a biscuit'],
-      hard: ['Kiwi word for the evening meal; a cuppa', 'What\'s poured at the Mad Hatter\'s party'],
+      hard: ['Cuppa, or the evening meal to some Kiwis?', 'What\'s poured at the Mad Hatter\'s party'],
     },
     {
       answer: 'CUPPA',
       easy: ['Cup of tea, informally', 'Hot drink you offer a visitor: "Fancy a ___?"', 'Short Kiwi word for a hot brew at smoko'],
-      hard: ['What the kettle\'s boiling for, in a Kiwi kitchen', 'Warm hug in a mug that goes down well with a biscuit?'],
+      hard: ['What the kettle\'s boiling for, in a Kiwi kitchen'],
     },
     {
       answer: 'MILK',
@@ -37,7 +37,7 @@ const theme: Theme = {
     {
       answer: 'OATS',
       easy: ['Grains cooked to make porridge', 'Grain baked into Anzac biscuits', 'Rolled grains soaked overnight in the fridge'],
-      hard: ['Horse\'s feed; a muesli base', 'Sow your wild ___ (have fun while young)'],
+      hard: ['What porridge is made from?', 'Sow your wild ___ (have fun while young)'],
     },
     {
       answer: 'BACON',
@@ -47,12 +47,12 @@ const theme: Theme = {
     {
       answer: 'HAM',
       easy: ['Pink meat sliced for a toasted sandwich', 'Pink meat on a pizza with pineapple', 'Meat sliced thin from a cured leg of pork'],
-      hard: ['Over-the-top actor; Christmas meat', 'Green eggs and ___ (Dr Seuss book)'],
+      hard: ['Green eggs and ___ (Dr Seuss book)'],
     },
     {
       answer: 'JUICE',
       easy: ['Squeezed fruit drink', 'Drink in a little box with a straw', 'Liquid you get by squeezing a lemon'],
-      hard: ['Phone battery charge, in slang', 'It runs down your chin when you bite a ripe peach'],
+      hard: ['Orange or apple, in a glass?'],
     },
     {
       answer: 'BREAD',
@@ -67,17 +67,17 @@ const theme: Theme = {
     {
       answer: 'BOWL',
       easy: ['Round dish for cereal', 'Deep dish for soup or salad', 'Round glass home for a goldfish'],
-      hard: ['Send down a cricket ball; cornflake holder', '___ over (knock flat with surprise)'],
+      hard: ['Cereal holder, or send down a cricket ball?'],
     },
     {
       answer: 'SPOON',
       easy: ['Utensil for eating cereal', 'Cutlery with a little scoop at the end', 'What you\'d use to eat soup or jelly'],
-      hard: ['Cuddle up; scoop for your porridge', 'Born with a silver ___ in your mouth'],
+      hard: ['Born with a silver ___ in your mouth'],
     },
     {
       answer: 'MUG',
       easy: ['Big cup with a handle', 'Cup that might say \'World\'s Best Dad\'', 'Chunky cup for hot chocolate'],
-      hard: ['Rob in the street; a coffee holder', 'Pull silly faces for the camera'],
+      hard: ['Cup with a handle, or a face in slang?'],
     },
     {
       answer: 'YOLK',
@@ -92,32 +92,32 @@ const theme: Theme = {
     {
       answer: 'CREPE',
       easy: ['Very thin French pancake', 'Thin pancake rolled round chocolate spread', 'Lacy-thin pancake from a market stall, folded in a cone'],
-      hard: ['Thin pancake; crinkly paper for party streamers', 'Thin flip-over from a Paris street stall?'],
+      hard: ['Thin French pancake?'],
     },
     {
       answer: 'LATTE',
       easy: ['Milky coffee in a tall glass', 'Espresso topped up with lots of steamed milk', 'Milky coffee, a bit like a cappuccino but less frothy'],
-      hard: ['Café order with a fern drawn in the foam', 'Café order that just means \'milk\' in Italian?'],
+      hard: ['Café order with a fern drawn in the foam'],
     },
     {
       answer: 'BAGEL',
       easy: ['Chewy bread roll with a hole in the middle', 'Ring-shaped roll you might fill with smoked salmon', 'Roll with a hole, often topped with sesame seeds'],
-      hard: ['Doughnut-shaped roll for cream cheese', 'Roll that\'s boiled before it hits the oven?'],
+      hard: ['Doughnut-shaped roll for cream cheese'],
     },
     {
       answer: 'TRAY',
       easy: ['Flat board for carrying breakfast in bed', 'Flat thing a waiter carries drinks on', 'Flat tin for baking biscuits in the oven'],
-      hard: ['Ice cube holder; Mother\'s Day carrier', 'Waiter\'s balancing act?'],
+      hard: ['Breakfast-in-bed carrier?'],
     },
     {
       answer: 'YAWN',
       easy: ['Wide-mouthed sign that you\'re still sleepy', 'Big mouth-wide breath you do at bedtime', 'What you might do in a long, dull assembly'],
-      hard: ['Boring thing; a sleepy stretch of the jaw', 'Catching thing that spreads round a sleepy room?'],
+      hard: ['It\'s catching, when you\'re sleepy?'],
     },
     {
       answer: 'ALARM',
       easy: ['Clock that rings to wake you up', 'Beeping sound from a smoke detector', 'Siren or bell that warns of danger'],
-      hard: ['Fire bell; a rude awakening', 'Raise the ___ (warn everyone)'],
+      hard: ['Raise the ___ (warn everyone)'],
     },
     {
       answer: 'DAWN',
@@ -137,7 +137,7 @@ const theme: Theme = {
     {
       answer: 'MAPLE',
       easy: ['Tree whose sap is poured on pancakes', 'Tree whose winged seeds spin down like helicopters', 'Tree with pointy leaves that blaze red in autumn'],
-      hard: ['Leaf on Canada\'s flag', 'Tree that\'s tapped, but not for dancing?'],
+      hard: ['Leaf on Canada\'s flag'],
     },
     {
       answer: 'BUTTER',
@@ -147,7 +147,7 @@ const theme: Theme = {
     {
       answer: 'CEREAL',
       easy: ['Crunchy flakes eaten with milk', 'Breakfast you shake out of a box', 'Bran flakes or Rice Bubbles, for example'],
-      hard: ['Sounds like a TV \'serial\', but you eat it for breakfast?', 'Morning bowl that goes snap, crackle and pop in milk'],
+      hard: ['Snap, crackle and pop in a bowl?'],
     },
     {
       answer: 'BANANA',
@@ -162,12 +162,12 @@ const theme: Theme = {
     {
       answer: 'MUESLI',
       easy: ['Mix of oats, nuts and dried fruit', 'Breakfast mix that might have raisins and almonds', '___ bar, a lunchbox snack'],
-      hard: ['Swiss-born crunchy bowlful', 'Brekkie bowl of oats, seeds and dried fruit, nicknamed \'rabbit food\'?'],
+      hard: ['Bowl of oats, nuts and dried fruit?'],
     },
     {
       answer: 'GRANOLA',
       easy: ['Toasted oat clusters with honey', 'Crunchy baked oat mix sprinkled over fruit', 'Oat-and-nut breakfast baked in clumps till golden'],
-      hard: ['Baked crunchy cluster cereal', 'Crunchy clusters a tramper packs in a bar?'],
+      hard: ['Crunchy toasted oat clusters?'],
     },
     {
       answer: 'WAFFLE',
@@ -177,7 +177,7 @@ const theme: Theme = {
     {
       answer: 'POACHED',
       easy: ['Like an egg cooked in simmering water', 'Like pears gently simmered in spiced liquid', 'Like fish cooked gently in milk or stock'],
-      hard: ['Stolen, like a star player from a rival team', 'Cooked in a swirl, or taken without asking?'],
+      hard: ['Like the egg on eggs Benedict?'],
     },
     {
       answer: 'BOILED',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'YOGHURT',
       easy: ['Greek, plain or strawberry-flavoured dairy treat in a pottle', 'Thick creamy food made from milk and good bacteria', 'Strawberry or plain, eaten with a spoon from a pot'],
-      hard: ['Pottle of tangy creaminess', 'Culture you can eat with a spoon?'],
+      hard: ['Pottle of tangy creaminess'],
     },
     {
       answer: 'KETTLE',
@@ -212,7 +212,7 @@ const theme: Theme = {
     {
       answer: 'CRUMPET',
       easy: ['Spongy round with holes for butter', 'Spongy toasted round that soaks up honey', 'Bready disc, smooth underneath and holey on top'],
-      hard: ['Holey hot cake in a packet', 'Teatime treat that\'s full of holes but holds up fine?'],
+      hard: ['Holey hot cake in a packet'],
     },
     {
       answer: 'PIKELET',
@@ -242,17 +242,17 @@ const theme: Theme = {
     {
       answer: 'PORRIDGE',
       easy: ['Hot oat breakfast, often with brown sugar', 'Hot oaty breakfast for a frosty day', 'Thick, creamy cooked oats stirred in a pot'],
-      hard: ['Goldilocks liked it just right', 'Oats doing time on the stove?'],
+      hard: ['Goldilocks liked it just right'],
     },
     {
       answer: 'CORNFLAKES',
       easy: ['Crispy golden cereal made from maize', 'Crunchy golden cereal with a rooster on the box', 'Golden cereal you can crush to coat chicken'],
-      hard: ['Golden crunch from a yellow cob?', 'Maize that\'s been rolled flat and toasted?'],
+      hard: ['Crunchy golden breakfast flakes?'],
     },
     {
       answer: 'PANCAKES',
       easy: ['Flat cakes cooked in a pan and stacked', 'Treats flipped on Shrove Tuesday', 'Fluffy rounds topped with berries and syrup'],
-      hard: ['Flipping stack, with lemon and sugar?', 'Stack you toss in the air to turn over?'],
+      hard: ['Stack with maple syrup?', 'Stack you toss in the air to turn over?'],
     },
     {
       answer: 'CROISSANT',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'SMOOTHIE',
       easy: ['Thick blended fruit drink', 'Thick drink from a blender, maybe with berries', 'Icy fruit drink sipped through a straw'],
-      hard: ['Charmer; a blender\'s best work', 'Blender drink with no lumps, hopefully?'],
+      hard: ['Blender\'s fruity drink?', 'Blender drink with no lumps, hopefully?'],
     },
     {
       answer: 'MARMALADE',
@@ -302,7 +302,7 @@ const theme: Theme = {
     {
       answer: 'FLAT WHITE',
       easy: ['Kiwi coffee with velvety milk', 'Espresso with a thin layer of silky milk', 'Café coffee with no froth, popular in NZ'],
-      hard: ['Café order NZ and Australia both claim', 'Coffee order that sounds like plain pale paint?'],
+      hard: ['Café order NZ and Australia both claim'],
     },
   ],
 };

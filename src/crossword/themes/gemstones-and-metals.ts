@@ -17,27 +17,27 @@ const theme: Theme = {
     {
       answer: 'TIN',
       easy: ['Metal used to coat food cans', 'One of the two metals that make bronze', 'Soft metal that\'s easy to bend and shape'],
-      hard: ['Biscuit holder in Nana\'s pantry', 'Can\'t carry a tune: has a ___ ear'],
+      hard: ['Biscuit holder in Nana\'s pantry'],
     },
     {
       answer: 'ZINC',
       easy: ['Metal used to coat roofing iron', 'Metal in many old-style torch batteries', 'Mineral in nuts that helps wounds heal'],
-      hard: ['White sunscreen stripe on a cricketer\'s nose', 'Rhymes with the kitchen basin, a metal?'],
+      hard: ['White sunscreen stripe on a cricketer\'s nose?'],
     },
     {
       answer: 'LEAD',
       easy: ['Heavy grey metal', 'Metal weight on a fishing line, pulling it down', 'Heavy metal that blocks X-rays at the dentist'],
-      hard: ['Dog\'s walking strap; first place in a race', 'Who gets the ___ role in the school play?'],
+      hard: ['Dog\'s walking strap, or a heavy metal?'],
     },
     {
       answer: 'JADE',
       easy: ['Pale green gem popular in Chinese jewellery', 'Gem that gives its name to a shade of green', 'Hard, polished stone carved into little figures'],
-      hard: ['Green gem worn as a lucky bangle in China?', 'Cool green stone carved into dragons by Chinese artisans'],
+      hard: ['Green stone carved into Chinese dragons?'],
     },
     {
       answer: 'OPAL',
       easy: ['Gem that flashes rainbow colours', 'Australia\'s national gemstone', 'Gem that can be white, black or fiery'],
-      hard: ['Milky gem full of rainbow flashes', 'Pal with an O in front, a gem of many colours?'],
+      hard: ['Milky gem full of rainbow flashes'],
     },
     {
       answer: 'RUBY',
@@ -47,7 +47,7 @@ const theme: Theme = {
     {
       answer: 'PEARL',
       easy: ['Gem made inside an oyster', 'Round white gem that brides often wear', 'Round gem found in the sea, glowing like the moon'],
-      hard: ['Treasure that grows inside a shell', 'Gem that sounds like a knitting stitch?'],
+      hard: ['Treasure that grows inside a shell'],
     },
     {
       answer: 'AMBER',
@@ -57,32 +57,32 @@ const theme: Theme = {
     {
       answer: 'ORE',
       easy: ['Rock dug up for its metal', 'Dull rock with shiny metal hidden inside', 'Raw rock taken out of a mine'],
-      hard: ['Mined rock that sounds like a rowing blade?', 'Rocky start for a shiny gold bar?'],
+      hard: ['Mined rock that sounds like a rowing blade?'],
     },
     {
       answer: 'BRASS',
       easy: ['Yellow metal used for trumpets', 'Shiny yellow metal on old door knobs', 'Alloy of copper and zinc, with a golden shine'],
-      hard: ['Section for trumpets and tubas', 'Have the ___ to ask for seconds!'],
+      hard: ['Section for trumpets and tubas', 'Bold as ___'],
     },
     {
       answer: 'STEEL',
       easy: ['Strong metal made mostly from iron', 'Metal used for knives, forks and spoons', 'Stainless metal in kitchen sinks and pots'],
-      hard: ['Bridge metal that sounds like a thief\'s work?', 'Calm under pressure: nerves of ___'],
+      hard: ['Calm under pressure: nerves of ___'],
     },
     {
       answer: 'CARAT',
       easy: ['Unit for weighing diamonds', 'Weight of a precious stone, 200 milligrams', '1 ___ diamond ring'],
-      hard: ['Diamond weight that sounds like a rabbit\'s snack?', 'How rich the ring? Count the ___'],
+      hard: ['Diamond weight that sounds like a rabbit\'s snack?'],
     },
     {
       answer: 'ANVIL',
       easy: ['Heavy iron block a blacksmith hammers on', 'Blacksmith\'s bench that rings with every hit', 'Flat-topped metal block with a horn on one end'],
-      hard: ['Heavy block that falls on cartoon baddies', 'Heavy veil on Ann\'s wedding day?'],
+      hard: ['Heavy block that falls on cartoon baddies'],
     },
     {
       answer: 'MEDAL',
       easy: ['Prize at the Olympics', 'Round prize on a ribbon, won at school sports day', 'Award for bravery, often given to soldiers'],
-      hard: ['Podium prize that sounds like poke your nose in?', 'A pat on the back, or a ___ on the chest?'],
+      hard: ['Gold, silver or bronze prize?'],
     },
     {
       answer: 'PAUA',
@@ -97,12 +97,12 @@ const theme: Theme = {
     {
       answer: 'RUST',
       easy: ['Orange flakes on old iron', 'Reddish-brown flaky coat that forms on iron left in the rain', 'What makes a bike chain go stiff and creaky'],
-      hard: ['Old car\'s orange rash?', 'Sounds like a rhyme for \'dust\' on old gates?'],
+      hard: ['Old car\'s orange rash?'],
     },
     {
       answer: 'DIAMOND',
       easy: ['Hardest, sparkliest gem', 'Gem made of pure carbon, the hardest stone', 'Red suit in a pack of cards, shaped like a tilted square'],
-      hard: ['Card suit; engagement ring sparkler', 'Baseball ___, where players run the bases'],
+      hard: ['Card suit, or an engagement ring sparkler?'],
     },
     {
       answer: 'EMERALD',
@@ -112,12 +112,12 @@ const theme: Theme = {
     {
       answer: 'GARNET',
       easy: ['Dark red gem', 'January baby\'s deep red gem', 'Red gem named after a fruit with lots of seeds'],
-      hard: ['Dark red gem in Nana\'s brooch, perhaps', 'Dinner\'s garnish, but a shiny red gem?'],
+      hard: ['Dark red gem in Nana\'s brooch, perhaps'],
     },
     {
       answer: 'QUARTZ',
       easy: ['Common crystal used in watches', 'Mineral that most beach sand is made of', 'Hard crystal found in granite rock'],
-      hard: ['Rose or smoky, a common crystal', 'Crystal that sounds like a band of four?'],
+      hard: ['Rose or smoky, a common crystal'],
     },
     {
       answer: 'CRYSTAL',
@@ -127,22 +127,22 @@ const theme: Theme = {
     {
       answer: 'POUNAMU',
       easy: ['Te reo name for New Zealand greenstone', 'Green stone found mostly on the South Island\'s West Coast', 'Green stone from the Arahura River, treasured by Māori'],
-      hard: ['Taonga carved into hei tiki and mere', 'Dark green treasure, a Kiwi\'s pride?'],
+      hard: ['Taonga carved into hei tiki and mere', 'Greenstone, in te reo?'],
     },
     {
       answer: 'SILVER',
       easy: ['Shiny grey precious metal', 'Metal that goes black if left unpolished', 'Second-place medal metal'],
-      hard: ['Every cloud has a ___ lining', 'Hi-ho ___, away! said the Lone Ranger'],
+      hard: ['Every cloud has a ___ lining'],
     },
     {
       answer: 'COPPER',
       easy: ['Reddish metal used in electric wires', 'Metal that turns green with age, like a famous statue', 'Orange-brown metal in water pipes'],
-      hard: ['Police officer, in old slang', 'Penny-pinching metal, a ___ coin?'],
+      hard: ['Police officer, in old slang'],
     },
     {
       answer: 'BRONZE',
       easy: ['Third-place medal metal', 'Metal often cast into statues of heroes', 'Metal alloy used for church bells'],
-      hard: ['Sun-kissed shade; third place', 'Ancient era named after a metal: the ___ Age'],
+      hard: ['Third-place medal, or a sun-kissed shade?', 'Ancient era named after a metal: the ___ Age'],
     },
     {
       answer: 'MERCURY',
@@ -152,7 +152,7 @@ const theme: Theme = {
     {
       answer: 'NICKEL',
       easy: ['Silvery metal used in coins', 'Metal many people are allergic to in jewellery', 'American five-cent coin, or the metal it\'s named after'],
-      hard: ['Coin metal that a magnet can pick up', 'Small change: a ___ and a dime'],
+      hard: ['American five-cent coin?'],
     },
     {
       answer: 'NUGGET',
@@ -162,27 +162,27 @@ const theme: Theme = {
     {
       answer: 'SAPPHIRE',
       easy: ['Blue precious gem', 'Blue gem; the colour takes its name from it', 'Blue gem given for a September baby'],
-      hard: ['Deep blue stone in a royal ring', 'Gift for 45 years of marriage, a blue ___?'],
+      hard: ['Deep blue stone in a royal ring'],
     },
     {
       answer: 'AMETHYST',
       easy: ['Purple gemstone', 'Purple gem given on a February birthday', 'Violet gem, a colour named after it'],
-      hard: ['Purple crystal, often found in a geode', 'Gem the colour of royal robes, purple and sparkly?'],
+      hard: ['Purple crystal fit for a queen\'s ring?'],
     },
     {
       answer: 'AQUAMARINE',
       easy: ['Sea-blue gemstone', 'March baby\'s gem, a pale blue-green', 'Gem whose name means seawater in Latin'],
-      hard: ['Gem the colour of a tropical lagoon', 'Mermaid\'s ring stone, pale sea-blue and clear'],
+      hard: ['Gem the colour of a tropical lagoon'],
     },
     {
       answer: 'TURQUOISE',
       easy: ['Blue-green stone, also a colour', 'Bright blue-green stone used in bracelets', 'Blue-green stone that\'s a December birthday gem'],
-      hard: ['Colour between blue and green', 'Gem whose name hints it came from Turkey'],
+      hard: ['Colour between blue and green'],
     },
     {
       answer: 'BIRTHSTONE',
       easy: ['Gem linked to the month you were born', 'Gem for a month: there\'s one for each of twelve', 'Monthly gem that matches your birthday'],
-      hard: ['Gem that celebrates your special month?', 'A ___ for every birthday month (sparkly!)'],
+      hard: ['Gem that celebrates your special month?'],
     },
     {
       answer: 'PLATINUM',
@@ -197,42 +197,42 @@ const theme: Theme = {
     {
       answer: 'TITANIUM',
       easy: ['Super-strong, light metal used in bikes', 'Light metal used in golf clubs and some watches', 'Metal used for hip and knee replacements'],
-      hard: ['Light metal that\'s tough enough for planes', 'Metal named after the giants of Greek myth'],
+      hard: ['Light metal that\'s tough enough for planes'],
     },
     {
       answer: 'JEWELLER',
       easy: ['Person who makes rings and necklaces', 'Shop worker who sizes and fixes rings', 'Person who sets gems into rings and brooches'],
-      hard: ['Shopkeeper with a sparkly window display', 'Ring-maker who keeps an eye on sparklers'],
+      hard: ['Shopkeeper with a sparkly window display'],
     },
     {
       answer: 'NECKLACE',
       easy: ['Chain of beads worn at the throat', 'Pearls or beads you fasten on, with a clasp', 'What a locket usually hangs from'],
-      hard: ['String of pearls, perhaps', 'Always the tangle at the bottom of a jewellery box'],
+      hard: ['String of pearls, perhaps'],
     },
     {
       answer: 'GOLD RUSH',
       easy: ['Crowd of diggers racing to a new find', 'Big 1800s dash by diggers hunting for riches', 'Frantic stampede of miners hoping for riches'],
-      hard: ['Mad scramble of diggers to Otago\'s riverbeds', 'Race with pickaxes to stake a claim!'],
+      hard: ['Mad scramble of diggers to Otago\'s riverbeds'],
     },
     {
       answer: 'BLACKSMITH',
       easy: ['Person who hammers hot iron', 'Old job behind the common surname Smith', 'Tradesperson in a sooty forge, working the bellows'],
-      hard: ['Horseshoe maker at the forge', 'Worker whose name starts with a colour, and bashes metal?'],
+      hard: ['Horseshoe maker at the forge'],
     },
     {
       answer: 'TREASURE',
       easy: ['Chest of gold and jewels', 'Hidden hoard that an X marks on a map', 'Something precious you\'d dig up with a spade'],
-      hard: ['What pirates bury', 'Hold dear, and you ___ your best mate!'],
+      hard: ['What pirates bury', '___ Island (classic pirate adventure)'],
     },
     {
       answer: 'CROWN JEWELS',
       easy: ['Royal treasures kept in the Tower of London', 'Gems and gold worn by a monarch at ceremonies', 'Royal bling worn on special state days'],
-      hard: ['Royal sparklers under guard in London', 'Royal sparkle: the kingdom\'s ___'],
+      hard: ['Royal sparklers under guard in London'],
     },
     {
       answer: 'PROSPECTOR',
       easy: ['Person searching for gold', 'Person who pans for gold in a shallow dish', 'Someone who hunts for minerals in the hills'],
-      hard: ['Panner in an Otago stream', 'Hopeful digger, always hoping to strike it rich'],
+      hard: ['Panner in an Otago stream'],
     },
   ],
 };

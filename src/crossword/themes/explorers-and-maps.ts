@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'MAP',
       easy: ['Drawing that shows where places are', 'What you\'d unfold to find your way on a road trip', 'Picture of a place from above, showing roads and rivers'],
-      hard: ['Plan a route; it\'s on the wall of every classroom', 'Put on the ___ (make famous)'],
+      hard: ['Put on the ___ (make famous)'],
     },
     {
       answer: 'NORTH',
@@ -32,72 +32,72 @@ const theme: Theme = {
     {
       answer: 'ATLAS',
       easy: ['Book full of maps', 'Road map book kept in the car\'s glovebox', 'Library book where you\'d find every country'],
-      hard: ['Giant who held up the sky; a book of the world', 'Book with the whole world on its pages?'],
+      hard: ['Book of maps, or a giant who held up the sky?', 'Book with the whole world on its pages?'],
     },
     {
       answer: 'GLOBE',
       easy: ['Round model of the Earth', 'Round map you can spin on its stand', 'Snow ___ (shake it and watch the flakes fall)'],
-      hard: ['The whole world; a spinning classroom ball', 'World you can hold in your hands?'],
+      hard: ['World you can hold in your hands?'],
     },
     {
       answer: 'KEY',
       easy: ['Box on a map that explains its symbols', 'Thing you turn in a lock', 'Part of a piano you press down'],
-      hard: ['Door opener; map\'s code-breaker', 'Low-___ (calm and quiet)'],
+      hard: ['Door opener, or a guide to a map\'s symbols?', 'Low-___ (calm and quiet)'],
     },
     {
       answer: 'SHIP',
       easy: ['Large boat that sails the sea', 'Model built inside a bottle: a ___ in a bottle', 'Big vessel with a deck, a bridge and a hold'],
-      hard: ['Send off a parcel; Cook\'s floating home', 'Shape up or ___ out'],
+      hard: ['Shape up or ___ out'],
     },
     {
       answer: 'SAIL',
       easy: ['Cloth that catches the wind on a boat', 'Travel across the water in a yacht', 'Wind-catcher on a windsurfer'],
-      hard: ['Glide across the harbour; yacht\'s sheet', 'Set ___ (begin a voyage)'],
+      hard: ['Set ___ (begin a voyage)'],
     },
     {
       answer: 'MAST',
       easy: ['Tall pole that holds up a ship\'s sails', 'Flag flown at half-___ when people are sad', 'Tall upright post on a yacht'],
-      hard: ['Where the crow\'s nest perches', 'Ship\'s spine that points to the sky?'],
+      hard: ['Where the crow\'s nest perches'],
     },
     {
       answer: 'CREW',
       easy: ['People who work on a ship', 'Everyone who sails a yacht together', 'Team that rows a boat in a race'],
-      hard: ['Team on deck; a short haircut', 'Film-makers behind the camera'],
+      hard: ['Film-makers behind the camera'],
     },
     {
       answer: 'TREK',
       easy: ['Long, hard journey on foot, lasting many days', 'Pony ___, a horse-riding holiday', 'Long journey, like a camel ___ across the desert'],
-      hard: ['Star ___, a space voyage on TV', 'Trip taken one weary step at a time?'],
+      hard: ['Star ___, a space voyage on TV'],
     },
     {
       answer: 'ROUTE',
       easy: ['Path you take to get somewhere', 'Way you plan to go, drawn on a map', 'Roads you\'d take to get from home to school'],
-      hard: ['Bus\'s regular way; a ___ march', 'Scenic ___ (the long way, but prettier)'],
+      hard: ['Scenic ___ (the long way, but prettier)'],
     },
     {
       answer: 'TRAIL',
-      easy: ['Long hiking route like America\'s Appalachian one', 'The Oregon ___, the wagon route west', 'Mark left behind, like a snail\'s slimy one'],
-      hard: ['Follow the tracks; lag behind', 'Hot on the ___ (close to catching up)'],
+      easy: ['Path through the bush for walkers', 'Track of footprints to follow', 'Mark left behind, like a snail\'s slimy one'],
+      hard: ['Hot on the ___ (close to catching up)'],
     },
     {
       answer: 'POLE',
       easy: ['Very top or bottom of the Earth', 'Long stick used to vault high in athletics', 'Tall post holding up power lines'],
-      hard: ['Flag holder; where Santa\'s workshop is', 'In ___ position, first on the starting grid'],
+      hard: ['North or South, at the ends of the Earth?', 'In ___ position, first on the starting grid'],
     },
     {
       answer: 'COOK',
       easy: ['Captain who sailed the Endeavour to NZ', 'Make food hot and ready to eat', '___ Strait, between the North and South Islands'],
-      hard: ['Chef; captain who mapped Aotearoa\'s coast', 'Too many of these spoil the broth'],
+      hard: ['Chef, or the captain who mapped Aotearoa?', 'Too many ___s spoil the broth'],
     },
     {
       answer: 'KUPE',
       easy: ['Polynesian navigator who found Aotearoa in legend', 'Legendary voyager from Hawaiki who reached Aotearoa', 'Great navigator, a hero of Māori tradition'],
-      hard: ['Legendary sailor who chased a giant octopus here', 'Hawaiki\'s most famous wayfinder?'],
+      hard: ['Legendary sailor who chased a giant octopus here'],
     },
     {
       answer: 'STARS',
       easy: ['What Polynesian navigators steered by at night', 'Twinkling lights in the night sky', 'Gold stickers on a good piece of schoolwork'],
-      hard: ['Twinkling sat-nav of the waka?', 'Reach for the ___ (aim high)'],
+      hard: ['What ocean navigators steered by?', 'Reach for the ___ (aim high)'],
     },
     {
       answer: 'MOON',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'CHART',
       easy: ['A sailor\'s map', 'Graph or table that shows information', 'Sticker ___ for good behaviour'],
-      hard: ['Top 40 list; a map of the sea', 'Map that cares more about water than land?'],
+      hard: ['Sailor\'s map, or a Top 40 list?'],
     },
     {
       answer: 'GPS',
@@ -127,17 +127,17 @@ const theme: Theme = {
     {
       answer: 'TRIP',
       easy: ['Journey somewhere and back', 'Holiday away somewhere', 'School outing to a museum: a field ___'],
-      hard: ['Stumble; a family road ___', 'Round ___ (there and back again)'],
+      hard: ['Stumble, or a holiday journey?', 'Round ___ (there and back again)'],
     },
     {
       answer: 'OAR',
       easy: ['Paddle for rowing a boat', 'Long blade a rower pulls through the water', 'One of a pair on a dinghy'],
-      hard: ['Stick your ___ in (meddle)', 'Rowing stick that sounds like a mined rock?'],
+      hard: ['Stick your ___ in (meddle)'],
     },
     {
       answer: 'PORT',
       easy: ['Town with a harbour for ships', 'Place where big ships load and unload', 'Tauranga or Lyttelton, for cargo ships'],
-      hard: ['Left side of a ship; a harbour', 'USB ___, on the side of a laptop'],
+      hard: ['Harbour town, or the left side of a ship?', 'USB ___, on the side of a laptop'],
     },
     {
       answer: 'LAND',
@@ -157,12 +157,12 @@ const theme: Theme = {
     {
       answer: 'TENZING',
       easy: ['Sherpa who reached Everest\'s top in 1953', '___ Norgay, famous Sherpa mountaineer', 'Sir Ed\'s Sherpa partner on the world\'s highest peak'],
-      hard: ['Sir Ed\'s climbing partner on the summit', 'Half of the 1953 summit pair, alongside a Kiwi'],
+      hard: ['Sir Ed\'s climbing partner on the summit'],
     },
     {
       answer: 'TASMAN',
       easy: ['Dutch explorer who sighted NZ in 1642', 'Sea between NZ and Australia', 'Abel ___, Dutch sailor who reached NZ'],
-      hard: ['Abel seaman with a sea named after him?', 'The ditch, to Kiwis heading for Australia?'],
+      hard: ['Sea between NZ and Australia, or explorer Abel?', 'The ditch, to Kiwis heading for Australia?'],
     },
     {
       answer: 'COMPASS',
@@ -172,7 +172,7 @@ const theme: Theme = {
     {
       answer: 'EQUATOR',
       easy: ['Imaginary line around the middle of the Earth', 'Line that cuts the globe into top and bottom halves', 'Countries on this line are hot all year round'],
-      hard: ['Earth\'s belt', 'Line that\'s never chilly, though it\'s imaginary?'],
+      hard: ['Earth\'s belt'],
     },
     {
       answer: 'ISLAND',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'APOLLO',
       easy: ['Space missions that took people to the Moon', 'Greek god of music and the sun', 'NASA missions whose crews brought back Moon rocks'],
-      hard: ['Number 11 of these made one giant leap', 'Greek god whose name went to the Moon?'],
+      hard: ['Number 11 of these made one giant leap'],
     },
     {
       answer: 'HORIZON',
@@ -202,22 +202,22 @@ const theme: Theme = {
     {
       answer: 'ROCKET',
       easy: ['Spacecraft that blasts off', 'Firework that whooshes up into the sky', 'Tall spacecraft launched after a countdown'],
-      hard: ['Salad leaf; a launch to the stars', 'Shoot up fast, like prices?'],
+      hard: ['Spacecraft, or a peppery salad leaf?', 'Shoot up fast, like prices?'],
     },
     {
       answer: 'CAPTAIN',
       easy: ['Person in charge of a ship', 'Pilot in charge of a plane', 'Leader of a sports team who tosses the coin'],
-      hard: ['Skipper; team leader', 'Hook\'s title?'],
+      hard: ['Hook\'s title?'],
     },
     {
       answer: 'ANCHOR',
       easy: ['Heavy hook dropped to stop a ship drifting', 'Last runner in a relay team', 'Thing sailors \'weigh\' before they set off'],
-      hard: ['TV newsreader; ship\'s parking brake', 'It\'s dropped so the boat can stay put?'],
+      hard: ['Ship\'s heavy hook, or a TV newsreader?', 'It\'s dropped so the boat can stay put?'],
     },
     {
       answer: 'DESERT',
       easy: ['Dry, sandy place with little rain', 'Place with sand dunes and camels', 'Hot dry land where cactuses grow'],
-      hard: ['Abandon; the Sahara, e.g.', 'Sounds like pudding, but it\'s dry and sandy?'],
+      hard: ['Abandon, or the Sahara?', 'Sounds like pudding, but it\'s dry and sandy?'],
     },
     {
       answer: 'AOTEAROA',
@@ -232,22 +232,22 @@ const theme: Theme = {
     {
       answer: 'ENDEAVOUR',
       easy: ['Captain Cook\'s famous ship', 'Do your very best to achieve something', 'Ship Cook sailed to Tahiti and then NZ'],
-      hard: ['Try hard; ship that reached NZ in 1769', 'Best effort that sailed into Poverty Bay?'],
+      hard: ['Captain Cook\'s ship, or to try hard?'],
     },
     {
       answer: 'TREASURE MAP',
       easy: ['Pirate\'s chart where X marks the spot', 'Pirate\'s paper showing where the gold is buried', 'Scrap of paper with a dotted line to hidden riches'],
-      hard: ['Paper guide to buried booty', 'Chart that\'s worth its weight in gold?'],
+      hard: ['Paper guide to buried booty'],
     },
     {
       answer: 'LATITUDE',
       easy: ['Lines on a map running east to west', 'Distance above or below the middle of the Earth', 'Imaginary lines that run side to side across a globe'],
-      hard: ['Freedom to choose; a parallel measure', 'Where the Tropics sit, north and south of the equator?'],
+      hard: ['Distance north or south of the equator?'],
     },
     {
       answer: 'LONGITUDE',
-      easy: ['Distance east or west of Greenwich, measured in degrees', 'Harrison\'s famous clocks helped sailors find this at sea', 'Up-and-down lines on a world map, not the across ones'],
-      hard: ['Meridian measure', 'Measure that begins at 0 in Greenwich and ends at 180?'],
+      easy: ['Distance east or west of Greenwich, measured in degrees', 'Lines on a globe that run from pole to pole', 'Up-and-down lines on a world map, not the across ones'],
+      hard: ['Lines running up and down a globe?'],
     },
     {
       answer: 'HEMISPHERE',
@@ -262,7 +262,7 @@ const theme: Theme = {
     {
       answer: 'EXPEDITION',
       easy: ['Long trip made to explore somewhere', 'Team trip into the jungle to explore', 'Long, organised trip to climb a mountain'],
-      hard: ['Mission to the far-off unknown', 'Fishing ___ (a search for information)'],
+      hard: ['Mission to the far-off unknown'],
     },
     {
       answer: 'NAVIGATOR',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'SUITCASE',
       easy: ['Bag you pack for a holiday', 'Luggage with wheels and a handle', 'Case you sit on to make it shut'],
-      hard: ['Wheeled case on the airport carousel', 'Travellers \'live out of\' one?'],
+      hard: ['Wheeled case on the airport carousel'],
     },
     {
       answer: 'ASTRONAUT',
@@ -297,7 +297,7 @@ const theme: Theme = {
     {
       answer: 'ARMSTRONG',
       easy: ['First person to walk on the Moon', 'Neil ___, famous moonwalker', 'Astronaut who stepped out first on Apollo 11'],
-      hard: ['Neil who took one small step', 'Name that sounds like a muscly astronaut?'],
+      hard: ['Neil who took one small step'],
     },
     {
       answer: 'ANTARCTICA',
@@ -307,7 +307,7 @@ const theme: Theme = {
     {
       answer: 'BINOCULARS',
       easy: ['Double eyepiece for seeing far away', 'Pair of lenses for birdwatching', 'Viewers on a neck strap for seeing far-off things'],
-      hard: ['Lookout\'s twin tubes', 'Twins that bring the birds closer?'],
+      hard: ['Lookout\'s twin tubes'],
     },
   ],
 };

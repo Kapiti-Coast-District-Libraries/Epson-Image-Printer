@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'RING',
       easy: ['Circle where circus acts perform', 'Jewellery worn on a finger', 'Circle of kids holding hands in a game'],
-      hard: ['What a phone does when Nan calls', 'Boxer\'s square that isn\'t round at all?'],
+      hard: ['What a phone does when Nan calls'],
     },
     {
       answer: 'RIDE',
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'STALL',
       easy: ['Fair counter with a canopy, where you buy hot chips', 'Cake ___ at the school fair', 'Open-fronted counter where a market trader sells fruit'],
-      hard: ['Play for time; conk out, like an engine', 'Horse\'s room in a stable'],
+      hard: ['Market trader\'s stand, or a horse\'s room?'],
     },
     {
       answer: 'LION',
@@ -52,7 +52,7 @@ const theme: Theme = {
     {
       answer: 'FAIR',
       easy: ['Fun day out with rides and stalls', 'Light-coloured, like pale hair or skin', 'Pretty good but not great, as in \'a ___ effort\''],
-      hard: ['That\'s not ___!', 'Carnival with rides that sounds like a bus ticket price?'],
+      hard: ['That\'s not ___!'],
     },
     {
       answer: 'GALA',
@@ -62,7 +62,7 @@ const theme: Theme = {
     {
       answer: 'FETE',
       easy: ['Garden ___ (outdoor fundraising fair)', 'Church or school fair with a cake stall', 'Summer fair with a tombola and pony rides'],
-      hard: ['Fundraising fair that sounds like destiny?', 'Fundraiser from the French for \'festival\', with a raffle and cakes'],
+      hard: ['School fair with cake stalls and a raffle?'],
     },
     {
       answer: 'NOSE',
@@ -72,12 +72,12 @@ const theme: Theme = {
     {
       answer: 'WIG',
       easy: ['Clown\'s frizzy fake hair', 'Fake hair worn in a play', 'Hairpiece in the dress-up box'],
-      hard: ['Hair you can take off at bedtime?', 'Powdered hairpiece worn by judges in period dramas'],
+      hard: ['Hair you can take off at bedtime?'],
     },
     {
       answer: 'FLIP',
       easy: ['Somersault in the air', 'Toss a coin', '___-flop (jandal, overseas)'],
-      hard: ['What you do to a pancake halfway', 'Lose it, like a pancake mid-air?'],
+      hard: ['What you do to a pancake halfway'],
     },
     {
       answer: 'NET',
@@ -97,17 +97,17 @@ const theme: Theme = {
     {
       answer: 'HOOPLA',
       easy: ['Fair stall where you win whatever your ring drops over', 'Fairground game where prizes sit on blocks and most throws miss', 'Fair stall game whose name also means a fuss or commotion'],
-      hard: ['Big fuss; a ring-toss game', 'Commotion, or a game with loops and prizes?'],
+      hard: ['Ring-tossing game at the fair?'],
     },
     {
       answer: 'BIG TOP',
       easy: ['Huge circus tent', 'Striped tent where the circus plays', 'Under the ___ (at the circus)'],
-      hard: ['Canvas roof of the ring', 'Huge lid over the circus?'],
+      hard: ['Canvas roof of the ring'],
     },
     {
       answer: 'STILTS',
       easy: ['Tall poles to walk on', 'Posts that hold a house up above a swamp', 'Long poles that let a parade walker tower over you'],
-      hard: ['Wooden legs that make you a giant', 'Legs that come off after the parade?'],
+      hard: ['Wooden legs that make you a giant'],
     },
     {
       answer: 'HOT DOG',
@@ -122,7 +122,7 @@ const theme: Theme = {
     {
       answer: 'CANNON',
       easy: ['Big gun that fires a daredevil', 'Old ship\'s gun that fired iron balls', '___ball (a big splash into the pool)'],
-      hard: ['Human projectile\'s launcher', 'Loose ___ (an unpredictable person)'],
+      hard: ['What a circus daredevil is fired from?', 'Loose ___ (an unpredictable person)'],
     },
     {
       answer: 'TUMBLE',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'ACROBAT',
       easy: ['Daring circus artist who flips, twists and balances', 'Bendy performer who builds human pyramids', 'Trapeze or tightrope performer in the big top'],
-      hard: ['Circus thrill-seeker who walks the wire and flips mid-air?', 'Big-top performer who always lands on their feet?'],
+      hard: ['Big-top performer who always lands on their feet?'],
     },
     {
       answer: 'JUGGLER',
@@ -152,7 +152,7 @@ const theme: Theme = {
     {
       answer: 'TRAPEZE',
       easy: ['Swinging bar high in the big top', 'Hanging bar on two ropes', 'Act where fliers swap swings mid-air'],
-      hard: ['Flying act\'s swinging bar', 'Swing that\'s no playground ride?'],
+      hard: ['Flying act\'s swinging bar'],
     },
     {
       answer: 'POPCORN',
@@ -162,17 +162,17 @@ const theme: Theme = {
     {
       answer: 'BALLOON',
       easy: ['Party favour you can twist into a dog', 'Rubber bag you blow up for a party', 'Goes bang if you poke it with a pin'],
-      hard: ['It goes up when it\'s full of hot air?', 'Swell up quickly, like a bill'],
+      hard: ['It goes up when it\'s full of hot air?'],
     },
     {
       answer: 'SEQUINS',
       easy: ['Glittery discs that fall off a party dress and end up everywhere', 'Tiny shiny discs sewn in rows on a ballgown', 'Shiny scales on a mermaid costume'],
-      hard: ['Glitter\'s bigger, flatter cousin, sewn onto costumes?', 'Glitter you can sew on?'],
+      hard: ['Glitter you can sew on?'],
     },
     {
       answer: 'SAWDUST',
       easy: ['Wood shavings scattered on the circus floor', 'What falls from a plank as you cut it', 'Fine wood scraps in a hamster cage'],
-      hard: ['Timber crumbs', 'Ring floor a carpenter makes by accident?'],
+      hard: ['What covers the circus ring floor?'],
     },
     {
       answer: 'MAGICIAN',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'SIDESHOW',
       easy: ['Small extra show at a fair', 'Little tent at the fair with games or oddities', 'Small act running next to the main event'],
-      hard: ['Distraction from the main event', 'Show that\'s on the side?'],
+      hard: ['Distraction from the main event'],
     },
     {
       answer: 'DRUMROLL',
@@ -212,12 +212,12 @@ const theme: Theme = {
     {
       answer: 'TIGHTROPE',
       easy: ['Rope to walk across, high up', 'Line a circus balancer walks along', 'Taut cord you cross with arms held out'],
-      hard: ['One to walk when balancing tricky choices', 'Line that\'s under a lot of tension?'],
+      hard: ['Line that\'s under a lot of tension?'],
     },
     {
       answer: 'STRONGMAN',
       easy: ['Performer who lifts heavy weights', 'Circus muscle man in a leopard-print suit', 'Performer who bends iron bars'],
-      hard: ['Muscleman with a barbell and moustache', 'Guy who could carry the whole show?'],
+      hard: ['Muscleman with a barbell and moustache'],
     },
     {
       answer: 'FACE PAINT',

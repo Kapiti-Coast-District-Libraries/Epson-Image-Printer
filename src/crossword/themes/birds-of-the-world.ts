@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'EMU',
       easy: ['Big flightless Australian bird', 'Bird on Australia\'s coat of arms, beside a kangaroo', 'Bird that lays huge dark-green eggs'],
-      hard: ['Aussie runner that can\'t take off', 'Bird of a very shaggy feather, Down Under?'],
+      hard: ['Aussie runner that can\'t take off'],
     },
     {
       answer: 'OWL',
@@ -17,12 +17,12 @@ const theme: Theme = {
     {
       answer: 'CROW',
       easy: ['Black bird that caws', 'Clever black bird known for using tools', 'Black bird that a straw farm figure is meant to frighten'],
-      hard: ['As the ___ flies', 'Dish you must eat when you admit you were wrong?'],
+      hard: ['As the ___ flies'],
     },
     {
       answer: 'DOVE',
       easy: ['White bird of peace', 'Soft-voiced bird whose call is a gentle coo', 'Bird often set free at weddings as a sign of hope'],
-      hard: ['Peace bird carrying an olive branch', 'Bird that never ruffles any feathers?'],
+      hard: ['Peace bird carrying an olive branch'],
     },
     {
       answer: 'SWAN',
@@ -32,27 +32,27 @@ const theme: Theme = {
     {
       answer: 'EAGLE',
       easy: ['Big bird of prey with sharp eyes', 'Bird on the national emblem of the United States', 'Soaring hunter with huge wings and a hooked beak'],
-      hard: ['Two under par in golf', 'Keen-eyed bird that\'s always on the lookout?'],
+      hard: ['Bald bird on America\'s crest?'],
     },
     {
       answer: 'STORK',
       easy: ['Tall bird said to deliver babies', 'Bird that clatters its bill instead of singing', 'Bird that builds huge nests on top of chimneys'],
-      hard: ['Long-legged baby delivery service, in legend', 'Legendary delivery bird that never forgets a newborn\'s address?'],
+      hard: ['Long-legged baby delivery service, in legend'],
     },
     {
       answer: 'CRANE',
       easy: ['Long-legged bird, also a tall building-site machine', 'Wetland bird with a loud trumpeting call', 'Origami\'s best-known bird, folded from a square of paper'],
-      hard: ['Stretch your neck to see', 'Lifts the heavy loads, and gets a view over the wall?'],
+      hard: ['Bird you\'d also find on a building site?'],
     },
     {
       answer: 'RAVEN',
       easy: ['Large black bird bigger than a crow', 'Black bird kept at the Tower of London', 'Bird that says \'nevermore\' in a famous Edgar Allan Poe poem'],
-      hard: ['Odin\'s pair of black messengers in Norse myth', 'Croaky bird with a name that sounds hungry?'],
+      hard: ['Big black bird of the Tower of London?'],
     },
     {
       answer: 'FINCH',
-      easy: ['Small seed-eating songbird', 'Island bird that helped Darwin work out evolution', 'Tiny bird with a short, stubby, cone-shaped beak'],
-      hard: ['Gold or green little seed-cracker', 'Bird that does a cracking job on the seeds?'],
+      easy: ['Small seed-eating songbird', 'Small garden bird, often seen at a seed feeder', 'Tiny bird with a short, stubby, cone-shaped beak'],
+      hard: ['Gold or green little seed-cracker'],
     },
     {
       answer: 'WREN',
@@ -62,12 +62,12 @@ const theme: Theme = {
     {
       answer: 'TUI',
       easy: ['NZ songbird with a white tuft at its throat', 'NZ bird famous for its loud, bubbly song', 'Glossy NZ bird that sips nectar from flax flowers'],
-      hard: ['Native singer wearing a little white bow tie?', 'Bush mimic that can do a passable car alarm?'],
+      hard: ['Native singer wearing a little white bow tie?'],
     },
     {
       answer: 'LARK',
       easy: ['Songbird that sings as it rises', 'Brown songbird that nests on the ground in fields', 'Harmless prank, or a singing bird of the fields'],
-      hard: ['Up with the ___', 'Sky-high singer that\'s always up to some mischief?'],
+      hard: ['Up with the ___', 'Bit of fun, or an early-rising songbird?'],
     },
     {
       answer: 'ROBIN',
@@ -77,37 +77,37 @@ const theme: Theme = {
     {
       answer: 'GOOSE',
       easy: ['Honking bird; a group is a gaggle', 'Farm bird that hisses at strangers and honks at intruders', 'Mother ___, the name on a famous book of nursery rhymes'],
-      hard: ['Silly person; big honker', 'Jack\'s golden-egg layer from the beanstalk adventure?'],
+      hard: ['Silly person, or a honking bird?', 'Jack\'s golden-egg layer from the beanstalk adventure?'],
     },
     {
       answer: 'KIWI',
       easy: ['NZ\'s flightless national bird, out at night', 'Flightless bird with nostrils at the tip of its beak', 'Shy NZ bird that sniffs out worms with its long bill'],
-      hard: ['Nickname for anyone from Aotearoa', 'Night bird with an egg-citing family life?'],
+      hard: ['Nickname for anyone from Aotearoa'],
     },
     {
       answer: 'KEA',
       easy: ['Cheeky NZ mountain parrot', 'Green parrot with bright orange under its wings', 'Clever alpine parrot that loves to play and solve puzzles'],
-      hard: ['Car-wrecking parrot of the Southern Alps', 'Mountain parrot with a taste for rubber, not lollies?'],
+      hard: ['Cheeky parrot of the Southern Alps?'],
     },
     {
       answer: 'DUCK',
       easy: ['Quacking bird on the pond', 'Pond bird that tips up to feed with its tail in the air', 'Donald and Daffy, in cartoons'],
-      hard: ['Bend down fast to dodge', 'Let nagging roll off, like water off its back?'],
+      hard: ['Bend down fast to dodge', 'Like water off a ___\'s back'],
     },
     {
       answer: 'HAWK',
       easy: ['Bird of prey that sneaks up on small birds with a sudden dash', 'Hook-beaked bird of prey that nests in tall trees and hunts by sight', 'Kāhu is one: a bird of prey circling NZ paddocks'],
-      hard: ['Watch like a ___ (keep a very close eye)', 'Pedlar\'s verb, and a sharp-eyed bird of prey?'],
+      hard: ['Watch like a ___ (keep a very close eye)'],
     },
     {
       answer: 'OSTRICH',
       easy: ['World\'s biggest bird', 'Huge African bird with very bare, long legs', 'Bird that lays the biggest eggs of any living bird'],
-      hard: ['Bird said to hide its head in the sand', 'Feathered speedster that\'s all legs and no flight?'],
+      hard: ['Bird said to hide its head in the sand'],
     },
     {
       answer: 'PEACOCK',
       easy: ['Bird that fans out a colourful tail', 'Male bird whose tail is covered in eye-shaped spots', 'Large bird from India with a loud, screeching call'],
-      hard: ['Show-off with a fancy tail', 'As proud as a ___ with a tail full of eyes?'],
+      hard: ['Show-off with a fancy tail', 'As proud as a ___'],
     },
     {
       answer: 'PELICAN',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'PENGUIN',
       easy: ['Flightless bird that swims in cold seas', 'Black-and-white bird that huddles together to keep warm', 'Bird that slides along on its tummy across the ice'],
-      hard: ['Bird in a dinner suit that can\'t fly', 'Waddling waiter, all dressed in black and white?'],
+      hard: ['Bird in a dinner suit that can\'t fly'],
     },
     {
       answer: 'VULTURE',
@@ -127,7 +127,7 @@ const theme: Theme = {
     {
       answer: 'MAGPIE',
       easy: ['Black and white bird that swoops in spring', 'Black-and-white bird with a long, wedge-shaped tail', 'Bird in the rhyme \'One for sorrow, two for joy\''],
-      hard: ['Collector of shiny things', 'Chatterbox in black and white, always with the gossip?'],
+      hard: ['Collector of shiny things'],
     },
     {
       answer: 'SPARROW',
@@ -137,17 +137,17 @@ const theme: Theme = {
     {
       answer: 'CUCKOO',
       easy: ['Bird that lays eggs in other birds\' nests', 'Bird whose call sounds just like its own name', 'Summer visitor that heads off to Africa for winter'],
-      hard: ['Crazy; a clock\'s caller', 'Feathered freeloader that never builds its own home?'],
+      hard: ['___ clock (it calls the hour)', 'Feathered freeloader that never builds its own home?'],
     },
     {
       answer: 'CANARY',
       easy: ['Yellow songbird kept as a pet', 'Yellow songbird from islands off the coast of Africa', 'Yellow bird with a trilling song that brightens a room'],
-      hard: ['Yellow songbird once taken down coal mines', 'Sunny songbird that shares its name with some islands?'],
+      hard: ['Tweety, for one?', 'Yellow songbird in a cage?'],
     },
     {
       answer: 'SWALLOW',
       easy: ['Fork-tailed bird that skims over fields', 'Bird that builds mud nests under barn roofs', 'Small bird that catches insects while flying'],
-      hard: ['Gulp down; summer flier', 'One of these doesn\'t make a summer, as they say'],
+      hard: ['Gulp down, or a fork-tailed bird?'],
     },
     {
       answer: 'PIGEON',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'TURKEY',
       easy: ['Big bird often eaten at Christmas', 'Farm bird with a wobbly red wattle under its beak', 'Bird that first came from North America'],
-      hard: ['Christmas gobbler; flop of a show', 'Go cold ___ and quit all at once?'],
+      hard: ['Christmas dinner bird?', 'Go cold ___ (quit all at once)'],
     },
     {
       answer: 'FALCON',
@@ -167,7 +167,7 @@ const theme: Theme = {
     {
       answer: 'TOUCAN',
       easy: ['Tropical bird with a giant colourful beak', 'Rainforest bird that sleeps with its huge beak tucked over its back', 'Bright-billed rainforest bird of Central and South America'],
-      hard: ['Bird that sounds like a pair could manage it?', 'Big-billed bird that looks like it\'s holding a banana in its beak?'],
+      hard: ['Big-billed bird that looks like it\'s holding a banana in its beak?'],
     },
     {
       answer: 'PARROT',
@@ -192,32 +192,32 @@ const theme: Theme = {
     {
       answer: 'COCKATOO',
       easy: ['White parrot with a yellow crest', 'Australian parrot that raises its crest when excited', 'Clever parrot that can learn tricks and words'],
-      hard: ['Screechy white parrot with a punk hairdo', 'Crested party animal of the parrot world?'],
+      hard: ['Screechy white parrot with a punk hairdo'],
     },
     {
       answer: 'KOOKABURRA',
       easy: ['Australian bird that sounds like it\'s laughing', 'Big Australian kingfisher that eats snakes and lizards', 'Chunky Aussie bird with a huge, strong beak'],
-      hard: ['Bird that always gets the joke?', 'Gum-tree chuckler that\'s the life of the party?'],
+      hard: ['Bird that always gets the joke?'],
     },
     {
       answer: 'HUMMINGBIRD',
       easy: ['Tiny bird that hovers to drink nectar', 'Tiny Americas bird with a long, needle-like beak', 'Tiny bird that can fly backwards as well as forwards'],
-      hard: ['Bird that sings without the words?', 'Tiny flyer that\'s always buzzing around?'],
+      hard: ['Bird that doesn\'t know the words?', 'Tiny hoverer that can fly backwards?'],
     },
     {
       answer: 'WOODPECKER',
       easy: ['Bird that drums holes in trees', 'Bird with a long, sticky tongue for catching grubs', 'Bird with a stiff tail that props it up on tree trunks'],
-      hard: ['Tree-knocker with a tough head', 'Forest drummer that\'s always drumming up business?'],
+      hard: ['Tree-knocker with a tough head'],
     },
     {
       answer: 'ALBATROSS',
       easy: ['Seabird with huge wings', 'Seabird that glides for hours without flapping', 'Ocean bird that nests on remote southern islands'],
-      hard: ['Rare golf score; giant glider', 'Heavy burden, like a seabird hung round your neck?'],
+      hard: ['Giant seabird with the widest wings of all?'],
     },
     {
       answer: 'STARLING',
       easy: ['Speckled bird that flies in huge swirling flocks', 'Garden bird that can copy sounds like a phone ring', 'European bird introduced to NZ in the 1800s, now common'],
-      hard: ['Little star, by the sound of it?', 'Flocking bird that\'s a real crowd-pleaser?'],
+      hard: ['Speckled bird that sounds like a little star?'],
     },
     {
       answer: 'BLACKBIRD',
@@ -226,8 +226,8 @@ const theme: Theme = {
     },
     {
       answer: 'NIGHTINGALE',
-      easy: ['Bird famous for singing at night', 'Plain brown songbird with a rich, loud song in the evening', 'Songbird that Keats wrote a famous poem about'],
-      hard: ['Florence, the nurse with the lamp', 'Andersen\'s songbird that sang for an emperor?'],
+      easy: ['Bird famous for singing at night', 'Plain brown songbird with a rich, loud song in the evening', 'Small brown bird of fairy tales, famous for its beautiful song'],
+      hard: ['Florence, the nurse with the lamp'],
     },
     {
       answer: 'ROADRUNNER',

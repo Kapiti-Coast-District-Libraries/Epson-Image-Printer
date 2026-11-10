@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'HOE',
       easy: ['Long tool for scraping out weeds', 'Tool for loosening soil between rows of veges', 'Garden tool that rhymes with \'toe\''],
-      hard: ['Weeding tool that sounds like Santa\'s laugh?', 'A tough row to ___ (a hard task)'],
+      hard: ['A tough row to ___ (a hard task)'],
     },
     {
       answer: 'TROWEL',
@@ -27,12 +27,12 @@ const theme: Theme = {
     {
       answer: 'WHEELBARROW',
       easy: ['One-wheeled cart for carrying soil', 'Tipping cart with two handles at the back', 'Builders push loads of concrete in this'],
-      hard: ['___ race, where a partner holds your legs', 'Garden cart that gives your little brother a ride?'],
+      hard: ['___ race, where a partner holds your legs'],
     },
     {
       answer: 'HOSE',
       easy: ['Long tube for watering the garden', 'Roll this out to wash the car', 'Spray the garden with water'],
-      hard: ['Garden snake that sprays?', 'It\'s on a reel, but it\'s not for fishing?'],
+      hard: ['Garden snake that sprays?'],
     },
     {
       answer: 'WATERING CAN',
@@ -57,27 +57,27 @@ const theme: Theme = {
     {
       answer: 'MULCH',
       easy: ['Layer of bark or straw over the soil', 'Bark chips spread round plants', 'Spread this to keep weeds down'],
-      hard: ['Blanket for the garden bed that keeps it moist', 'Mushy stuff that keeps the garden snug'],
+      hard: ['Blanket for the garden bed that keeps it moist'],
     },
     {
       answer: 'SOIL',
       easy: ['Dirt that plants grow in', 'Worms wriggle through it and plant roots drink from it', 'Ground for growing veggies'],
-      hard: ['Dirty, as muddy boots do the carpet', 'Earth, but not the planet?'],
+      hard: ['Dirt, or make dirty?'],
     },
     {
       answer: 'SEED',
       easy: ['Plant this to grow a new plant', 'Pip in an apple', 'Birds peck this from a feeder'],
-      hard: ['Rank in a tennis draw', 'Go to ___ (get shabby)'],
+      hard: ['Go to ___ (get shabby)'],
     },
     {
       answer: 'SEEDLING',
       easy: ['Young plant that has just sprouted', 'Tiny plant with its first two leaves', 'Little sprout ready to move to a bigger pot'],
-      hard: ['Punnet baby ready for planting out', 'Plant in its toddler years?'],
+      hard: ['Baby plant ready for planting out?'],
     },
     {
       answer: 'BULB',
       easy: ['Plant daffodils from this', 'Onion-shaped thing you plant in autumn', 'Garlic grows as one of these'],
-      hard: ['It lights a lamp or grows a tulip', 'Bright idea, in a cartoon?'],
+      hard: ['It lights a lamp or grows a tulip'],
     },
     {
       answer: 'WEED',
@@ -97,7 +97,7 @@ const theme: Theme = {
     {
       answer: 'SLUG',
       easy: ['Slimy pest with no shell that eats lettuce', 'Slimy blob with feelers that comes out on wet nights', 'Leaves a slimy trail and munches seedlings'],
-      hard: ['Snail that\'s lost its house?', 'Wallop, or a slimy lettuce nibbler?'],
+      hard: ['Snail that\'s lost its house?'],
     },
     {
       answer: 'BEE',
@@ -107,32 +107,32 @@ const theme: Theme = {
     {
       answer: 'LADYBIRD',
       easy: ['Red beetle with black spots', 'Little round beetle that might land on your finger', 'Nursery rhyme: \'___, fly away home\''],
-      hard: ['Spotty gardener\'s friend that eats bugs', 'Not a woman or a bird, but a beetle?'],
+      hard: ['Spotty gardener\'s friend that eats bugs'],
     },
     {
       answer: 'ROSE',
       easy: ['Thorny flower, often red', 'Flower given on Valentine\'s Day', 'Bush with prickly stems and sweet-smelling blooms'],
-      hard: ['Got up, as the sun did', 'Look at life through ___-tinted glasses'],
+      hard: ['Thorny bloom, or \'got up\'?', 'Look at life through ___-tinted glasses'],
     },
     {
       answer: 'DAISY',
       easy: ['White flower with a yellow centre', 'Flower you pick to make a chain', 'Little lawn flower that closes at night'],
-      hard: ['Fresh as one, so they say', 'Oops-a-___!'],
+      hard: ['Fresh as one, so they say'],
     },
     {
       answer: 'TULIP',
       easy: ['Cup-shaped spring flower grown from a bulb', 'Flower Holland is famous for', 'Flower on a long stem that looks like a closed cup'],
-      hard: ['Flower that sounds like a pair of kissers?', 'Tiptoe through the ___s, as the old song says'],
+      hard: ['Tiptoe through the ___s, as the old song says'],
     },
     {
       answer: 'DAFFODIL',
       easy: ['Yellow spring flower with a trumpet', 'Flower with a frilly yellow cup in the middle', 'Nodding yellow flower that pops up in early spring'],
-      hard: ['Yellow bloom sold each August for a good cause', 'Golden host in a famous poem'],
+      hard: ['Yellow bloom sold each August for a good cause'],
     },
     {
       answer: 'SUNFLOWER',
       easy: ['Very tall flower with a big yellow face', 'Flower with a huge round face full of seeds', 'Yellow flower kids grow in a who\'s-tallest contest'],
-      hard: ['Giant bloom whose seeds feed the birds', 'Solar-powered giant?'],
+      hard: ['Giant bloom whose seeds feed the birds'],
     },
     {
       answer: 'LAVENDER',
@@ -142,22 +142,22 @@ const theme: Theme = {
     {
       answer: 'POHUTUKAWA',
       easy: ['Native tree with red flowers at Christmas', 'Tree with crimson flowers along NZ beaches', 'Coastal tree with gnarled roots over the rocks'],
-      hard: ['Coastal tree called NZ\'s Christmas tree', 'Tree that sees red at Christmas?'],
+      hard: ['Coastal tree called NZ\'s Christmas tree'],
     },
     {
       answer: 'KOWHAI',
       easy: ['Native tree with yellow flowers', 'Native tree with golden bell-shaped flowers', 'Tree whose name is the te reo word for yellow'],
-      hard: ['Tree whose yellow spring blooms feed the tūī', 'Cascade of gold in a Kiwi spring, hanging from a native tree?'],
+      hard: ['Tree whose yellow spring blooms feed the tūī'],
     },
     {
       answer: 'FLAX',
       easy: ['Native plant with long strappy leaves', 'Tall clump of sword-shaped leaves in a swamp', 'Plant with tall flower stalks loved by tūī'],
-      hard: ['Harakeke, used for weaving', 'Leafy source of a piupiu\'s strips'],
+      hard: ['Harakeke, used for weaving'],
     },
     {
       answer: 'HEDGE',
       easy: ['Row of bushes along the boundary', 'Bushy wall you trim with clippers', 'The walls of a garden maze are made of this'],
-      hard: ['Avoid answering directly', '___hog, a prickly garden visitor'],
+      hard: ['___hog, a prickly garden visitor'],
     },
     {
       answer: 'LAWN',
@@ -177,7 +177,7 @@ const theme: Theme = {
     {
       answer: 'POTTING MIX',
       easy: ['Bagged soil for pot plants', 'What you fill a planter with before adding seeds', 'Dark crumbly stuff for repotting a plant'],
-      hard: ['Bagged blend: wear a mask when opening it', 'Blend you get your hands dirty in?'],
+      hard: ['What you fill a flowerpot with?'],
     },
     {
       answer: 'FERTILISER',
@@ -187,12 +187,12 @@ const theme: Theme = {
     {
       answer: 'PRUNE',
       easy: ['Trim back a rose bush', 'Cut off dead branches', 'Snip a tree into shape'],
-      hard: ['Dried plum; cut back', 'Wrinkly as a ___'],
+      hard: ['Dried plum, or trim a rose bush?', 'Wrinkly as a ___'],
     },
     {
       answer: 'SHED',
       easy: ['Small hut for storing tools', 'Hut where the mower lives', '___ a tear (cry a little)'],
-      hard: ['Lose, as a snake does its skin', 'Man cave out the back?'],
+      hard: ['Garden hut, or what a snake does to its skin?'],
     },
     {
       answer: 'GNOME',
@@ -212,52 +212,52 @@ const theme: Theme = {
     {
       answer: 'ROOTS',
       easy: ['Underground parts of a plant', 'Parts of a tree that drink from the soil', 'Carrots are this part of the plant'],
-      hard: ['Where your family comes from', 'Where your real hair colour shows as it grows out'],
+      hard: ['Where your family comes from'],
     },
     {
       answer: 'PETAL',
       easy: ['Coloured part of a flower', 'Rose ___s thrown at a wedding', 'A daisy has lots of white ones'],
-      hard: ['Soft coloured part that falls from a rose in a vase', 'Endearing name, or part of a bloom?'],
+      hard: ['Soft coloured part that falls from a rose in a vase'],
     },
     {
       answer: 'BLOSSOM',
       easy: ['Spring flowers on a fruit tree', 'Pink cherry ___ in spring', 'Burst into flower'],
-      hard: ['Flourish and grow, as a talent might', 'Spring confetti on the footpath?'],
+      hard: ['Spring confetti on the footpath?'],
     },
     {
       answer: 'SOW',
       easy: ['Plant seeds', 'Scatter seeds on a field', 'Plant, as a row of carrot seeds'],
-      hard: ['Mother pig', 'You reap what you ___'],
+      hard: ['You reap what you ___'],
     },
     {
       answer: 'DIG',
       easy: ['Turn over the soil with a spade', 'Make a hole in the ground', 'What a dog does to bury a bone'],
-      hard: ['Cheeky little jab at someone', 'Archaeologist\'s site'],
+      hard: ['What a spade is for?'],
     },
     {
       answer: 'BUD',
       easy: ['A flower before it opens', 'Rose ___ that will soon open', 'Little bump on a branch in spring'],
-      hard: ['Taste ___ on your tongue', 'Mate, to an American'],
+      hard: ['Taste ___ on your tongue'],
     },
     {
       answer: 'POLLEN',
       easy: ['Yellow dust that bees carry', 'Dust inside a flower that helps make seeds', 'Golden powder that rubs off on your nose from a lily'],
-      hard: ['Hay fever trigger', 'Its count is reported in spring for sneezers'],
+      hard: ['Hay fever trigger'],
     },
     {
       answer: 'MINT',
       easy: ['Fresh herb for lamb sauce', 'Herb that smells like toothpaste', 'Strong herb that can take over a garden'],
-      hard: ['In ___ condition, as good as new', 'Place where coins are made'],
+      hard: ['In ___ condition, as good as new'],
     },
     {
       answer: 'PARSLEY',
       easy: ['Curly green herb for garnishing', 'Herb that comes flat-leaf or curly', 'Green herb in a white sauce for fish'],
-      hard: ['Frilly garnish no-one eats', 'Herb in an old song with sage, rosemary and thyme'],
+      hard: ['Frilly garnish no-one eats'],
     },
     {
       answer: 'GLOVES',
       easy: ['Hand protectors against thorns', 'Pair you pull on before weeding', 'Woolly pair for cold hands in winter'],
-      hard: ['Pair worn in the boxing ring or the rose bed', 'Kid ___ (very gentle treatment)'],
+      hard: ['Pair worn in the boxing ring or the rose bed'],
     },
   ],
 };

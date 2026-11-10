@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'CUB',
       easy: ['Baby lion or bear', 'Baby panda', 'Young tiger that tumbles with its brothers'],
-      hard: ['Junior Scout; young fox', 'Rookie newspaper writer: ___ reporter'],
+      hard: ['Junior Scout, or a young fox?', 'Rookie newspaper writer: ___ reporter'],
     },
     {
       answer: 'KID',
@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'CALF',
       easy: ['Baby cow', 'Young elephant', 'Baby giraffe, born already very tall'],
-      hard: ['Back of your lower leg; baby whale', 'Junior moo-er?'],
+      hard: ['Back of your lower leg, or a baby whale?', 'Junior moo-er?'],
     },
     {
       answer: 'FOAL',
@@ -47,7 +47,7 @@ const theme: Theme = {
     {
       answer: 'FAWN',
       easy: ['Baby deer', 'Young forest animal with white spots', 'Baby animal whose dad is a stag'],
-      hard: ['Pale brown; Bambi as a baby', '___ over (flatter someone too much)'],
+      hard: ['Pale brown, or Bambi as a baby?', '___ over (flatter someone too much)'],
     },
     {
       answer: 'OWLET',
@@ -72,7 +72,7 @@ const theme: Theme = {
     {
       answer: 'FRY',
       easy: ['Baby fish', 'Tiny young fish in a stream', 'Cook sausages in a pan'],
-      hard: ['Cook in hot oil; tiny fish', 'Small ___ (people who don\'t matter much)'],
+      hard: ['Cook in hot oil, or tiny fish?', 'Small ___ (people who don\'t matter much)'],
     },
     {
       answer: 'LARVA',
@@ -112,7 +112,7 @@ const theme: Theme = {
     {
       answer: 'WEB',
       easy: ['Silky home of a spider', 'Sticky net that catches flies', 'Charlotte\'s ___ (book about a pig and a spider)'],
-      hard: ['Internet; a spider\'s trap', 'Duck\'s toe-joiner?'],
+      hard: ['The internet, or a spider\'s trap?', 'Duck\'s toe-joiner?'],
     },
     {
       answer: 'SHELL',
@@ -122,7 +122,7 @@ const theme: Theme = {
     {
       answer: 'DAM',
       easy: ['Wall a beaver builds across a stream', 'Concrete wall that makes a hydro lake', 'Pile of sticks blocking a stream'],
-      hard: ['Mother of a foal; it holds back a lake', 'Lake-maker across a valley?'],
+      hard: ['It holds back a lake, or a foal\'s mother?', 'Lake-maker across a valley?'],
     },
     {
       answer: 'POUCH',
@@ -132,7 +132,7 @@ const theme: Theme = {
     {
       answer: 'PEN',
       easy: ['Fenced area for sheep', 'Something you write with', 'Small fenced yard for lambs at a show'],
-      hard: ['Ballpoint; holding yard', 'It\'s mightier than the sword'],
+      hard: ['Ballpoint, or a holding yard?', 'It\'s mightier than the sword'],
     },
     {
       answer: 'CAGE',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'TANK',
       easy: ['Water container for a pet axolotl', 'Glass home for a pet turtle', 'Part of a car that holds the petrol'],
-      hard: ['Army vehicle; a fish\'s glass home', 'Guppy\'s glass house?'],
+      hard: ['Army vehicle, or a fish\'s glass home?', 'Guppy\'s glass house?'],
     },
     {
       answer: 'BARN',
@@ -172,12 +172,12 @@ const theme: Theme = {
     {
       answer: 'SOW',
       easy: ['Mother pig', 'Grown-up female pig', 'Pig that feeds a squealing brood'],
-      hard: ['Plant seeds; piglet\'s mum', 'You reap what you ___'],
+      hard: ['Plant seeds, or a piglet\'s mum?', 'You reap what you ___'],
     },
     {
       answer: 'DOE',
       easy: ['Mother deer', 'Female kangaroo', 'Female deer with no antlers'],
-      hard: ['Fawn\'s mum; a female rabbit too', 'Mum deer who sounds like bread mix?'],
+      hard: ['Fawn\'s mum, or a female rabbit?', 'Mum deer who sounds like bread mix?'],
     },
     {
       answer: 'HATCH',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'BURROW',
       easy: ['Hole a rabbit lives in', 'Hole a wombat digs to live in', 'Hole in the sand a crab hides in'],
-      hard: ['Dig in; a kiwi\'s underground nest', 'Snuggle deep under the duvet?'],
+      hard: ['Dig in, or a kiwi\'s underground nest?', 'Snuggle deep under the duvet?'],
     },
     {
       answer: 'WARREN',
@@ -222,7 +222,7 @@ const theme: Theme = {
     {
       answer: 'STABLE',
       easy: ['Building where horses live', 'Building with stalls for ponies', 'Firm and not wobbly'],
-      hard: ['Steady; a horse\'s home', 'Shutting the ___ door after the horse has bolted'],
+      hard: ['Steady, or a horse\'s home?', 'Shutting the ___ door after the horse has bolted'],
     },
     {
       answer: 'KENNEL',
@@ -242,12 +242,12 @@ const theme: Theme = {
     {
       answer: 'LITTER',
       easy: ['Group of puppies born together', 'Grit in a cat\'s toilet tray', 'Drop rubbish in the street'],
-      hard: ['Rubbish; kittens all born at once', 'Be a tidy Kiwi, don\'t ___'],
+      hard: ['Rubbish, or kittens all born at once?', 'Be a tidy Kiwi, don\'t ___'],
     },
     {
       answer: 'CLUTCH',
       easy: ['Batch of eggs in a nest', 'Hold on tight', 'Car pedal you press to change gear'],
-      hard: ['Grab tightly; eggs laid together', '___ at straws (try anything)'],
+      hard: ['Grab tightly, or eggs laid together?', '___ at straws (try anything)'],
     },
     {
       answer: 'TADPOLE',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'AQUARIUM',
       easy: ['Place to see sharks and fish behind glass', 'Place to visit penguins and stingrays', 'Big indoor attraction with underwater tunnels'],
-      hard: ['Sea-life centre; a goldfish\'s glass home', 'Wet zoo?'],
+      hard: ['Sea-life centre, or a goldfish\'s glass home?', 'Wet zoo?'],
     },
     {
       answer: 'FISHBOWL',

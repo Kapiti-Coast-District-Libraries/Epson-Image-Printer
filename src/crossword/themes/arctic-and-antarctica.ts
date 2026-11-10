@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'SEAL',
       easy: ['Flippered animal that rests on floating ice', 'Whiskered sea mammal that clings to rocks', 'Wax stamp pressed on an old letter'],
-      hard: ['Envelope closer; flippered barker', 'Keep quiet: ___ your lips'],
+      hard: ['Envelope closer, or flippered barker?', 'Keep quiet: ___ your lips'],
     },
     {
       answer: 'ORCA',
@@ -37,17 +37,17 @@ const theme: Theme = {
     {
       answer: 'HUSKY',
       easy: ['Sled dog with thick fur', 'Fluffy dog breed that came from Siberia', 'Dog that loves to howl and pull a load'],
-      hard: ['Hoarse-voiced; sled puller', 'Burly rugby forward, on four legs, and pulls a sled?'],
+      hard: ['Hoarse-voiced, or a sled puller?', 'Dog with pulling power in the snow?'],
     },
     {
       answer: 'SLED',
       easy: ['Vehicle that slides over snow', 'Winter ride that has no wheels', 'Load-carrier that dogs pull over the snow'],
-      hard: ['Sleigh or toboggan', 'Ride that\'s a bit of a slide, eh?'],
+      hard: ['Sleigh or toboggan', 'What a team of huskies is harnessed to?'],
     },
     {
       answer: 'IGLOO',
       easy: ['Dome-shaped house built from snow blocks', 'Snowy house with a tunnel for an entrance', 'Cosy snow home that stays warm inside'],
-      hard: ['A cool house, literally', 'Place to chill out for the winter?'],
+      hard: ['A cool house, literally'],
     },
     {
       answer: 'FOX',
@@ -67,7 +67,7 @@ const theme: Theme = {
     {
       answer: 'TERN',
       easy: ['Seabird; the Arctic one flies pole to pole', 'Seabird that dives into the sea for fish', 'Slim, forked-tailed seabird related to gulls'],
-      hard: ['Bird that sounds like a change of direction?', 'Seabird that\'s sort of stern-looking?'],
+      hard: ['Bird that sounds like a change of direction?'],
     },
     {
       answer: 'WOLF',
@@ -82,12 +82,12 @@ const theme: Theme = {
     {
       answer: 'KAYAK',
       easy: ['Narrow boat first made by Arctic peoples', 'Paddled boat with a deck and a little hole to sit in', 'Boat with a double-bladed paddle'],
-      hard: ['Boat that reads the same backwards', 'Yak that\'s gone to sea, with a paddle in hand'],
+      hard: ['Boat that reads the same backwards'],
     },
     {
       answer: 'PARKA',
       easy: ['Warm hooded jacket', 'Jacket with a fur-trimmed hood to keep out the wind', 'Coat for skiing or a snowy walk'],
-      hard: ['Puffy hooded coat for the big freeze', 'Coat you\'d wear to the park in the snow?'],
+      hard: ['Puffy hooded coat for the big freeze'],
     },
     {
       answer: 'ICEBERG',
@@ -102,12 +102,12 @@ const theme: Theme = {
     {
       answer: 'TUNDRA',
       easy: ['Cold, treeless Arctic land', 'Flat, mossy Arctic plain with frozen ground below', 'Land of mosses and lichens far to the north'],
-      hard: ['Frozen plain where no trees grow', 'Where the trees gave up on the flatlands?'],
+      hard: ['Frozen plain where no trees grow'],
     },
     {
       answer: 'PUFFIN',
       easy: ['Seabird with a colourful striped beak', 'Black-and-white seabird that nests in burrows', 'Little seabird with a clown-like face'],
-      hard: ['Bird whose name sounds out of breath?', 'Tux-wearing lookalike that can actually fly?'],
+      hard: ['Bird whose name sounds out of breath?', 'Clown-faced seabird with a rainbow beak?'],
     },
     {
       answer: 'WALRUS',
@@ -127,7 +127,7 @@ const theme: Theme = {
     {
       answer: 'CARIBOU',
       easy: ['Wild reindeer of North America', 'Northern deer where both males and females grow antlers', 'Deer-like animal that migrates in huge herds'],
-      hard: ['Antlered traveller of the tundra', 'Marathon runner of the tundra, and a deer to boot'],
+      hard: ['Antlered traveller of the tundra'],
     },
     {
       answer: 'LEMMING',
@@ -212,7 +212,7 @@ const theme: Theme = {
     {
       answer: 'SOUTH POLE',
       easy: ['Bottom of the world', 'Antarctic spot where a famous research station sits', 'Bottom end of the Earth\'s spinning axis'],
-      hard: ['The spot where every direction is north', 'Bottom of the globe with no beach to paddle in?'],
+      hard: ['The spot where every direction is north'],
     },
     {
       answer: 'EXPLORER',

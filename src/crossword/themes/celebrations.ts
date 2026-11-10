@@ -12,7 +12,7 @@ const theme: Theme = {
     {
       answer: 'GIFT',
       easy: ['Present wrapped in paper', 'Something wrapped in paper with a bow on top', 'Thing you unwrap'],
-      hard: ['Talent you were born with', '___ of the gab: a way with words'],
+      hard: ['Present, or a natural talent?', '___ of the gab: a way with words'],
     },
     {
       answer: 'PARTY',
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'HANGI',
       easy: ['Māori feast cooked in an earth oven', 'Feast often cooked for a big gathering at the marae', 'Smoky meal of pork, chicken and kūmara'],
-      hard: ['Food steamed on hot stones underground', 'Dinner you have to dig up?'],
+      hard: ['Food steamed on hot stones underground', 'Feast cooked in an earth oven'],
     },
     {
       answer: 'CAROL',
@@ -42,7 +42,7 @@ const theme: Theme = {
     {
       answer: 'STAR',
       easy: ['Shining shape on top of the tree', 'Twinkly thing in the night sky', 'Shape with five points'],
-      hard: ['Wise men\'s GPS?', 'Famous performer who shines at night?'],
+      hard: ['What the wise men followed?', 'Twinkle, twinkle, little ___'],
     },
     {
       answer: 'ANGEL',
@@ -57,7 +57,7 @@ const theme: Theme = {
     {
       answer: 'TOAST',
       easy: ['Raised glasses and a few kind words', 'Crunchy bread that pops up for breakfast', 'Warm as ___: very cosy'],
-      hard: ['Grilled bread; speech with a glass', 'Breakfast that\'s also raised at weddings?'],
+      hard: ['Raise a glass, or breakfast bread?'],
     },
     {
       answer: 'WISH',
@@ -67,7 +67,7 @@ const theme: Theme = {
     {
       answer: 'CARD',
       easy: ['Folded greeting you write a birthday message in', 'Ace or king, for example', 'Thick paper used for crafts'],
-      hard: ['Joker in the pack, or a birthday greeting', 'Funny person: \'What a ___!\''],
+      hard: ['Joker in the pack, or a birthday greeting'],
     },
     {
       answer: 'EGGS',
@@ -77,12 +77,12 @@ const theme: Theme = {
     {
       answer: 'BUNNY',
       easy: ['Easter rabbit', 'Fluffy pet with long ears and a cotton tail', 'Bugs ___, the cartoon rabbit'],
-      hard: ['Hare-like bringer of chocolate', 'Dust ___: fluff under the bed?'],
+      hard: ['Hare-like bringer of chocolate'],
     },
     {
       answer: 'HAT',
       easy: ['Paper crown from a cracker', 'Wide-brimmed thing for sun protection', 'Magician pulls a rabbit out of one'],
-      hard: ['Party one is often a cone with elastic', 'Talk through your ___: spout nonsense'],
+      hard: ['Party one is often a cone with elastic'],
     },
     {
       answer: 'KITE',
@@ -97,22 +97,22 @@ const theme: Theme = {
     {
       answer: 'FIESTA',
       easy: ['Spanish word for a party', 'Festival day in a Spanish-speaking town', 'Party with maracas and mariachi music'],
-      hard: ['Festival in Mexico', 'Siesta\'s livelier rhyming cousin?'],
+      hard: ['Festival in Mexico'],
     },
     {
       answer: 'TINSEL',
       easy: ['Sparkly strings on the tree', 'Glittery strands a cat loves to play with', 'Sparkly decoration that sheds bits everywhere'],
-      hard: ['Glitzy garland', '___town: nickname for Hollywood'],
+      hard: ['Sparkly garland for the Christmas tree?'],
     },
     {
       answer: 'BAUBLE',
       easy: ['Shiny ball hung on the tree', 'Christmas ball that can smash if dropped', 'Cheap bit of shiny jewellery'],
-      hard: ['Shiny thing the cat bats off the tree', 'Trinket that\'s all show and no value?'],
+      hard: ['Shiny thing the cat bats off the tree'],
     },
     {
       answer: 'CANDLE',
       easy: ['Lit on a birthday cake', 'Wax stick you light when the power goes out', 'Wax light that drips as it burns'],
-      hard: ['Wax and wick', 'Can\'t hold a ___ to: isn\'t nearly as good as'],
+      hard: ['What you blow out on a birthday cake?', 'Can\'t hold a ___ to: isn\'t nearly as good as'],
     },
     {
       answer: 'EASTER',
@@ -122,7 +122,7 @@ const theme: Theme = {
     {
       answer: 'DIWALI',
       easy: ['Hindu festival of lights', 'Indian festival with colourful rangoli patterns', 'Big Hindu celebration in October or November'],
-      hard: ['Festival of lamps, sweets and fireworks', 'Festival that\'s totally lit?'],
+      hard: ['Festival of lamps, sweets and fireworks', 'Festival when homes glow with rows of little lamps'],
     },
     {
       answer: 'DRAGON',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'PRESENT',
       easy: ['Gift under the tree', 'Opposite of absent at roll call', 'Thing with a bow and a name tag'],
-      hard: ['Here and now; thing under the tree', 'No time like the ___'],
+      hard: ['Here and now, or a thing under the tree?', 'No time like the ___'],
     },
     {
       answer: 'BONFIRE',
@@ -162,17 +162,17 @@ const theme: Theme = {
     {
       answer: 'CRACKER',
       easy: ['Pull it with a bang at Christmas', 'Dry biscuit to have with cheese', 'Firework that goes off with a loud bang'],
-      hard: ['Snapping tube with a joke inside', 'It\'s a ___! (a real beauty)'],
+      hard: ['Snapping tube with a joke inside'],
     },
     {
       answer: 'BUNTING',
       easy: ['Flags on a string', 'Colourful flags draped across a school fair stall', 'Strings of flags flown from a ship on special days'],
-      hard: ['Triangular party decoration', 'Triangles on a string, not a maths lesson?'],
+      hard: ['Triangular party decoration'],
     },
     {
       answer: 'MATARIKI',
       easy: ['Māori New Year, when a star cluster rises', 'Public holiday in June or July', 'Time to remember loved ones and plan the year ahead'],
-      hard: ['Winter holiday when the stars return', 'Seven Sisters, in te reo?'],
+      hard: ['Winter holiday when the stars return', 'Star cluster also known as the Pleiades'],
     },
     {
       answer: 'BIRTHDAY',
@@ -187,12 +187,12 @@ const theme: Theme = {
     {
       answer: 'SPARKLER',
       easy: ['Firework you hold in your hand', 'Fizzing stick you wave to write your name in the air', 'Fizzy firework poked into a cake'],
-      hard: ['Hand-held fizzing light', 'Gem of a firework?'],
+      hard: ['Hand-held fizzing light'],
     },
     {
       answer: 'REINDEER',
       easy: ['Animal that pulls Santa\'s sleigh', 'Antlered animal from the snowy north', 'Rudolph is one'],
-      hard: ['Antlered sleigh-puller', 'Deer that sounds wet?'],
+      hard: ['Antlered sleigh-puller'],
     },
     {
       answer: 'STOCKING',
@@ -202,12 +202,12 @@ const theme: Theme = {
     {
       answer: 'CONFETTI',
       easy: ['Paper bits thrown at weddings', 'Tiny bits of coloured paper from a party popper', 'Paper scraps you sweep up after the party'],
-      hard: ['Paper rain at a wedding', 'Hole punch leftovers at a party?'],
+      hard: ['Paper rain at a wedding'],
     },
     {
       answer: 'CARNIVAL',
       easy: ['Parade with floats, feathered costumes and samba drums', 'Rio de Janeiro\'s famous street party', 'Fun day at school with games, stalls and fancy dress'],
-      hard: ['Travelling show with a big wheel, dodgems and candyfloss', 'Venice\'s masked festival, as spelled in English'],
+      hard: ['Travelling show with a big wheel, dodgems and candyfloss'],
     },
     {
       answer: 'FIREWORKS',
@@ -237,7 +237,7 @@ const theme: Theme = {
     {
       answer: 'GRADUATION',
       easy: ['Ceremony when you finish university', 'Day you get your degree', 'Moving up from school or uni, with a ceremony'],
-      hard: ['Cap-and-gown day', 'Mark on a measuring jug, or a big uni day?'],
+      hard: ['Cap-and-gown day'],
     },
     {
       answer: 'ANNIVERSARY',
@@ -247,7 +247,7 @@ const theme: Theme = {
     {
       answer: 'WAITANGI DAY',
       easy: ['NZ\'s national holiday on 6 February', 'February public holiday in Aotearoa', 'Holiday marked at the Treaty Grounds in Northland'],
-      hard: ['Treaty-signing date marked each year', 'Northland\'s big February holiday, with waka on the bay and a haka?'],
+      hard: ['Treaty-signing date marked each year', '6 February public holiday'],
     },
     {
       answer: 'LUNAR NEW YEAR',
@@ -257,7 +257,7 @@ const theme: Theme = {
     {
       answer: 'RED ENVELOPE',
       easy: ['Gift of money given at Lunar New Year', 'Scarlet pocket of cash given to kids', 'Gift wrapped in the luckiest colour'],
-      hard: ['Lucky money packet', 'Cash in crimson paper?'],
+      hard: ['Lucky money packet'],
     },
     {
       answer: 'HOT CROSS BUN',

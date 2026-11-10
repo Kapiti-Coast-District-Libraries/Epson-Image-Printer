@@ -27,7 +27,7 @@ const theme: Theme = {
     {
       answer: 'MUMMY',
       easy: ['Body wrapped in bandages long ago', 'Preserved body found in an Egyptian tomb', 'Halloween costume you can make with toilet paper'],
-      hard: ['Egyptian who\'s really wrapped up in their work?', 'What a toddler calls Mum?'],
+      hard: ['Bandage-wrapped figure from a pharaoh\'s tomb', 'What a toddler calls Mum?'],
     },
     {
       answer: 'TOMB',
@@ -82,7 +82,7 @@ const theme: Theme = {
     {
       answer: 'CROWN',
       easy: ['What a king wears on his head', 'Gold headpiece with points, worn by royalty', 'Paper hat from a Christmas cracker is shaped like one'],
-      hard: ['Royal topper; top of the head', 'Dentist\'s cap for a tooth?'],
+      hard: ['Royal topper, or the top of the head?', 'Dentist\'s cap for a tooth?'],
     },
     {
       answer: 'QUEEN',
@@ -132,7 +132,7 @@ const theme: Theme = {
     {
       answer: 'TEMPLE',
       easy: ['Big building where gods were worshipped', 'Ancient building with huge stone columns', 'Spot on your head beside your eyebrow'],
-      hard: ['Holy building; side of your head', 'Place you might rub when you\'ve got a headache?'],
+      hard: ['Holy building, or the side of your head?', 'Place you might rub when you\'ve got a headache?'],
     },
     {
       answer: 'STATUE',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'COFFIN',
       easy: ['Box a mummy was placed in', 'Long box someone is buried in', 'Vampire\'s bed in spooky stories'],
-      hard: ['Painted case shaped like its owner', 'Box nobody\'s dying to get into?'],
+      hard: ['Painted case shaped like its owner'],
     },
     {
       answer: 'JEWELS',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'AFTERLIFE',
       easy: ['Life after death that Egyptians got ready for', 'Where Egyptians believed souls went after death', 'World the dead were thought to journey on to'],
-      hard: ['Next world, packed for with food and furniture', 'Life\'s sequel, in Egyptian belief?'],
+      hard: ['Next world, packed for with food and furniture', 'Next world, in Egyptian belief'],
     },
     {
       answer: 'GODS',

@@ -12,17 +12,17 @@ const theme: Theme = {
     {
       answer: 'HOKEY POKEY',
       easy: ['Ice cream with crunchy golden toffee bits', 'Crunchy golden toffee, also called honeycomb', 'Brittle toffee bubbles crumbled into vanilla ice cream'],
-      hard: ['Honeycomb toffee, by its Kiwi name', 'Toffee scoop you can dance to? Shake it all about!'],
+      hard: ['Honeycomb toffee, by its Kiwi name'],
     },
     {
       answer: 'KUMARA',
       easy: ['Sweet potato, often roasted', 'Māori name for the sweet potato', 'Root veg with a soft orange middle, like a sweet spud'],
-      hard: ['Hāngi favourite, sweeter than a spud', 'A potato\'s sweeter cousin, not an Irish spud'],
+      hard: ['Hāngi favourite, sweeter than a spud'],
     },
     {
       answer: 'PIKELET',
       easy: ['Small thick pancake with jam and cream', 'Kiwi name for a mini pancake, thicker than a crepe', 'Bubbly little pancake, cooked in a pan'],
-      hard: ['Mini pancake Nan whips up for morning tea', 'Little pancake that sounds like a jar of pickle?'],
+      hard: ['Mini pancake Nan whips up for morning tea'],
     },
     {
       answer: 'MINCE PIE',
@@ -32,32 +32,32 @@ const theme: Theme = {
     {
       answer: 'WHITEBAIT',
       easy: ['Tiny see-through fish caught in nets', 'Tiny baby fish that Kiwis love in a patty', 'Tiny fish whose season is in spring'],
-      hard: ['Fritter filling netted at river mouths', 'Pale lure, but you\'d rather eat it?'],
+      hard: ['Fritter filling netted at river mouths'],
     },
     {
       answer: 'FRITTER',
       easy: ['Fried patty of batter, often with corn', 'Battered treat of banana or apple, fried golden', 'Chunks of fruit or veg dipped in batter and fried'],
-      hard: ['Waste pocket money bit by bit', 'Golden corn cake on a chippy plate, with a squeeze of lemon'],
+      hard: ['Golden corn cake on a chippy plate, with a squeeze of lemon'],
     },
     {
       answer: 'HANGI',
       easy: ['Food cooked in an earth oven with hot stones', 'Māori feast cooked in a pit in the ground', 'Meal cooked in a pit, covered with soil and steam'],
-      hard: ['Feast unearthed after hours underground', 'Dig-in dinner, buried for a marae feast'],
+      hard: ['Feast unearthed after hours underground', 'Food steamed in an earth oven for a big gathering'],
     },
     {
       answer: 'LAMINGTON',
       easy: ['Sponge square in chocolate and coconut', 'Square sponge cake, a bake-sale staple', 'Square cake with a chocolate jacket and coconut snow'],
-      hard: ['Coconut-coated cube for a fundraiser', 'Sponge in a dressing gown of coconut?'],
+      hard: ['Coconut-coated cube for a fundraiser'],
     },
     {
       answer: 'ANZAC BISCUIT',
       easy: ['Oat and golden syrup cookie', 'Crunchy oat cookie named after a wartime army corps', 'Oat cookie that keeps well in a tin'],
-      hard: ['Oaty treat baked for a special day in April', 'Lest we ___: a crunchy April treat'],
+      hard: ['Oaty treat baked for a special day in April'],
     },
     {
       answer: 'SAUSAGE ROLL',
       easy: ['Party favourite: a banger in flaky pastry', 'Flaky pastry snack with a meaty filling', 'Pie-shop snack you eat with tomato sauce'],
-      hard: ['Bakery tube of meat, best with tomato sauce', 'Banger snuggled in a puffy blanket?'],
+      hard: ['Bakery tube of meat, best with tomato sauce'],
     },
     {
       answer: 'FISH AND CHIPS',
@@ -72,37 +72,37 @@ const theme: Theme = {
     {
       answer: 'KINA',
       easy: ['Spiky sea urchin eaten raw', 'Spiky orange roe from a sea urchin, a Kiwi delicacy', 'Spiky round sea creature that lives in rock pools'],
-      hard: ['Prickly kaimoana, a sea egg', 'Spiky seafood that goes \'ouch!\' if you grab it'],
+      hard: ['Prickly kaimoana, a sea egg'],
     },
     {
       answer: 'MUSSELS',
       easy: ['Shellfish, green-lipped in NZ', 'Blue-black shellfish clustered on rocks', 'Shellfish cooked in a pot with white wine and garlic'],
-      hard: ['Shellfish that sound like a bodybuilder\'s pride?', 'Strong arms at the gym, or a steamed seafood pot favourite?'],
+      hard: ['Shellfish that sound like a bodybuilder\'s pride?'],
     },
     {
       answer: 'BLUFF OYSTER',
       easy: ['Prized shellfish from the bottom of the South Island', 'Tiny, sweet shellfish from the cold far south', 'Shellfish with a winter season, from southern waters'],
-      hard: ['Southern shellfish named after a seaside town', 'Chilly-water shellfish, a dinner-party trophy'],
+      hard: ['Southern shellfish named after a seaside town'],
     },
     {
       answer: 'SNAPPER',
       easy: ['Popular pink fish caught off the wharf', 'Pink saltwater fish, great grilled on a barbecue', 'Pink fish that loves reefs and shallow coastal waters'],
-      hard: ['Fish that sounds like it bites back?', 'Fish that\'s also a fast photographer?'],
+      hard: ['Fish that\'s also a fast photographer?'],
     },
     {
       answer: 'ONION DIP',
       easy: ['Creamy party bowl made with packet soup', 'Creamy party bowl for crisps, a Kiwi classic', 'Sour cream base with a savoury kick, popular at parties'],
-      hard: ['Bowl at every Kiwi party, waiting for chippies', 'Party bowl that brings the tears?'],
+      hard: ['Bowl at every Kiwi party, waiting for chippies'],
     },
     {
       answer: 'CHEESE ROLL',
-      easy: ['Southland toasted bread wrapped round a gooey filling', 'Southern bake: a soft bun with melted cheddar inside', 'Snack with a crusty top and a melty middle, from Southland'],
-      hard: ['Southland sushi, buttered and toasted?', 'Good idea, Gouda! A toasted Southland snack'],
+      easy: ['Southland snack of bread wrapped round a cheesy filling, then toasted', 'Toasted bread spiral with a savoury filling, loved in the deep south', 'Winter fundraiser favourite from Otago and Southland'],
+      hard: ['Southland sushi, buttered and toasted?'],
     },
     {
       answer: 'AFGHAN',
       easy: ['Chocolate biscuit with cornflakes and a walnut', 'Bake-sale favourite made with cocoa, butter and cornflakes', 'Cocoa-and-cornflake biscuit with a thick chocolate icing'],
-      hard: ['Iced cornflake cookie crowned with half a walnut', 'Crocheted blanket, or a chocolate biscuit with a walnut?'],
+      hard: ['Iced cornflake cookie crowned with half a walnut'],
     },
     {
       answer: 'LOLLY CAKE',
@@ -112,7 +112,7 @@ const theme: Theme = {
     {
       answer: 'FAIRY BREAD',
       easy: ['Buttered white slices covered in sprinkles', 'Buttered white slice dusted with hundreds and thousands', 'Kid\'s party snack, a sprinkly sandwich cut into triangles'],
-      hard: ['Party triangles fit for pixies?', 'Little ones\' treat with a sprinkle of magic'],
+      hard: ['Little ones\' treat with a sprinkle of magic'],
     },
     {
       answer: 'LAMB',
@@ -122,37 +122,37 @@ const theme: Theme = {
     {
       answer: 'PIPI',
       easy: ['Small shellfish dug from the sand', 'Little clam that washes up on sandy beaches', 'Clam that\'s a Kiwi beach favourite, served in chowder'],
-      hard: ['Shellfish found by twisting your feet in the sand', 'Clam that\'s shy: it burrows out of sight'],
+      hard: ['Shellfish found by twisting your feet in the sand'],
     },
     {
       answer: 'FRIED BREAD',
       easy: ['Slices crisped in a pan of bacon fat for brekkie', 'Puffy dough cooked in hot oil, eaten with butter and jam at the marae', 'Breakfast treat of flour and water, cooked in a skillet'],
-      hard: ['Parāoa parai, in English', 'A fry-up\'s favourite, and a doughnut\'s cousin'],
+      hard: ['Parāoa parai, in English'],
     },
     {
       answer: 'SAVELOY',
       easy: ['Bright red sausage, often called a sav', 'Red sausage, often battered and eaten at a chippy', 'Pork sausage with a bright red skin, a Kiwi favourite'],
-      hard: ['Red-skinned banger dunked in tomato sauce', 'Red-faced sausage that might rescue your dinner?'],
+      hard: ['Red-skinned banger dunked in tomato sauce'],
     },
     {
       answer: 'HOT DOG',
       easy: ['Battered sausage on a stick at the fair', 'Sausage in a soft bun with sauce and mustard', 'Classic snack, a sausage in a long bun, served at footy'],
-      hard: ['Fairground stick snack dipped in tomato sauce', 'Canine\'s favourite, sausage-shaped and in a bun?'],
+      hard: ['Fairground stick snack dipped in tomato sauce'],
     },
     {
       answer: 'FEIJOA',
       easy: ['Green fruit that drops in autumn', 'Green fruit with a sweet, spoonable flesh inside', 'Small green fruit, often stewed into jam or crumble'],
-      hard: ['Pineapple guava, given away by the bagful', 'Gift that comes in a bag from your neighbour\'s tree'],
+      hard: ['Gift that comes in a bag from your neighbour\'s tree'],
     },
     {
       answer: 'KIWIFRUIT',
       easy: ['Fuzzy brown fruit with green insides', 'Fruit sliced into rounds, with a ring of tiny black seeds', 'Sweet green fruit that\'s a fruit salad favourite'],
-      hard: ['Furry fruit that shares a name with a bird', 'Furry little egg of a fruit, with a green heart'],
+      hard: ['Furry fruit that shares a name with a bird'],
     },
     {
       answer: 'TAMARILLO',
       easy: ['Egg-shaped red fruit with tangy insides', 'Deep red fruit with purple pulp and black seeds, tangy', 'Red fruit shaped like an egg and grown in Northland orchards'],
-      hard: ['Tree tomato, by its fancier name', 'Fruit renamed by Kiwi growers to sound more exotic'],
+      hard: ['Tree tomato, by its fancier name'],
     },
     {
       answer: 'HONEY',
@@ -162,12 +162,12 @@ const theme: Theme = {
     {
       answer: 'GINGER CRUNCH',
       easy: ['Slice with a spiced buttery icing on a short base', 'Slice with a biscuit base and a spicy-sweet topping', 'Golden syrup slice with a spicy kick'],
-      hard: ['Spicy slice found in every Kiwi café cabinet', 'Spice that bites back in a golden slice?'],
+      hard: ['Spicy slice found in every Kiwi café cabinet'],
     },
     {
       answer: 'ICE BLOCK',
       easy: ['Frozen treat on a stick', 'Frozen treat in a plastic sleeve, sucked on a hot day', 'Frozen lolly on a stick, sold from a van'],
-      hard: ['Kiwi for an icy pole or a popsicle', 'Cool ___ on a scorching summer\'s day?'],
+      hard: ['Popsicle, to a Kiwi?'],
     },
     {
       answer: 'SCONE',
@@ -177,17 +177,17 @@ const theme: Theme = {
     {
       answer: 'CRAYFISH',
       easy: ['Spiny lobster, red when cooked', 'Spiny sea creature like a lobster, but with no big claws', 'Seafood treat, a red crustacean cooked for Christmas'],
-      hard: ['Kaikōura roadside treat with feelers', 'Spiny seafood, a king of the coast?'],
+      hard: ['Kaikōura roadside treat with feelers'],
     },
     {
       answer: 'BLUE COD',
       easy: ['Fish loved in Southland chippies', 'Southern fish with white, flaky flesh, great battered', 'Bottom-dwelling fish of cold southern seas'],
-      hard: ['Battered fish with a colourful name', 'Greyish-skinned fish, snowy white inside'],
+      hard: ['Battered fish with a colourful name'],
     },
     {
       answer: 'TOASTIE',
       easy: ['Hot sandwich squashed in a press', 'Sandwich cooked in a sandwich press, golden edges', 'Lunchbox sandwich with melty cheese, pressed hot'],
-      hard: ['Café cabinet favourite, pressed hot', 'Sandwich with a press pass, hot and crispy?'],
+      hard: ['Café cabinet favourite, pressed hot'],
     },
     {
       answer: 'KAI',
@@ -197,22 +197,22 @@ const theme: Theme = {
     {
       answer: 'FLAT WHITE',
       easy: ['Coffee with velvety steamed milk', 'Espresso with a smooth top of milk, smaller than a latte', 'Strong coffee with microfoam, no big froth'],
-      hard: ['Café order both NZ and Australia claim', 'Coffee that\'s lost its height but kept its charm'],
+      hard: ['Café order both NZ and Australia claim'],
     },
     {
       answer: 'TAKEAWAYS',
       easy: ['Meals bought to eat at home', 'Dinner you pick up from a shop to eat at home', 'Fish and chips, burgers or Chinese you carry home in bags'],
-      hard: ['Friday night treats in a paper parcel', 'Dinner delivered without a single pot to wash?'],
+      hard: ['Friday night treats in a paper parcel'],
     },
     {
       answer: 'EEL',
       easy: ['Slippery fish that looks like a snake', 'Long, wriggly fish that lives in mud', 'Freshwater fish, long and wriggly, a Kiwi native'],
-      hard: ['Tuna in te reo, but not the tinned kind?', 'Slippery customer, hard to hold on to?'],
+      hard: ['Long river fish known as tuna in te reo'],
     },
     {
       answer: 'TEA',
       easy: ['Kiwi word for the evening meal', 'Brew steeped from leaves, often with milk', 'Hot drink in a cup, with a biscuit to dip'],
-      hard: ['A cuppa; what Nan calls dinner', 'Builder\'s ___, strong and milky'],
+      hard: ['A cuppa, or what Nan calls dinner?'],
     },
     {
       answer: 'GOLDEN SYRUP',
@@ -227,17 +227,17 @@ const theme: Theme = {
     {
       answer: 'BARBIE',
       easy: ['Kiwi word for a barbecue', 'Outdoor grill cooked over flames, a summer ritual', 'Backyard cookout, with tongs and a hot grill'],
-      hard: ['Summer grill, not the doll', 'Summer grill where the snags sizzle and sizzle?'],
+      hard: ['Summer grill, not the doll'],
     },
     {
       answer: 'THICKSHAKE',
       easy: ['Extra-thick milkshake from the takeaway', 'Creamy, frosty drink made with milk and ice cream', 'Milk and ice cream whizzed up in a tall glass'],
-      hard: ['Milkshake that\'s hard work through a straw', 'A shake that stands up to the spoon test'],
+      hard: ['Milkshake that\'s hard work through a straw'],
     },
     {
       answer: 'ROAST',
       easy: ['Sunday dinner of lamb and veges', 'Big hunk of meat cooked slowly in the oven for Sunday', 'Meat cooked in the oven, golden potatoes on the side'],
-      hard: ['Make fun of, comedy-style', 'Good-natured ribbing, a comedian\'s ___'],
+      hard: ['Sunday dinner with all the trimmings?'],
     },
     {
       answer: 'GRAVY',
