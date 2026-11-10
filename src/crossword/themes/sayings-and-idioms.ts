@@ -249,6 +249,56 @@ const theme: Theme = {
       easy: ['Shellfish that hides in sand'],
       hard: ['___ up (stop talking suddenly)'],
     },
+    {
+      answer: 'CAKE',
+      easy: ['Sweet baked treat with icing'],
+      hard: ['You can\'t have your ___ and eat it'],
+    },
+    {
+      answer: 'APPLE',
+      easy: ['Crunchy fruit that grows on a tree'],
+      hard: ['An ___ a day keeps the doctor away'],
+    },
+    {
+      answer: 'BOOK',
+      easy: ['Thing with pages that you read'],
+      hard: ['Don\'t judge a ___ by its cover'],
+    },
+    {
+      answer: 'BEE',
+      easy: ['Buzzing insect that makes honey'],
+      hard: ['Busy as a ___'],
+    },
+    {
+      answer: 'FEATHER',
+      easy: ['Light, soft thing from a bird\'s wing'],
+      hard: ['Light as a ___'],
+    },
+    {
+      answer: 'GOLD',
+      easy: ['Shiny yellow precious metal'],
+      hard: ['Good as ___'],
+    },
+    {
+      answer: 'PIE',
+      easy: ['Pastry dish with a filling'],
+      hard: ['Easy as ___'],
+    },
+    {
+      answer: 'PEAS',
+      easy: ['Little green veges in a pod'],
+      hard: ['Like two ___ in a pod'],
+    },
+    {
+      answer: 'MOON',
+      easy: ['Big bright ball in the night sky'],
+      hard: ['Over the ___ (very happy)'],
+    },
+    {
+      answer: 'SHEEP',
+      easy: ['Woolly farm animal'],
+      hard: ['Count ___ to help you fall asleep'],
+    },
   ],
 };
 

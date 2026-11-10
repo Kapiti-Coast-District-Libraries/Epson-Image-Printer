@@ -49,8 +49,10 @@ export interface Puzzle {
 }
 
 /** Narrow grid → bigger squares on 72 mm paper (11 cols ≈ 6 mm squares). The receipt can be as long as it likes. */
-export const MAX_COLS = 11;
-export const MAX_ROWS = 15;
+// Wide, short grids: every row of squares is 6 mm of receipt paper, so the grid may be
+// wider than it is tall but never the other way round.
+export const MAX_COLS = 12;
+export const MAX_ROWS = 11;
 /** Layout tuning (exported so scripts can experiment). */
 export const TUNING = { attempts: 60, bonusWords: 2, multiCross: 12, shortBonus: 40, growth: 0.35, fresh: 12, minFresh: 0.6, recent: 8, stale: 30, recentDays: 30, repairRounds: 6, repairBoards: 6 };
 /** Day 1 of the daily crossword. */
@@ -405,7 +407,8 @@ function scoreBoard(board: Board, target: [number, number]): number {
   const shortfall = Math.max(0, target[0] - n);
   const { rows, cols } = board.area();
   const density = board.cells.size / (rows * cols);
-  return checkedShare(board) * 400 - weaklyCrossed(board) * 25 + n * 4 - shortfall * 60 + density * 40;
+  // Each extra row costs paper, so shorter layouts win when all else is close.
+  return checkedShare(board) * 400 - weaklyCrossed(board) * 25 + n * 4 - shortfall * 60 + density * 40 - rows * 6;
 }
 
 // ---------------------------------------------------------------------------

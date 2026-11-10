@@ -96,11 +96,11 @@ function drawClues(ctx: CanvasRenderingContext2D, heading: string, clues: Puzzle
   ctx.font = '900 23px sans-serif';
   ctx.fillText(heading, MARGIN, y);
   ctx.fillRect(MARGIN, y + 6, ctx.measureText(heading).width, 3);
-  y += 34;
+  y += 31;
 
   // ~2.6 mm text: newspaper clue size, comfortable for kids and older eyes alike.
   const gutter = 40;
-  const lineHeight = 26;
+  const lineHeight = 25;
   for (const c of clues) {
     ctx.font = 'bold 21px sans-serif';
     ctx.textAlign = 'right';
@@ -110,16 +110,10 @@ function drawClues(ctx: CanvasRenderingContext2D, heading: string, clues: Puzzle
     const text = c.enumeration ? `${c.clue} ${c.enumeration}` : c.clue;
     const lines = wrapLines(ctx, text, CONTENT - gutter);
     lines.forEach((line, i) => ctx.fillText(line, MARGIN + gutter, y + i * lineHeight));
-    y += lines.length * lineHeight + 8;
+    y += lines.length * lineHeight + 5;
   }
   return y;
 }
-
-const HINT_LINE: Record<Puzzle['difficulty'], string> = {
-  Easy: 'Nice and gentle. Perfect for all ages!',
-  Medium: 'A few clues have a playful twist.',
-  Tricky: 'Lots of clues have a twist. Think sideways!',
-};
 
 /** Boxed bonus challenge. Returns the bottom y. */
 function drawBonus(ctx: CanvasRenderingContext2D, p: Puzzle, top: number): number {
@@ -130,8 +124,8 @@ function drawBonus(ctx: CanvasRenderingContext2D, p: Puzzle, top: number): numbe
   ctx.font = 'italic 19px sans-serif';
   const hintLines = wrapLines(ctx, `Hint: ${p.bonus.hint}`, inner);
   const blanks = p.bonus.answer.length;
-  const bw = 34, gap = 6, line = 24;
-  const boxH = 40 + howLines.length * line + 6 + hintLines.length * line + 14 + bw + 18;
+  const bw = 32, gap = 6, line = 22;
+  const boxH = 34 + howLines.length * line + 4 + hintLines.length * line + 12 + bw + 12;
   ctx.save();
   ctx.lineWidth = 2;
   ctx.setLineDash([]);
@@ -139,11 +133,11 @@ function drawBonus(ctx: CanvasRenderingContext2D, p: Puzzle, top: number): numbe
   ctx.textAlign = 'center';
   ctx.textBaseline = 'alphabetic';
   ctx.font = '900 21px sans-serif';
-  ctx.fillText('BONUS WORD', WIDTH / 2, top + 30);
-  let y = top + 30 + line;
+  ctx.fillText('BONUS WORD', WIDTH / 2, top + 26);
+  let y = top + 26 + line;
   ctx.font = '18px sans-serif';
   howLines.forEach((l) => { ctx.fillText(l, WIDTH / 2, y); y += line; });
-  y += 6;
+  y += 4;
   ctx.font = 'italic 19px sans-serif';
   hintLines.forEach((l) => { ctx.fillText(l, WIDTH / 2, y); y += line; });
   // Write-in boxes for the answer.
@@ -177,7 +171,7 @@ function drawDifficulty(ctx: CanvasRenderingContext2D, level: Puzzle['difficulty
 // A day's puzzle never changes, so keep the last few in memory – repeat presses are instant on the Pi.
 const puzzleCache = new Map<string, Puzzle>();
 // Bump the version when the word bank changes enough that saved puzzles should be remade.
-const STORE_PREFIX = 'crossword-puzzle-v3-';
+const STORE_PREFIX = 'crossword-puzzle-v4-';
 const OLD_STORE_PREFIX = 'crossword-puzzle-';
 
 /**
@@ -253,71 +247,68 @@ export async function generateCrosswordImage(date: Date = new Date()): Promise<s
   ctx.fillStyle = '#000';
 
   // --- Header ---
-  ctx.fillRect(0, 0, WIDTH, 12);
+  ctx.fillRect(0, 0, WIDTH, 8);
   ctx.textAlign = 'center';
   ctx.font = '900 30px sans-serif';
-  ctx.fillText('DAILY CROSSWORD', WIDTH / 2, 56);
+  ctx.fillText('DAILY CROSSWORD', WIDTH / 2, 44);
 
   ctx.font = '15px monospace';
   const dateStr = date.toLocaleDateString('en-NZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-  ctx.fillText(`No. ${today.number}  ·  ${dateStr}`, WIDTH / 2, 82);
+  ctx.fillText(`No. ${today.number}  ·  ${dateStr}`, WIDTH / 2, 66);
 
-  // Theme banner (white text on black)
-  let y = 100;
+  // Theme banner (white text on black), with the level beside the title to save a line.
+  let y = 80;
   ctx.font = 'bold 24px sans-serif';
-  const bannerH = 44;
+  const bannerH = 40;
   ctx.fillRect(MARGIN, y, CONTENT, bannerH);
   ctx.fillStyle = '#FFF';
   ctx.textBaseline = 'middle';
   ctx.fillText(today.theme.title.toUpperCase(), WIDTH / 2, y + bannerH / 2 + 1);
   ctx.textBaseline = 'alphabetic';
   ctx.fillStyle = '#000';
-  y += bannerH + 28;
+  y += bannerH + 24;
 
   drawDifficulty(ctx, today.difficulty, WIDTH / 2, y);
-  y += 24;
-  ctx.textAlign = 'center';
-  ctx.font = 'italic 17px sans-serif';
-  ctx.fillText(HINT_LINE[today.difficulty], WIDTH / 2, y);
-  y += 22;
+  y += 16;
 
   // --- Grid ---
-  y = drawGrid(ctx, today, y, 50, CONTENT, false) + 34;
+  y = drawGrid(ctx, today, y, 46, CONTENT, false) + 30;
 
   // --- Clues ---
-  y = drawClues(ctx, 'ACROSS', today.across, y) + 12;
-  y = drawClues(ctx, 'DOWN', today.down, y) + 8;
-  if (today.bonus) y = drawBonus(ctx, today, y + 6) + 20;
+  y = drawClues(ctx, 'ACROSS', today.across, y) + 8;
+  y = drawClues(ctx, 'DOWN', today.down, y) + 4;
+  if (today.bonus) y = drawBonus(ctx, today, y + 4) + 16;
 
   // --- Yesterday's answers ---
   if (yesterday) {
     dashedRule(ctx, y);
-    y += 32;
+    y += 24;
     ctx.textAlign = 'center';
     ctx.font = 'bold 16px sans-serif';
-    ctx.fillText("YESTERDAY'S ANSWERS", WIDTH / 2, y);
-    y += 20;
-    ctx.font = 'italic 14px sans-serif';
-    ctx.fillText(yesterday.theme.title, WIDTH / 2, y);
-    y += 14;
-    y = drawGrid(ctx, yesterday, y, 22, 300, true) + 30;
-    if (yesterday.bonus) {
-      ctx.textAlign = 'center';
-      ctx.font = 'bold 15px sans-serif';
-      ctx.fillText(`Bonus word: ${yesterday.bonus.answer}`, WIDTH / 2, y - 4);
-      y += 22;
+    ctx.fillText(`YESTERDAY'S ANSWERS  ·  ${yesterday.theme.title}`, WIDTH / 2, y);
+    y += 22;
+    // A short list uses a fraction of the paper a second grid would.
+    ctx.textAlign = 'left';
+    ctx.font = '15px sans-serif';
+    const list = (label: string, clues: PuzzleClue[]) => `${label}: ${clues.map((c) => `${c.number} ${c.answer}`).join(', ')}`;
+    const parts = [list('Across', yesterday.across), list('Down', yesterday.down)];
+    if (yesterday.bonus) parts.push(`Bonus word: ${yesterday.bonus.answer}`);
+    for (const part of parts) {
+      for (const line of wrapLines(ctx, part, CONTENT)) { ctx.fillText(line, MARGIN, y); y += 19; }
+      y += 3;
     }
+    y += 8;
   }
 
   // --- Footer ---
   dashedRule(ctx, y);
-  y += 28;
+  y += 22;
   ctx.textAlign = 'center';
   ctx.font = 'italic 14px sans-serif';
   ctx.fillText('A brand new puzzle every day. Come back tomorrow!', WIDTH / 2, y);
-  y += 20;
-  ctx.fillRect(0, y, WIDTH, 12);
-  y += 12;
+  y += 14;
+  ctx.fillRect(0, y, WIDTH, 8);
+  y += 8;
 
   const out = document.createElement('canvas');
   out.width = WIDTH;

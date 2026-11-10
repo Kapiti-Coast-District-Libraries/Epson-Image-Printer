@@ -194,6 +194,81 @@ const theme: Theme = {
       easy: ['It flies from the top of a tall pole'],
       hard: [],
     },
+    {
+      answer: 'PARK',
+      easy: ['Green space in a city with grass and trees'],
+      hard: [],
+    },
+    {
+      answer: 'TOMB',
+      easy: ['Place where a pharaoh was buried'],
+      hard: [],
+    },
+    {
+      answer: 'CAVE',
+      easy: ['Dark hole in a hillside that tourists explore'],
+      hard: [],
+    },
+    {
+      answer: 'CANAL',
+      easy: ['Man-made waterway for boats'],
+      hard: [],
+    },
+    {
+      answer: 'PIER',
+      easy: ['Long walkway built out over the sea'],
+      hard: [],
+    },
+    {
+      answer: 'ISLAND',
+      easy: ['Land with water all around it'],
+      hard: [],
+    },
+    {
+      answer: 'TUNNEL',
+      easy: ['Passage dug through a hill'],
+      hard: [],
+    },
+    {
+      answer: 'GARDEN',
+      easy: ['Place full of flowers that visitors stroll through'],
+      hard: [],
+    },
+    {
+      answer: 'PHOTO',
+      easy: ['Picture a tourist takes of a famous place'],
+      hard: [],
+    },
+    {
+      answer: 'TOURIST',
+      easy: ['Visitor who comes to see the sights'],
+      hard: [],
+    },
+    {
+      answer: 'TICKET',
+      easy: ['You buy one to get into a museum'],
+      hard: [],
+    },
+    {
+      answer: 'GUIDE',
+      easy: ['Person who shows visitors around'],
+      hard: [],
+    },
+    {
+      answer: 'STEPS',
+      easy: ['Stairs you climb to the top of a monument'],
+      hard: [],
+    },
+    {
+      answer: 'VIEW',
+      easy: ['What you see from the top of a tall tower'],
+      hard: [],
+    },
+    {
+      answer: 'CITY',
+      easy: ['Big town with lots of famous buildings'],
+      hard: [],
+    },
   ],
 };
 
