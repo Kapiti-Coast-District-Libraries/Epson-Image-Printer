@@ -7,12 +7,12 @@ const theme: Theme = {
     {
       answer: 'BRIGHT',
       easy: ['What the sun is on a sunny day', 'Full of light, like a torch beam', 'Not dim, and easy to see'],
-      hard: ['Clever clogs, or a lamp on full power?', 'Sunny and cheery, with a ___ idea'],
+      hard: ['Clever clogs, or a lamp on full power?'],
     },
     {
       answer: 'GLARE',
       easy: ['Harsh, dazzling light that makes you squint', 'Blinding brightness from car headlights at night', 'Sun shining off the sea into your eyes'],
-      hard: ['Sun\'s harsh stare on the windscreen?', 'Stare that is cross, and not just sunny?'],
+      hard: ['Sun\'s harsh stare on the windscreen?', 'Fierce stare, or dazzling light?'],
     },
     {
       answer: 'SHIMMERING',
@@ -22,12 +22,12 @@ const theme: Theme = {
     {
       answer: 'SHINY',
       easy: ['Reflecting light, like a new penny', 'Polished so it sparkles in the sun', 'Glossy and gleaming, like a brand-new car'],
-      hard: ['Polished up and ready for the big party?', 'Pride of the car wash, buffed for the show?'],
+      hard: ['Like a brand-new coin?', 'Polished till you can see your face in it?'],
     },
     {
       answer: 'MURKY',
       easy: ['Dark and cloudy, like muddy water', 'Hard to see through, like a muddy pond', 'Dim and gloomy, like the bottom of a dam'],
-      hard: ['Mystery in ___ waters', 'Tricky, cloudy and a bit of a mucky mystery?'],
+      hard: ['Mystery in ___ waters'],
     },
     {
       answer: 'BLURRY',
@@ -37,32 +37,32 @@ const theme: Theme = {
     {
       answer: 'COLOURFUL',
       easy: ['Full of bright colours, like a rainbow', 'Cheerful and painted in lots of shades', 'Painted in lots of bright shades, like a parrot'],
-      hard: ['Never a grey day in this paint box?', 'Like a box of crayons, all out at once?'],
+      hard: ['Like a box of crayons, all out at once?'],
     },
     {
       answer: 'TRANSPARENT',
       easy: ['You can see right through it, like clear glass', 'Clear enough to see through, like a plastic bag', 'See-through, with nothing hidden inside'],
-      hard: ['Like cling wrap, glass and a clear conscience?', 'Honest as a window, with no hiding?'],
+      hard: ['Like cling wrap, glass and a clear conscience?'],
     },
     {
       answer: 'DAZZLING',
       easy: ['So bright it makes you blink, like a camera flash', 'Shining and glittery, like sequins in the sun', 'Very bright, so you have to squint'],
-      hard: ['A smile that could light up the night?', 'Sparkly sequins and a real showstopper?'],
+      hard: ['A smile that could light up the night?'],
     },
     {
       answer: 'GLISTENING',
       easy: ['Shining softly, like wet grass in the morning', 'Sparkling with moisture, like a wet street', 'Shiny and wet, like freshly washed hair'],
-      hard: ['Dew on a spider web, all sparkly?', 'Sparkly, but a good listener?'],
+      hard: ['Dew on a spider web, all sparkly?'],
     },
     {
       answer: 'RAINBOW',
       easy: ['Arc of colours that shows up after rain', 'Seven colours arching across the sky', 'Curved stripes of colour after a shower'],
-      hard: ['Pot of gold at the end of this?', 'Over the ___ (a famous Judy Garland song)'],
+      hard: ['Somewhere over the ___', 'Arc with a pot of gold at its end?'],
     },
     {
       answer: 'LOUD',
       easy: ['Noisy, like a lion\'s roar', 'The opposite of quiet, and very noisy', 'Booming, like a brass band'],
-      hard: ['Shout out ___ (say it so everyone hears)', 'Blaring, like a clashing shirt?'],
+      hard: ['Shout out ___ (say it so everyone hears)'],
     },
     {
       answer: 'QUIET',
@@ -77,7 +77,7 @@ const theme: Theme = {
     {
       answer: 'ECHO',
       easy: ['Sound that bounces back off a cave wall', 'Sound you hear again after you shout in a canyon', 'Repeat of a sound bouncing back off the hills'],
-      hard: ['Cave\'s way of saying hello again?', 'Repeat performance, like a canyon?'],
+      hard: ['Sound that answers back in a cave?', 'Repeat, like a canyon?'],
     },
     {
       answer: 'BUZZ',
@@ -107,7 +107,7 @@ const theme: Theme = {
     {
       answer: 'WHISPER',
       easy: ['Say it very softly, almost without sound', 'Quiet, breathy way of talking to a friend', 'Secret-sharing voice, very soft'],
-      hard: ['Secret ___ (a rumour going round)', 'Soft talk, like a breeze through the trees?'],
+      hard: ['Library voice?', 'Soft talk, like a breeze through the trees?'],
     },
     {
       answer: 'DEAFENING',
@@ -142,7 +142,7 @@ const theme: Theme = {
     {
       answer: 'WHIFF',
       easy: ['Quick and often unpleasant smell, over in a second', 'Faint smell that drifts past your nose', 'Brief hint of a smell on the breeze'],
-      hard: ['Swing and a miss, a golfer\'s ___?', 'Catch a ___ of fresh bread (a brief smell)'],
+      hard: ['Catch a ___ of fresh bread (a brief smell)'],
     },
     {
       answer: 'AROMA',
@@ -157,7 +157,7 @@ const theme: Theme = {
     {
       answer: 'MUSTY',
       easy: ['Smells damp and old, like a dusty attic', 'Old book smell that is damp and stale', 'Stale, damp smell of a cupboard shut too long'],
-      hard: ['Bookworm\'s nose, but a bit damp?', 'Smells like a grandpa\'s old cardigan?'],
+      hard: ['Smelling like an old tent just out of the shed?'],
     },
     {
       answer: 'PERFUME',
@@ -192,17 +192,17 @@ const theme: Theme = {
     {
       answer: 'BITTER',
       easy: ['Sharp, harsh taste, like very dark chocolate', 'Taste of black coffee with no sugar', 'Harsh flavour of a lemon peel'],
-      hard: ['Still cross about losing, years on?', 'Beer that tastes like a hop-filled bite?'],
+      hard: ['Still cross about losing, years on?'],
     },
     {
       answer: 'SPICY',
       easy: ['Hot and peppery, like a curry', 'Full of chilli and heat, like a salsa', 'Hot flavour from chilli or curry powder'],
-      hard: ['Like a curry that makes your eyes water?', 'Curry in a hurry, hot and quick?'],
+      hard: ['Like a curry that makes your eyes water?'],
     },
     {
       answer: 'TANGY',
       easy: ['Sharp, zingy taste like a lemon or a mandarin', 'Sharp but pleasant, like passionfruit or kiwifruit', 'Sharp and pleasant, like marmalade or a ripe tamarillo'],
-      hard: ['Like a squeeze of lemon over fish and chips?', 'Citrus taste that makes your tongue say ouch?'],
+      hard: ['Like a squeeze of lemon over fish and chips?'],
     },
     {
       answer: 'DELICIOUS',
@@ -227,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'SMOOTH',
       easy: ['Flat and even, like a pebble or polished glass', 'Silky to touch, with no bumps', 'Like a freshly ironed shirt, flat and even'],
-      hard: ['Sailing ___ (going along without trouble)', 'Like a slick salesman\'s patter?'],
+      hard: ['Sailing ___ (going along without trouble)'],
     },
     {
       answer: 'ROUGH',
@@ -257,12 +257,12 @@ const theme: Theme = {
     {
       answer: 'WARM',
       easy: ['Not hot, not cold, like a cosy bath', 'Toasty, like a jumper on a chilly night', 'Cosy, like the sun on your back'],
-      hard: ['Like a hug from a radiator?', 'Toasty tea, but not quite hot?'],
+      hard: ['Getting ___ (close to the answer, in a guessing game)', 'Cosy, like a hug?'],
     },
     {
       answer: 'FREEZING',
       easy: ['Cold enough to make your breath steam', 'Icy cold, like snow on bare fingers', 'Very cold, like a swim in the winter sea'],
-      hard: ['Chilly welcome from the fridge door?', 'Cold enough to make a penguin shiver?'],
+      hard: ['Cold enough to make a penguin shiver?'],
     },
     {
       answer: 'CRUNCHY',
@@ -282,7 +282,7 @@ const theme: Theme = {
     {
       answer: 'SILKY',
       easy: ['Smooth and soft, like a shiny ribbon', 'Smooth like a cat\'s fur, glossy and soft', 'Shiny and smooth, like a horse\'s mane'],
-      hard: ['Smooth as satin sheets, or a fancy scarf?', 'Smooth and soft as a spider\'s thread?'],
+      hard: ['Smooth as satin sheets, or a fancy scarf?'],
     },
     {
       answer: 'SCRATCHY',

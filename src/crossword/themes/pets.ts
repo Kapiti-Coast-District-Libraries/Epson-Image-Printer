@@ -17,7 +17,7 @@ const theme: Theme = {
     {
       answer: 'PUPPY',
       easy: ['Baby dog', 'Young dog that chews everything in sight', 'Little pup that\'s learning to be house-trained'],
-      hard: ['Young pooch; its love is a teen crush', 'Full of ___ energy, bouncing about'],
+      hard: ['___ love: a teenage crush'],
     },
     {
       answer: 'MOUSE',
@@ -32,7 +32,7 @@ const theme: Theme = {
     {
       answer: 'PONY',
       easy: ['Small horse', 'Child\'s first riding animal, smaller than a horse', 'Shetland, for one, a small hairy horse'],
-      hard: ['Small horse that lends its name to a hairstyle', 'Old West mail service, the ___ Express'],
+      hard: ['Small horse that lends its name to a hairstyle'],
     },
     {
       answer: 'LAMB',
@@ -42,27 +42,27 @@ const theme: Theme = {
     {
       answer: 'HEN',
       easy: ['Pet chicken that lays eggs', 'Female chicken that cackles after laying', 'Female chicken with chicks following her around'],
-      hard: ['Chook that lays your breakfast', 'Fussy mum, a clucking ___-mother'],
+      hard: ['Chook that lays your breakfast'],
     },
     {
       answer: 'VET',
       easy: ['Animal doctor', 'Doctor for dogs and cats at the surgery', 'Someone who gives your pet a jab each year'],
-      hard: ['Check carefully before approving', 'Old soldier who\'s served; a war ___'],
+      hard: ['Old soldier, for short, or an animal doctor?'],
     },
     {
       answer: 'PAW',
       easy: ['A dog\'s foot', 'Pad at the end of a cat\'s leg', 'Pet\'s foot, with little toe beans'],
-      hard: ['Handle roughly', 'Sounds like \'pour\', but with toes'],
+      hard: ['___ Patrol: cartoon pups to the rescue'],
     },
     {
       answer: 'PURR',
       easy: ['Happy rumbling sound a cat makes', 'Low, soft sound a contented cat makes on your lap', 'Sound a cat makes with its mouth shut'],
-      hard: ['Engine\'s contented hum', 'Cat\'s way of saying \'perfect\'?'],
+      hard: ['Engine\'s contented hum'],
     },
     {
       answer: 'LEAD',
       easy: ['Strap for walking your dog', 'Clip-on cord linking a dog to its owner\'s hand', 'Grey metal used in old car batteries'],
-      hard: ['Heavy metal; pooch\'s tether', 'Front spot in a race: in the ___'],
+      hard: ['In the ___: out in front in a race', 'Dog walker\'s strap, or star role in a play?'],
     },
     {
       answer: 'BONE',
@@ -77,12 +77,12 @@ const theme: Theme = {
     {
       answer: 'GOAT',
       easy: ['Bleating pet that eats almost anything', 'Horned animal that climbs rocks and hills', 'Animal that bleats and gives milk for cheese'],
-      hard: ['Greatest of all time, for short', 'Boat with a different first letter'],
+      hard: ['Greatest of all time, for short'],
     },
     {
       answer: 'TAIL',
       easy: ['Part a dog wags', 'Back end of a cat, great for balancing', 'Something on a kite that helps it fly'],
-      hard: ['Follow secretly', 'Heads or ___?'],
+      hard: ['Heads or ___?'],
     },
     {
       answer: 'FUR',
@@ -92,27 +92,27 @@ const theme: Theme = {
     {
       answer: 'TABBY',
       easy: ['Striped cat', 'Stripy cat with swirls on its sides, like a little tiger', 'Cat with a stripy coat, often grey or brown'],
-      hard: ['Not a breed but a stripy coat', 'Cat with stripes, the classic ___ pattern'],
+      hard: ['Most common stripy moggy on the street'],
     },
     {
       answer: 'LITTER',
       easy: ['Grit in an indoor cat\'s tray', 'What a cat\'s tray needs filling with', 'Bunch of baby animals from one mum at once'],
-      hard: ['Brood of kittens; street rubbish', 'Kitty\'s tray, once it needs a scoop and a sniff?'],
+      hard: ['Kittens born together, or rubbish dropped in the street?'],
     },
     {
       answer: 'KENNEL',
       easy: ['Little house for a dog', 'Pen where a dog sleeps and gets fed', 'Shelter with a row of pens for dogs'],
-      hard: ['Doggy holiday hotel', 'Dog\'s sleep-over, sort of'],
+      hard: ['Doggy holiday hotel'],
     },
     {
       answer: 'KITTEN',
       easy: ['Baby cat', 'Young cat that bats at string and tumbles', 'Little fluffball bouncing around the house'],
-      hard: ['Playful young feline', 'Dainty low-heel shoe style, named for a young cat'],
+      hard: ['Playful young feline'],
     },
     {
       answer: 'HAMSTER',
       easy: ['Small pet that stuffs food in its cheeks', 'Golden, round-bodied rodent that sleeps all day', 'Little pet that loves to be out at night'],
-      hard: ['Tiny pet that runs all night on a wheel', 'Nocturnal nibbler that\'s a wheel-spinning machine?'],
+      hard: ['Tiny pet that runs all night on a wheel'],
     },
     {
       answer: 'BUDGIE',
@@ -122,12 +122,12 @@ const theme: Theme = {
     {
       answer: 'RABBIT',
       easy: ['Pet with long ears that hops', 'Pet that nibbles carrots and has a twitching nose', 'Fluffy pet that lives in a hutch in the backyard'],
-      hard: ['Talk on and on, informally', 'Peter ___, Beatrix Potter\'s naughty hero'],
+      hard: ['Peter ___, Beatrix Potter\'s naughty hero', 'White ___: Alice followed it down a hole'],
     },
     {
       answer: 'PARROT',
       easy: ['Colourful bird that can talk', 'Hooked-beak bird from the tropics, often bright green', 'Pirate\'s shoulder bird, squawking away'],
-      hard: ['Monty Python\'s "Dead ___" sketch', '\'Polly wants a cracker\', said this bird?'],
+      hard: ['\'Polly wants a cracker\', said this bird?', 'Repeat word for word, or a pirate\'s bird?'],
     },
     {
       answer: 'CANARY',
@@ -137,37 +137,37 @@ const theme: Theme = {
     {
       answer: 'AXOLOTL',
       easy: ['Smiley pink salamander kept in a tank', 'Mexican salamander that often stays baby-like for life', 'Pet salamander that can regrow its legs'],
-      hard: ['Water pet with frilly gills and a grin', 'Sounds like a chopping tool, but it\'s a salamander'],
+      hard: ['Water pet with frilly gills and a grin'],
     },
     {
       answer: 'COLLAR',
-      easy: ['Band worn around a pet\'s neck', 'Strap that holds a pet\'s tag and name', 'Neck band a pet wears to the surgery'],
-      hard: ['Shirt part; nab a crook', 'Hot under the ___ (flustered)'],
+      easy: ['Band worn around a pet\'s neck', 'Strap that holds a pet\'s tag and name', 'Neck band that a dog\'s lead clips onto'],
+      hard: ['Shirt part, or a pet\'s neck band?', 'Hot under the ___ (flustered)'],
     },
     {
       answer: 'POODLE',
       easy: ['Curly-haired dog breed', 'Clever, curly dog that comes in toy, mini and standard', 'Breed often seen at dog shows, with curls'],
-      hard: ['Pampered dog with a pom-pom haircut', 'Sounds like a puddle-jumper with curls'],
+      hard: ['Pampered dog with a pom-pom haircut'],
     },
     {
       answer: 'BEAGLE',
-      easy: ['Small scent hound once bred for hunting hares', 'Hound whose white-tipped tail wags like a flag', 'Snoopy the cartoon dog is this breed'],
-      hard: ['Sniffer dog at the airport', 'Darwin\'s famous ship, HMS ___'],
+      easy: ['Small hound with long soft ears and a loud howl', 'Hound whose white-tipped tail wags like a flag', 'Snoopy the cartoon dog is this breed'],
+      hard: ['Sniffer dog at the airport'],
     },
     {
       answer: 'TERRIER',
       easy: ['Small, feisty dog bred to dig', 'Wiry-coated little dog, like the Westie', 'Jack Russell is one of these'],
-      hard: ['Determined little dog that won\'t let go', 'Sounds like \'terrible\', but it\'s a scrappy dog'],
+      hard: ['Determined little dog that won\'t let go'],
     },
     {
       answer: 'SPANIEL',
       easy: ['Dog with long floppy ears; cocker is one', 'Gundog with a silky coat and a bouncy wag', 'King Charles, for one, is a toy breed of this'],
-      hard: ['Dog with ears like curtains', 'Sounds like Spanish, but it\'s a dog'],
+      hard: ['Dog with ears like curtains'],
     },
     {
       answer: 'SIAMESE',
       easy: ['Blue-eyed cat breed from Thailand', 'Pale-coated cat with dark ears, paws and face', 'Cat breed known for lots of meowing and talking'],
-      hard: ['Chatty cat with dark ears and sky-blue eyes', 'Si and Am, the cheeky cats in Lady and the Tramp, were this breed'],
+      hard: ['Chatty cat with dark ears and sky-blue eyes'],
     },
     {
       answer: 'PERSIAN',
@@ -176,23 +176,23 @@ const theme: Theme = {
     },
     {
       answer: 'CATNIP',
-      easy: ['Plant that makes cats go silly', 'Minty herb that you grow for kitties', 'Leafy plant with a minty smell, from the mint family'],
-      hard: ['Herb that sends felines loopy', 'Minty treat that makes a moggy roll on the floor?'],
+      easy: ['Plant that makes cats go silly', 'Minty herb that you grow for kitties', 'Dried leaves stuffed inside a kitty\'s toy mouse'],
+      hard: ['Herb that sends felines loopy'],
     },
     {
       answer: 'GOLDFISH',
       easy: ['Orange pet fish in a bowl', 'Carnival prize you win at a fair, often in a plastic bag', 'Simple pet that gets a bowl and flakes'],
-      hard: ['Pet whose name suggests it\'s worth a fortune?', 'Carp\'s cousin in a bowl, with a shiny coat'],
+      hard: ['Pet whose name suggests it\'s worth a fortune?'],
     },
     {
       answer: 'GUINEA PIG',
       easy: ['Squeaky rodent pet, also called a cavy', 'South American rodent, a popular pet', 'Rodent that loves lettuce and munches all day'],
-      hard: ['Test subject, so to speak', 'Sounds like an old coin, with a squeak'],
+      hard: ['Test subject, so to speak'],
     },
     {
       answer: 'TORTOISE',
       easy: ['Slow pet with a shell', 'Reptile that carries its home on its back', 'Old, slow reptile that can live for decades'],
-      hard: ['Winner of a famous race against a hare', 'Shelled reptile, slow and steady, not a turtle'],
+      hard: ['Winner of a famous race against a hare'],
     },
     {
       answer: 'WHISKERS',
@@ -202,17 +202,17 @@ const theme: Theme = {
     {
       answer: 'LABRADOR',
       easy: ['Friendly retriever often used as a guide dog', 'Yellow, black or chocolate dog that loves swimming', 'Dog with a thick, waterproof coat and webbed feet'],
-      hard: ['Lab, in full', 'Dog named after a Canadian coastline'],
+      hard: ['Lab, in full'],
     },
     {
       answer: 'DALMATIAN',
       easy: ['Spotty white dog breed', 'Dog with black dots all over a white coat', 'Spotty dog named after a region of Croatia'],
-      hard: ['Fire station dog with spots', 'Spotty dog from a famous cartoon, with a 101 count?'],
+      hard: ['Fire station dog with spots', 'One of 101 in a Disney film'],
     },
     {
       answer: 'SHEEPDOG',
       easy: ['Dog that herds a farm\'s flock', 'Working dog that moves sheep around a paddock', 'Shaggy, big-hearted farm dog from Britain'],
-      hard: ['Border collie, for one', 'Sheepish-looking dog?'],
+      hard: ['Border collie, for one'],
     },
     {
       answer: 'HUNTAWAY',
@@ -222,27 +222,27 @@ const theme: Theme = {
     {
       answer: 'GREYHOUND',
       easy: ['Very fast, skinny racing dog', 'Long-legged dog that can run very fast', 'Slim dog with a deep chest and a thin, sleek coat'],
-      hard: ['Couch potato that once raced', 'Hound that\'s the colour of a wet Wellington day'],
+      hard: ['Couch potato that once raced'],
     },
     {
       answer: 'GROOMING',
       easy: ['Brushing and cleaning a pet\'s coat', 'Trim, brush and bath for a pooch at the parlour', 'Pet beauty treatment with brushes and clippers'],
-      hard: ['Preening, as cats do themselves', 'Spa day for a pooch, a ___ session'],
+      hard: ['Preening, as cats do themselves'],
     },
     {
       answer: 'ADOPTION',
       easy: ['Taking home a pet from a shelter', 'Giving a home to a pet that needs one, forever', 'Process of taking home a rescue dog from the SPCA, with paperwork'],
-      hard: ['Rescue route to a new pet', 'Take a stray home: a ___ of care'],
+      hard: ['Rescue route to a new pet'],
     },
     {
       answer: 'MICROCHIP',
       easy: ['Tiny ID tag under a pet\'s skin', 'Tiny chip implanted under the skin, scanned at the clinic', 'Implant the size of a grain of rice'],
-      hard: ['Tiny computer part that helps lost pets home', 'Pet\'s tiny ID; a ___ off the old block'],
+      hard: ['Tiny computer part that helps lost pets home'],
     },
     {
       answer: 'FISH TANK',
       easy: ['Rectangular glass home with a filter, bubbler and plastic castle', 'Glass box that holds water plants and tropical pets', 'Glass-walled ocean in a living room'],
-      hard: ['Aquarium', 'Water hotel for scaly guests'],
+      hard: ['Aquarium'],
     },
   ],
 };

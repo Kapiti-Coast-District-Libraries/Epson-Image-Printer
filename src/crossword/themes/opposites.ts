@@ -7,22 +7,22 @@ const theme: Theme = {
     {
       answer: 'DRY',
       easy: ['Not wet, like a towel off the line', 'Opposite of wet, like a desert', 'What a tea towel does to the dishes'],
-      hard: ['High and ___, stranded on the shore', 'Wet\'s opposite, like a deadpan joke?'],
+      hard: ['High and ___, stranded on the shore'],
     },
     {
       answer: 'FAR',
       easy: ['Not near; a long way away', 'Opposite of near, like the stars', '"How ___ is it?" asks a kid on a long trip'],
-      hard: ['So ___, so good', 'Near\'s opposite, in a galaxy ___ away?'],
+      hard: ['So ___, so good', 'A galaxy ___, ___ away: where Star Wars is set'],
     },
     {
       answer: 'FEW',
       easy: ['Not many; only a handful', 'Opposite of many, like lollies remaining in the jar', 'Just a small number'],
-      hard: ['"Just a ___ more pages," begs the bedtime reader', 'Not lots: only a ___ crumbs remain?'],
+      hard: ['"Just a ___ more pages," begs the bedtime reader'],
     },
     {
       answer: 'BUY',
       easy: ['Opposite of sell', 'Pay money to get something', 'Get something at the shops with your pocket money'],
-      hard: ['Sell\'s opposite, that sounds like goodbye?', 'Believe a story: "I don\'t ___ it!"'],
+      hard: ['Sounds like \'bye\', but means pay for?', 'Believe a story: "I don\'t ___ it!"'],
     },
     {
       answer: 'CRY',
@@ -32,12 +32,12 @@ const theme: Theme = {
     {
       answer: 'ODD',
       easy: ['Opposite of even, like 3 or 7', 'Strange or unusual', 'A sock without its partner is an ___ one'],
-      hard: ['Not even, if you count to nine?', 'Weird, or one of 1, 3, 5...'],
+      hard: ['Weird, or one of 1, 3, 5...'],
     },
     {
       answer: 'SLOW',
       easy: ['Opposite of fast, like a snail', 'Not quick, like a tortoise', 'Running late, like a lagging clock'],
-      hard: ['Not fast, and steady wins the race?', 'Like a sloth: the opposite of speedy?'],
+      hard: ['___ and steady wins the race'],
     },
     {
       answer: 'SOFT',
@@ -47,7 +47,7 @@ const theme: Theme = {
     {
       answer: 'WEAK',
       easy: ['Opposite of strong', 'Feeble, without much power', 'Watery, like tea with too much milk'],
-      hard: ['The link in a chain that is first to snap?', 'How knees go when you\'re nervous'],
+      hard: ['The ___ link: part of a chain that snaps first', 'How knees go when you\'re nervous'],
     },
     {
       answer: 'OPEN',
@@ -87,7 +87,7 @@ const theme: Theme = {
     {
       answer: 'WEST',
       easy: ['Opposite of east', 'Direction where the sun sets', 'The ___ Coast of the South Island'],
-      hard: ['East\'s opposite, where the sun says goodnight?', 'Where the sun clocks off for the day?'],
+      hard: ['East\'s opposite, where the sun says goodnight?'],
     },
     {
       answer: 'DUSK',
@@ -127,7 +127,7 @@ const theme: Theme = {
     {
       answer: 'ENEMY',
       easy: ['Opposite of friend', 'Opposite of ally', 'Baddie you battle in a video game'],
-      hard: ['Not a friend, but a foe?', 'Public ___ number one: the villain, in cop talk'],
+      hard: ['Not a friend, but a foe?', 'Public ___ number one: the most wanted villain'],
     },
     {
       answer: 'BRAVE',
@@ -147,7 +147,7 @@ const theme: Theme = {
     {
       answer: 'NEVER',
       easy: ['Opposite of always', 'Not ever, not even once', '___ ever give up!'],
-      hard: ['Not always... in fact not once!', 'Peter Pan\'s land, where you don\'t grow up'],
+      hard: ['Not always... in fact not once!', 'Peter Pan\'s ___land, where no one grows up'],
     },
     {
       answer: 'WORST',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'WHISPER',
       easy: ['Opposite of shout', 'Speak very softly', 'Tell a secret in someone\'s ear'],
-      hard: ['Not shout, but say it softly?', 'Shh-sized voice?'],
+      hard: ['Not shout, but say it softly?'],
     },
     {
       answer: 'FORGET',
@@ -216,13 +216,13 @@ const theme: Theme = {
     },
     {
       answer: 'HOLLOW',
-      easy: ['The Legend of Sleepy ___', 'With nothing inside, like a tube', 'Like a chocolate Easter egg'],
-      hard: ['Not solid, so it sounds like a drum?', 'Possum\'s den in a tree trunk, maybe?'],
+      easy: ['Empty in the middle, like an old tree trunk', 'With nothing inside, like a tube', 'Like a chocolate Easter egg'],
+      hard: ['The Legend of Sleepy ___', 'Not solid, so it sounds like a drum?'],
     },
     {
       answer: 'SUNRISE',
       easy: ['Opposite of sunset', 'Start of the day when the sun comes up', 'Dawn, when the sky turns pink'],
-      hard: ['Not sunset, but the morning show?', 'The sky\'s daily morning show, free to watch at dawn?'],
+      hard: ['Not sunset, but the morning show?'],
     },
     {
       answer: 'ANSWER',
@@ -232,7 +232,7 @@ const theme: Theme = {
     {
       answer: 'VICTORY',
       easy: ['Opposite of defeat', 'What every team plays for on match day', 'Win, shown by a V sign'],
-      hard: ['Winner\'s moment, marked with laurels and cheers', 'V for ___, Churchill\'s sign'],
+      hard: ['V for ___, Churchill\'s sign', 'What the winning team celebrates'],
     },
     {
       answer: 'UPSTAIRS',
@@ -267,7 +267,7 @@ const theme: Theme = {
     {
       answer: 'FREEZING',
       easy: ['Opposite of boiling', 'Very, very cold', 'Temperature at which water turns to ice'],
-      hard: ['___ point: 0 degrees Celsius', 'Brrr-ing cold?'],
+      hard: ['___ point: 0 degrees Celsius'],
     },
     {
       answer: 'EXPENSIVE',

@@ -11,18 +11,18 @@ const theme: Theme = {
     },
     {
       answer: 'HAKA',
-      easy: ['Powerful dance with chanting and stamping', 'Ceremonial dance with chanting and a fierce challenge', 'Dance where the performers pull faces and slap their thighs'],
-      hard: ['Stamping, chanting challenge before a big game', 'All Blacks\' pre-match show, with a fierce face'],
+      easy: ['Ceremonial challenge with chanting and stamping', 'Powerful Māori performance of chant and action', '\'Ka Mate\' is a famous one'],
+      hard: ['Ceremonial challenge with chant, actions and fierce pride', 'Challenge the All Blacks perform before a test'],
     },
     {
       answer: 'WAKA',
       easy: ['Māori canoe', 'Traditional Māori canoe, carved from a tree trunk', 'Long carved boat that brought ancestors across the sea'],
-      hard: ['Paddlers\' vessel, carved from a log', 'Ancient vessel that hauled whole families across the Pacific'],
+      hard: ['Paddlers\' vessel, carved from a log', 'Voyaging vessel that carried ancestors across the Pacific'],
     },
     {
       answer: 'HANGI',
       easy: ['Food cooked in an earth oven', 'Meal of meat and kūmara cooked on hot stones underground', 'Feast cooked slowly under a pile of earth and steam'],
-      hard: ['Dinner dug up from under the ground', 'Ground-breaking meal, cooked in the dirt'],
+      hard: ['Meal cooked slowly in an earth oven', 'Food steamed over hot stones under the ground'],
     },
     {
       answer: 'POI',
@@ -37,7 +37,7 @@ const theme: Theme = {
     {
       answer: 'KOROWAI',
       easy: ['Cloak decorated with tassels', 'Woven cloak worn for ceremonies and special events', 'Dark cloak that chiefs wore, with dangling tassels'],
-      hard: ['Feathered cloak that wraps its wearer in mana?', 'A chief\'s cloak, tasselled for a formal ceremony'],
+      hard: ['Feathered cloak worn with pride at a graduation', 'A chief\'s cloak, tasselled for a formal ceremony'],
     },
     {
       answer: 'MATARIKI',
@@ -47,12 +47,12 @@ const theme: Theme = {
     {
       answer: 'POWHIRI',
       easy: ['Welcome ceremony onto a marae', 'Formal welcome that begins with a call from the women', 'Ceremony with speeches, song and nose-pressing greetings'],
-      hard: ['Formal welcome with speeches, song and hongi', 'The welcome before the feed, on a marae'],
+      hard: ['Formal welcome with speeches, song and hongi'],
     },
     {
       answer: 'HONGI',
       easy: ['Greeting by pressing noses together', 'Māori greeting with a press of the nose and forehead', 'Greeting that visitors receive as they arrive at a marae'],
-      hard: ['Sharing of breath, nose to nose', 'Greeting in which the nose does the talking'],
+      hard: ['Greeting by pressing noses, sharing the breath of life', 'Traditional greeting, nose to nose'],
     },
     {
       answer: 'WHAKAPAPA',
@@ -92,12 +92,12 @@ const theme: Theme = {
     {
       answer: 'KAPA HAKA',
       easy: ['Māori performing arts group', 'Performing group for waiata, poi and chanting dances', 'Māori cultural performing group, often at school'],
-      hard: ['School group that sings, dances and twirls poi', 'Team that stamps, chants and might steal the show'],
+      hard: ['School group that sings, dances and twirls poi', 'Group performing waiata, action songs and poi on stage'],
     },
     {
       answer: 'TANGI',
       easy: ['Funeral held on a marae', 'Māori funeral service, with mourning and farewell', 'Ceremony where people weep together over a loss'],
-      hard: ['Time of mourning and farewell', 'Sounds like \'tangy\', but it\'s a sad occasion'],
+      hard: ['Time of mourning and farewell', 'Funeral gathering held on a marae'],
     },
     {
       answer: 'KOHA',
@@ -112,12 +112,12 @@ const theme: Theme = {
     {
       answer: 'WAIATA',
       easy: ['Song', 'Māori song, sung at gatherings', 'Melody sung at a marae, often with actions'],
-      hard: ['Something sung to back up a speaker', 'Sing-along that the whole marae joins in'],
+      hard: ['Something sung to back up a speaker'],
     },
     {
       answer: 'TAIAHA',
       easy: ['Long wooden fighting staff', 'Long wooden staff used as a weapon', 'Traditional weapon with a carved end'],
-      hard: ['Carved weapon spun in a challenge', 'Staff that an old-time warrior twirled with flair'],
+      hard: ['Carved weapon spun in a challenge', 'Long carved weapon used in mau rākau'],
     },
     {
       answer: 'WHARENUI',
@@ -127,7 +127,7 @@ const theme: Theme = {
     {
       answer: 'TIKANGA',
       easy: ['Customs, the right way of doing things', 'Customs passed down from ancestors', 'The correct way of doing things, according to tradition'],
-      hard: ['Protocol, like taking shoes off at the meeting house', 'Right way to behave, a bit like good manners'],
+      hard: ['Protocol, like taking shoes off at the meeting house', 'Customs that guide how things are done on a marae'],
     },
     {
       answer: 'KAITIAKI',
@@ -142,12 +142,12 @@ const theme: Theme = {
     {
       answer: 'MAUI',
       easy: ['Hero who fished up the North Island', 'Demigod who fished up the North Island from the sea', 'Clever hero of many Polynesian stories, who snared the sun'],
-      hard: ['Trickster who slowed the sun with ropes', 'Demigod with a fish hook and a bit of cheek'],
+      hard: ['Trickster who slowed the sun with ropes', 'Demigod who fished up the North Island'],
     },
     {
       answer: 'KUPE',
       easy: ['Great navigator of Māori legend', 'Polynesian navigator who first found Aotearoa', 'Polynesian explorer from Hawaiki, in the old stories'],
-      hard: ['Famous voyager who sailed to Aotearoa', 'Voyager whose big catch was a giant octopus'],
+      hard: ['Famous voyager who sailed to Aotearoa', 'Voyager who chased a giant octopus across the Pacific'],
     },
     {
       answer: 'TANE MAHUTA',
@@ -157,12 +157,12 @@ const theme: Theme = {
     {
       answer: 'TANGAROA',
       easy: ['God of the sea', 'Sea god, the ancestor of fish and marine life', 'Deity of the sea and everything that swims in it'],
-      hard: ['Guardian of fish and all ocean life', 'Dad of all the fish, in Māori legend'],
+      hard: ['Guardian of fish and all ocean life', 'Atua of the sea and everything in it'],
     },
     {
       answer: 'KAUMATUA',
       easy: ['Respected elder', 'Elder who is respected for wisdom and knowledge', 'Senior family member who leads the whānau'],
-      hard: ['Wise older person who guides the family', 'Greyest head at the hui, leading the way'],
+      hard: ['Wise older person who guides the family', 'Respected elder who guides the whānau'],
     },
     {
       answer: 'RANGATIRA',
@@ -172,12 +172,12 @@ const theme: Theme = {
     {
       answer: 'PEPEHA',
       easy: ['Introduction naming your mountain and river', 'Opening words naming your home and your ancestors', 'Way of saying where you\'re from, with a family line'],
-      hard: ['Speech saying where you\'re from, mountain first', 'Your bio in mountains, rivers and ancestors'],
+      hard: ['Speech saying where you\'re from, mountain first'],
     },
     {
       answer: 'PIUPIU',
       easy: ['Skirt of rolled flax strands', 'Flax skirt with fringed strands, worn in haka', 'Skirt of rolled flax that swishes when you dance'],
-      hard: ['Swishy skirt worn in kapa haka', 'Dancer\'s grass skirt, but made of flax'],
+      hard: ['Swishy skirt worn in kapa haka'],
     },
     {
       answer: 'HEI TIKI',
@@ -192,7 +192,7 @@ const theme: Theme = {
     {
       answer: 'KUMARA',
       easy: ['Sweet potato', 'Root vegetable, sweeter than a regular potato', 'Purple or golden tuber grown in NZ gardens'],
-      hard: ['Vege roasted for Sunday dinner or cooked in a hāngī', 'Spud with a Māori name, and a sweet tooth'],
+      hard: ['Vege roasted for Sunday dinner or cooked in a hāngī'],
     },
     {
       answer: 'WAITANGI',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'HUI',
       easy: ['Meeting or gathering', 'Gathering to talk and make decisions', 'Meeting on a marae, often with food and speeches'],
-      hard: ['Get-together to talk things over', 'Three letters for a big get-together on a marae'],
+      hard: ['Get-together to talk things over'],
     },
     {
       answer: 'KARANGA',
@@ -216,8 +216,8 @@ const theme: Theme = {
     },
     {
       answer: 'PUKANA',
-      easy: ['Wide-eyed face pulled in a haka', 'Bulging-eyed glare, a fierce look from a dancer', 'Bug-eyed stare that makes the opposition nervous'],
-      hard: ['Fierce stare that shows the whites of the eyes', 'Eyes-wide challenge that gets the crowd cheering'],
+      easy: ['Wide-eyed expression used in haka and waiata', 'Fierce widening of the eyes by a kapa haka performer', 'Expression showing the whites of the eyes, adding power'],
+      hard: ['Fierce stare that adds emphasis in kapa haka', 'Wide-eyed expression that adds power to a haka'],
     },
     {
       answer: 'KORU',

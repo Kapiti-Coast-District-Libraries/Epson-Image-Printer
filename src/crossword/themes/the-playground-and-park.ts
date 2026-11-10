@@ -12,37 +12,37 @@ const theme: Theme = {
     {
       answer: 'SLIDE',
       easy: ['Shiny slope you whizz down at the playground', 'Climb the ladder, sit down, then zoom to the bottom', 'Playground slope that can be straight, twisty or a tube'],
-      hard: ['Ride that always lets you down?', 'What a baseballer does into a base, or a kid down a slope'],
+      hard: ['Ride that always lets you down?'],
     },
     {
       answer: 'RAMP',
       easy: ['Sloping path instead of stairs, handy for wheelchairs', 'Slope a skateboarder rolls up and flies off', 'Gentle slope that helps buggies get up a step'],
-      hard: ['Slope that gets things rolling?', 'Up-and-over slope for scooters and bikes'],
+      hard: ['Up-and-over slope for scooters and bikes'],
     },
     {
       answer: 'FORT',
       easy: ['Wooden lookout on a playground, like a tiny castle', 'Make one from couch cushions on a rainy day', 'Strong place built to keep enemies out'],
-      hard: ['Hold the ___ (keep things under control)', 'Kids\' castle where nobody is allowed in?'],
+      hard: ['Hold the ___ (keep things under control)'],
     },
     {
       answer: 'BIKE',
       easy: ['Two wheels, two pedals and a bell', 'You ride it with a helmet on', 'Training wheels help you learn to ride one'],
-      hard: ['Pedal-pushing machine?', 'Push-___ (no pedals, for little kids)'],
+      hard: ['On your ___! (clear off!)'],
     },
     {
       answer: 'PRAM',
       easy: ['Baby lies down in it to be pushed along', 'Wheeled bed for a baby on a walk', 'Parents push this through the park with a baby inside'],
-      hard: ['Baby\'s first set of wheels?', 'Four-wheeled nap spot for a newborn?'],
+      hard: ['Baby\'s first set of wheels?'],
     },
     {
       answer: 'LEASH',
       easy: ['Strap that clips onto a dog\'s collar for a walk', 'Off-___ area: where dogs can run free', 'Holds a dog close so it can\'t run off'],
-      hard: ['Line between owner and pooch?', 'Keep someone on a short ___'],
+      hard: ['Keep someone on a short ___'],
     },
     {
       answer: 'CATCH',
       easy: ['Throw a ball to someone and they do this', 'Simple game of throwing a ball back and forth', 'What a fielder does to get a batter out in cricket'],
-      hard: ['Fisher\'s haul, or what you do with a ball thrown to you?', 'The ___ of the day (the fish you landed)'],
+      hard: ['The ___ of the day (the fish you landed)', 'What\'s the ___? (it sounds too good to be true)'],
     },
     {
       answer: 'GRASS',
@@ -52,27 +52,27 @@ const theme: Theme = {
     {
       answer: 'PATH',
       easy: ['Track for walking through a park', 'Way through the woods for walkers', 'Garden ___: the walk up to a front door'],
-      hard: ['Lead someone up the garden ___ (trick them)', 'Way to go?'],
+      hard: ['Lead someone up the garden ___ (trick them)'],
     },
     {
       answer: 'FIELD',
       easy: ['Large open stretch of grass for sport', 'Farmer\'s fenced paddock', 'Big grassy space where a footy match is played'],
-      hard: ['Have a ___ day (enjoy yourself hugely)', 'Grassy space where the cows or the cricketers are?'],
+      hard: ['Have a ___ day (enjoy yourself hugely)'],
     },
     {
       answer: 'STEPS',
       easy: ['Stairs you climb to reach the top of a slide', 'Separate stairs, one at a time', 'Dance moves, or the stairs outside a building'],
-      hard: ['What your phone counts to see if you\'ve done 10,000 a day?', 'Baby ___ (small first tries)'],
+      hard: ['What a fitness watch counts', 'Baby ___ (small first tries)'],
     },
     {
       answer: 'CLIMB',
       easy: ['Go up a tree or a rope', 'What you do on a jungle gym', 'Go up, using hands and feet'],
-      hard: ['What mountaineers and prices both do?', 'Go up in the world, like a koala?'],
+      hard: ['What mountaineers and prices both do?'],
     },
     {
       answer: 'SKIP',
       easy: ['Hop along from foot to foot happily', 'Jump over a twirling rope', 'Miss out, like a meal or a song'],
-      hard: ['Happy way to go down a footpath?', 'Pass over, like a boring bit of a book'],
+      hard: ['Pass over, like a boring bit of a book'],
     },
     {
       answer: 'CHASE',
@@ -102,17 +102,17 @@ const theme: Theme = {
     {
       answer: 'TRIKE',
       easy: ['Little kid\'s bike with three wheels', 'Three-wheeler you pedal before a two-wheeler', 'Short word for a tricycle'],
-      hard: ['Bike with an extra wheel to spare?', 'Pedal-pusher for a toddler'],
+      hard: ['Pedal-pusher for a toddler'],
     },
     {
       answer: 'FRISBEE',
       easy: ['Plastic disc you throw and catch', 'Flying disc a dog can catch in its mouth', 'Spinning plate you toss to a friend'],
-      hard: ['Flying saucer at a picnic?', 'Disc that is fun to chuck'],
+      hard: ['Flying saucer at a picnic?'],
     },
     {
       answer: 'GAZEBO',
       easy: ['Little roofed shelter with open sides in a garden', 'Small open-sided hut for shade at a picnic', 'Garden shelter where you can sit out of the rain'],
-      hard: ['Roof but no walls, where Nana sips her tea?', 'Pop-up shade tent at a market stall'],
+      hard: ['Pop-up shade tent at a market stall'],
     },
     {
       answer: 'JOGGER',
@@ -122,27 +122,27 @@ const theme: Theme = {
     {
       answer: 'HAMPER',
       easy: ['Basket with a lid, for a picnic', 'Box of treats given as a gift at Christmas', 'Wicker basket for carrying food'],
-      hard: ['Get in the way of, or a picnic basket', 'Christmas gift basket full of goodies'],
+      hard: ['Get in the way of, or a picnic basket?', 'Christmas gift basket full of goodies'],
     },
     {
       answer: 'LILY PAD',
       easy: ['Round floating leaf a frog sits on', 'Flat leaf on top of a pond', 'Green floating leaf with a flower nearby'],
-      hard: ['Frog\'s floating front porch?', 'Pond-top landing spot for a frog'],
+      hard: ['Frog\'s floating front porch?'],
     },
     {
       answer: 'TOILETS',
       easy: ['Loos at the park', 'Where you go when you need the bathroom', 'Little building with a men and women sign'],
-      hard: ['Places to spend a penny?', 'Park buildings you hope are clean and stocked with paper?'],
+      hard: ['Places to spend a penny?'],
     },
     {
       answer: 'SUNHAT',
       easy: ['Floppy hat to stop sunburn', 'Wide-brimmed hat for summer', 'No hat, no play! Wear this at school in summer'],
-      hard: ['Head\'s summer shade?', 'Brim to keep your nose from going pink'],
+      hard: ['Brim to keep your nose from going pink'],
     },
     {
       answer: 'STATUES',
       easy: ['Party game where you freeze when the music stops', 'Game where moving after the music stops puts you out', 'Freeze game: don\'t even wobble!'],
-      hard: ['Musical freeze game?', 'Stony figures, or a still game'],
+      hard: ['Stony figures, or a freeze game?'],
     },
     {
       answer: 'SANDPIT',
@@ -152,47 +152,47 @@ const theme: Theme = {
     {
       answer: 'SEESAW',
       easy: ['Long plank that goes up and down with two riders', 'One end goes up when the other end goes down', 'Balancing board you ride with a friend'],
-      hard: ['Ride where friends have ups and downs?', 'Swing back and forth on a decision'],
+      hard: ['Ride where friends have ups and downs?'],
     },
     {
       answer: 'MARBLES',
-      easy: ['Small glass balls you flick in a game', 'Shooters and taws are kinds of these', 'Swirly glass balls collected in a bag'],
+      easy: ['Small glass balls you flick in a game', 'Little glass balls that kids swap and win', 'Swirly glass balls collected in a bag'],
       hard: ['Lose your ___ (go a bit silly)', 'Glass rollers in a playground game'],
     },
     {
       answer: 'MONKEY BARS',
       easy: ['Overhead ladder you swing across by your hands', 'Climbing frame you cross hand over hand', 'Hanging rungs you travel along arm by arm'],
-      hard: ['Rungs for those who like hanging about?', 'Overhead playground climb for little chimps?'],
+      hard: ['Overhead playground climb for little chimps?'],
     },
     {
       answer: 'FLYING FOX',
       easy: ['Ride that zips along a cable while you hang on', 'Zipline ride at a playground', 'Hang from a seat and whizz down a wire'],
-      hard: ['Zippy wire ride, or a big fruit bat', 'Sly animal that has taken off?'],
+      hard: ['Zippy wire ride, or a big fruit bat?'],
     },
     {
       answer: 'SKATEPARK',
       easy: ['Concrete area with ramps for skateboards', 'Place with a bowl and half-pipe for scooters and boards', 'Where riders practise tricks on ramps and rails'],
-      hard: ['Board meeting place?', 'Ollie spot?'],
+      hard: ['Board meeting place?'],
     },
     {
       answer: 'SPLASH PAD',
       easy: ['Playground area with water jets to run through', 'Wet play space with fountains but no deep water', 'Summer play area where water squirts up from the ground'],
-      hard: ['Soaking spot with no swimming needed?', 'Watery play patch for hot days'],
+      hard: ['Watery play patch for hot days'],
     },
     {
       answer: 'BANDSTAND',
       easy: ['Round open-sided stage in a park for music', 'Roofed platform where a brass band plays', 'Little park stage for outdoor concerts'],
-      hard: ['Spot where the music group gets up?', 'Park stage that hits the right notes'],
+      hard: ['Park stage that hits the right notes'],
     },
     {
       answer: 'LAMPPOST',
-      easy: ['Tall pole with a light on top beside a path', 'Street light on a pole', 'Narnia\'s famous light in the snowy woods'],
-      hard: ['Light on a stick?', 'Tall glower by the footpath?'],
+      easy: ['Tall pole with a light on top beside a path', 'Street light on a pole', 'Tall street light that dogs like to sniff'],
+      hard: ['What Lucy finds glowing in the snowy woods of Narnia'],
     },
     {
       answer: 'TYRE SWING',
       easy: ['Old car wheel hung on a rope to ride', 'Round rubber seat that sways from a tree', 'Playground ride made from a big rubber ring'],
-      hard: ['Recycled wheel that goes back and forth?', 'Rubber ring that hangs about?'],
+      hard: ['Recycled wheel that goes back and forth?'],
     },
     {
       answer: 'WOODCHIPS',
@@ -202,17 +202,17 @@ const theme: Theme = {
     {
       answer: 'PICNIC TABLE',
       easy: ['Outdoor wooden bench-and-board set for eating at', 'Park furniture for eating lunch outside', 'Park spot to unpack your sandwiches, with seats built on'],
-      hard: ['Lunch spot with built-in seating?', 'Outdoor dining set that stays put'],
+      hard: ['Outdoor dining set that stays put'],
     },
     {
       answer: 'RUBBISH BIN',
       easy: ['Where you put wrappers in the park', 'Container for litter', 'Put your scraps in this, not on the ground'],
-      hard: ['Home for leftovers nobody wants?', 'Keep Kiwi beautiful: put it in the ___'],
+      hard: ['Keep Kiwi beautiful: put it in the ___'],
     },
     {
       answer: 'MERRY GO ROUND',
       easy: ['Spinning playground disc you push and jump on', 'Spinning ride with horses that go up and down', 'Carousel with painted horses at a fair'],
-      hard: ['Jolly spin?', 'Ride that\'s happy going in circles?'],
+      hard: ['Ride that\'s happy going in circles?'],
     },
     {
       answer: 'BALANCE BEAM',
@@ -222,7 +222,7 @@ const theme: Theme = {
     {
       answer: 'RED ROVER',
       easy: ['Game where you call a player to run across', 'Playground game: "___, ___, send someone over!"', 'Game where you try to break through linked arms'],
-      hard: ['Crimson wanderer called over?', 'Calling game with a colourful name'],
+      hard: ['Calling game with a colourful name'],
     },
     {
       answer: 'SIMON SAYS',
@@ -237,37 +237,37 @@ const theme: Theme = {
     {
       answer: 'ELASTICS',
       easy: ['Jumping game with a long stretchy loop round two legs', 'Playground jumping game using a long loop of stretchy cord, plural', 'Stretchy-loop skipping game in the playground'],
-      hard: ['Long stretchy bands that kids jump over and between at play?', 'Stretchy game of jumps and twists'],
+      hard: ['Stretchy game of jumps and twists'],
     },
     {
       answer: 'DODGEBALL',
       easy: ['Team game of throwing a ball to hit players', 'Get hit by the ball and you\'re out', 'Game where you duck and dive to avoid the throw'],
-      hard: ['Game where you avoid what\'s coming your way?', 'Sidestep sport'],
+      hard: ['Game where you avoid what\'s coming your way?'],
     },
     {
       answer: 'SARDINES',
       easy: ['Hiding game where seekers squeeze in with the hider', 'Backwards hide-and-seek: one hides, all search', 'Small fish packed tightly in a tin'],
-      hard: ['Packed like ___', 'Tinned fish, or a squashy hiding game'],
+      hard: ['Packed like ___', 'Tinned fish, or a squashy hiding game?'],
     },
     {
       answer: 'CARTWHEEL',
       easy: ['Sideways flip on your hands and feet', 'Gymnastic move like a turning wheel', 'Hands down, legs over: spin sideways'],
-      hard: ['Spin like a spoke?', 'Wheel off a wagon, or a sideways flip'],
+      hard: ['Wheel off a wagon, or a sideways flip?'],
     },
     {
       answer: 'PIGGYBACK',
       easy: ['Ride on someone\'s back', 'Carry a child on your back', 'Arms round the shoulders, legs round the waist'],
-      hard: ['Free ride on Dad', 'Ride that\'s a bit of a hog?'],
+      hard: ['Free ride on Dad'],
     },
     {
       answer: 'DAISY CHAIN',
       easy: ['Necklace made from small white flowers', 'Flowers threaded stem to stem', 'Flower crown made on the lawn'],
-      hard: ['Flower link-up', 'Floral necklace you pick and poke'],
+      hard: ['Flower link-up'],
     },
     {
       answer: 'FLOWERBED',
       easy: ['Patch of garden with blooms planted in it', 'Garden area filled with roses or tulips', 'Patch of soil where the gardener plants blooms'],
-      hard: ['Where blooms sleep?', 'Plot for petals'],
+      hard: ['Where blooms sleep?'],
     },
     {
       answer: 'BOARDWALK',
@@ -277,7 +277,7 @@ const theme: Theme = {
     {
       answer: 'ROPE BRIDGE',
       easy: ['Wobbly walkway of planks strung across a gap', 'Swaying walkway between two playground towers', 'Crossing tied together from cords and slats'],
-      hard: ['Tied crossing that wobbles?', 'Way across with a bit of a sway'],
+      hard: ['Way across with a bit of a sway'],
     },
     {
       answer: 'FOUNTAIN',
@@ -302,12 +302,12 @@ const theme: Theme = {
     {
       answer: 'HIDE AND SEEK',
       easy: ['Game where one person counts to 20 then goes looking', '"Ready or not, here I come!" game', 'Game where you squeeze behind a tree so you aren\'t found'],
-      hard: ['Game where some vanish while one searches?', 'Counting game with a big search'],
+      hard: ['Counting game with a big search'],
     },
     {
       answer: 'DOG WALKER',
       easy: ['Person paid to take pets out for exercise', 'Person with a lead in hand on a park stroll', 'Job of taking pups out for a stroll'],
-      hard: ['Leader of the pack on a stroll?', 'Pooch\'s exercise buddy'],
+      hard: ['Pooch\'s exercise buddy'],
     },
   ],
 };

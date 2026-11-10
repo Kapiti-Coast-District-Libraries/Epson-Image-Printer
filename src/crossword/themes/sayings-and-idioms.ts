@@ -7,17 +7,17 @@ const theme: Theme = {
     {
       answer: 'DOGS',
       easy: ['Furry pets that go woof', 'Barking, tail-wagging pets, when there\'s a pack of them', 'Pets that fetch sticks at the park'],
-      hard: ['Raining cats and ___', 'Pooches that come inside when it pours?'],
+      hard: ['Raining cats and ___'],
     },
     {
       answer: 'ICE',
       easy: ['Frozen water, cold and slippery', 'Cube you clink in your drink', 'Surface of a hockey rink'],
-      hard: ['Break the ___ (start a chat)', 'Something a chatty person breaks?'],
+      hard: ['Break the ___ (start a chat)'],
     },
     {
       answer: 'BAG',
       easy: ['Sack you carry shopping in', 'Handy pouch with a handle, like a tote', 'Container for lunch, with a zip'],
-      hard: ['Pack a ___ of crisps', 'Thief\'s carryall, when stuffed with swag?'],
+      hard: ['Let the cat out of the ___', 'It\'s in the ___ (as good as won)'],
     },
     {
       answer: 'BEANS',
@@ -27,7 +27,7 @@ const theme: Theme = {
     {
       answer: 'CAT',
       easy: ['Furry pet that purrs', 'Whiskered pet that chases mice', 'Pet that says meow'],
-      hard: ['Curiosity killed the ___', 'Nosy pet that gets into trouble?'],
+      hard: ['Curiosity killed the ___'],
     },
     {
       answer: 'WATER',
@@ -37,12 +37,12 @@ const theme: Theme = {
     {
       answer: 'TOGETHER',
       easy: ['Side by side, as one team', 'All joined up, as a group', 'Hand in hand, as a pair'],
-      hard: ['Birds of a feather flock ___', 'Stuck like glue, in a pair?'],
+      hard: ['Birds of a feather flock ___'],
     },
     {
       answer: 'STORM',
       easy: ['Violent wind and rain', 'Thunder and lightning, with heavy rain', 'Big weather event with thunder'],
-      hard: ['Calm before the ___', 'Tempest in a teapot?'],
+      hard: ['Calm before the ___', '___ in a teacup (fuss over nothing)'],
     },
     {
       answer: 'WORST',
@@ -70,74 +70,69 @@ const theme: Theme = {
       hard: ['Out of sight, out of ___', 'Give someone a piece of your ___ (tell them off)'],
     },
     {
-      answer: 'GAINED',
-      easy: ['Closed in, as a runner who ___ ground on the leader', 'Won extra, like points', 'Got more of, as in weight'],
-      hard: ['Nothing ventured, nothing ___', 'Added a kilo or two, past tense?'],
-    },
-    {
       answer: 'NEVER',
       easy: ['Not ever, at no time', 'Opposite of always', 'Not once, not at all'],
-      hard: ['Better late than ___', 'Forever? Nah, ___!'],
+      hard: ['Better late than ___', '___ say die!'],
     },
     {
       answer: 'WORDS',
       easy: ['What a dictionary is full of', 'Letters that make up a sentence', 'Vocabulary you learn at school'],
-      hard: ['Actions speak louder than ___', 'Talk is cheap, but sentences count?'],
+      hard: ['Actions speak louder than ___'],
     },
     {
       answer: 'MILK',
       easy: ['White drink from a cow', 'Creamy drink for your cereal', 'Dairy drink that comes in bottles'],
-      hard: ['Don\'t cry over spilt ___', 'Cow\'s drink, now in a puddle?'],
+      hard: ['Don\'t cry over spilt ___'],
     },
     {
       answer: 'LEAF',
       easy: ['What a caterpillar munches on', 'Flat, green part of a tree', 'Part of a tree that falls in autumn'],
-      hard: ['Turn over a new ___', 'Page from a tree\'s diary?'],
+      hard: ['Turn over a new ___'],
     },
     {
       answer: 'BLOCK',
       easy: ['Chunk of wood or stone', 'Cube a toddler stacks into a tower, then topples', 'Stretch of a town between two streets'],
-      hard: ['Chip off the old ___', 'Toy brick you stack, or a city stretch?'],
+      hard: ['Chip off the old ___'],
     },
     {
       answer: 'STONE',
       easy: ['Small hard lump of rock', 'Pebble you skim across water', 'Hard seed in the middle of a plum'],
-      hard: ['Kill two birds with one ___', 'Fruit\'s hard middle, like a plum\'s?'],
+      hard: ['Kill two birds with one ___', 'A rolling ___ gathers no moss'],
     },
     {
       answer: 'HATCH',
       easy: ['Chick breaks out of its egg', 'Opening in a door or floor', 'Come out of an egg'],
-      hard: ['Don\'t count your chickens before they ___', 'Trapdoor on a ship deck?'],
+      hard: ['Don\'t count your chickens before they ___'],
     },
     {
       answer: 'PERFECT',
       easy: ['Flawless, without any faults', 'Full marks, no errors, a ___ score', 'Ideal, faultless'],
-      hard: ['Practice makes ___', 'Ten out of ten, with no mistakes?'],
+      hard: ['Practice makes ___'],
     },
     {
       answer: 'SILVER LINING',
       easy: ['Hopeful side of a bad situation', 'Bright bit behind a dark cloud', 'Positive part of a problem'],
-      hard: ['Every cloud has a ___', 'Sunny side tucked into a gloomy sky?'],
+      hard: ['Every cloud has a ___'],
     },
     {
       answer: 'LOG',
       easy: ['Chunk of a tree trunk', 'Firewood you can chop', 'Lump of wood from a fallen tree'],
-      hard: ['Sleep like a ___', 'Snooze as stiff and still as firewood?'],
+      hard: ['Sleep like a ___'],
     },
     {
       answer: 'FIDDLE',
       easy: ['Old name for a violin', 'Play second ___ (take a lesser role)', 'Violin, in a country dance band'],
-      hard: ['Fit as a ___', 'Tinker about, but make it musical?'],
+      hard: ['Fit as a ___'],
     },
     {
       answer: 'MOUSE',
       easy: ['Small rodent with a long tail', 'Computer pointer that clicks', 'Tiny grey critter that squeaks'],
-      hard: ['Quiet as a ___', 'Tiny cheese-nibbler, silently?'],
+      hard: ['Quiet as a ___'],
     },
     {
       answer: 'NAILS',
       easy: ['What some people bite when they\'re nervous', 'Tiny pointed bits of metal for building', 'Hammer\'s partners in a toolbox'],
-      hard: ['Tough as ___', 'Painted bits at the end of your fingers?'],
+      hard: ['Tough as ___'],
     },
     {
       answer: 'THIEVES',
@@ -145,94 +140,84 @@ const theme: Theme = {
       hard: ['Thick as ___', 'Honour among ___, as the saying goes'],
     },
     {
-      answer: 'NINES',
-      easy: ['Plural of the digit that follows eight', 'Several of the number between eight and ten', 'The ___ times table: 9, 18, 27 and so on'],
-      hard: ['Dressed to the ___', 'One short of ten, but there are several?'],
-    },
-    {
       answer: 'TEARS',
       easy: ['Drops from your eyes when you cry', 'Salty drops running down your cheeks', 'Sad, watery drops from the eyes'],
-      hard: ['Crocodile ___', 'Sad watery drops in a river?'],
+      hard: ['Crocodile ___'],
     },
     {
       answer: 'WORM',
       easy: ['Wriggly creature in the garden', 'Juicy wriggler that fish bite on', 'Pink, squirmy creature in the soil'],
-      hard: ['The early bird catches the ___', 'Bird\'s wiggly breakfast?'],
+      hard: ['The early bird catches the ___'],
     },
     {
       answer: 'FUN',
       easy: ['Enjoyment, a good laugh', 'Opposite of boring', '___ and games (a good time)'],
-      hard: ['Time flies when you\'re having ___', 'Giggles and games, in a word?'],
+      hard: ['Time flies when you\'re having ___'],
     },
     {
       answer: 'BROTH',
       easy: ['Thin soup, often made with bones', 'Warm soup with barley or veg', 'Scotch ___, a hearty barley soup'],
-      hard: ['Too many cooks spoil the ___', 'Thin soup that a crowd of chefs might ruin?'],
+      hard: ['Too many cooks spoil the ___'],
     },
     {
       answer: 'SEA',
       easy: ['Big body of salt water', 'Ocean, or something as big', 'The Tasman is one, lying between NZ and Australia'],
-      hard: ['Between the devil and the deep blue ___', 'Deep blue where the boats go?'],
+      hard: ['Between the devil and the deep blue ___'],
     },
     {
       answer: 'BASKET',
       easy: ['Woven container with a handle', 'Picnic container for food, woven', 'Woven hamper for carrying washing'],
-      hard: ['Don\'t put all your eggs in one ___', 'Egg carrier, woven and handled?'],
+      hard: ['Don\'t put all your eggs in one ___'],
     },
     {
       answer: 'CUCUMBER',
       easy: ['Long green salad veg', 'Crunchy green veg in sandwiches', 'Long green veg with lots of water'],
-      hard: ['Cool as a ___', 'Unruffled green salad veg?'],
+      hard: ['Cool as a ___'],
     },
     {
       answer: 'GRAPEVINE',
       easy: ['Vine that grows wine grapes', 'Rumour network that spreads gossip', 'Climbing plant with tendrils and fruit'],
-      hard: ['Heard it through the ___', 'Fruity gossip, climbing a fence?'],
+      hard: ['Heard it through the ___'],
     },
     {
       answer: 'HEADLIGHTS',
       easy: ['Front lights on a car', 'Bright lamps at the front of a vehicle', 'Car lights you flick on in the dark'],
-      hard: ['Like a deer in the ___', 'What a stunned deer sees on a dark road?'],
+      hard: ['Like a deer in the ___'],
     },
     {
       answer: 'THOUGHTS',
       easy: ['Ideas that pop into your head', 'What your mind comes up with', 'Opinions and musings inside you'],
-      hard: ['A penny for your ___', 'Brain\'s little pop-up ideas?'],
+      hard: ['A penny for your ___'],
     },
     {
       answer: 'BUSINESS',
       easy: ['Trade, commerce or company work', 'Trading firm or shop', 'Shops, offices and their affairs'],
-      hard: ['Nosy? That\'s none of my ___!', 'Shopkeeper\'s favourite word?'],
+      hard: ['Mind your own ___!', '___ as usual (carrying on normally)'],
     },
     {
       answer: 'PIECE OF CAKE',
       easy: ['Something dead easy to do', 'Easy-peasy task, like a doddle', 'Walk in the park, very simple'],
-      hard: ['Slice of ___ (a doddle)', 'Sweet dessert slice, and an easy one?'],
+      hard: ['Dead easy job, in dessert form?', '\'Easy-peasy!\', in three words?'],
     },
     {
       answer: 'BREAK A LEG',
       easy: ['Theatre wish for good luck', 'Stage wish that isn\'t about injuries', 'Good luck to an actor before the show'],
-      hard: ['Stage wish that sounds painful?', 'Actor\'s cheer that\'s a bit of a bone-crusher?'],
+      hard: ['Good luck, to an actor?', 'Stage wish that sounds painful?'],
     },
     {
       answer: 'WEATHER',
       easy: ['What the sky does: rain, wind or sun', 'Forecast topic, like rain or sun', 'Sun, rain and wind, for example'],
-      hard: ['Feeling under the ___', 'Forecast from the telly, served with a grin?'],
-    },
-    {
-      answer: 'SHINES',
-      easy: ['Does what a lighthouse does at night', 'Moon does it at night, reflecting sunlight', 'What a torch does when you press the button'],
-      hard: ['Make hay while the sun ___', 'Excels, like a star performer on stage?'],
+      hard: ['Feeling under the ___'],
     },
     {
       answer: 'POND',
       easy: ['Monet painted water lilies floating on one', 'Little lake in a park, with ducks', 'Tadpoles hatch in this small patch of water'],
-      hard: ['Big fish in a small ___', 'Frog\'s front yard, smaller than a lake?'],
+      hard: ['Big fish in a small ___'],
     },
     {
       answer: 'CROWD',
       easy: ['Big group of people gathered together', 'Lots of people packed into a stadium', 'Throng of people at a match'],
-      hard: ['Two\'s company, three\'s a ___', 'Herd of humans at the match?'],
+      hard: ['Two\'s company, three\'s a ___'],
     },
     {
       answer: 'BUSH',
@@ -242,7 +227,7 @@ const theme: Theme = {
     {
       answer: 'RIGHT',
       easy: ['Side of the road that Americans drive on', 'The opposite of left', 'Doing the ___ thing, honest and fair'],
-      hard: ['Two wrongs do not make a ___', 'Hand most people write with?'],
+      hard: ['Two wrongs do not make a ___'],
     },
     {
       answer: 'SWORD',
@@ -252,7 +237,7 @@ const theme: Theme = {
     {
       answer: 'WASTE',
       easy: ['A ___ of time, doing nothing useful', 'Use badly, like money', 'Don\'t let leftovers go to ___'],
-      hard: ['Haste makes ___', 'Squandered effort, or what a binman collects?'],
+      hard: ['Haste makes ___', '___ not, want not'],
     },
     {
       answer: 'GOLDEN',
@@ -262,7 +247,7 @@ const theme: Theme = {
     {
       answer: 'BLISS',
       easy: ['Pure joy, great happiness', 'Heavenly feeling of contentment', 'Lovely state of happiness'],
-      hard: ['Ignorance is ___', 'What a warm bubble bath might feel like?'],
+      hard: ['Ignorance is ___'],
     },
     {
       answer: 'THUMB',
@@ -272,22 +257,22 @@ const theme: Theme = {
     {
       answer: 'BLACK',
       easy: ['Darkest colour, like coal or night', 'Colour of a crow\'s feathers', 'Opposite of white'],
-      hard: ['Pot calling the kettle ___', 'Colour of a witch\'s hat at Halloween?'],
+      hard: ['Pot calling the kettle ___'],
     },
     {
       answer: 'PICTURE',
       easy: ['Painting, drawing or photo', 'Image you hang on a wall', 'Portrait or a snapshot'],
-      hard: ['Pretty as a ___', 'Pretty scene in a frame?'],
+      hard: ['Pretty as a ___', 'A ___ is worth a thousand words'],
     },
     {
       answer: 'DUCK',
       easy: ['Quacking bird with webbed feet', 'Waterbird that waddles about', 'Donald, in Disney\'s cartoon'],
-      hard: ['Sitting ___', 'Cricket score of zero, a ___?'],
+      hard: ['Sitting ___', 'Like water off a ___\'s back'],
     },
     {
       answer: 'CLAM',
       easy: ['Shellfish that hides in sand', 'Bivalve with a hinged shell', 'Seafood with two shells'],
-      hard: ['___ up (stop talking suddenly)', 'Shellfish that\'s perfectly content?'],
+      hard: ['___ up (stop talking suddenly)', 'Happy as a ___'],
     },
   ],
 };

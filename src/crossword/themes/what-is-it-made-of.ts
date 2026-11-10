@@ -7,7 +7,7 @@ const theme: Theme = {
     {
       answer: 'WOOD',
       easy: ['Tables, chairs and cabins are often built from this', 'Material that comes from a tree trunk', 'Stuff a carpenter saws and planes'],
-      hard: ['Knock on ___ for luck', 'Forest stuff that goes up in smoke'],
+      hard: ['Knock on ___ for luck', 'Can\'t see the ___ for the trees'],
     },
     {
       answer: 'GLASS',
@@ -22,12 +22,12 @@ const theme: Theme = {
     {
       answer: 'RUBBER',
       easy: ['Stretchy stuff that tyres are made from', 'Bouncy material used for bike tyres and erasers', 'Stretchy material in gloves and balls'],
-      hard: ['Rub it out, with this stretchy stuff?', 'Bouncy ___ duck (bath toy)'],
+      hard: ['Rub it out, with this stretchy stuff?', '___ duck (bath toy)'],
     },
     {
       answer: 'CLAY',
       easy: ['Soft earth that potters shape into pots and bricks', 'Squishy earth used to make mugs and bowls', 'Stuff that potters shape and then bake'],
-      hard: ['Target for a shotgun, sometimes called a pigeon?', 'Modelling stuff that is a bit earthy?'],
+      hard: ['Potter\'s material?', 'Modelling ___ (squishy craft stuff)'],
     },
     {
       answer: 'COTTON',
@@ -52,7 +52,7 @@ const theme: Theme = {
     {
       answer: 'LEATHER',
       easy: ['Tough hide turned into shoes, belts and jackets', 'Strong material from animal hide, used for wallets', 'Cow hide made supple for seats and boots'],
-      hard: ['Biker\'s ___ (a classic jacket)', 'Real cousin of pleather?'],
+      hard: ['What cowhide becomes?', 'Tough as old ___'],
     },
     {
       answer: 'SILK',
@@ -62,7 +62,7 @@ const theme: Theme = {
     {
       answer: 'PLASTIC',
       easy: ['Light, moulded material used for bottles and toys', 'Bendy man-made stuff used for bags and toy bricks', 'Man-made material in shopping bags and lunch boxes'],
-      hard: ['Fake, like a ___ smile', 'Card in your wallet that is not paper?'],
+      hard: ['Fake, like a ___ smile', 'What credit cards and Lego bricks are made of?'],
     },
     {
       answer: 'STONE',
@@ -72,32 +72,32 @@ const theme: Theme = {
     {
       answer: 'CORK',
       easy: ['Light bark used to stopper wine bottles', 'Light bark that seals a bottle of bubbly', 'Light bark used on noticeboards and in bottles'],
-      hard: ['Stopper of the fizz, and a noticeboard\'s friend', 'Stopper that keeps the fizz in?'],
+      hard: ['Stopper in a wine bottle?', 'Noticeboard material, from tree bark?'],
     },
     {
       answer: 'BAMBOO',
       easy: ['Tall, hollow grass that pandas chomp on', 'Giant grass that grows in clumps and makes garden canes', 'Fast-growing grass used for scaffolding in Asia'],
-      hard: ['Panda\'s lunch on a stick?', 'Green stick with a hollow heart?'],
+      hard: ['Panda\'s lunch on a stick?', 'Giant grass used for scaffolding and chopsticks?'],
     },
     {
       answer: 'FELT',
       easy: ['Matted, pressed wool used for hats and craft', 'Soft craft fabric that does not fray', 'Thick woollen cloth used for craft and pen tips'],
-      hard: ['Feeling ___ (past tense of feel)', '___-tip pen, the marker in your pencil case'],
+      hard: ['Past tense of feel, or a fuzzy craft fabric?', '___-tip pen, the marker in your pencil case'],
     },
     {
       answer: 'DENIM',
       easy: ['Tough blue cotton cloth used for jeans', 'Sturdy blue twill cloth for work clothes', 'Blue fabric used for jeans and jackets'],
-      hard: ['Double ___ (matching jacket and jeans)', 'Fabric for a cowboy\'s trousers?'],
+      hard: ['Double ___ (matching jacket and jeans)', 'What jeans are made of?'],
     },
     {
       answer: 'LINEN',
       easy: ['Crisp fabric used for tablecloths and bed sheets', 'Cool cloth made from flax, used for tea towels', 'Fabric made from flax, used for shirts and napkins'],
-      hard: ['Washing that goes on the line?', 'Crisp cloth from a plant with blue flowers'],
+      hard: ['Tea towel or tablecloth fabric?', 'Bed ___ (sheets and pillowcases)'],
     },
     {
       answer: 'COPPER',
       easy: ['Reddish metal used for electric wires and pipes', 'Brown-red metal that turns green with age', 'Reddish metal used in old-fashioned pots'],
-      hard: ['Police officer, in British slang?', 'Penny\'s metal, with a rusty glow?'],
+      hard: ['Police officer, in British slang?', 'Reddish metal of old pennies and pipes?'],
     },
     {
       answer: 'GOLD',
@@ -117,7 +117,7 @@ const theme: Theme = {
     {
       answer: 'LACE',
       easy: ['Delicate, openwork fabric for dresses and doilies', 'Fancy net-like fabric on a wedding dress', 'Open, patterned cloth used for curtains and doilies'],
-      hard: ['Shoe ___ (string for trainers)', 'Tie this, or a plain shoe?'],
+      hard: ['Shoe string, or frilly wedding dress trim?', 'Delicate fabric full of holes?'],
     },
     {
       answer: 'VELVET',
@@ -127,27 +127,27 @@ const theme: Theme = {
     {
       answer: 'CANVAS',
       easy: ['Strong cloth that artists paint on', 'Heavy cloth used for tents and sailing boats', 'Tough cloth used for bags and sails'],
-      hard: ['Under ___ (camping in a tent)', 'Wide ___ (blank page for an artist)'],
+      hard: ['Under ___ (camping in a tent)', 'Blank ___ (a fresh start for an artist)'],
     },
     {
       answer: 'ALUMINIUM',
       easy: ['Light silver metal used for drink cans and cooking trays', 'Metal of many aeroplane bodies, light as a feather', 'Light metal that wraps your leftovers in the kitchen'],
-      hard: ['Drink cans\' metal, and what "tinfoil" is really made of?', 'Can of fizzy drink\'s silver friend?'],
+      hard: ['Drink cans\' metal, and what "tinfoil" is really made of?'],
     },
     {
       answer: 'MARBLE',
       easy: ['Smooth polished stone used for statues and fancy floors', 'Polished stone that statues are carved from', 'Cool, smooth stone for kitchen benches and fireplaces'],
-      hard: ['Lose your ___ (go crazy)', 'Rock with a veined look, for a statue finish?'],
+      hard: ['Lose your ___s (go a bit silly)', 'Rock with a veined look, for a statue finish?'],
     },
     {
       answer: 'PORCELAIN',
       easy: ['Fine white china used for teacups and fancy plates', 'Delicate, glassy white china used for vases', 'Thin, white china that chips if you drop it'],
-      hard: ['Doll\'s ___ (a fragile toy face)', 'Cups of the finest china, easily cracked?'],
+      hard: ['Fine china?', 'What dolls\' faces and teacups were once made of?'],
     },
     {
       answer: 'BRASS',
       easy: ['Golden-looking metal used in trumpets and tubas', 'Yellow metal used for door knockers and bells', 'Shiny yellow metal, a mix of copper and zinc'],
-      hard: ['Top ___ (the bosses)', 'Band\'s shiny section, with a mouthpiece?'],
+      hard: ['Top ___ (the bosses)', 'Trumpet metal?'],
     },
     {
       answer: 'CHALK',
@@ -167,7 +167,7 @@ const theme: Theme = {
     {
       answer: 'PEWTER',
       easy: ['Dull grey metal used for old-fashioned mugs and plates', 'Dull silvery metal used for old-style jugs', 'Soft grey metal shaped into mugs and tankards'],
-      hard: ['Tankard metal that\'s anything but shiny?', 'A mug with a lot of history and no shine'],
+      hard: ['Dull grey metal of old tankards?'],
     },
     {
       answer: 'TERRACOTTA',
@@ -182,7 +182,7 @@ const theme: Theme = {
     {
       answer: 'SAND',
       easy: ['Golden grains on the beach that kids love to dig', 'Tiny grains of rock that make up a beach', 'Gritty powder that a beach is made of'],
-      hard: ['Head in the ___ (avoiding trouble?)', 'Hourglass filler, with grains?'],
+      hard: ['Head in the ___ (ignoring a problem)', 'What glass is made from?'],
     },
     {
       answer: 'BRONZE',
@@ -197,7 +197,7 @@ const theme: Theme = {
     {
       answer: 'TWEED',
       easy: ['Thick woollen cloth from Scotland, used for jackets', 'Rough, warm cloth from the Scottish hills', 'Hard-wearing checked cloth for country jackets'],
-      hard: ['Sherlock\'s jacket fabric?', 'Something a country gent might wear?'],
+      hard: ['Scratchy wool of a country jacket?', 'Harris ___ (famous Scottish cloth)'],
     },
     {
       answer: 'CRYSTAL',
@@ -207,7 +207,7 @@ const theme: Theme = {
     {
       answer: 'CARDBOARD',
       easy: ['Thick, stiff paper used for cereal boxes', 'Stiff packaging material for shoe boxes and pizza boxes', 'Stiff paper used to make packing boxes'],
-      hard: ['Stiff stand-up friend, with no heartbeat?', 'What boxes are made from that goes soggy in the rain?'],
+      hard: ['What boxes are made from?', '___ cut-out (life-size flat figure)'],
     },
     {
       answer: 'JERSEY',
@@ -232,7 +232,7 @@ const theme: Theme = {
     {
       answer: 'PLATINUM',
       easy: ['Precious silvery metal used in fancy jewellery', 'Expensive grey metal used in some rings', 'Rare, precious metal that rings are made from'],
-      hard: ['Blonde ___ (very pale hair)', 'Record that sells a million copies?'],
+      hard: ['___ blonde (very pale hair)', 'Record that sells a million copies?'],
     },
     {
       answer: 'STRAW',
@@ -247,12 +247,12 @@ const theme: Theme = {
     {
       answer: 'REED',
       easy: ['Tall, thin grass that grows in marshes and water', 'Tall water grass used for thatch and baskets', 'Hollow water grass that bends in the wind'],
-      hard: ['Clarinet\'s thin strip that buzzes?', 'Homophone for read, but made of grass?'],
+      hard: ['Clarinet\'s thin strip that buzzes?'],
     },
     {
       answer: 'EBONY',
       easy: ['Jet-black dense material used for piano keys', 'Very dark, heavy material used for ornaments', 'Dense black wood, the sort you\'d find in a fancy chess set'],
-      hard: ['Black sheep of the trees, dense and dark?', 'Black, heavy wood with no lighter moments'],
+      hard: ['Dark wood of black piano keys?', '___ and ivory (black and white)'],
     },
     {
       answer: 'GRAPHITE',
@@ -262,7 +262,7 @@ const theme: Theme = {
     {
       answer: 'SHEEPSKIN',
       easy: ['Fluffy hide used for cosy rugs and seat covers', 'Sheep hide with the fleece left on, for rugs', 'Hide with its fleece still on, used for jackets'],
-      hard: ['Rug for a sheep-lover\'s lounge?', 'Shepherd\'s warm coat, perhaps?'],
+      hard: ['Woolly rug by the fire?', 'What ugg boots are lined with?'],
     },
     {
       answer: 'GRANITE',
@@ -272,12 +272,12 @@ const theme: Theme = {
     {
       answer: 'SLATE',
       easy: ['Flat grey rock that splits into thin sheets', 'Grey stone once used for old-school blackboards', 'Thin grey rock used for covering houses'],
-      hard: ['Clean ___ (a fresh start)', 'Rock that is really a sheet?'],
+      hard: ['Clean ___ (a fresh start)'],
     },
     {
       answer: 'PARCHMENT',
       easy: ['Old writing material made from animal skin', 'Crinkly, creamy sheet once used for scrolls', 'Old diplomas and scrolls were written on this'],
-      hard: ['Ancient scroll\'s crinkly cousin?', 'Paper with a very old-fashioned past?'],
+      hard: ['What old scrolls were written on?', 'Animal-skin paper of the Middle Ages?'],
     },
     {
       answer: 'TIMBER',
