@@ -8,14 +8,13 @@
 export interface ClueEntry {
   answer: string;
   /**
-   * Plain everyday descriptions – kids should get most of these. Each wording takes a
-   * different angle on the answer; they take turns each time the theme comes round,
-   * so regulars meet a new clue even when a word repeats.
+   * Plain everyday description that a 9–10-year-old gets without looking anything up.
+   * Normally just one, the clearest; if there are several they take turns.
    */
   easy: string[];
   /**
-   * Playful wordings for trickier days: a pun, double meaning or sideways hint built on
-   * everyday knowledge. Never more obscure than the easy clues – nothing to look up.
+   * Optional playful wording for trickier days: a well-known saying with a blank, or a
+   * simple double meaning. May be empty – most answers only need the plain clue.
    */
   hard: string[];
 }
