@@ -4,13 +4,14 @@
  */
 import { supabase } from "./supabase";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route, Puzzle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { generateSudokuImage } from './utils/sudokuPrinter';
 import { generateMaoriWordImage } from './utils/maoriPrinter';
 import { generateWeatherImage } from './utils/weatherPrinter';
 import { generateHistoryImage } from './utils/historyPrinter';
 import { generateMazeImage } from './utils/mazePrinter';
+import { generateCrosswordImage, prewarmCrossword } from './utils/crosswordPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -36,32 +37,40 @@ export default function App() {
   const [usbDevice, setUsbDevice] = useState<any | null>(null);
   const [usbStatus, setUsbStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
   const [usbError, setUsbError] = useState<string | null>(null);
+  // Latest device for event handlers and async print code (state can be stale there).
+  const usbDeviceRef = useRef<any | null>(null);
+  useEffect(() => { usbDeviceRef.current = usbDevice; }, [usbDevice]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // --- Auto Connect Helper ---
-  const autoConnectUsb = async () => {
+  /** Reconnects to a printer this browser has already been given permission for. Returns it, or null. */
+  const autoConnectUsb = async (): Promise<any | null> => {
     try {
-      if (!(navigator as any).usb) return;
+      if (!(navigator as any).usb) return null;
       const devices = await (navigator as any).usb.getDevices();
 
       if (devices.length > 0) {
         const device = devices[0];
 
-        await device.open();
+        if (!device.opened) await device.open();
         if (device.configuration === null) {
           await device.selectConfiguration(1);
         }
 
         await device.claimInterface(0);
 
+        usbDeviceRef.current = device;
         setUsbDevice(device);
         setUsbStatus('connected');
+        setUsbError(null);
+        return device;
       }
     } catch (err: any) {
       console.error("Auto connect failed:", err);
     }
+    return null;
   };
 
   // --- WebUSB Integration ---
@@ -93,6 +102,37 @@ export default function App() {
   useEffect(() => {
     window.focus();
     autoConnectUsb();
+  }, []);
+
+  // Printer switched on / plugged back in later, or unplugged: follow it without a page reload.
+  useEffect(() => {
+    const usb = (navigator as any).usb;
+    if (!usb) return;
+    const onConnect = () => { autoConnectUsb(); };
+    const onDisconnect = (e: any) => {
+      if (e.device === usbDeviceRef.current) {
+        usbDeviceRef.current = null;
+        setUsbDevice(null);
+        setUsbStatus('disconnected');
+      }
+    };
+    usb.addEventListener('connect', onConnect);
+    usb.addEventListener('disconnect', onDisconnect);
+    return () => {
+      usb.removeEventListener('connect', onConnect);
+      usb.removeEventListener('disconnect', onDisconnect);
+    };
+  }, []);
+
+  // Build the day's crossword in the background (at start-up and soon after each
+  // midnight) so pressing the button prints straight away, even on the Pi.
+  useEffect(() => {
+    const warm = () => {
+      try { prewarmCrossword(); } catch (err) { console.error('Crossword prewarm failed:', err); }
+    };
+    const startup = setTimeout(warm, 3000);
+    const hourly = setInterval(warm, 15 * 60 * 1000);
+    return () => { clearTimeout(startup); clearInterval(hourly); };
   }, []);
 
   // --- Print Generation Triggers ---
@@ -186,6 +226,24 @@ export default function App() {
     }
   };
 
+  const handleGenerateCrossword = async () => {
+    activePrintTypeRef.current = 'Crossword';
+    setFileName(null);
+    setUsbError(null);
+    setIsProcessing(true);
+    try {
+      const crosswordDataUrl = await generateCrosswordImage();
+      setImage(null);
+      setTimeout(() => {
+        setImage(crosswordDataUrl);
+      }, 20);
+    } catch (err: any) {
+      console.error("Failed to generate Crossword:", err);
+      setUsbError("Crossword error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
   // --- Global Keyboard Listener ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -241,6 +299,16 @@ export default function App() {
         e.keyCode === 101 ||
         e.keyCode === 12;
 
+      // Key 6 (NumLock ON/OFF support)
+      const isKeySix =
+        e.key === '6' ||
+        e.key === 'ArrowRight' ||
+        e.key === 'Right' ||
+        e.code === 'Numpad6' ||
+        e.code === 'Digit6' ||
+        e.keyCode === 54 ||
+        e.keyCode === 102;
+
       const startCooldown = () => {
         isCooldownRef.current = true;
         setTimeout(() => {
@@ -268,6 +336,10 @@ export default function App() {
         e.preventDefault();
         startCooldown();
         handleGenerateMaze();
+      } else if (isKeySix) {
+        e.preventDefault();
+        startCooldown();
+        handleGenerateCrossword();
       }
     };
 
@@ -286,12 +358,6 @@ export default function App() {
     const data = imageData.data;
 
     const widthInBytes = Math.ceil(width / 8);
-    const header = new Uint8Array([
-      0x1B, 0x40,
-      0x1D, 0x76, 0x30, 0,
-      widthInBytes % 256, Math.floor(widthInBytes / 256),
-      height % 256, Math.floor(height / 256)
-    ]);
 
     const pixelData = new Uint8Array(widthInBytes * height);
     for (let y = 0; y < height; y++) {
@@ -306,12 +372,27 @@ export default function App() {
       }
     }
 
-    const footer = new Uint8Array([0x0A, 0x0A, 0x0A, 0x1D, 0x56, 0x41, 0x03]);
-    const combined = new Uint8Array(header.length + pixelData.length + footer.length);
-    combined.set(header);
-    combined.set(pixelData, header.length);
-    combined.set(footer, header.length + pixelData.length);
+    // Send the raster in bands: many printers cap the height of a single
+    // GS v 0 image, and long receipts (e.g. the crossword) exceed it.
+    const BAND_ROWS = 256;
+    const parts: Uint8Array[] = [new Uint8Array([0x1B, 0x40])];
+    for (let startRow = 0; startRow < height; startRow += BAND_ROWS) {
+      const rows = Math.min(BAND_ROWS, height - startRow);
+      parts.push(new Uint8Array([
+        0x1D, 0x76, 0x30, 0,
+        widthInBytes % 256, Math.floor(widthInBytes / 256),
+        rows % 256, Math.floor(rows / 256)
+      ]));
+      parts.push(pixelData.subarray(startRow * widthInBytes, (startRow + rows) * widthInBytes));
+    }
+    parts.push(new Uint8Array([0x0A, 0x0A, 0x0A, 0x1D, 0x56, 0x41, 0x03]));
 
+    const combined = new Uint8Array(parts.reduce((n, part) => n + part.length, 0));
+    let offset = 0;
+    for (const part of parts) {
+      combined.set(part, offset);
+      offset += part.length;
+    }
     return combined;
   };
 
@@ -377,27 +458,36 @@ export default function App() {
   }
 
   const handleDirectPrint = async () => {
-    if (!usbDevice || !canvasRef.current) return;
-    
+    if (!canvasRef.current) return;
+    // Try to (re)connect if the printer wasn't there at start-up or was power-cycled.
+    const device = usbDeviceRef.current ?? await autoConnectUsb();
+    if (!device) {
+      setUsbError('Printer not connected. Check it is switched on and plugged in.');
+      return;
+    }
+
     try {
-      if (!usbDevice.opened) {
-        await usbDevice.open();
-        await usbDevice.selectConfiguration(1);
-        await usbDevice.claimInterface(0);
+      if (!device.opened) {
+        await device.open();
+        if (device.configuration === null) await device.selectConfiguration(1);
+        await device.claimInterface(0);
       }
       
       const data = getEscPosData(canvasRef.current);
-      const endpoint = usbDevice.configuration?.interfaces[0].alternate.endpoints.find((e: any) => e.direction === 'out');
+      const endpoint = device.configuration?.interfaces[0].alternate.endpoints.find((e: any) => e.direction === 'out');
       if (!endpoint) throw new Error('No output endpoint found');
       
-      await usbDevice.transferOut(endpoint.endpointNumber, data);
+      // A stalled printer (paper out, lid open) must not lock the buttons forever.
+      await Promise.race([
+        device.transferOut(endpoint.endpointNumber, data),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Printer did not respond. Check paper and lid.')), 20000)),
+      ]);
       
-      // Log print type permanently
-      const { error: logError } = await supabase
-        .from('print_logs')
-        .insert([{ print_type: activePrintTypeRef.current }]);
-      
-      if (logError) console.error("Admin Log Error:", logError);
+      // Log print type permanently (in the background, so a slow network can't hold up the kiosk)
+      const printType = activePrintTypeRef.current;
+      Promise.resolve(supabase.from('print_logs').insert([{ print_type: printType }]))
+        .then(({ error: logError }) => { if (logError) console.error("Admin Log Error:", logError); })
+        .catch((e) => console.error("Admin Log Error:", e));
       
     } catch (err: any) {
       console.error('Print Error:', err);
@@ -406,7 +496,8 @@ export default function App() {
   };
 
   // --- Image Processing ---
-  const processImage = async (imgSrc: string) => {
+  /** Prepares the image for the thermal printer; prints it unless only refreshing the preview. */
+  const processImage = async (imgSrc: string, print = true) => {
     setIsProcessing(true);
     try {
       await new Promise<void>((resolve, reject) => {
@@ -440,8 +531,12 @@ export default function App() {
               }
             }
 
-            applyThermalOptimise(gray, w, h, contrast);
-            ditherAtkinson(gray, w, h, 128);
+            // Line art with small text prints sharper as a plain threshold.
+            const isLineArt = activePrintTypeRef.current === 'Crossword';
+            if (!isLineArt) {
+              applyThermalOptimise(gray, w, h, contrast);
+              ditherAtkinson(gray, w, h, 128);
+            }
 
             for (let y = 0; y < h; y++) {
               for (let x = 0; x < w; x++) {
@@ -455,7 +550,7 @@ export default function App() {
             ctx.putImageData(imageData, 0, 0);
             setProcessedImage(canvas.toDataURL("image/png"));
 
-            await handleDirectPrint();
+            if (print) await handleDirectPrint();
             resolve();
           } catch (err) { reject(err); }
         };
@@ -463,7 +558,7 @@ export default function App() {
         img.src = imgSrc;
       });
 
-      if (fileName) {
+      if (print && fileName) {
         try {
           await supabase.storage.from("uploads").remove([fileName]);
         } catch (e) {
@@ -501,9 +596,15 @@ export default function App() {
     return () => { supabase.removeChannel(subscription); };
   }, []);
 
+  // A new job prints; changing width or contrast only refreshes the preview (no surprise reprint).
   useEffect(() => {
     if (image) processImage(image);
-  }, [image, printerWidth, contrast]);
+  }, [image]);
+  const firstSettingsRun = useRef(true);
+  useEffect(() => {
+    if (firstSettingsRun.current) { firstSettingsRun.current = false; return; }
+    if (image) processImage(image, false);
+  }, [printerWidth, contrast]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -601,6 +702,15 @@ export default function App() {
             <Route className="w-4 h-4 text-[#FF4444]" />
             Maze
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">5</kbd>
+          </button>
+
+          <button
+            onClick={handleGenerateCrossword}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Puzzle className="w-4 h-4 text-[#FF4444]" />
+            Crossword
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">6</kbd>
           </button>
           
           <button 
@@ -723,7 +833,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-sm mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">5</kbd> Maze.
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">5</kbd> Maze, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">6</kbd> Crossword.
                   </p>
                 </motion.div>
               ) : (

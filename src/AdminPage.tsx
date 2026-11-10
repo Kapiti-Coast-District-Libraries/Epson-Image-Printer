@@ -32,6 +32,8 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
   'Weather': { color: '#0ea5e9', bg: 'bg-sky-500/10 text-sky-400', border: 'border-sky-500/30' },
   'Sudoku': { color: '#10b981', bg: 'bg-emerald-500/10 text-emerald-400', border: 'border-emerald-500/30' },
   'On This Day': { color: '#f59e0b', bg: 'bg-amber-500/10 text-amber-400', border: 'border-amber-500/30' },
+  'Maze': { color: '#14b8a6', bg: 'bg-teal-500/10 text-teal-400', border: 'border-teal-500/30' },
+  'Crossword': { color: '#eab308', bg: 'bg-yellow-500/10 text-yellow-400', border: 'border-yellow-500/30' },
   'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
   'General Print': { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' }
 };
@@ -58,6 +60,8 @@ const normalizePrintType = (type?: string | null): string => {
   if (clean === 'weather') return 'Weather';
   if (clean === 'sudoku') return 'Sudoku';
   if (clean === 'on this day') return 'On This Day';
+  if (clean === 'maze') return 'Maze';
+  if (clean === 'crossword') return 'Crossword';
 
   return type.trim();
 };
