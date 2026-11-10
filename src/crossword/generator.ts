@@ -66,11 +66,11 @@ const TARGET_WORDS: Record<Difficulty, [number, number]> = {
   Tricky: [13, 15],
 };
 /** Share of clues that use the cleverer "hard" wording. */
-const HARD_CLUE_SHARE: Record<Difficulty, number> = { Easy: 0, Medium: 0.35, Tricky: 0.65 };
+const HARD_CLUE_SHARE: Record<Difficulty, number> = { Easy: 0, Medium: 0.15, Tricky: 0.3 };
 /** Length range for the hidden bonus word. */
 const BONUS_LEN: Record<Difficulty, [number, number]> = { Easy: [4, 5], Medium: [5, 6], Tricky: [6, 7] };
 /** Longest answer allowed per level – long words are hard work for kids. */
-const MAX_ANSWER_LEN: Record<Difficulty, number> = { Easy: 8, Medium: 10, Tricky: 11 };
+const MAX_ANSWER_LEN: Record<Difficulty, number> = { Easy: 7, Medium: 9, Tricky: 10 };
 
 const lettersOnly = (answer: string) => answer.replace(/[^A-Z]/g, '');
 
@@ -405,7 +405,7 @@ function scoreBoard(board: Board, target: [number, number]): number {
   const shortfall = Math.max(0, target[0] - n);
   const { rows, cols } = board.area();
   const density = board.cells.size / (rows * cols);
-  return checkedShare(board) * 400 - weaklyCrossed(board) * 8 + n * 4 - shortfall * 60 + density * 40;
+  return checkedShare(board) * 400 - weaklyCrossed(board) * 25 + n * 4 - shortfall * 60 + density * 40;
 }
 
 // ---------------------------------------------------------------------------
@@ -427,7 +427,7 @@ export function generatePuzzle(date: Date, themes: readonly Theme[]): Puzzle {
   // Layout uses the plain clue; the final easy/hard choice is made once we know
   // how well each answer is crossed (see chooseClues).
   const clueFor = new Map<ClueEntry, string>(theme.entries.map((e) => [e, wording.get(e)!.easy]));
-  const cluesOf = (e: ClueEntry) => { const w = wording.get(e)!; return HARD_CLUE_SHARE[difficulty] > 0 ? [w.easy, w.hard] : [w.easy]; };
+  const cluesOf = (e: ClueEntry) => { const w = wording.get(e)!; return HARD_CLUE_SHARE[difficulty] > 0 && w.hard ? [w.easy, w.hard] : [w.easy]; };
 
   const usable = usableFor(theme, difficulty);
 
@@ -506,7 +506,7 @@ export function generatePuzzle(date: Date, themes: readonly Theme[]): Puzzle {
       clue: p.clue,
       answer: p.word,
       enumeration: enumerationOf(p.entry.answer),
-      playful: p.clue === wording.get(p.entry)!.hard,
+      playful: !!wording.get(p.entry)!.hard && p.clue === wording.get(p.entry)!.hard,
       row: p.row,
       col: p.col,
       direction: p.dir,
@@ -554,7 +554,7 @@ function wordingFor(theme: Theme, visit: number): Map<ClueEntry, Wording> {
   const pick = (list: string[], salt: string) => list[(visit + hashString(salt)) % list.length];
   return new Map(theme.entries.map((e) => [e, {
     easy: pick(e.easy, `easy|${theme.id}|${e.answer}`),
-    hard: pick(e.hard, `hard|${theme.id}|${e.answer}`),
+    hard: e.hard.length ? pick(e.hard, `hard|${theme.id}|${e.answer}`) : '', // not every answer has a playful clue
   }]));
 }
 
@@ -623,7 +623,7 @@ function chooseClues(board: Board, difficulty: Difficulty, dateKey: string, word
   const rng = makeRng(`${dateKey}|clues`);
   const ranked = board.placed
     .map((p) => ({ p, checked: crossedLetters(board, p) / p.word.length, tie: rng() }))
-    .filter((x) => x.checked >= 0.5)
+    .filter((x) => x.checked >= 0.5 && wording.get(x.p.entry)!.hard)
     .sort((a, b) => b.checked - a.checked || a.tie - b.tie);
   const want = Math.round(share * board.placed.length);
   // Shuffle among the eligible answers so it isn't always the most-crossed ones.
@@ -642,7 +642,7 @@ function pickBonus(theme: Theme, board: Board, grid: (string | null)[][], dateKe
   }));
 
   // A hint that doesn't name any grid answer (the plain clue, else the playful one).
-  const hintFor = (e: ClueEntry) => { const w = wording.get(e)!; return [w.easy, w.hard].find((h) => !board.placed.some((p) => mentions(h, p.entry.answer))); };
+  const hintFor = (e: ClueEntry) => { const w = wording.get(e)!; return [w.easy, w.hard].find((h) => h && !board.placed.some((p) => mentions(h, p.entry.answer))); };
   // Words not seen lately come first.
   const candidates = shuffle(theme.entries, rng).sort((a, b) => Number(recent.has(a.answer)) - Number(recent.has(b.answer))).filter((e) => {
     if (placed.has(e) || /[\s-]/.test(e.answer)) return false;

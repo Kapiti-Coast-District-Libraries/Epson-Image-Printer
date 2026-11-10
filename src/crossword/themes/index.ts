@@ -18,7 +18,6 @@ import booksAndLibraries from './books-and-libraries';
 import breakfastTime from './breakfast-time';
 import buildingsAndBridges from './buildings-and-bridges';
 import campingAndTramping from './camping-and-tramping';
-import capitalCities from './capital-cities';
 import carsAndRoads from './cars-and-roads';
 import castlesAndKnights from './castles-and-knights';
 import celebrations from './celebrations';
@@ -66,7 +65,6 @@ import mythicalCreatures from './mythical-creatures';
 import nurseryRhymes from './nursery-rhymes';
 import nzPlaces from './nz-places';
 import oceanCreatures from './ocean-creatures';
-import oceansAndIslands from './oceans-and-islands';
 import opposites from './opposites';
 import pacificIslands from './pacific-islands';
 import pets from './pets';
@@ -130,7 +128,6 @@ export const THEMES: Theme[] = [
   breakfastTime,
   buildingsAndBridges,
   campingAndTramping,
-  capitalCities,
   carsAndRoads,
   castlesAndKnights,
   celebrations,
@@ -178,7 +175,6 @@ export const THEMES: Theme[] = [
   nurseryRhymes,
   nzPlaces,
   oceanCreatures,
-  oceansAndIslands,
   opposites,
   pacificIslands,
   pets,
