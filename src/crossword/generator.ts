@@ -90,6 +90,16 @@ function dayNumber(date: Date): number {
   return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / DAY_MS);
 }
 
+/** Puzzle day for a date: 0 on launch day, counting up one per calendar day. */
+export function puzzleDayOf(date: Date): number {
+  return dayNumber(date) - PUZZLE_EPOCH / DAY_MS;
+}
+
+/** The day's level, shared by the crossword and the word search. */
+export function difficultyOf(date: Date): Difficulty {
+  return WEEKDAY_DIFFICULTY[date.getDay()];
+}
+
 export function dateKeyOf(date: Date): string {
   const mm = String(date.getMonth() + 1).padStart(2, '0');
   const dd = String(date.getDate()).padStart(2, '0');

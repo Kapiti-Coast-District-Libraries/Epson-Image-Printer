@@ -34,6 +34,7 @@ const CATEGORY_THEMES: Record<string, { color: string; bg: string; border: strin
   'On This Day': { color: '#f59e0b', bg: 'bg-amber-500/10 text-amber-400', border: 'border-amber-500/30' },
   'Maze': { color: '#14b8a6', bg: 'bg-teal-500/10 text-teal-400', border: 'border-teal-500/30' },
   'Crossword': { color: '#eab308', bg: 'bg-yellow-500/10 text-yellow-400', border: 'border-yellow-500/30' },
+  'Word Search': { color: '#f97316', bg: 'bg-orange-500/10 text-orange-400', border: 'border-orange-500/30' },
   'Uploaded Image': { color: '#a855f7', bg: 'bg-purple-500/10 text-purple-400', border: 'border-purple-500/30' },
   'General Print': { color: '#6366f1', bg: 'bg-indigo-500/10 text-indigo-400', border: 'border-indigo-500/30' }
 };
@@ -62,6 +63,7 @@ const normalizePrintType = (type?: string | null): string => {
   if (clean === 'on this day') return 'On This Day';
   if (clean === 'maze') return 'Maze';
   if (clean === 'crossword') return 'Crossword';
+  if (clean === 'word search' || clean === 'wordsearch') return 'Word Search';
 
   return type.trim();
 };

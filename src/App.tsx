@@ -4,7 +4,7 @@
  */
 import { supabase } from "./supabase";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
-import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route, Puzzle } from 'lucide-react';
+import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route, Puzzle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { generateSudokuImage } from './utils/sudokuPrinter';
 import { generateMaoriWordImage } from './utils/maoriPrinter';
@@ -12,6 +12,7 @@ import { generateWeatherImage } from './utils/weatherPrinter';
 import { generateHistoryImage } from './utils/historyPrinter';
 import { generateMazeImage } from './utils/mazePrinter';
 import { generateCrosswordImage, prewarmCrossword } from './utils/crosswordPrinter';
+import { generateWordSearchImage } from './utils/wordsearchPrinter';
 
 // --- Constants ---
 const PRINTER_WIDTHS = {
@@ -244,6 +245,24 @@ export default function App() {
     }
   };
 
+  const handleGenerateWordSearch = async () => {
+    activePrintTypeRef.current = 'Word Search';
+    setFileName(null);
+    setUsbError(null);
+    setIsProcessing(true);
+    try {
+      const wordSearchDataUrl = await generateWordSearchImage();
+      setImage(null);
+      setTimeout(() => {
+        setImage(wordSearchDataUrl);
+      }, 20);
+    } catch (err: any) {
+      console.error("Failed to generate Word Search:", err);
+      setUsbError("Word Search error: " + (err instanceof Error ? err.message : "Unknown error"));
+      setIsProcessing(false);
+    }
+  };
+
   // --- Global Keyboard Listener ---
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -309,6 +328,15 @@ export default function App() {
         e.keyCode === 54 ||
         e.keyCode === 102;
 
+      // Key 7 (NumLock ON/OFF support)
+      const isKeySeven =
+        e.key === '7' ||
+        e.key === 'Home' ||
+        e.code === 'Numpad7' ||
+        e.code === 'Digit7' ||
+        e.keyCode === 55 ||
+        e.keyCode === 103;
+
       const startCooldown = () => {
         isCooldownRef.current = true;
         setTimeout(() => {
@@ -340,6 +368,10 @@ export default function App() {
         e.preventDefault();
         startCooldown();
         handleGenerateCrossword();
+      } else if (isKeySeven) {
+        e.preventDefault();
+        startCooldown();
+        handleGenerateWordSearch();
       }
     };
 
@@ -532,7 +564,7 @@ export default function App() {
             }
 
             // Line art with small text prints sharper as a plain threshold.
-            const isLineArt = activePrintTypeRef.current === 'Crossword';
+            const isLineArt = activePrintTypeRef.current === 'Crossword' || activePrintTypeRef.current === 'Word Search';
             if (!isLineArt) {
               applyThermalOptimise(gray, w, h, contrast);
               ditherAtkinson(gray, w, h, 128);
@@ -712,6 +744,15 @@ export default function App() {
             Crossword
             <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">6</kbd>
           </button>
+
+          <button
+            onClick={handleGenerateWordSearch}
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-full transition-all text-xs font-mono uppercase tracking-wider text-white"
+          >
+            <Search className="w-4 h-4 text-[#FF4444]" />
+            Word Search
+            <kbd className="px-1.5 py-0.5 text-[9px] font-mono bg-white/10 rounded text-[#8E9299]">7</kbd>
+          </button>
           
           <button 
             onClick={() => fileInputRef.current?.click()}
@@ -833,7 +874,7 @@ export default function App() {
                   </div>
                   <h3 className="text-2xl font-bold text-white/80 tracking-tight">Awaiting Input</h3>
                   <p className="text-xs text-[#8E9299] max-w-sm mx-auto leading-relaxed uppercase tracking-widest font-mono">
-                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">5</kbd> Maze, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">6</kbd> Crossword.
+                    Press <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">1</kbd> Kupu, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">2</kbd> Weather, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">3</kbd> Sudoku, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">4</kbd> On This Day, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">5</kbd> Maze, <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">6</kbd> Crossword, or <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white">7</kbd> Word Search.
                   </p>
                 </motion.div>
               ) : (
