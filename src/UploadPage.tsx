@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { supabase } from './supabase';
+import { currentLibrary } from './library';
 import { Upload, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
 
 export function UploadPage() {
+  const library = currentLibrary();
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
@@ -35,11 +37,11 @@ export function UploadPage() {
       // Insert into print_queue table
       const { error: dbError } = await supabase
         .from('print_queue')
-        .insert([{ image_url: publicUrl, printed: false }]);
+        .insert([{ image_url: publicUrl, printed: false, library: library.id }]);
 
       if (dbError) throw dbError;
 
-      setMessage({ type: 'success', text: 'Image sent to print queue!' });
+      setMessage({ type: 'success', text: `Sent to the printer at ${library.name} Library!` });
     } catch (err: any) {
       console.error('Upload Error:', err);
       setMessage({ type: 'error', text: err.message || 'Failed to upload image.' });
@@ -58,7 +60,7 @@ export function UploadPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Upload Image</h1>
           <p className="text-xs text-[#8E9299] font-mono mt-1 uppercase tracking-widest">
-            Send a photo directly to the thermal printer
+            Prints at {library.name} Library
           </p>
         </div>
 

@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from "./supabase";
 import { 
   BarChart3, ArrowLeft, Clock, List, Calendar, Activity, 
   PieChart, TrendingUp, Sparkles, Layers, RefreshCw 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { LIBRARIES } from './library';
 import { motion } from 'motion/react';
 
 interface PrintLog {
@@ -80,8 +81,7 @@ export default function AdminPage() {
   const [categories, setCategories] = useState<CategoryMeta[]>([]);
   const [todayLogs, setTodayLogs] = useState<PrintLog[]>([]);
   const [timeFilter, setTimeFilter] = useState<'all' | '7d'>('7d');
-
-  const hasFetched = useRef(false);
+  const [libraryFilter, setLibraryFilter] = useState<string>('all');
 
   const fetchStats = async () => {
     setLoading(true);
@@ -102,9 +102,9 @@ export default function AdminPage() {
       let hasMore = true;
 
       while (hasMore) {
-        const { data: pageData, error: pageError } = await supabase
-          .from('print_logs')
-          .select(selectCols)
+        let query = supabase.from('print_logs').select(selectCols);
+        if (libraryFilter !== 'all') query = query.eq('library', libraryFilter);
+        const { data: pageData, error: pageError } = await query
           .order('created_at', { ascending: false })
           .range(from, from + PAGE_SIZE - 1);
 
@@ -225,11 +225,8 @@ export default function AdminPage() {
   };
 
   useEffect(() => {
-    if (!hasFetched.current) {
-      fetchStats();
-      hasFetched.current = true;
-    }
-  }, []);
+    fetchStats();
+  }, [libraryFilter]);
 
   // Filtered Trend Data & Single-Day Padding
   const rawVisibleTrend = timeFilter === '7d' ? dailyTrend.slice(-7) : dailyTrend;
@@ -287,6 +284,16 @@ export default function AdminPage() {
           <h1 className="text-3xl font-black tracking-tight">Print System Operations</h1>
         </div>
         <div className="flex items-center gap-3">
+          <select
+            value={libraryFilter}
+            onChange={(e) => setLibraryFilter(e.target.value)}
+            className="text-xs text-white bg-[#0A0B0D] border border-white/10 px-4 py-2 rounded-full font-mono uppercase"
+          >
+            <option value="all">All libraries</option>
+            {Object.values(LIBRARIES).map((l) => (
+              <option key={l.id} value={l.id}>{l.name}</option>
+            ))}
+          </select>
           <button 
             onClick={fetchStats}
             className="flex items-center gap-2 text-xs text-[#8E9299] hover:text-white border border-white/10 px-4 py-2 rounded-full hover:bg-white/5 transition-all font-mono"

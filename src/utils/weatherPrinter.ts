@@ -126,7 +126,7 @@ export async function generateWeatherImage(lat = -40.9006, lon = 175.0067, locat
   ctx.fillText("7-DAY WEATHER FORECAST", width / 2, 50);
 
   ctx.font = "700 14px monospace";
-  ctx.fillText(`LOCATION: ${locationName.toUpperCase()}`, width / 2, 72);
+  ctx.fillText(`LOCATION: ${locationName.toLocaleUpperCase('en-NZ')}`, width / 2, 72);
 
   // Dashed Line
   ctx.beginPath();

@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import { supabase } from "./supabase";
+import { currentLibrary } from "./library";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route, Puzzle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -15,6 +16,9 @@ import { generateCrosswordImage, prewarmCrossword } from './utils/crosswordPrint
 import { generateWordSearchImage } from './utils/wordsearchPrinter';
 
 // --- Constants ---
+/** Fixed for the life of the page: set by ?library= in the kiosk's URL. */
+const LIBRARY = currentLibrary();
+
 const PRINTER_WIDTHS = {
   '58mm': 384, // Standard 58mm printer dot width
   '80mm': 576, // Standard 80mm printer dot width
@@ -161,7 +165,7 @@ export default function App() {
     setUsbError(null);
     setIsProcessing(true);
     try {
-      const weatherDataUrl = await generateWeatherImage(-40.9006, 175.0067, "Paraparaumu");
+      const weatherDataUrl = await generateWeatherImage(LIBRARY.lat, LIBRARY.lon, LIBRARY.name);
       setImage(null);
       setTimeout(() => {
         setImage(weatherDataUrl);
@@ -517,7 +521,7 @@ export default function App() {
       
       // Log print type permanently (in the background, so a slow network can't hold up the kiosk)
       const printType = activePrintTypeRef.current;
-      Promise.resolve(supabase.from('print_logs').insert([{ print_type: printType }]))
+      Promise.resolve(supabase.from('print_logs').insert([{ print_type: printType, library: LIBRARY.id }]))
         .then(({ error: logError }) => { if (logError) console.error("Admin Log Error:", logError); })
         .catch((e) => console.error("Admin Log Error:", e));
       
@@ -610,11 +614,12 @@ export default function App() {
 
   useEffect(() => {
     const subscription = supabase
-      .channel("print_queue_listener")
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "print_queue" },
+      .channel(`print_queue_listener_${LIBRARY.id}`)
+      // Only photos sent to this library: each kiosk has its own queue.
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "print_queue", filter: `library=eq.${LIBRARY.id}` },
         async (payload) => {
           const row = payload.new;
-          if (!row || row.printed) return;
+          if (!row || row.printed || row.library !== LIBRARY.id) return;
           
           activePrintTypeRef.current = 'Uploaded Image';
           setImage(row.image_url);
@@ -660,7 +665,7 @@ export default function App() {
             <h1 className="text-lg font-bold tracking-tight">Thermal Print Studio</h1>
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <p className="text-[9px] uppercase tracking-[0.2em] text-[#8E9299] font-mono">Hardware Direct v2.0</p>
+              <p className="text-[9px] uppercase tracking-[0.2em] text-[#8E9299] font-mono">{LIBRARY.name} Library</p>
             </div>
           </div>
         </div>
