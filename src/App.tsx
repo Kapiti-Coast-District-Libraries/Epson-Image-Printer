@@ -4,6 +4,7 @@
  */
 import { supabase } from "./supabase";
 import { currentLibrary } from "./library";
+import { usesNetworkPrinter, networkPrinterStatus, printOverNetwork } from "./networkPrinter";
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { Upload, Printer, Settings, Image as ImageIcon, Trash2, RefreshCw, ZoomIn, Contrast, Cpu, AlertCircle, CheckCircle2, Grid, Languages, CloudSun, History, Route, Puzzle, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -18,6 +19,8 @@ import { generateWordSearchImage } from './utils/wordsearchPrinter';
 // --- Constants ---
 /** Fixed for the life of the page: set by ?library= in the kiosk's URL. */
 const LIBRARY = currentLibrary();
+/** This kiosk's printer may be on the network cable (via the Pi's print bridge) rather than USB. */
+const NETWORK_PRINTER = usesNetworkPrinter(LIBRARY);
 
 const PRINTER_WIDTHS = {
   '58mm': 384, // Standard 58mm printer dot width
@@ -45,6 +48,10 @@ export default function App() {
   // Latest device for event handlers and async print code (state can be stale there).
   const usbDeviceRef = useRef<any | null>(null);
   useEffect(() => { usbDeviceRef.current = usbDevice; }, [usbDevice]);
+  // Network printer's address while the Pi's print bridge can see it (network-printer kiosks only).
+  const [netPrinter, setNetPrinter] = useState<string | null>(null);
+  const usbConnected = usbStatus === 'connected';
+  const printerReady = usbConnected || netPrinter !== null;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -107,6 +114,19 @@ export default function App() {
   useEffect(() => {
     window.focus();
     autoConnectUsb();
+  }, []);
+
+  // Keep an eye on a network printer (switched off, cable out, back again).
+  useEffect(() => {
+    if (!NETWORK_PRINTER) return;
+    let alive = true;
+    const check = async () => {
+      const printer = await networkPrinterStatus();
+      if (alive) setNetPrinter(printer);
+    };
+    check();
+    const timer = setInterval(check, 15000);
+    return () => { alive = false; clearInterval(timer); };
   }, []);
 
   // Printer switched on / plugged back in later, or unplugged: follow it without a page reload.
@@ -497,28 +517,39 @@ export default function App() {
     if (!canvasRef.current) return;
     // Try to (re)connect if the printer wasn't there at start-up or was power-cycled.
     const device = usbDeviceRef.current ?? await autoConnectUsb();
-    if (!device) {
+    if (!device && !NETWORK_PRINTER) {
       setUsbError('Printer not connected. Check it is switched on and plugged in.');
       return;
     }
 
     try {
-      if (!device.opened) {
-        await device.open();
-        if (device.configuration === null) await device.selectConfiguration(1);
-        await device.claimInterface(0);
+      if (device) {
+        if (!device.opened) {
+          await device.open();
+          if (device.configuration === null) await device.selectConfiguration(1);
+          await device.claimInterface(0);
+        }
+
+        const data = getEscPosData(canvasRef.current);
+        const endpoint = device.configuration?.interfaces[0].alternate.endpoints.find((e: any) => e.direction === 'out');
+        if (!endpoint) throw new Error('No output endpoint found');
+
+        // A stalled printer (paper out, lid open) must not lock the buttons forever.
+        await Promise.race([
+          device.transferOut(endpoint.endpointNumber, data),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('Printer did not respond. Check paper and lid.')), 20000)),
+        ]);
+      } else {
+        // No USB printer: send it to the network printer through the Pi's print bridge.
+        try {
+          setNetPrinter(await printOverNetwork(getEscPosData(canvasRef.current)));
+        } catch (err) {
+          setNetPrinter(null);
+          throw err;
+        }
       }
-      
-      const data = getEscPosData(canvasRef.current);
-      const endpoint = device.configuration?.interfaces[0].alternate.endpoints.find((e: any) => e.direction === 'out');
-      if (!endpoint) throw new Error('No output endpoint found');
-      
-      // A stalled printer (paper out, lid open) must not lock the buttons forever.
-      await Promise.race([
-        device.transferOut(endpoint.endpointNumber, data),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('Printer did not respond. Check paper and lid.')), 20000)),
-      ]);
-      
+      setUsbError(null);
+
       // Log print type permanently (in the background, so a slow network can't hold up the kiosk)
       const printType = activePrintTypeRef.current;
       Promise.resolve(supabase.from('print_logs').insert([{ print_type: printType, library: LIBRARY.id }]))
@@ -672,8 +703,18 @@ export default function App() {
         
         <div className="flex items-center gap-3 flex-wrap">
           <AnimatePresence mode="wait">
-            {usbStatus === 'connected' ? (
-              <motion.div 
+            {!usbConnected && netPrinter ? (
+              <motion.div
+                key="network"
+                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
+                className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500 text-[10px] font-mono uppercase tracking-widest"
+              >
+                <CheckCircle2 className="w-3 h-3" />
+                Network Printer Connected
+              </motion.div>
+            ) : usbConnected ? (
+              <motion.div
+                key="usb"
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}
                 className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-500 text-[10px] font-mono uppercase tracking-widest"
               >
@@ -685,7 +726,8 @@ export default function App() {
                 </div>
               </motion.div>
             ) : (
-              <motion.button 
+              <motion.button
+                key="connect"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                 onClick={connectUsb}
                 className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-[10px] font-mono uppercase tracking-widest text-[#8E9299] hover:text-white"
@@ -814,15 +856,15 @@ export default function App() {
             </div>
 
             <div className="pt-6 border-t border-white/5 space-y-4">
-              {usbStatus === 'connected' ? (
-                <button 
+              {printerReady ? (
+                <button
                   onClick={handleDirectPrint}
                   disabled={!processedImage}
                   className="w-full py-5 bg-[#FF4444] hover:bg-[#FF5555] disabled:opacity-50 text-white rounded-2xl font-black text-sm tracking-[0.2em] flex flex-col items-center justify-center gap-1 transition-all shadow-[0_10px_30px_rgba(255,68,68,0.4)] active:scale-[0.98]"
                 >
                   <div className="flex items-center gap-2">
                     <Cpu className="w-5 h-5" />
-                    DIRECT USB PRINT
+                    {usbConnected ? 'DIRECT USB PRINT' : 'NETWORK PRINT'}
                   </div>
                   <span className="text-[8px] opacity-60 font-mono uppercase tracking-widest">Hardware Direct Output</span>
                 </button>
@@ -931,8 +973,12 @@ export default function App() {
           <div className="mt-8 flex items-center justify-between px-6">
             <div className="flex items-center gap-8">
               <div className="flex items-center gap-3">
-                <div className={`w-2 h-2 rounded-full ${usbStatus === 'connected' ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]' : 'bg-white/10'}`}></div>
-                <span className="text-[9px] font-mono text-[#8E9299] uppercase tracking-[0.2em]">USB Link: {usbStatus}</span>
+                <div className={`w-2 h-2 rounded-full ${printerReady ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]' : 'bg-white/10'}`}></div>
+                <span className="text-[9px] font-mono text-[#8E9299] uppercase tracking-[0.2em]">
+                  {NETWORK_PRINTER && !usbConnected
+                    ? `Network Link: ${netPrinter ? 'connected' : 'printer not found'}`
+                    : `USB Link: ${usbStatus}`}
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <ZoomIn className="w-3.5 h-3.5 text-[#8E9299]" />

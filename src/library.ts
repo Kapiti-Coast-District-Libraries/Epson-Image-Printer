@@ -11,11 +11,14 @@ export interface LibraryInfo {
   /** Weather forecast location. */
   lat: number;
   lon: number;
+  /** The kiosk's printer has only a network port: print through the Pi's print bridge
+   *  (see networkPrinter.ts) when no USB printer is connected. */
+  networkPrinter?: boolean;
 }
 
 export const LIBRARIES: Record<string, LibraryInfo> = {
   paraparaumu: { id: 'paraparaumu', name: 'Paraparaumu', lat: -40.9006, lon: 175.0067 },
-  otaki: { id: 'otaki', name: 'Ōtaki', lat: -40.7560, lon: 175.1500 },
+  otaki: { id: 'otaki', name: 'Ōtaki', lat: -40.7560, lon: 175.1500, networkPrinter: true },
 };
 
 export const DEFAULT_LIBRARY = 'paraparaumu';
