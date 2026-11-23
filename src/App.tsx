@@ -640,26 +640,82 @@ export default function App() {
       setUsbError("Processing failed: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setIsProcessing(false);
+      isProcessingRef.current = false;
+      if (print) printFinished(imgSrc);
     }
   };
 
+  // --- Photos sent from phones ---
+  // Photos wait their turn: one prints at a time, and a photo never cuts into another print.
+  const photoQueueRef = useRef<string[]>([]);
+  const seenPhotoIdsRef = useRef<Set<string>>(new Set());
+  const currentPhotoRef = useRef<string | null>(null);
+  const isProcessingRef = useRef(false);
   useEffect(() => {
+    isProcessingRef.current = isProcessing;
+    if (!isProcessing) setTimeout(nextPhoto, 300); // a button print ended (or failed): photos' turn
+  }, [isProcessing]);
+
+  const nextPhoto = () => {
+    if (currentPhotoRef.current || isProcessingRef.current) return; // busy: tried again when done
+    const url = photoQueueRef.current.shift();
+    if (!url) return;
+    currentPhotoRef.current = url;
+    activePrintTypeRef.current = 'Uploaded Image';
+    setImage(url);
+    setFileName(url.split("/").pop() ?? null);
+    // Never let one stuck photo (e.g. an image that won't load) hold up the rest.
+    setTimeout(() => {
+      if (currentPhotoRef.current === url) {
+        currentPhotoRef.current = null;
+        nextPhoto();
+      }
+    }, 3 * 60 * 1000);
+  };
+
+  /** Called when any print finishes: frees the queue and starts the next photo. */
+  const printFinished = (imgSrc: string) => {
+    if (currentPhotoRef.current === imgSrc) currentPhotoRef.current = null;
+    setTimeout(nextPhoto, 300);
+  };
+
+  const queuePhoto = (row: any) => {
+    if (!row?.id || !row.image_url || row.printed || row.library !== LIBRARY.id) return;
+    if (seenPhotoIdsRef.current.has(row.id)) return; // heard it already (live and in a catch-up)
+    seenPhotoIdsRef.current.add(row.id);
+    photoQueueRef.current.push(row.image_url);
+    // Taken off the shared queue straight away, so it's never printed twice.
+    Promise.resolve(supabase.from("print_queue").delete().eq("id", row.id))
+      .then(({ error }) => { if (error) console.error("Queue delete error:", error); })
+      .catch((e) => console.error("Queue delete error:", e));
+    nextPhoto();
+  };
+
+  useEffect(() => {
+    // Photos sent while the kiosk wasn't listening (starting up, its scheduled restart, a
+    // network blip) are still waiting in the queue: print them. The database only shows
+    // photos from the last 10 minutes, so an old one never turns up out of the blue.
+    const catchUp = async () => {
+      const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
+      const { data, error } = await supabase
+        .from("print_queue")
+        .select("id, image_url, library, printed")
+        .eq("library", LIBRARY.id)
+        .eq("printed", false)
+        .gt("created_at", since)
+        .order("created_at", { ascending: true });
+      if (error) { console.error("Catch-up error:", error); return; }
+      for (const row of data ?? []) queuePhoto(row);
+    };
+
     const subscription = supabase
       .channel(`print_queue_listener_${LIBRARY.id}`)
       // Only photos sent to this library: each kiosk has its own queue.
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "print_queue", filter: `library=eq.${LIBRARY.id}` },
-        async (payload) => {
-          const row = payload.new;
-          if (!row || row.printed || row.library !== LIBRARY.id) return;
-          
-          activePrintTypeRef.current = 'Uploaded Image';
-          setImage(row.image_url);
-          const fileNameX = row.image_url.split("/").pop();
-          setFileName(fileNameX ?? null);
-
-          await supabase.from("print_queue").delete().eq("id", row.id);
-        }
-      ).subscribe();
+        (payload) => queuePhoto(payload.new)
+      )
+      // Runs when first connected and again after any reconnect.
+      .subscribe((status) => { if (status === "SUBSCRIBED") catchUp(); });
 
     return () => { supabase.removeChannel(subscription); };
   }, []);
